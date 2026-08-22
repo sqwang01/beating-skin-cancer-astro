@@ -1,0 +1,115 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const cancerLinks = [
+  { href: '/melanoma', label: 'Melanoma', desc: 'Most serious type' },
+  { href: '/squamous-cell-carcinoma', label: 'Squamous Cell Carcinoma', desc: 'Second most common' },
+  { href: '/basal-cell-carcinoma', label: 'Basal Cell Carcinoma', desc: 'Most common type' },
+  { href: '/actinic-keratosis', label: 'Actinic Keratosis', desc: 'Precancerous lesions' },
+  { href: '/atypical-nevi', label: 'Atypical Nevi', desc: 'Unusual moles' },
+];
+
+const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+---
+
+<nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center gap-2 hover:opacity-90 transition-opacity">
+          <img src="/Beating Cancer logo copy.png" alt="Beating Cancer Logo" class="h-12 w-12" />
+          <span class="text-2xl font-serif text-navy font-bold">BeatingSkinCancer.com</span>
+        </a>
+      </div>
+
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/questions-to-ask" class="text-slate hover:text-teal transition-colors font-medium">
+          200 Smart Questions
+        </a>
+        <a href="/prevention" class="text-slate hover:text-teal transition-colors font-medium">
+          Prevention
+        </a>
+
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-slate hover:text-teal transition-colors font-medium">
+            Skin Cancers
+            <Icon name="lucide:chevron-down" size={16} class="transition-transform group-hover:rotate-180" />
+          </button>
+
+          <div class="absolute top-full left-0 pt-2 w-56 hidden group-hover:block">
+            <div class="bg-white rounded-lg shadow-lg border border-slate/10 py-2">
+              {cancerLinks.map((link) => (
+                <a href={link.href} class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors">
+                  <div class="font-medium">{link.label}</div>
+                  <div class="text-sm text-slate/60">{link.desc}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a
+          href={chatUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-2 bg-teal text-white px-6 py-2.5 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+        >
+          <Icon name="lucide:message-square" size={18} />
+          Chat with AI
+        </a>
+      </div>
+
+      <div class="md:hidden">
+        <button id="mobile-menu-button" class="text-navy hover:text-teal transition-colors" aria-label="Toggle menu" aria-expanded="false">
+          <Icon name="lucide:menu" id="menu-open-icon" size={28} />
+          <Icon name="lucide:x" id="menu-close-icon" size={28} class="hidden" />
+        </button>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="md:hidden border-t border-slate/10 hidden">
+      <div class="px-4 py-6 space-y-4">
+        <a href="/questions-to-ask" class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg font-medium">
+          200 Smart Questions
+        </a>
+        <a href="/prevention" class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg font-medium">
+          Prevention
+        </a>
+
+        <div class="space-y-2">
+          <div class="text-sm font-semibold text-slate/60 px-4">Explore Cancers</div>
+          {cancerLinks.map((link) => (
+            <a href={link.href} class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg">
+              <div class="font-medium">{link.label}</div>
+              <div class="text-sm text-slate/60">{link.desc}</div>
+            </a>
+          ))}
+        </div>
+
+        <a
+          href={chatUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-center gap-2 bg-teal text-white px-6 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium mx-4"
+        >
+          <Icon name="lucide:message-square" size={18} />
+          Chat with AI
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = document.getElementById('menu-open-icon');
+  const closeIcon = document.getElementById('menu-close-icon');
+
+  button?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    button.setAttribute('aria-expanded', String(isOpen));
+    openIcon?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+  });
+</script>

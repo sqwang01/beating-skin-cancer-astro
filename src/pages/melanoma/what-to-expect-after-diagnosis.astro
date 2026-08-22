@@ -1,0 +1,350 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/what-to-expect-after-diagnosis";
+const title = "What to Expect After a Melanoma Diagnosis | Beating Skin Cancer";
+const description =
+  "Learn what happens after a melanoma diagnosis—testing, treatment planning, and how to navigate the first few weeks with confidence.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What to Expect After a Melanoma Diagnosis",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Cancers" },
+  "publisher": { "@type": "Organization", "name": "Beating Cancers" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "What to Expect After a Melanoma Diagnosis", "item": canonical }
+  ],
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">What to Expect After a Melanoma Diagnosis</h1>
+          <p class="text-xl text-white/80">Navigate the first few weeks with clarity and confidence</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The First Days After Hearing "You Have Melanoma"</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Hearing the words <em>"You have melanoma"</em> can stop you in your tracks. Even when caught early, the word "cancer" triggers understandable fear and uncertainty. You may find yourself wondering: <em>How serious is it? Has it spread? What happens next?</em>
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The first few weeks after diagnosis are what Dr. Steven Wang calls the <strong>"mad rush" phase</strong>—a whirlwind of new information, appointments, and decisions. This period can feel overwhelming, but knowing what to expect can help you take back a sense of control.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:file-text" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Step 1: Understanding Your Pathology Report</h2>
+              <p class="text-slate/80 mb-4">
+                After a biopsy confirms melanoma, your dermatologist or pathologist will issue a <strong>pathology report</strong>—a detailed document describing the cancer's key features. The most important details to review with your doctor include:
+              </p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="bg-teal/10">
+                  <th class="border border-teal/20 p-3 text-left text-navy font-semibold">Term</th>
+                  <th class="border border-teal/20 p-3 text-left text-navy font-semibold">What It Means</th>
+                  <th class="border border-teal/20 p-3 text-left text-navy font-semibold">Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate/80">
+                <tr>
+                  <td class="border border-teal/20 p-3"><strong>Breslow depth</strong></td>
+                  <td class="border border-teal/20 p-3">How deep the melanoma cells extend into the skin</td>
+                  <td class="border border-teal/20 p-3">Helps determine your stage and need for further testing</td>
+                </tr>
+                <tr class="bg-sky/5">
+                  <td class="border border-teal/20 p-3"><strong>Ulceration</strong></td>
+                  <td class="border border-teal/20 p-3">Whether the surface skin is broken over the melanoma</td>
+                  <td class="border border-teal/20 p-3">Indicates a higher risk level</td>
+                </tr>
+                <tr>
+                  <td class="border border-teal/20 p-3"><strong>Mitotic rate</strong></td>
+                  <td class="border border-teal/20 p-3">How fast the melanoma cells are dividing</td>
+                  <td class="border border-teal/20 p-3">Helps predict likelihood of spread</td>
+                </tr>
+                <tr class="bg-sky/5">
+                  <td class="border border-teal/20 p-3"><strong>Margins</strong></td>
+                  <td class="border border-teal/20 p-3">Whether all cancer cells were removed in the biopsy</td>
+                  <td class="border border-teal/20 p-3">Determines if more surgery is needed</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-slate/80 mt-6 bg-sky/5 p-4 rounded-lg">
+            If your biopsy was a small sample (a "partial biopsy"), your doctor will recommend a <strong>wide local excision</strong> to remove remaining cancer cells and confirm clear margins.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Step 2: Staging and Possible Additional Tests</h2>
+              <p class="text-slate/80 mb-4">
+                Melanoma staging tells your care team how advanced the cancer is and whether it may have spread. According to the <strong>NCCN Guidelines (2025)</strong>, the stage depends on tumor depth, ulceration, and—when appropriate—results from a <strong>sentinel lymph node biopsy</strong> (SLNB).
+              </p>
+              <p class="text-slate/80 mb-4">You may hear one of the following stage ranges:</p>
+              <ul class="space-y-3 text-slate/80 mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Stage 0–I:</strong> Early melanoma confined to the skin</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Stage II:</strong> Thicker melanoma, but no sign of spread</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Stage III:</strong> Cancer has reached nearby lymph nodes</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Stage IV:</strong> Melanoma has spread to distant organs</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mb-4">
+                If your melanoma is <strong>deeper than 0.8–1.0 mm</strong> or has other high-risk features, your surgical oncologist may recommend an <strong>SLNB</strong> to check if cancer cells have traveled to the first draining lymph node. (For details, see our post <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">Sentinel Lymph Node Biopsy: What It Means for Melanoma</a>.)
+              </p>
+              <p class="text-slate/80">
+                Imaging studies—such as ultrasound, CT, or PET scans—are sometimes ordered for higher-stage or symptomatic cases.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Step 3: Treatment Planning</h2>
+              <p class="text-slate/80 mb-4">
+                Once staging is complete, your medical team will create a personalized treatment plan. Most early melanomas are cured with surgery alone, but higher-stage cases may involve additional therapies.
+              </p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="bg-coral/10">
+                  <th class="border border-coral/20 p-3 text-left text-navy font-semibold">Stage</th>
+                  <th class="border border-coral/20 p-3 text-left text-navy font-semibold">Common Treatment Approach</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate/80">
+                <tr>
+                  <td class="border border-coral/20 p-3"><strong>Stage 0–I</strong></td>
+                  <td class="border border-coral/20 p-3">Wide local excision (outpatient surgery)</td>
+                </tr>
+                <tr class="bg-sky/5">
+                  <td class="border border-coral/20 p-3"><strong>Stage II</strong></td>
+                  <td class="border border-coral/20 p-3">Excision + possible SLNB; close follow-up</td>
+                </tr>
+                <tr>
+                  <td class="border border-coral/20 p-3"><strong>Stage III</strong></td>
+                  <td class="border border-coral/20 p-3">Surgery + possible adjuvant immunotherapy</td>
+                </tr>
+                <tr class="bg-sky/5">
+                  <td class="border border-coral/20 p-3"><strong>Stage IV</strong></td>
+                  <td class="border border-coral/20 p-3">Systemic treatments such as immunotherapy or targeted therapy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-slate/80 mt-6 bg-teal/5 p-4 rounded-lg">
+            Your team may include a <strong>dermatologist, surgical oncologist, medical oncologist, and dermatopathologist</strong>—a coordinated group that ensures each decision follows national best-practice standards.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-sky/10 to-teal/10 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Step 4: Building Your Follow-Up Plan</h2>
+              <p class="text-slate/80 mb-4">
+                After surgery, you'll enter what Dr. Wang calls the <strong>"marathon phase"</strong>—the long-term journey of recovery and surveillance. Your doctor will outline a schedule for skin checks and imaging based on your stage:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Every 3–6 months</strong> for the first 2 years</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Every 6–12 months</strong> for years 3–5</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Annually</strong> thereafter</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mb-4">These visits allow your dermatologist to:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Examine your skin and lymph nodes</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Detect any new or recurrent melanomas early</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Discuss sun protection and healthy lifestyle habits</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-6 bg-white p-4 rounded-lg">
+                You'll also learn how to <strong>check your own skin monthly</strong>—a crucial part of staying vigilant between visits.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:users" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Step 5: Emotional and Practical Recovery</h2>
+              <p class="text-slate/80 mb-4">
+                It's completely normal to feel anxious or uncertain after diagnosis. Many people find comfort in:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Bringing a loved one</strong> to appointments for support and note-taking</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Writing down questions</strong> between visits</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Joining a melanoma support group</strong> or connecting with survivors through organizations like AIM at Melanoma or the Melanoma Research Foundation</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 bg-teal/5 p-4 rounded-lg">
+                Remember: melanoma treatment today is more effective than ever before. Advances in <strong>immunotherapy and targeted therapy</strong> have dramatically improved survival for advanced melanoma. Even in challenging cases, there is real reason for hope.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-sky/10 to-teal/10 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What stage is my melanoma, and how was that determined?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Do I need a sentinel lymph node biopsy?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Will I need additional treatment after surgery?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>How often should I have skin exams or imaging?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What steps can I take to reduce my risk of recurrence?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Key Takeaway</h2>
+          <p class="text-slate/80 mb-4">
+            The weeks after a melanoma diagnosis are filled with questions—but they also mark the beginning of a clear, evidence-based process. Your medical team will move quickly to remove the melanoma, determine its stage, and build a long-term plan to help you stay healthy and confident moving forward.
+          </p>
+          <p class="text-slate/80 mb-4">
+            Most patients diagnosed early <strong>do very well</strong>, living long, full lives with regular follow-up and smart sun habits.
+          </p>
+          <p class="text-slate/80">
+            Learn more in our <a href="/melanoma" class="text-teal hover:text-teal/80 underline">Melanoma section</a> and related articles:
+          </p>
+          <ul class="space-y-2 text-slate/80 mt-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">Understanding Melanoma Staging and Prognosis</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">Sentinel Lymph Node Biopsy: What It Means for Melanoma</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about melanoma diagnosis and treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

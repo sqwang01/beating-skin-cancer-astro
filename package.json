@@ -1,0 +1,22 @@
+{
+  "name": "beating-skin-cancer-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@iconify-json/lucide": "^1.2.125",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.2.4",
+    "astro-icon": "^1.2.0",
+    "tailwindcss": "^4.3.3"
+  }
+}

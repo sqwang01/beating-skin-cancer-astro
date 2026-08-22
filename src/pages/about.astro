@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "About Us | Beating Skin Cancer";
+const description = "Experts dedicated to empowering you with knowledge";
+---
+
+<Layout title={title} description={description}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">About Us</h1>
+          <p class="text-xl text-white/80">Experts dedicated to empowering you with knowledge</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-6">
+            <Icon name="lucide:heart" class="text-coral" size={32} />
+            <h2 class="text-3xl font-serif text-navy">Our Mission</h2>
+          </div>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            BeatingSkinCancer.com was created to help people facing skin cancer replace fear with clarity, and confusion with confidence. We believe that every person deserves access to trusted, easy-to-understand guidance — grounded in science, compassion, and experience.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-6">
+            <Icon name="lucide:users" class="text-teal" size={32} />
+            <h2 class="text-3xl font-serif text-navy">Who We Are</h2>
+          </div>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            BeatingSkinCancer.com is developed by a team of board-certified dermatology and oncology professionals with decades of experience caring for patients with melanoma, basal cell carcinoma, and squamous cell carcinoma.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Our contributors have published research in leading medical journals and helped shape national skin cancer guidelines. Together, we translate complex medical information into practical, human-centered guidance.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <Icon name="lucide:sparkles" class="text-coral" size={32} />
+            <h2 class="text-3xl font-serif text-navy">What Makes Us Different</h2>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h3 class="text-xl font-semibold text-navy mb-2">Built by Experts</h3>
+                <p class="text-slate/80 leading-relaxed">
+                  Every word, recommendation, and educational tool on this site was created or reviewed by specialists who treat skin cancer every day.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h3 class="text-xl font-semibold text-navy mb-2">Science You Can Trust</h3>
+                <p class="text-slate/80 leading-relaxed">
+                  Our information aligns with the most current clinical evidence and national guidelines.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h3 class="text-xl font-semibold text-navy mb-2">AI That Educates, Not Replaces</h3>
+                <p class="text-slate/80 leading-relaxed">
+                  Our custom Skin Cancer GPT is designed to help you ask smarter questions and better understand your next steps — never to diagnose or treat.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={24} />
+              <div>
+                <h3 class="text-xl font-semibold text-navy mb-2">Human at Heart</h3>
+                <p class="text-slate/80 leading-relaxed">
+                  Behind every line of code and every answer is a deep commitment to patient care and empowerment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Ready to Learn More?</h3>
+          <p class="text-white/80 mb-6">Explore our resources and chat with our AI guide</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

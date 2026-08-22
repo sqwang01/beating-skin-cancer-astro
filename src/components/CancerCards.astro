@@ -1,0 +1,47 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="cancers" class="py-20 bg-ivory">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-4xl font-serif text-navy text-center mb-4">Types of Skin Cancer</h2>
+    <p class="text-center text-slate/70 mb-16 text-lg max-w-3xl mx-auto">
+      Learn about the three main types of skin cancer and their characteristics.
+    </p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <a href="/melanoma" class="group bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="h-2 w-16 bg-coral rounded-full mb-6"></div>
+        <h3 class="text-2xl font-serif text-navy mb-4">Melanoma</h3>
+        <p class="text-slate/70 mb-6 leading-relaxed">
+          The most serious type of skin cancer that develops in melanocytes. Early detection is crucial for successful treatment.
+        </p>
+        <div class="flex items-center gap-2 text-teal font-medium group-hover:gap-4 transition-all">
+          Learn More <Icon name="lucide:arrow-right" size={18} />
+        </div>
+      </a>
+
+      <a href="/squamous-cell-carcinoma" class="group bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="h-2 w-16 bg-teal rounded-full mb-6"></div>
+        <h3 class="text-2xl font-serif text-navy mb-4">Squamous Cell Carcinoma</h3>
+        <p class="text-slate/70 mb-6 leading-relaxed">
+          The second most common skin cancer that can be cured if detected and treated early. Usually appears on sun-exposed areas.
+        </p>
+        <div class="flex items-center gap-2 text-teal font-medium group-hover:gap-4 transition-all">
+          Learn More <Icon name="lucide:arrow-right" size={18} />
+        </div>
+      </a>
+
+      <a href="/basal-cell-carcinoma" class="group bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="h-2 w-16 bg-navy rounded-full mb-6"></div>
+        <h3 class="text-2xl font-serif text-navy mb-4">Basal Cell Carcinoma</h3>
+        <p class="text-slate/70 mb-6 leading-relaxed">
+          The most common type of skin cancer. Highly treatable with excellent cure rates when detected early.
+        </p>
+        <div class="flex items-center gap-2 text-teal font-medium group-hover:gap-4 transition-all">
+          Learn More <Icon name="lucide:arrow-right" size={18} />
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

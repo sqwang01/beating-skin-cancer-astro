@@ -1,0 +1,304 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/sentinel-lymph-node-biopsy";
+const title = "Sentinel Lymph Node Biopsy: What It Means for Melanoma | Beating Skin Cancer";
+const description =
+  "Learn when a sentinel lymph node biopsy is recommended for melanoma, what it involves, and how results guide treatment and staging.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Sentinel Lymph Node Biopsy: What It Means for Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Cancers" },
+  "publisher": { "@type": "Organization", "name": "Beating Cancers" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Sentinel Lymph Node Biopsy", "item": canonical }
+  ],
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Sentinel Lymph Node Biopsy: What It Means for Melanoma</h1>
+          <p class="text-xl text-white/80">Understanding when and why this test is recommended</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Understanding Sentinel Lymph Node Biopsy in Melanoma</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            When someone is diagnosed with melanoma, one of the biggest questions is whether the cancer has spread. A <strong>sentinel lymph node biopsy (SLNB)</strong> is often the key test to answer that question. This procedure helps doctors understand the <em>stage</em> of melanoma and decide whether additional treatment is needed.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            For many patients, just hearing the words "lymph node" can be frightening—but SLNB is mainly a <strong>diagnostic tool</strong>, not a treatment. Understanding why and when it's recommended can help you approach this step with clarity and confidence.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Is a Sentinel Lymph Node?</h2>
+              <p class="text-slate/80 mb-4">
+                The <strong>lymphatic system</strong> is part of the body's immune defense and works like a network of highways that drain fluid from tissues. Cancer cells can sometimes travel through these pathways.
+              </p>
+              <p class="text-slate/80">
+                The <strong>sentinel lymph node</strong> is the <em>first</em> node that drains fluid from the area of the melanoma. If melanoma cells spread, this node is usually the first stop. Checking this node gives doctors the best early clue about whether cancer has started to move beyond the skin.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How a Sentinel Lymph Node Biopsy Works</h2>
+          <p class="text-slate/80 mb-4">
+            SLNB is usually done <strong>at the same time as melanoma surgery</strong> (wide local excision). Here's what happens:
+          </p>
+          <ol class="space-y-4 text-slate/80 mb-6">
+            <li class="flex items-start gap-3">
+              <span class="text-teal font-bold flex-shrink-0">1.</span>
+              <div>
+                <strong>Mapping the lymph node:</strong> Before surgery, a tiny amount of dye and a safe radioactive tracer are injected near the melanoma site. These substances travel through the lymphatic channels and "light up" the first draining node.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-teal font-bold flex-shrink-0">2.</span>
+              <div>
+                <strong>Locating and removing the node:</strong> During surgery, the surgeon uses a small detector to find the sentinel node (or sometimes two or three). Only those nodes are removed—not all the nodes in the area.
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-teal font-bold flex-shrink-0">3.</span>
+              <div>
+                <strong>Pathology testing:</strong> The lymph node is examined under a microscope by a pathologist. If melanoma cells are found, the node is called "positive." If none are found, it's "negative."
+              </div>
+            </li>
+          </ol>
+          <p class="text-slate/80 bg-sky/5 p-4 rounded-lg">
+            The procedure is generally <strong>outpatient</strong>, with minimal discomfort and quick recovery.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">When Is a Sentinel Lymph Node Biopsy Recommended?</h2>
+              <p class="text-slate/80 mb-4">
+                Not everyone with melanoma needs an SLNB. The <strong>NCCN Guidelines (2025)</strong> recommend it mainly for patients whose melanoma carries a higher risk of spreading. The key factor is <strong>Breslow depth</strong>, or how deeply the melanoma has grown into the skin.
+              </p>
+              <p class="text-slate/80 mb-4"><strong>Typical recommendations include:</strong></p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Melanomas deeper than 1.0 mm:</strong> SLNB is usually advised.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Melanomas 0.8–1.0 mm with high-risk features</strong> (such as ulceration or high mitotic rate): SLNB may be considered.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Melanomas thinner than 0.8 mm:</strong> Usually no biopsy is needed unless there are unusual findings.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80">
+                Your dermatologist or surgical oncologist will discuss your individual situation. The decision often depends on tumor thickness, ulceration, and other pathology details.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Do the Results Mean?</h2>
+          <p class="text-slate/80 mb-4">
+            The biopsy results guide <strong>staging</strong> and sometimes <strong>treatment decisions</strong>:
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-navy mb-3">Negative SLNB</h3>
+              <p class="text-slate/80">
+                This is good news. It means melanoma has not spread to the nearest lymph node, and surgery to remove the primary melanoma is often all that's needed.
+              </p>
+            </div>
+            <div class="bg-coral/5 p-6 rounded-lg">
+              <h3 class="text-xl font-semibold text-navy mb-3">Positive SLNB</h3>
+              <p class="text-slate/80 mb-3">
+                This means melanoma cells were found in the node. Your doctor may recommend additional imaging or treatment such as:
+              </p>
+              <ul class="space-y-2 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Lymph node ultrasound surveillance</strong> (common approach today instead of full node removal)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Adjuvant immunotherapy</strong> or targeted therapy for higher-risk cases</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Closer follow-up and imaging</strong> to monitor for recurrence</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6 italic bg-sky/5 p-4 rounded-lg">
+            It's important to remember that a positive SLNB does <em>not</em> mean melanoma has spread widely—it simply signals that microscopic cells were found in the first node.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-sky/10 to-teal/10 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Possible Risks and Recovery</h2>
+              <p class="text-slate/80 mb-4">
+                A sentinel node biopsy is generally safe, but, like any surgery, it carries small risks:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Mild pain or swelling in the area</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Temporary numbness or stiffness</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Rarely, fluid buildup (seroma) or infection</span>
+                </li>
+              </ul>
+              <p class="text-slate/80">
+                Most people return to normal activity within a few days. Your doctor will give you wound care instructions and explain what to watch for.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:file-text" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why This Test Matters</h2>
+              <p class="text-slate/80 mb-4">SLNB helps doctors:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Stage melanoma accurately</strong> (which predicts risk of recurrence)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Guide treatment choices</strong>, including whether to consider immunotherapy</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Avoid unnecessary major surgery</strong>, since only one or two lymph nodes are removed</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-6 bg-teal/5 p-4 rounded-lg">
+                Knowing your SLNB result can bring peace of mind and helps your medical team create the most tailored care plan possible.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-sky/10 to-teal/10 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Do you recommend a sentinel lymph node biopsy for my melanoma? Why or why not?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>How will the results affect my treatment plan?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What are the potential risks or side effects of the biopsy?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>How long will it take to get the results?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>If the biopsy is positive, what are the next steps?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">In Summary</h2>
+          <p class="text-slate/80 mb-4">
+            A sentinel lymph node biopsy is one of the most important tools for <strong>understanding the stage of melanoma</strong>. It does not treat the cancer itself, but it provides crucial information that shapes your treatment and follow-up plan.
+          </p>
+          <p class="text-slate/80 mb-4">
+            If your dermatologist or surgeon suggests an SLNB, know that this recommendation follows evidence-based national guidelines and is designed to ensure that you get the most accurate, personalized care.
+          </p>
+          <p class="text-slate/80">
+            Learn more in our <a href="/melanoma" class="text-teal hover:text-teal/80 underline">Melanoma section</a> and related articles.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about sentinel lymph node biopsy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

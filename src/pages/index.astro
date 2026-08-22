@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import CancerCards from '../components/CancerCards.astro';
+import AIGuide from '../components/AIGuide.astro';
+import Trust from '../components/Trust.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import NewsletterPopup from '../components/NewsletterPopup.astro';
+
+const title = 'Beating Skin Cancers - Expert Education & AI Tools';
+const description = 'A physician-created, AI-powered education resource for melanoma, basal cell carcinoma, squamous cell carcinoma, and actinic keratosis. Get answers instantly, 24/7.';
+---
+
+<Layout title={title} description={description}>
+  <Hero />
+  <HowItWorks />
+  <CancerCards />
+  <AIGuide />
+  <Trust />
+  <FinalCTA />
+  <NewsletterPopup />
+</Layout>

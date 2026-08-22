@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+const targetUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+---
+
+<Layout title="Redirecting... | Beating Skin Cancer" description="Redirecting to the AI Navigator.">
+  <meta http-equiv="refresh" content={`0;url=${targetUrl}`} />
+  <div class="min-h-screen flex items-center justify-center bg-ivory">
+    <div class="text-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-900 mx-auto"></div>
+      <p class="mt-4 text-slate-600">Redirecting...</p>
+    </div>
+  </div>
+</Layout>
+
+<script define:vars={{ targetUrl }}>
+  const params = new URLSearchParams(window.location.search);
+  const partner = params.get('partner');
+  const fullUrl = partner ? `${targetUrl}?partner=${encodeURIComponent(partner)}` : targetUrl;
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', 'partner_redirect', {
+      partner_name: partner || 'none',
+      destination_url: fullUrl,
+    });
+  }
+
+  setTimeout(() => {
+    window.location.replace(fullUrl);
+  }, 30);
+</script>

@@ -1,0 +1,80 @@
+---
+import { Icon } from 'astro-icon/components';
+const newsletterUrl = 'https://newsletter.beatingskincancer.com/hp/Rj20gf-NywoxZFOkP_ZuaQ/signup';
+---
+
+<div
+  id="newsletter-popup"
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 hidden"
+>
+  <div class="bg-white rounded-lg shadow-2xl w-full max-w-md relative animate-fadeIn">
+    <button
+      id="newsletter-popup-close"
+      class="absolute top-4 right-4 text-gray-400 hover:text-navy transition-colors"
+      aria-label="Close popup"
+    >
+      <Icon name="lucide:x" size={28} />
+    </button>
+
+    <div class="p-8">
+      <div class="mb-6">
+        <h2 class="font-serif text-3xl font-bold text-navy mb-3 leading-tight">
+          Stay Informed. Stay Protected.
+        </h2>
+        <p class="text-slate text-base leading-relaxed">
+          Get expert guidance on skin cancer prevention, treatment options, and the latest updates—all in plain language.
+        </p>
+      </div>
+
+      <button
+        id="newsletter-popup-subscribe"
+        class="w-full bg-navy text-white font-semibold py-3 px-6 rounded-lg hover:bg-teal transition-colors mb-4"
+      >
+        Subscribe Now
+      </button>
+
+      <button
+        id="newsletter-popup-dismiss"
+        class="w-full text-center text-sm text-gray-500 hover:text-gray-700 hover:underline transition-colors"
+      >
+        No thanks
+      </button>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ newsletterUrl }}>
+  const popup = document.getElementById('newsletter-popup');
+  let hasShown = false;
+
+  const showPopup = () => {
+    if (!hasShown && popup) {
+      popup.classList.remove('hidden');
+      hasShown = true;
+    }
+  };
+
+  const hidePopup = () => {
+    popup?.classList.add('hidden');
+  };
+
+  const handleExitIntent = (e) => {
+    if (e.clientY <= 0 && !hasShown) {
+      showPopup();
+    }
+  };
+
+  setTimeout(showPopup, 5000);
+  document.addEventListener('mouseout', handleExitIntent);
+
+  popup?.addEventListener('click', (e) => {
+    if (e.target === popup) hidePopup();
+  });
+
+  document.getElementById('newsletter-popup-close')?.addEventListener('click', hidePopup);
+  document.getElementById('newsletter-popup-dismiss')?.addEventListener('click', hidePopup);
+  document.getElementById('newsletter-popup-subscribe')?.addEventListener('click', () => {
+    window.open(newsletterUrl, '_blank', 'noopener,noreferrer');
+    hidePopup();
+  });
+</script>
