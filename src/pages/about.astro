@@ -1,12 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import stevenWangHeadshot from '../assets/steven-wang-headshot.jpg';
 
+const canonical = "https://www.beatingskincancer.com/about";
 const title = "About Us | Beating Skin Cancer";
 const description = "Experts dedicated to empowering you with knowledge";
+
+const physicianJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Steven Q. Wang, MD",
+  "url": canonical,
+  "image": new URL(stevenWangHeadshot.src, "https://www.beatingskincancer.com").toString(),
+  "jobTitle": "Medical Director of Dermatologic Oncology",
+  "medicalSpecialty": ["Dermatology", "Dermatologic Oncology", "Mohs Micrographic Surgery"],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Albert Einstein College of Medicine" },
+    { "@type": "CollegeOrUniversity", "name": "University of Minnesota School of Medicine" },
+  ],
+  "memberOf": { "@type": "Organization", "name": "Hoag Family Cancer Institute" },
+  "sameAs": ["https://www.hoag.org/physician/steven-q-wang-md"],
+};
+
+const jsonLd = [physicianJsonLd];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
 <div class="min-h-screen bg-ivory">
       <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,12 +65,34 @@ const description = "Experts dedicated to empowering you with knowledge";
             <Icon name="lucide:users" class="text-teal" size={32} />
             <h2 class="text-3xl font-serif text-navy">Who We Are</h2>
           </div>
-          <p class="text-slate/80 text-lg leading-relaxed mb-4">
-            BeatingSkinCancer.com is developed by a team of board-certified dermatology and oncology professionals with decades of experience caring for patients with melanoma, basal cell carcinoma, and squamous cell carcinoma.
-          </p>
           <p class="text-slate/80 text-lg leading-relaxed">
-            Our contributors have published research in leading medical journals and helped shape national skin cancer guidelines. Together, we translate complex medical information into practical, human-centered guidance.
+            BeatingSkinCancer.com is written and medically overseen by Dr. Steven Q. Wang, a board-certified dermatologist with decades of experience diagnosing and treating melanoma, basal cell carcinoma, and squamous cell carcinoma. Every page on this site is grounded in his clinical experience and published research, translated into practical, human-centered guidance.
           </p>
+
+          <div class="mt-8 bg-white rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start">
+            <Image
+              src={stevenWangHeadshot}
+              alt="Dr. Steven Q. Wang, MD"
+              width={96}
+              height={96}
+              class="flex-shrink-0 w-24 h-24 rounded-full object-cover"
+            />
+            <div>
+              <h3 class="text-xl font-semibold text-navy">Steven Q. Wang, MD</h3>
+              <p class="text-teal font-medium mb-3">Board-Certified Dermatologist · Mohs Micrographic Surgeon</p>
+              <p class="text-slate/80 leading-relaxed mb-3">
+                Medical Director of Dermatologic Oncology at Hoag Family Cancer Institute. Dr. Wang spent 16 years at Memorial Sloan Kettering Cancer Center, where he led the Dermatology Section, and is a co-founder of the Nanodermatology Society. He has authored 6 books and published more than 100 peer-reviewed articles on the detection, treatment, and prevention of melanoma and skin cancer.
+              </p>
+              <a
+                href="https://www.hoag.org/physician/steven-q-wang-md"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-teal hover:text-teal/80 font-medium inline-flex items-center gap-1"
+              >
+                View full profile at Hoag <Icon name="lucide:external-link" size={16} />
+              </a>
+            </div>
+          </div>
         </div>
 
         <div class="bg-white rounded-2xl shadow-lg p-8">
