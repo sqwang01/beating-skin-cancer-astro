@@ -1,0 +1,275 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/self-exam-when-to-see-doctor";
+const title = "How to Check Your Skin for BCC | Beating Skin Cancer";
+const description = "How to perform a basal cell carcinoma self-exam, the specific signs BCC shows on skin, and exactly when a spot is worth a dermatologist visit.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do I Check My Skin for Basal Cell Carcinoma — and When Should I See a Doctor?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Self-Exam & When to See a Doctor", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the ABCDE rule work for spotting basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not directly. The ABCDE rule (asymmetry, border, color, diameter, evolution) was designed for melanoma, which usually starts as a pigmented, mole-like spot. BCC more often looks like a shiny bump, a sore that won't heal, a reddish patch, or a flat, scar-like area — none of which fit the ABCDE pattern well. The better approach for BCC is to know its specific appearances and watch for anything new, changing, or that doesn't heal within a few weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I do a skin self-exam if I've already had a basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most dermatologists recommend a thorough self-exam monthly, in addition to whatever in-office follow-up schedule your dermatologist has set based on your history — often every 6 to 12 months for the first few years after a BCC diagnosis, since having had one BCC raises the chance of developing another."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if I find a spot that looks like it could be BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Make an appointment with a board-certified dermatologist rather than waiting to see if it goes away on its own. BCC almost never resolves without treatment, and while it grows slowly and is very rarely dangerous in the short term, a spot that's evaluated and, if needed, biopsied earlier is almost always easier and less invasive to treat than one caught later."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Do I Check My Skin for Basal Cell Carcinoma — and When Should I See a Doctor?
+          </h1>
+          <p class="text-xl text-white/80">A practical, step-by-step guide to self-exams and the signs that warrant a visit</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most people have heard of the "ABCDEs" for spotting a suspicious mole — but basal cell carcinoma (BCC) rarely looks like a mole at all. It's far more likely to show up as a small shiny bump, a sore that keeps opening back up, or a patch of skin that just doesn't look quite right. That mismatch is one reason BCCs sometimes go unnoticed for months: people are watching for the wrong thing.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            The good news is that BCC grows slowly and its warning signs, once you know them, are fairly consistent and easy to check for yourself at home. This guide walks through exactly how to do a self-exam, what BCC actually looks like at different stages, and the specific point at which "I should keep an eye on that" becomes "I should call my dermatologist."
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:search" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How to Do a Skin Self-Exam</h2>
+              <p class="text-slate/80 mb-4">
+                Pick a well-lit room and do this roughly once a month — right after a shower is a good habit to build it into. You'll need a full-length mirror and a hand mirror.
+              </p>
+              <ol class="space-y-2 text-slate/80 list-decimal list-inside">
+                <li>Face the full-length mirror and check the front and back of your body, then both sides with your arms raised.</li>
+                <li>Bend your elbows and look closely at your forearms, underarms, palms, and fingernails.</li>
+                <li>Sit down and examine the backs of your legs and feet, the spaces between your toes, your soles, and your toenails.</li>
+                <li>Use the hand mirror to check your neck and scalp — part your hair in sections for a clear view of your scalp.</li>
+                <li>Finish with the hand mirror on your back and buttocks, or ask a partner to check areas you can't see well yourself.</li>
+              </ol>
+              <p class="text-slate/80 mt-4">
+                Pay closest attention to sun-exposed areas — the face, ears, neck, scalp, shoulders, and back of the hands — since roughly 80% of BCCs develop there. But don't skip less sun-exposed skin entirely; it's less common, not impossible.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:eye" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What BCC Actually Looks Like</h2>
+              <p class="text-slate/80 mb-6">
+                Unlike melanoma, BCC doesn't usually present as a pigmented, mole-like spot, so the ABCDE checklist doesn't map onto it well. Instead, dermatologists describe BCC as showing up in one of a few recognizable patterns:
+              </p>
+              <div class="space-y-4">
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Shiny, Pearly Bump</h3>
+                  <p class="text-slate/80">
+                    A small, dome-shaped bump that looks translucent or waxy — pink, red, or white on lighter skin, and often brown, black, or glossy on deeper skin tones. Fine blood vessels are sometimes visible across its surface. This is the most classic presentation, called nodular BCC.
+                  </p>
+                </div>
+                <div class="bg-ivory rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Sore That Won't Heal</h3>
+                  <p class="text-slate/80">
+                    An open area that bleeds, oozes, or crusts, appears to heal, and then reopens — sometimes over weeks or months. A sore that keeps cycling through this pattern instead of fully healing is one of the more reliable warning signs, and one of the most commonly missed, since it's easy to mistake for a scab or minor injury.
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Reddish, Irritated Patch</h3>
+                  <p class="text-slate/80">
+                    A flat or slightly scaly pink-to-red patch, often on the chest, shoulders, arms, or legs, that may itch or feel tender but sometimes causes no sensation at all. This superficial pattern is easy to dismiss as eczema, a rash, or dry skin.
+                  </p>
+                </div>
+                <div class="bg-ivory rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Flat, Scar-Like Area</h3>
+                  <p class="text-slate/80">
+                    A firm, waxy, white or yellowish patch with skin that looks stretched or shiny, and a border that's hard to pinpoint. This pattern (morpheaform BCC) is the easiest to miss on self-exam precisely because it doesn't look like a typical growth — it looks like a scar you don't remember getting. See our <a href="/basal-cell-carcinoma/types" class="text-teal hover:text-teal/80 underline">guide to BCC types</a> for more on how these patterns relate to how the cancer behaves.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">When to See a Doctor</h2>
+          <p class="text-slate/80 mb-6">
+            You don't need to be certain something is BCC before getting it checked — that's your dermatologist's job. Book an appointment if you notice:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Anything That Hasn't Healed in 3-4 Weeks</h3>
+              <p class="text-slate/80">
+                Normal skin injuries heal within a couple of weeks. A sore, bump, or patch that persists, keeps crusting over and reopening, or bleeds without an obvious cause has gone past what's typical for healing and is worth evaluating.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">A New Growth That's Slowly Enlarging</h3>
+              <p class="text-slate/80">
+                BCC typically grows slowly, over months, so "it's been getting a little bigger" over a few visits to the mirror is a meaningful change, not something to wait out.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Any Spot That Looks Different From Your Others</h3>
+              <p class="text-slate/80">
+                Dermatologists sometimes call this the "ugly duckling" sign — a spot that simply stands out from the pattern of everything else on your skin, even if you can't articulate exactly why, is worth a second opinion.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">You Have Risk Factors and Haven't Been Checked Recently</h3>
+              <p class="text-slate/80">
+                A history of significant sun exposure or blistering sunburns, fair skin, a prior BCC or other skin cancer, older age, or immunosuppression all raise your odds of developing BCC. If several apply to you and it's been over a year since a professional skin check, it's worth scheduling one even without a specific spot in mind.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            It's worth noting that national screening guidelines currently say the evidence is insufficient to recommend for or against routine full-body skin exams by a primary care doctor in people with no symptoms or risk factors. That's a statement about population-wide screening programs, though — it doesn't apply to you personally noticing a specific changing spot, which is exactly the situation where getting checked has clear value.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is this spot something you'd want to biopsy, or is it safe to just keep watching?</li>
+                <li>Given my skin type and history, how often should I be getting a professional skin check?</li>
+                <li>Are there areas of my body I should be paying closer attention to during self-exams?</li>
+                <li>Can you show me what to look for so I know what "changed" actually looks like for this spot?</li>
+                <li>If I've had a BCC before, does that change how often I should self-exam or get checked?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            A monthly self-exam takes a few minutes and doesn't require any special equipment — just a mirror and a habit. Knowing that BCC tends to show up as a shiny bump, a non-healing sore, a reddish patch, or a scar-like area, rather than a changing mole, makes it much easier to catch early.
+          </p>
+          <p class="text-slate/80">
+            When in doubt, get it looked at. BCC is highly treatable, and the earlier it's caught, the simpler that treatment tends to be.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Cameron MC, Lee E, Hibler BP, et al. Basal cell carcinoma: Epidemiology; pathophysiology; clinical and histological subtypes; and disease associations. <em>J Am Acad Dermatol.</em> 2019;80(2):303-317. <a href="https://pubmed.ncbi.nlm.nih.gov/29782900/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Work Group; Bichakjian C, Armstrong A, Baum C, et al. Guidelines of care for the management of basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):540-559. <a href="https://pubmed.ncbi.nlm.nih.gov/29331385/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  US Preventive Services Task Force; Mangione CM, Barry MJ, Nicholson WK, et al. Screening for skin cancer: US Preventive Services Task Force recommendation statement. <em>JAMA.</em> 2023;329(15):1290-1295. <a href="https://pubmed.ncbi.nlm.nih.gov/37071089/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/find/check-skin" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Find Skin Cancer: How to Perform a Skin Self-Exam
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/basal-cell-carcinoma/bcc-warning-signs-images/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Skin Cancer Foundation</a> — Basal Cell Carcinoma Warning Signs and Images
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist about any changes to your skin.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about self-exams and BCC warning signs</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

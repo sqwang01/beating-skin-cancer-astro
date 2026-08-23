@@ -1,0 +1,318 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/recovery-after-surgery";
+const title = "BCC Surgery Recovery: What to Expect | Beating Skin Cancer";
+const description = "A day-by-day guide to recovering after basal cell carcinoma surgery — wound care, activity limits, pain control, and signs that need a doctor's attention.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Should I Expect During Recovery After BCC Surgery?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Recovery After Surgery", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does it take to recover from BCC surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most surgical wounds close within 1-2 weeks, but the deeper healing process — where a scar matures and softens — continues for several months and can take up to a year, especially on the face."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When can I shower after basal cell carcinoma surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many patients can shower around 24 hours after surgery, avoiding direct water pressure and soaking of the wound, but this varies by the type of closure used — always follow your own surgeon's specific written instructions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are signs of infection after BCC surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Watch for increasing redness that spreads beyond the wound edges, worsening pain after the first couple of days, pus or foul-smelling drainage, fever, or a wound that reopens. Any of these warrants a call to your surgeon."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Should I Expect During Recovery After BCC Surgery?
+          </h1>
+          <p class="text-xl text-white/80">A day-by-day guide to wound care, activity limits, and healing</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Once your basal cell carcinoma has been removed — whether by excision, Mohs surgery, or another method — your attention shifts from "getting the cancer out" to "getting the wound to heal well." That's a good problem to have, but it comes with its own set of questions: How do I take care of this? When can I go back to normal activities? What's a normal part of healing, and what's a sign something's wrong?
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Every surgeon's specific instructions may vary slightly depending on the closure technique used, so the written aftercare sheet you're given at discharge always takes priority over general guidance. This article walks through what recovery typically looks like, so you know what to expect and when to call your doctor.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:bandage" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The First 24-48 Hours</h2>
+              <p class="text-slate/80 mb-4">
+                The initial pressure bandage placed in the operating room does important work — it controls bleeding and protects the fresh wound. Most surgeons ask you to leave it undisturbed for the first day or two.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Keep the original dressing dry</strong> until your surgeon says it's safe to remove or get wet — usually 24-48 hours.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Elevate the area above heart level when possible</strong> (prop your head up with extra pillows for facial surgery, for example) to limit swelling.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Use ice, not heat</strong>, in short 20-minute increments if your surgeon recommends it — this reduces swelling and bruising, which can be significant around the eyes after facial surgery.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Some oozing, redness, and mild discomfort are normal</strong> in this window. A small amount of blood on the dressing isn't cause for alarm.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Daily Wound Care</h2>
+          <p class="text-slate/80 mb-6">
+            Once you're cleared to start cleaning the wound yourself, a simple routine — repeated once or twice a day until the wound is closed — supports healing and lowers infection risk. A 2024 dermatologic surgery review found that keeping a wound clean, moist, and covered promotes faster healing with less scarring than letting it dry out and scab over.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">1. Gently Clean</h3>
+              <p class="text-slate/80">
+                Wash your hands first. Clean the wound with plain soap and water or the solution your surgeon recommends, using a soft cloth, gauze, or cotton swab to remove any crust or drainage. Avoid scrubbing.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">2. Apply Ointment</h3>
+              <p class="text-slate/80">
+                Pat the area dry, then apply a thin layer of plain petroleum jelly (such as Vaseline) unless your surgeon has prescribed something specific. Routine antibiotic ointment isn't usually necessary and can occasionally cause an allergic skin reaction — plain petrolatum works just as well for most wounds.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">3. Cover</h3>
+              <p class="text-slate/80">
+                Cover with a non-stick gauze pad or bandage as directed. Keeping the wound covered protects it from friction and contamination while it's most vulnerable.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">4. Repeat</h3>
+              <p class="text-slate/80">
+                Continue this cycle daily (or as instructed) until the wound has fully closed over — typically one to three weeks depending on the size, location, and how it was repaired.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Activity and Pain Management</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Avoid strenuous exercise, heavy lifting, and bending over</strong> for about a week — anything that raises your blood pressure can trigger bleeding or pull open a fresh incision.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Skip swimming pools, hot tubs, and baths</strong> until stitches are out and the wound is closed; submerging a healing wound raises infection risk.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Use acetaminophen (Tylenol) for pain</strong> rather than ibuprofen, aspirin, or naproxen in the first day or two, since those can increase bleeding — unless your doctor has told you otherwise for a medication you take regularly.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Sutures are typically removed 5-14 days</strong> after surgery, depending on location — facial stitches usually come out sooner than those on the trunk or limbs, which bear more tension.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Signs You Should Call Your Doctor</h2>
+          <p class="text-slate/80 mb-6">
+            Some redness, mild swelling, and tenderness are expected right after surgery. Contact your surgeon's office if you notice any of the following:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span>Redness that is spreading, worsening, or extending well beyond the wound edges after the first few days</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span>Pain that gets worse instead of better after day two or three</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span>Pus, cloudy drainage, or a foul odor from the wound</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span>Fever or chills</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span>Bleeding that soaks through the dressing or won't stop with 15-20 minutes of firm, direct pressure</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span>The wound edges separating or reopening</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:clock" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Longer Healing Timeline</h2>
+              <p class="text-slate/80 mb-4">
+                Closing over is only the first stage. Underneath the surface, a scar continues to remodel for months — often becoming firmer, pinker, or slightly raised around weeks 2-6 before gradually softening and fading. Full scar maturation can take up to a year, particularly on the face, where surgeons take extra care with reconstruction to preserve function and appearance (as outlined in joint clinical guidelines from major dermatologic and plastic surgery societies).
+              </p>
+              <p class="text-slate/80">
+                Once your wound has fully healed, protecting the area from the sun — with clothing or a broad-spectrum SPF 30+ sunscreen — helps the scar fade rather than darken, and is part of your ongoing defense against new skin cancers nearby.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Exactly when can I remove the initial bandage, and how should I clean the wound after that?</li>
+                <li>Which activities do I need to avoid, and for how long?</li>
+                <li>When are my stitches scheduled to come out?</li>
+                <li>What level of redness, swelling, or drainage is normal versus concerning for my specific repair?</li>
+                <li>What can I do to minimize scarring once the wound has closed?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Recovery after BCC surgery follows a fairly predictable path: a cautious first day or two, a couple of weeks of simple daily wound care while activity stays limited, and then months of quieter scar maturation in the background. Most people are back to their normal routine well before the wound is finished healing underneath the surface.
+          </p>
+          <p class="text-slate/80">
+            If anything about your healing feels off compared to what you were told to expect, it's always reasonable to call your surgeon's office rather than wait it out — catching a problem like infection early keeps recovery on track.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Chen A, Albertini JG, Bordeaux JS, et al. Evidence-based clinical practice guideline: Reconstruction after skin cancer resection. <em>J Am Acad Dermatol.</em> 2021;85(2):423-441. <a href="https://pubmed.ncbi.nlm.nih.gov/33931288/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Sanchez-Puigdollers A, Toll A, Morgado-Carrasco D. Postoperative Wound Care in Dermatologic Surgery: Update and Narrative Review. <em>Actas Dermosifiliogr.</em> 2024;115(10):T957-T966. <a href="https://pubmed.ncbi.nlm.nih.gov/39306237/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.mohscollege.org/for-patients/about-mohs-surgery/post-operative-care" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American College of Mohs Surgery (ACMS)</a> — Post-Operative Care
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/caring-skin-procedure-without-sutures" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Caring for Your Wound After Your Skin Procedure
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always follow the specific wound care instructions given by your own surgeon, and consult them directly with any questions about your recovery.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about recovering from basal cell carcinoma surgery</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

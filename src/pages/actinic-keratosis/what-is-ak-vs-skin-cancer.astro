@@ -1,0 +1,262 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/what-is-ak-vs-skin-cancer";
+const title = "Is Actinic Keratosis Skin Cancer? | Beating Skin Cancer";
+const description = "Actinic keratosis is a precancerous patch, not skin cancer itself. Learn what makes AK different from squamous cell carcinoma and when it needs treatment.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is an Actinic Keratosis, and How Is It Different From Skin Cancer?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "What Is AK vs. Skin Cancer", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is actinic keratosis considered skin cancer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Actinic keratosis is a precancerous growth — the abnormal cells are confined to the outermost layer of skin. It becomes skin cancer (squamous cell carcinoma) only if those cells break through into the deeper layer of skin, the dermis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What percentage of actinic keratoses turn into skin cancer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Estimates vary widely by study, but a systematic review found the risk that any single untreated AK progresses to squamous cell carcinoma is generally low — often cited as less than 1% per year for an individual lesion, though the cumulative risk rises the more AKs a person has and the longer they go untreated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I tell if my actinic keratosis has turned into skin cancer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Warning signs include a spot that becomes thicker, raised, tender, or ulcerated; grows quickly; bleeds without an obvious cause; or feels hard or rooted rather than just rough on the surface. Any of these changes should be evaluated by a dermatologist."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Actinic Keratosis
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Is an Actinic Keratosis, and How Is It Different From Skin Cancer?
+          </h1>
+          <p class="text-xl text-white/80">Understanding the precancerous nature of AKs and their relationship to cancer</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Hearing "precancerous" from your dermatologist can be alarming, especially when the word "cancer" is right there in it. But an actinic keratosis (AK) and skin cancer are not the same diagnosis, and understanding the difference — and why the line between them exists — can make the whole conversation about monitoring and treatment feel much less frightening.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through what an AK actually is at the cellular level, how that compares to squamous cell carcinoma (SCC), and why your dermatologist treats AKs the way they do.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:microscope" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Exactly Is an Actinic Keratosis?</h2>
+              <p class="text-slate/80 mb-4">
+                Years of ultraviolet (UV) exposure can damage the DNA inside keratinocytes, the cells that make up the outermost layer of skin (the epidermis). An actinic keratosis forms when a patch of these damaged cells grows abnormally — but stays contained within the epidermis, never breaking through the basement membrane into the deeper dermis below.
+              </p>
+              <p class="text-slate/80">
+                That containment is the key concept. AAD clinical guidelines describe AK as an early, in situ stage of keratinocyte damage — the cells are abnormal and capable of progressing further, but they haven't yet invaded surrounding tissue, which is what defines a cancer.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Is AK Different From Skin Cancer?</h2>
+          <p class="text-slate/80 mb-6">
+            The distinction comes down to one word: invasion. Think of the epidermis and dermis as two floors of a building, separated by a floor (the basement membrane).
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Actinic Keratosis</h3>
+              <p class="text-slate/80">
+                Abnormal cells stay on the top floor — confined to the epidermis. The patch is rough, scaly, and typically flat or only slightly raised. It cannot spread to lymph nodes or other organs because it has no access to blood vessels or lymphatic channels, which live in the dermis below.
+              </p>
+            </div>
+            <div class="bg-coral/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Squamous Cell Carcinoma</h3>
+              <p class="text-slate/80">
+                The abnormal cells break through the floor and invade the dermis, where they can access blood vessels and lymphatics. This is what makes it a true cancer — it has the biological capacity to grow more aggressively, damage surrounding tissue, and in some cases spread (metastasize) beyond the original site.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Some pathologists describe a very thick or long-standing AK as sitting at the edge of this spectrum, sometimes labeled "AK with early or focal invasion" once a biopsy shows cells have started to cross that boundary — which is exactly why a changing or thickening AK often prompts a biopsy rather than continued watching.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How Often Does an AK Actually Progress?</h2>
+              <p class="text-slate/80 mb-4">
+                Not every AK is destined to become cancer — most never do. A systematic review of the natural history of untreated AK found that estimates of progression to squamous cell carcinoma vary widely between studies, but the risk for any single lesion, tracked over one year, is generally low.
+              </p>
+              <p class="text-slate/80">
+                The risk isn't zero, though, and it accumulates: someone with dozens of AKs across sun-damaged skin carries meaningfully more cumulative risk than someone with a single small patch. That's the reasoning behind treating AKs at all, rather than simply waiting to see which ones change.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Signs an AK May Be Progressing</h2>
+          <p class="text-slate/80 mb-6">
+            Because the difference between AK and SCC is about invasion — something you can't see with the naked eye — your dermatologist relies on certain clinical clues to decide whether a spot needs a biopsy rather than routine treatment:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span><strong>Increasing thickness or a hard, rooted feel</strong> rather than just surface roughness</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span><strong>Rapid growth</strong> in size over weeks to months</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span><strong>Pain, tenderness, or bleeding</strong> without an obvious cause like scratching or friction</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span><strong>Ulceration</strong> — an open sore that doesn't heal</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-coral mt-1">•</span>
+              <span><strong>A lesion larger than about 1 cm</strong>, especially on the ears, lips, or scalp — locations associated with higher-risk behavior when AKs do progress</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-6">
+            None of these signs alone confirms cancer — only a biopsy can do that — but any of them is a reason to have a spot checked rather than continuing to watch it.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Does this particular AK have any features that concern you, or is it low-risk to watch?</li>
+                <li>Would a biopsy help clarify whether this spot has started to invade, or is treatment reasonable without one?</li>
+                <li>How many AKs do I have, and does that change your recommended treatment approach?</li>
+                <li>What changes in this spot should prompt me to call you before my next visit?</li>
+                <li>How often should I have my skin checked given my history of AKs?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            An actinic keratosis is a warning sign written on your skin by years of sun exposure — abnormal cells that are still contained, not yet a cancer. That containment is exactly what treatment aims to preserve: catching and clearing AKs before any of them has the chance to cross into the deeper skin and become a squamous cell carcinoma.
+          </p>
+          <p class="text-slate/80">
+            The takeaway isn't to panic over a diagnosis of AK — it's to treat it as the clear, actionable opportunity it is: a chance to intervene well before cancer is on the table.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Werner RN, Sammain A, Erdmann R, Hartmann V, Stockfleth E, Nast A. The natural history of actinic keratosis: a systematic review. <em>Br J Dermatol.</em> 2013;169(3):502-518. <a href="https://pubmed.ncbi.nlm.nih.gov/23647091/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-overview" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Actinic Keratosis: Overview
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/blog/is-actinic-keratosis-skin-cancer/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Is Actinic Keratosis Skin Cancer? What You Need to Know
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Only a dermatologist examining your skin in person — sometimes with a biopsy — can determine whether a specific spot is an actinic keratosis, a skin cancer, or something else.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about actinic keratosis and skin cancer</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

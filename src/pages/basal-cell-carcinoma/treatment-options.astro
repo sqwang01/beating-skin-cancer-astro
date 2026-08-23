@@ -1,0 +1,284 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/treatment-options";
+const title = "BCC Treatment Options Explained | Beating Skin Cancer";
+const description = "Compare BCC treatment options—excision, Mohs surgery, topical medications, and more—to understand which approach fits your diagnosis.";
+const lastReviewed = "2026-08-22";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Are the Treatment Options for Basal Cell Carcinoma?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Treatment Options", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best treatment for basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no single \"best\" treatment—it depends on the tumor's size, location, subtype, and the patient's overall health. Mohs surgery offers the highest cure rate for high-risk BCCs, while standard excision, curettage and electrodesiccation, or topical therapy may be appropriate for low-risk cases."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Mohs surgery always necessary for BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Mohs surgery is typically reserved for high-risk BCCs—those in cosmetically or functionally sensitive areas like the face, ears, or hands, recurrent tumors, or aggressive subtypes such as morpheaform BCC. Many low-risk BCCs are effectively treated with standard excision or other methods."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can basal cell carcinoma be treated without surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for select cases. Superficial BCC may respond to topical medications like imiquimod or 5-fluorouracil, or to photodynamic therapy. Radiation therapy is another non-surgical option, particularly for patients who aren't good surgical candidates. Oral targeted therapies are generally reserved for advanced or metastatic disease."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Are the Treatment Options for Basal Cell Carcinoma?
+          </h1>
+          <p class="text-xl text-white/80">Comparing surgical and non-surgical approaches to find what's right for you</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Basal cell carcinoma (BCC) is the most common form of skin cancer, and the good news is that it's also one of the most treatable. Because BCC grows slowly and rarely spreads to other parts of the body, doctors have several effective ways to remove it.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            But "several options" can feel overwhelming when you're the one facing the decision. This guide walks through the main surgical and non-surgical treatments for BCC, how doctors decide which one fits your specific tumor, and what questions can help you feel confident in your care plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:target" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How Doctors Choose a Treatment</h2>
+              <p class="text-slate/80 mb-4">
+                Following NCCN risk-stratification guidelines, your dermatologist weighs several factors before recommending a treatment:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Location:</strong> Tumors on the "H-zone" (central face, nose, eyelids, ears) are considered higher risk and often need more precise techniques.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Size and borders:</strong> Larger tumors or those with poorly defined edges are harder to clear completely.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Subtype:</strong> Aggressive subtypes like morpheaform BCC behave differently than nodular or superficial BCC.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Primary vs. recurrent:</strong> A BCC that has come back after prior treatment is treated more aggressively.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Your overall health:</strong> Age, other medical conditions, and ability to tolerate surgery all factor into the plan.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Surgical Treatments</h2>
+          <p class="text-slate/80 mb-6">
+            Surgery cures the large majority of BCCs and remains the gold standard for most cases.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">1. Excisional Surgery</h3>
+              <p class="text-slate/80">
+                The tumor is cut out along with a margin of normal-looking skin, then the wound is closed with stitches. This is the standard approach for most low- to moderate-risk BCCs and offers cure rates above 95% when the entire tumor is removed.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">2. Mohs Micrographic Surgery</h3>
+              <p class="text-slate/80">
+                The surgeon removes the tumor in thin layers, examining each layer under a microscope on the spot until no cancer cells remain. This achieves the highest cure rate of any BCC treatment—around 99% for tumors that haven't been treated before—while sparing as much healthy tissue as possible. It's typically reserved for high-risk locations (face, ears, hands) or aggressive subtypes.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">3. Curettage and Electrodesiccation (C&E)</h3>
+              <p class="text-slate/80">
+                The tumor is scraped away with a curette, and an electric current seals the wound and destroys any remaining cancer cells at the base. This quick, low-cost option works well for small, low-risk nodular or superficial BCCs on the trunk or limbs, but isn't used on the face or in hair-bearing areas where the tumor could extend along hair follicles.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">4. Cryosurgery</h3>
+              <p class="text-slate/80">
+                Liquid nitrogen freezes and destroys the tumor. It's generally used for superficial, low-risk BCCs in patients who aren't candidates for surgery, though cure rates and cosmetic results are less predictable than with excision or Mohs surgery.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:pill" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Non-Surgical Treatments</h2>
+              <p class="text-slate/80 mb-4">
+                Not every BCC needs surgery. These options are typically reserved for superficial, low-risk tumors or for patients who can't undergo a surgical procedure:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Topical medications:</strong> Prescription creams like imiquimod or 5-fluorouracil train the immune system or directly damage cancer cells in superficial BCC, applied over several weeks.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Photodynamic therapy (PDT):</strong> A light-sensitizing solution is applied to the tumor, then activated with a special light to destroy superficial cancer cells.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Radiation therapy:</strong> A series of outpatient treatments that can cure BCC without an incision—often used for older patients or tumors in difficult surgical locations.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Hedgehog pathway inhibitors:</strong> Oral medications (vismodegib, sonidegib) reserved for locally advanced or metastatic BCC that can't be treated with surgery or radiation.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given my tumor's size, location, and subtype, which treatment do you recommend and why?</li>
+                <li>What is the expected cure rate for this approach in my specific case?</li>
+                <li>What will recovery and scarring look like?</li>
+                <li>Am I a candidate for a non-surgical option?</li>
+                <li>How will we confirm the BCC is completely gone after treatment?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Basal cell carcinoma has one of the highest cure rates of any cancer, and the range of available treatments means your dermatologist can tailor a plan to your tumor and your life—not just a one-size-fits-all protocol.
+          </p>
+          <p class="text-slate/80">
+            Whichever option you and your doctor choose, follow-up skin checks remain essential: people who've had one BCC have a higher chance of developing another, and early detection keeps treatment simple.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Bichakjian C, Armstrong A, Baum C, et al. Guidelines of care for the management of basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):540-559. <a href="https://pubmed.ncbi.nlm.nih.gov/29331385/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Rowe DE, Carroll RJ, Day CL Jr. Mohs surgery is the treatment of choice for recurrent (previously treated) basal cell carcinoma. <em>J Dermatol Surg Oncol.</em> 1989;15(4):424-431. <a href="https://pubmed.ncbi.nlm.nih.gov/2925988/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/treating/basal-cell-carcinoma.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Treating Basal Cell Carcinoma
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about basal cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
