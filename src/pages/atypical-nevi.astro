@@ -1,17 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../lib/seo';
 
+const canonical = "https://www.beatingskincancer.com/atypical-nevi";
 const title = "Atypical Nevi | Beating Skin Cancer";
 const description = "Atypical nevi (dysplastic moles) are unusual, irregular moles that signal a higher melanoma risk. Learn how to spot them and when to get checked.";
+const lastReviewed = "2026-08-22";
+const jsonLd = [medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
 <div class="min-h-screen bg-ivory">
       <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Atypical Nevi</h1>
           <p class="text-xl text-white/80">Understanding dysplastic moles and melanoma risk</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

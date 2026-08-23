@@ -1,17 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma";
 const title = "Basal Cell Carcinoma | Beating Skin Cancer";
 const description = "Basal cell carcinoma is the most common skin cancer. It rarely spreads but can cause lasting damage if untreated. Learn the warning signs and treatment options.";
+const lastReviewed = "2026-08-22";
+const jsonLd = [medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
 <div class="min-h-screen bg-ivory">
       <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Basal Cell Carcinoma</h1>
           <p class="text-xl text-white/80">The most common type of skin cancer</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

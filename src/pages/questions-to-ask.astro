@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../lib/seo';
 
+const canonical = "https://www.beatingskincancer.com/questions-to-ask";
 const title = "200 Smart Questions to Ask About Skin Cancer | Beating Skin Cancer";
-const description = "Explore 200 physician-created questions to ask your doctor about skin cancer diagnosis, treatment, and prevention, so you can prepare and advocate for yourself.";
+const description = "Explore physician-created questions to ask your doctor about skin cancer diagnosis, treatment, and prevention, so you can prepare and advocate for yourself.";
+const lastReviewed = "2026-08-22";
+const jsonLd = [medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
 <div id="top" class="min-h-screen bg-gradient-to-b from-white to-sky/10">
       <div class="h-20"></div>
 
@@ -18,6 +23,7 @@ const description = "Explore 200 physician-created questions to ask your doctor 
           <p class="text-xl text-white/90 max-w-3xl mx-auto">
             A physician-created library of questions to help you understand, prepare, and advocate for yourself at every stage
           </p>
+          <MedicalReviewer date={lastReviewed} class="justify-center" />
         </div>
       </section>
 

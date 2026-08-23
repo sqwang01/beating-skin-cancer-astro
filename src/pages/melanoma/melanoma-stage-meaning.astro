@@ -1,11 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/melanoma-stage-meaning";
 const title = "What Does My Melanoma Stage Mean? | Beating Skin Cancer";
 const description =
   "Plain-language guide to melanoma staging (Stages 0–IV), how AJCC staging works, what it means for treatment and prognosis, and smart questions to ask your doctor.";
+const lastReviewed = "2026-08-22";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -27,7 +30,7 @@ const breadcrumbsJsonLd = {
   ],
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -41,6 +44,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd];
           </a>
           <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">What Does My Melanoma Stage Mean?</h1>
           <p class="text-xl text-white/80">Understanding melanoma staging and what it means for your care</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

@@ -1,11 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/what-to-expect-after-diagnosis";
 const title = "What to Expect After a Melanoma Diagnosis | Beating Skin Cancer";
 const description =
   "Learn what happens after a melanoma diagnosis—testing, treatment planning, and how to navigate the first few weeks with confidence.";
+const lastReviewed = "2026-08-22";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -27,7 +30,7 @@ const breadcrumbsJsonLd = {
   ],
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -41,6 +44,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd];
           </a>
           <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">What to Expect After a Melanoma Diagnosis</h1>
           <p class="text-xl text-white/80">Navigate the first few weeks with clarity and confidence</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

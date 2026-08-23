@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/biopsy-meaning";
 const title = "What Does My Basal Cell Carcinoma Biopsy Mean? Complete Guide 2025";
 const description = "If your skin biopsy shows basal cell carcinoma, here's what that diagnosis means, what to expect next, and how to understand your pathology report.";
+const lastReviewed = "2026-08-22";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -49,7 +52,7 @@ const faqJsonLd = {
   ]
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -65,6 +68,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             What Does It Mean If My Biopsy Says "Basal Cell Carcinoma"?
           </h1>
           <p class="text-xl text-white/80">Understanding your diagnosis and what to expect next</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 
