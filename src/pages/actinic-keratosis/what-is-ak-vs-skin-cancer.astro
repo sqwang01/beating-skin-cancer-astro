@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/what-is-ak-vs-skin-cancer";
 const title = "Is Actinic Keratosis Skin Cancer? | Beating Skin Cancer";
 const description = "Actinic keratosis is a precancerous patch, not skin cancer itself. Learn what makes AK different from squamous cell carcinoma and when it needs treatment.";
+const lastReviewed = "2026-08-24";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -57,7 +60,7 @@ const faqJsonLd = {
   ]
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -73,6 +76,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             What Is an Actinic Keratosis, and How Is It Different From Skin Cancer?
           </h1>
           <p class="text-xl text-white/80">Understanding the precancerous nature of AKs and their relationship to cancer</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

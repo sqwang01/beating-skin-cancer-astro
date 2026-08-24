@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/recurrence-prevention";
 const title = "BCC Recurrence and Prevention Guide | Beating Skin Cancer";
 const description = "How often basal cell carcinoma returns after treatment, why new BCCs are common, and evidence-based steps to lower your risk of another one.";
+const lastReviewed = "2026-08-24";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -51,13 +54,13 @@ const faqJsonLd = {
       "name": "Can nicotinamide (vitamin B3) prevent basal cell carcinoma?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A randomized controlled trial found that oral nicotinamide (500 mg twice daily) reduced the rate of new nonmelanoma skin cancers by 23% in high-risk patients, with a smaller, not statistically significant reduction specifically in BCC. It's a reasonable option to discuss with your dermatologist if you've had multiple skin cancers, but it isn't a substitute for sun protection or skin checks."
+        "text": "A randomized controlled trial found that oral nicotinamide (500 mg twice daily) reduced the rate of new squamouc cell cancers by 23% in high-risk patients, with a smaller, not statistically significant reduction specifically in BCC. It's a reasonable option to discuss with your dermatologist if you've had multiple skin cancers, but it isn't a substitute for sun protection or skin checks."
       }
     }
   ]
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -73,6 +76,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             Can Basal Cell Carcinoma Come Back After Treatment — And How Do I Prevent It?
           </h1>
           <p class="text-xl text-white/80">Understanding recurrence rates, new tumors, and what actually lowers your risk</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

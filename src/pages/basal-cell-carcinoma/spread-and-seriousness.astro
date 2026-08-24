@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/spread-and-seriousness";
 const title = "Can BCC Spread or Become Serious? | Beating Skin Cancer";
 const description = "How often basal cell carcinoma spreads, what local invasion looks like, the warning features that raise risk, and when this common cancer becomes serious.";
+const lastReviewed = "2026-08-24";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -57,7 +60,7 @@ const faqJsonLd = {
   ]
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -73,6 +76,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             What Is the Risk of BCC Spreading or Becoming Serious?
           </h1>
           <p class="text-xl text-white/80">Understanding BCC behavior, local invasion, and when to be more vigilant</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

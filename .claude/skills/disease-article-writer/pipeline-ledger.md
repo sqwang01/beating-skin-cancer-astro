@@ -26,11 +26,11 @@ Re-check this file at the start of every disease-article-writer run; update it a
 | biopsy-meaning | (pre-existing) | published (pre-existing) |
 | types | (pre-existing) | published (pre-existing) |
 | treatment-options | (pre-existing) | published — 2026-08-22 |
-| recovery-after-surgery | What should I expect during recovery after BCC surgery? | drafted-pending-review — 2026-08-22 |
-| recurrence-prevention | Can basal cell carcinoma come back after treatment — and how do I prevent it? | drafted-pending-review — 2026-08-22 |
-| spread-and-seriousness | What is the risk of BCC spreading or becoming serious? | drafted-pending-review — 2026-08-22 |
-| self-exam-when-to-see-doctor | How do I check my skin for basal cell carcinoma — and when should I see a doctor? | drafted-pending-review — 2026-08-22 |
-| lifestyle-prevention | What lifestyle or skin-care habits help reduce the chance of another basal cell carcinoma? | drafted-pending-review — 2026-08-22 |
+| recovery-after-surgery | What should I expect during recovery after BCC surgery? | published — 2026-08-24 |
+| recurrence-prevention | Can basal cell carcinoma come back after treatment — and how do I prevent it? | published — 2026-08-24 |
+| spread-and-seriousness | What is the risk of BCC spreading or becoming serious? | published — 2026-08-24 |
+| self-exam-when-to-see-doctor | How do I check my skin for basal cell carcinoma — and when should I see a doctor? | published — 2026-08-24 |
+| lifestyle-prevention | What lifestyle or skin-care habits help reduce the chance of another basal cell carcinoma? | published — 2026-08-24 |
 
 ## squamous-cell-carcinoma (all 8 slots not-started)
 
@@ -62,7 +62,7 @@ Re-check this file at the start of every disease-article-writer run; update it a
 
 | Working title | Question the card promises to answer | Status |
 |---|---|---|
-| what-is-ak-vs-skin-cancer | What is an actinic keratosis and how is it different from skin cancer? | drafted-pending-review — 2026-08-22 |
+| what-is-ak-vs-skin-cancer | What is an actinic keratosis and how is it different from skin cancer? | published — 2026-08-24 |
 | treat-now-vs-watch | How do I know whether an AK needs treatment now or can be watched safely? | not-started |
 | treatment-options | What are the treatment options for actinic keratoses and how do I pick the right one? | not-started |
 | progression-risk-untreated | What are the risks of leaving AK untreated — can it turn into skin cancer? | not-started |
@@ -76,5 +76,6 @@ Re-check this file at the start of every disease-article-writer run; update it a
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
 - 22 pages remain not-started across 3 hubs (8 SCC + 8 atypical-nevi + 7 actinic-keratosis).
-  BCC's hub is now fully drafted (all 8 slots at drafted-pending-review or published), awaiting
-  Dr. Wang's review batch. Melanoma's hub is fully published as of 2026-08-22.
+  BCC's hub is now fully published (all 8/8 slots live and linked) as of 2026-08-24. Melanoma's
+  hub is fully published as of 2026-08-22. Actinic-keratosis has 1/8 slots published as of
+  2026-08-24.

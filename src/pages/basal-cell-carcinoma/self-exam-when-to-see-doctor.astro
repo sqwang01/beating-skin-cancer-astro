@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/self-exam-when-to-see-doctor";
 const title = "How to Check Your Skin for BCC | Beating Skin Cancer";
 const description = "How to perform a basal cell carcinoma self-exam, the specific signs BCC shows on skin, and exactly when a spot is worth a dermatologist visit.";
+const lastReviewed = "2026-08-24";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -57,7 +60,7 @@ const faqJsonLd = {
   ]
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -73,6 +76,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             How Do I Check My Skin for Basal Cell Carcinoma — and When Should I See a Doctor?
           </h1>
           <p class="text-xl text-white/80">A practical, step-by-step guide to self-exams and the signs that warrant a visit</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 

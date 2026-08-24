@@ -1,10 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/recovery-after-surgery";
 const title = "BCC Surgery Recovery: What to Expect | Beating Skin Cancer";
 const description = "A day-by-day guide to recovering after basal cell carcinoma surgery — wound care, activity limits, pain control, and signs that need a doctor's attention.";
+const lastReviewed = "2026-08-24";
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -57,7 +60,7 @@ const faqJsonLd = {
   ]
 };
 
-const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -73,6 +76,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             What Should I Expect During Recovery After BCC Surgery?
           </h1>
           <p class="text-xl text-white/80">A day-by-day guide to wound care, activity limits, and healing</p>
+          <MedicalReviewer date={lastReviewed} />
         </div>
       </div>
 
@@ -147,7 +151,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
             <div class="bg-ivory rounded-lg p-6">
               <h3 class="text-2xl font-serif text-navy mb-4">2. Apply Ointment</h3>
               <p class="text-slate/80">
-                Pat the area dry, then apply a thin layer of plain petroleum jelly (such as Vaseline) unless your surgeon has prescribed something specific. Routine antibiotic ointment isn't usually necessary and can occasionally cause an allergic skin reaction — plain petrolatum works just as well for most wounds.
+                Pat the area dry, then apply a thin layer of plain petroleum jelly (such as Aquaphor or Vaseline) unless your surgeon has prescribed something specific. Routine antibiotic ointment isn't usually necessary and can occasionally cause an allergic skin reaction — plain petrolatum works just as well for most wounds.
               </p>
             </div>
 
@@ -187,7 +191,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd];
                 </li>
                 <li class="flex items-start gap-2">
                   <span class="text-coral mt-1">•</span>
-                  <span><strong>Sutures are typically removed 5-14 days</strong> after surgery, depending on location — facial stitches usually come out sooner than those on the trunk or limbs, which bear more tension.</span>
+                  <span><strong>Sutures are typically removed 5-14 days</strong> after surgery, depending on location — facial stitches usually come out in 7 days, and stiches on the trunk or limbs come out in 10-14 days, which bear more tension.</span>
                 </li>
               </ul>
             </div>
