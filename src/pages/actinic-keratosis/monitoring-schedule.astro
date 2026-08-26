@@ -1,0 +1,298 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/monitoring-schedule";
+const title = "How Often to Get Skin Exams for AKs | Beating Skin Cancer";
+const description = "How often you should see a dermatologist for skin exams if you have actinic keratosis, including higher-risk schedules and what to watch for between visits.";
+const lastReviewed = "2026-08-25";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Often Should I Get Skin Exams When I Have AKs?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Monitoring Schedule", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often should I see a dermatologist if I have a few actinic keratoses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most people with a small number of AKs and no other major risk factors are seen roughly every 6 to 12 months, though your dermatologist may space visits out further once your skin has been stable for a while. The right interval depends on your individual risk, not a single universal rule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need more frequent skin exams if I've had many AKs or a prior skin cancer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. People with a heavy AK burden, a personal history of skin cancer, or a weakened immune system — such as organ transplant recipients on immunosuppressive medication — are often followed every 3 to 6 months, since these factors substantially raise the risk of new lesions and of a lesion progressing to squamous cell carcinoma."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I do if I notice a new or changing spot between scheduled visits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Call your dermatologist's office rather than waiting for your next appointment. A spot that grows quickly, becomes thick or tender, bleeds, or won't heal warrants an earlier evaluation regardless of when your last exam was."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Actinic Keratosis
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Often Should I Get Skin Exams When I Have AKs?
+          </h1>
+          <p class="text-xl text-white/80">Recommended monitoring schedules and when to see your dermatologist</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Once you've been diagnosed with actinic keratosis, one of the most common questions patients ask is deceptively simple: how often do I actually need to come back? The honest answer is that there isn't one number that applies to everyone. How frequently you need a skin exam depends on how much sun damage your skin has accumulated, how many AKs you've had, and whether you carry other risk factors that make new or more serious lesions more likely.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through how dermatologists typically think about exam frequency for AK patients, what they're actually looking for during those visits, and how to stay on top of your skin between appointments.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar-check" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Exam Frequency Is Based on Your Risk, Not a Fixed Rule</h2>
+              <p class="text-slate/80 mb-4">
+                The American Academy of Dermatology's clinical guidelines for AK management call for individualized follow-up rather than one fixed interval for every patient — the right schedule depends on how many AKs you have, whether you've been treated for skin cancer before, and how much cumulative sun damage your skin shows. That said, a few general patterns are widely used in practice.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-6">
+            <div class="bg-white rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Average Risk</h3>
+              <p class="text-slate/80">
+                If you have a modest number of AKs, fair-to-average sun damage, and no other major risk factors, a full skin exam roughly <strong>every 6 to 12 months</strong> is typical. Once your skin has been stable for a couple of visits in a row, your dermatologist may space appointments further apart.
+              </p>
+            </div>
+            <div class="bg-coral/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Higher Risk</h3>
+              <p class="text-slate/80 mb-3">
+                Closer surveillance — often <strong>every 3 to 6 months</strong> — is generally recommended if you have any of the following:
+              </p>
+              <ul class="space-y-2 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A large number of AKs or extensive field cancerization</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A personal history of squamous cell carcinoma, basal cell carcinoma, or melanoma</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A weakened immune system — for example, solid organ transplant recipients on long-term immunosuppressive medication, who face a substantially higher rate of AKs progressing to squamous cell carcinoma</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Very fair skin combined with a long history of significant cumulative sun exposure (outdoor occupations, tanning bed use, life in a sunny or high-altitude climate)</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-3">
+                Transplant recipients in particular are often followed on a schedule closer to every 3 to 6 months indefinitely, since their skin cancer risk rises the longer they remain on immunosuppressive therapy.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            The most reliable way to know your own interval is to ask your dermatologist directly — they can weigh your specific history in a way a general guideline can't.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Your Dermatologist Actually Looks For</h2>
+          <p class="text-slate/80 mb-6">
+            A visit for AK monitoring is rarely just a glance at the spots you already know about. Because the same sun exposure that causes AKs also raises your risk of basal cell carcinoma, squamous cell carcinoma, and melanoma, a proper visit typically includes:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A full-body skin exam</strong>, not just a check of your face, scalp, and hands — areas that don't get regular sun can still develop lesions, and a systematic head-to-toe exam is how less obvious spots get caught</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Assessment of existing AKs</strong> for any of the features that suggest a spot may be progressing — increasing thickness, a hard or rooted feel, rapid growth, bleeding, or ulceration</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A search for new lesions</strong>, including areas of field cancerization where more AKs may be forming beneath the skin's surface even if nothing is visible yet</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A decision on treatment approach</strong> — whether individual lesions warrant spot treatment, or whether the extent of sun damage calls for a field therapy that treats a broader area at once</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:search" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Between Visits: What to Watch For on Your Own</h2>
+              <p class="text-slate/80 mb-4">
+                Scheduled exams aren't the only line of defense. Checking your own skin between visits — and knowing when a change is worth calling about — can catch a problem months before your next appointment.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Call your dermatologist's office sooner than your scheduled visit if a spot starts growing quickly, becomes thick, tender, or painful, begins to bleed without an obvious cause, or develops a sore that doesn't heal. The hub page's <a href="/actinic-keratosis" class="text-teal hover:text-teal/80 underline">Warning Signs &amp; Appearance section</a> covers what a typical AK looks like, so you have a baseline to compare against when something looks different.
+              </p>
+              <p class="text-slate/80">
+                None of these signs on their own confirm a spot has changed for the worse — only your dermatologist can determine that, sometimes with a biopsy — but any of them is a reason to be seen earlier rather than waiting.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Practical Tips for Tracking Your Skin Over Time</h2>
+          <p class="text-slate/80 mb-6">
+            If you have several AKs, it's easy to lose track of which spots are old and stable versus new or changing. A little organization goes a long way:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Keep a simple written log</strong> noting the rough location, size, and date you first noticed each spot, so you can describe changes accurately at your next visit</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Take dated photos</strong> of areas with multiple AKs using consistent lighting and distance — this makes subtle growth or new lesions much easier to spot than relying on memory alone</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Do a monthly self-check</strong> of your whole body, including areas you can't easily see yourself (back, scalp, backs of ears) with the help of a partner or a hand mirror</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Bring your log or photos to appointments</strong> — it gives your dermatologist a clearer picture of what's changed since your last visit than a one-time snapshot can</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Based on my history, how often should I be coming in for a full skin exam?</li>
+                <li>Do any of my risk factors — prior skin cancer, immune status, sun exposure history — push me toward more frequent visits?</li>
+                <li>Is there anything specific about my skin you'd like me to keep an eye on between now and my next visit?</li>
+                <li>What changes should prompt me to call before my scheduled appointment?</li>
+                <li>Would keeping a photo log of my AKs be helpful for you to track at future visits?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            There's no single monitoring schedule that fits every AK patient. Someone with a couple of stable spots and low overall risk may only need a check-up once a year, while someone with extensive sun damage, a prior skin cancer, or a suppressed immune system may need to be seen every few months indefinitely.
+          </p>
+          <p class="text-slate/80">
+            What matters most is having an interval that's actually tailored to you — set in conversation with your dermatologist — and staying alert to changes in between, so nothing has to wait until your next scheduled visit to get checked.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Zwald FO, Brown M. Skin cancer in solid organ transplant recipients: advances in therapy and management: part II. Management of skin cancer in solid organ transplant recipients. <em>J Am Acad Dermatol.</em> 2011;65(2):263-279. <a href="https://pubmed.ncbi.nlm.nih.gov/21763562/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-self-care" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Actinic Keratosis: Self-Care
+                </li>
+                <li>
+                  <a href="https://www2.skincancer.org/early-detection/self-exams/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Self-Exams
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Only your dermatologist, who knows your full history and can examine your skin in person, can set the monitoring schedule that's right for you.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about actinic keratosis and skin cancer</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

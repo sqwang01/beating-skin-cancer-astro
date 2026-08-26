@@ -63,19 +63,19 @@ Re-check this file at the start of every disease-article-writer run; update it a
 | Working title | Question the card promises to answer | Status |
 |---|---|---|
 | what-is-ak-vs-skin-cancer | What is an actinic keratosis and how is it different from skin cancer? | published — 2026-08-24 |
-| treat-now-vs-watch | How do I know whether an AK needs treatment now or can be watched safely? | not-started |
-| treatment-options | What are the treatment options for actinic keratoses and how do I pick the right one? | not-started |
-| progression-risk-untreated | What are the risks of leaving AK untreated — can it turn into skin cancer? | not-started |
-| monitoring-schedule | How often should I get skin exams when I have AKs? | not-started |
-| prevention-and-sun-protection | What skin-care and sun-protection habits help reduce new AKs? | not-started |
-| field-therapy-multiple-aks | What do I do when I have many AKs — does the approach differ? | not-started |
-| talking-to-your-doctor | How do I talk to my doctor about managing AKs over time and monitoring changes? | not-started |
+| treat-now-vs-watch | How do I know whether an AK needs treatment now or can be watched safely? | published — 2026-08-25 |
+| treatment-options | What are the treatment options for actinic keratoses and how do I pick the right one? | published — 2026-08-25 |
+| progression-risk-untreated | What are the risks of leaving AK untreated — can it turn into skin cancer? | published — 2026-08-25 |
+| monitoring-schedule | How often should I get skin exams when I have AKs? | published — 2026-08-25 |
+| prevention-and-sun-protection | What skin-care and sun-protection habits help reduce new AKs? | published — 2026-08-25 |
+| field-therapy-multiple-aks | What do I do when I have many AKs — does the approach differ? | published — 2026-08-25 |
+| talking-to-your-doctor | How do I talk to my doctor about managing AKs over time and monitoring changes? | published — 2026-08-25 |
 
 ## Notes
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
-- 22 pages remain not-started across 3 hubs (8 SCC + 8 atypical-nevi + 7 actinic-keratosis).
-  BCC's hub is now fully published (all 8/8 slots live and linked) as of 2026-08-24. Melanoma's
-  hub is fully published as of 2026-08-22. Actinic-keratosis has 1/8 slots published as of
-  2026-08-24.
+- 16 pages remain not-started across 2 hubs (8 SCC + 8 atypical-nevi). BCC's hub is now fully
+  published (all 8/8 slots live and linked) as of 2026-08-24. Melanoma's hub is fully published as
+  of 2026-08-22. Actinic-keratosis is now fully published (8/8 slots live and linked) as of
+  2026-08-25.

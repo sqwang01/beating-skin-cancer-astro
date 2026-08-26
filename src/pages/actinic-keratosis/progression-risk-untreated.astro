@@ -1,0 +1,271 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/progression-risk-untreated";
+const title = "AK Left Untreated: Progression Risk | Beating Skin Cancer";
+const description = "What happens as an untreated AK progresses, who carries the highest cumulative risk, and why early treatment beats treating an established skin cancer.";
+const lastReviewed = "2026-08-25";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Are the Risks of Leaving an Actinic Keratosis Untreated?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Progression Risk of Untreated AK", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is at highest risk of an actinic keratosis progressing to skin cancer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Organ transplant recipients and others on long-term immunosuppression carry by far the highest risk — studies estimate a 65- to 250-fold increase in squamous cell carcinoma compared with the general population, along with faster-growing, more aggressive tumors. People with dozens of AKs from field cancerization, chronic non-healing lesions, or AKs on the ears, lips, or scalp also carry meaningfully higher cumulative risk than someone with one small, stable patch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "If most AKs never turn into cancer, why treat them at all?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because the risk is cumulative, not per-lesion. A less-than-1%-per-year risk sounds negligible for a single spot, but multiplied across dozens of AKs and years of sun damage, it adds up to a real probability that something eventually progresses. Treating an AK is also dramatically simpler, cheaper, and less disfiguring than treating an invasive squamous cell carcinoma later — a few minutes of cryotherapy versus surgery, and possibly radiation or lymph node evaluation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if an AK is left untreated and turns into squamous cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once abnormal cells cross the basement membrane into the dermis, the lesion gains access to blood vessels and lymphatic channels, giving it the biological capacity to grow more aggressively, invade nearby structures like nerves or cartilage, and in some cases spread to lymph nodes or beyond. Treatment then escalates from an in-office freeze or cream to surgical excision, sometimes Mohs surgery, and occasionally radiation or lymph node evaluation."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Actinic Keratosis
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Are the Risks of Leaving an Actinic Keratosis Untreated?
+          </h1>
+          <p class="text-xl text-white/80">Understanding progression rates and why early treatment matters</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            "Just keep an eye on it" is reasonable advice for a single, stable actinic keratosis — but it's natural to wonder what you're actually risking by not treating one at all. Our companion article, <a href="/actinic-keratosis/what-is-ak-vs-skin-cancer" class="text-teal hover:text-teal/80 underline">What Is an Actinic Keratosis, and How Is It Different From Skin Cancer?</a>, covers how AK differs from cancer and the clinical signs that suggest a spot is progressing. This article picks up from there and focuses on the real-world stakes: what progression actually costs you biologically and in treatment, which patients carry meaningfully higher risk, and why "doing nothing indefinitely" isn't the neutral option it can feel like.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            If you're trying to decide whether a specific lesion needs treatment right now versus watchful waiting, see <a href="/actinic-keratosis/treat-now-vs-watch" class="text-teal hover:text-teal/80 underline">How Do I Know Whether an AK Needs Treatment Now or Can Be Watched Safely?</a> for that decision framework. Here, the question is simpler: why does leaving AK untreated carry risk in the first place?
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:trending-up" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Actually Happens as an AK Progresses</h2>
+              <p class="text-slate/80 mb-4">
+                An AK's abnormal keratinocytes start out confined to the epidermis, with no access to blood vessels or lymphatic channels. Progression is a biological transition, not just a cosmetic change: as abnormal cells accumulate additional DNA damage from ongoing UV exposure, they can begin breaching the basement membrane that separates the epidermis from the dermis below.
+              </p>
+              <p class="text-slate/80">
+                Once that boundary is crossed, the lesion is reclassified as an invasive squamous cell carcinoma (SCC). It now has access to the blood supply and lymphatic system, which is what gives a cancer the capacity to grow more aggressively, invade nearby structures like nerves, cartilage, or muscle, and — in a minority of cases — spread to regional lymph nodes or distant sites. None of that capability exists while the abnormal cells stay above the basement membrane, which is exactly why "in situ" disease and invasive disease are treated so differently.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Who Carries Meaningfully Higher Risk</h2>
+          <p class="text-slate/80 mb-6">
+            The often-quoted "less than 1% per year" progression estimate for a single AK is an average across a very mixed population. It understates the real risk for several identifiable groups:
+          </p>
+          <div class="space-y-6">
+            <div class="bg-coral/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Organ transplant recipients and other immunosuppressed patients</h3>
+              <p class="text-slate/80">
+                This is the single biggest risk multiplier. Long-term immunosuppression to prevent organ rejection also disables much of the immune system's ability to police abnormal keratinocytes. Transplant recipients face an estimated 65- to 250-fold increase in cutaneous SCC compared with the general population, and their AKs tend to progress faster, behave more aggressively, and are more likely to metastasize once they do become invasive.
+              </p>
+            </div>
+            <div class="bg-coral/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Field cancerization with a high lesion count</h3>
+              <p class="text-slate/80">
+                Someone with a single small AK and someone with dozens of AKs across chronically sun-damaged skin are not facing the same odds. Field cancerization means the visible AKs are only the tip of a much larger area of UV-damaged, genetically abnormal skin — more affected tissue means more chances for one lesion, somewhere in that field, to accumulate the mutations needed to invade.
+              </p>
+            </div>
+            <div class="bg-coral/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Chronic, non-healing, or recurrent lesions</h3>
+              <p class="text-slate/80">
+                An AK that keeps coming back in the same spot after treatment, or one that has never fully resolved, has had more cumulative opportunity to accumulate the genetic changes associated with invasion. Persistence itself is a risk signal, distinct from any single visual feature.
+              </p>
+            </div>
+            <div class="bg-coral/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">High-risk anatomic sites</h3>
+              <p class="text-slate/80">
+                AKs on the ears, lips (actinic cheilitis), and scalp are associated with a higher likelihood of progression and, when they do progress, a higher likelihood of aggressive behavior — these areas have thinner skin, less underlying fat, and closer proximity to cartilage, nerves, and lymphatic drainage.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Cost of Doing Nothing: Treatment Escalation</h2>
+              <p class="text-slate/80 mb-4">
+                "Watching and doing nothing indefinitely" isn't a neutral, zero-cost choice — it's a bet that a given lesion won't be the one that crosses the line, and if that bet is lost, the treatment path changes dramatically. An untreated AK that progresses to SCC generally can't be managed with the quick, low-morbidity options used for AK itself.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>From cryotherapy or a cream to surgery.</strong> A confirmed invasive SCC typically requires surgical excision with clear margins, or Mohs micrographic surgery in cosmetically or functionally sensitive areas — a bigger procedure with real recovery time, versus a few minutes of freezing.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>From one visit to a full workup.</strong> Higher-risk SCCs may require imaging or lymph node evaluation to check whether the cancer has spread beyond the skin — a level of workup an AK never requires.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>From cosmetic nuisance to functional risk.</strong> Depending on location, an advanced SCC can threaten nearby structures — eyelid function, ear cartilage, nerve involvement causing numbness or weakness — in a way a superficial AK never does.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>From a single dermatology visit to a multidisciplinary one.</strong> Advanced cases may involve a surgeon, and occasionally radiation oncology, rather than a single outpatient dermatology appointment.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Case for Early Treatment, Even With Low Individual-Lesion Risk</h2>
+          <p class="text-slate/80 mb-4">
+            It's true, and worth repeating: most individual AKs never progress to cancer. That fact and the case for treating them are not actually in tension, for two reasons.
+          </p>
+          <p class="text-slate/80 mb-4">
+            First, risk compounds. A less-than-1%-per-year estimate for one lesion sounds negligible, but it's rarely just one lesion, and rarely just one year. Someone with sun damage significant enough to produce AKs typically has several, over years or decades — and a small per-lesion, per-year probability multiplied across many lesions and a long time horizon adds up to a real, non-trivial lifetime probability that something eventually progresses.
+          </p>
+          <p class="text-slate/80">
+            Second, the asymmetry in effort is enormous. Treating an AK today is quick, low-cost, and low-morbidity — cryotherapy takes moments, and topical field therapy is a matter of weeks of at-home cream. Treating an established SCC tomorrow means surgery, possible reconstruction, and a meaningfully longer recovery. Early treatment isn't just statistically favorable; it trades a small, certain inconvenience now for protection against a much larger, uncertain one later.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given my overall number of AKs and sun-damage history, am I in a higher-risk category, or is my risk closer to average?</li>
+                <li>Am I on any medication — for a transplant or another condition — that suppresses my immune system and raises my skin cancer risk?</li>
+                <li>Do any of my current AKs sit in a higher-risk location, like my ears, lips, or scalp?</li>
+                <li>Is there a lesion that keeps coming back or has never fully cleared that we should address differently?</li>
+                <li>If I choose not to treat a particular spot now, what would make you recommend revisiting that decision?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Most actinic keratoses never become cancer, and that's genuinely reassuring. But "usually fine" is not the same as "no cost to ignoring it forever" — especially for people carrying more risk than average: those who are immunosuppressed, those with extensive field cancerization, and those with chronic or high-risk-location lesions. For those groups in particular, the calculus shifts meaningfully toward treating rather than watching.
+          </p>
+          <p class="text-slate/80">
+            The larger point holds for everyone, though: treating an AK today is about as low-stakes as skin cancer prevention gets, and the alternative — an established SCC — is a meaningfully bigger problem to solve. That asymmetry, more than any single statistic, is the real argument for early treatment.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Werner RN, Sammain A, Erdmann R, Hartmann V, Stockfleth E, Nast A. The natural history of actinic keratosis: a systematic review. <em>Br J Dermatol.</em> 2013;169(3):502-518. <a href="https://pubmed.ncbi.nlm.nih.gov/23647091/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Jenni D, Hofbauer GF. Keratinocyte cancer and its precursors in organ transplant patients. <em>Curr Probl Dermatol.</em> 2015;46:49-57. <a href="https://pubmed.ncbi.nlm.nih.gov/25561206/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.skincancer.org/blog/after-a-transplant-new-dangers/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — After a Transplant: New Dangers
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Only a dermatologist examining your skin in person — sometimes with a biopsy — can assess your individual risk and determine whether a specific lesion needs treatment.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about actinic keratosis and skin cancer</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

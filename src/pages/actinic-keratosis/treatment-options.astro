@@ -1,0 +1,354 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/treatment-options";
+const title = "AK Treatment Options: How to Choose | Beating Skin Cancer";
+const description = "Compare cryotherapy, topical creams, and PDT for actinic keratosis — how each works, what to expect, and how to choose the right option for you.";
+const lastReviewed = "2026-08-25";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Are the Treatment Options for Actinic Keratoses, and How Do I Pick the Right One?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Treatment Options", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the most effective treatment for actinic keratosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A large randomized trial comparing four field treatments for multiple AKs on the head found 5% fluorouracil cream had the highest 12-month clearance rate, outperforming imiquimod, photodynamic therapy, and ingenol mebutate gel. But 'most effective' isn't the same as 'best for you' — a single, isolated AK is usually treated more simply with cryotherapy, and the right choice depends on how many lesions you have, where they are, and how much downtime you can tolerate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my skin look worse before it gets better during AK treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Topical treatments and photodynamic therapy work by triggering inflammation in damaged cells, which typically causes redness, crusting, peeling, and sometimes oozing before the skin heals clear. This reaction is expected and is often a sign the treatment is reaching AKs you couldn't even see yet — but it's worth discussing the expected timeline with your dermatologist in advance so it doesn't catch you off guard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need field therapy or can I just treat the spots I see?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you have just one or a few isolated AKs, lesion-directed treatment (like cryotherapy) targeting only the visible spots is usually sufficient. If you have many AKs or diffusely sun-damaged skin, your dermatologist may recommend field therapy — a topical medication or photodynamic therapy applied across the whole affected area — because sun damage often extends well beyond what's visible."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Actinic Keratosis
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Are the Treatment Options for Actinic Keratoses, and How Do I Pick the Right One?
+          </h1>
+          <p class="text-xl text-white/80">Comparing freezing, topical treatments, and other options for your situation</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            There is no single "best" treatment for actinic keratosis — there's a best treatment for your AKs, on your skin, in your life. A dermatologist choosing between cryotherapy, a topical cream, photodynamic therapy, or a handful of other options is weighing several things at once: how many lesions you have, where they sit, how much visible downtime you can accept, and how you tend to tolerate treatment side effects.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through each major treatment option in enough detail to have an informed conversation with your dermatologist, then lays out the practical framework doctors use to match a treatment to a patient.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:layout-grid" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Two Basic Strategies: Lesion-Directed vs. Field Therapy</h2>
+              <p class="text-slate/80 mb-4">
+                Before comparing individual treatments, it helps to understand the two broad approaches they fall into:
+              </p>
+              <div class="space-y-4">
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-semibold text-navy mb-2">Lesion-directed therapy</h3>
+                  <p class="text-slate/80">Targets one spot at a time — the AK you and your dermatologist can actually see and feel. This is the usual approach when you have a single AK or just a few, well-separated ones. Cryotherapy, curettage, and laser are lesion-directed.</p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-semibold text-navy mb-2">Field therapy</h3>
+                  <p class="text-slate/80">Treats an entire area of sun-damaged skin at once, not just the visible AKs within it. This matters because of "field cancerization" — the same UV damage that produced the AKs you can see has typically also damaged surrounding cells that haven't yet formed a visible lesion. Topical medications, photodynamic therapy, and chemical peels can all be used as field treatments. If you have many AKs or diffusely damaged skin, this approach usually makes more sense than freezing each spot one at a time — that scenario is covered in much more depth on our <a href="/actinic-keratosis/field-therapy-multiple-aks" class="text-teal hover:text-teal/80 underline">field therapy for multiple AKs</a> page.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Procedural Treatments (In the Office)</h2>
+
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Cryotherapy (Liquid Nitrogen Freezing)</h3>
+              <p class="text-slate/80 mb-2"><strong>How it works:</strong> Your dermatologist applies liquid nitrogen directly to the AK, freezing the abnormal cells so they die and slough off over the following one to two weeks.</p>
+              <p class="text-slate/80 mb-2"><strong>Course:</strong> Usually a single office visit per lesion; can be repeated if the spot doesn't fully clear.</p>
+              <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Stinging during and shortly after treatment, blistering, redness, and temporary (occasionally permanent) lightening of the treated skin.</p>
+              <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> High for individual, well-defined lesions — it's the most commonly used AK treatment for exactly this reason.</p>
+              <p class="text-slate/80"><strong>Best fit:</strong> A single AK or a small number of scattered, discrete lesions. Fast, requires no at-home follow-through, and involves the least overall downtime of any option — but it doesn't address invisible sun damage in the surrounding skin.</p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Curettage (With or Without Electrodesiccation)</h3>
+              <p class="text-slate/80 mb-2"><strong>How it works:</strong> The dermatologist numbs the area, then physically scrapes off the thickened AK with a curette (a small scoop-shaped tool). Electrodesiccation — using a mild electric current to destroy any remaining abnormal cells at the base — is often added for thicker lesions.</p>
+              <p class="text-slate/80 mb-2"><strong>Course:</strong> A single office visit.</p>
+              <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Local numbing injection discomfort, a superficial wound that takes one to two weeks to heal, and a small chance of scarring or pigment change.</p>
+              <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> Very effective for a single lesion, and it has an advantage the others don't: the scraped tissue can be sent to a pathologist if there's any concern the spot has already progressed toward squamous cell carcinoma.</p>
+              <p class="text-slate/80"><strong>Best fit:</strong> A thick, hyperkeratotic (very scaly/crusted) AK, or one where your dermatologist wants tissue confirmation rather than just clinical judgment.</p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Photodynamic Therapy (PDT)</h3>
+              <p class="text-slate/80 mb-2"><strong>How it works:</strong> A photosensitizing solution (aminolevulinic acid or methyl aminolevulinate) is applied to the affected area and absorbed preferentially by damaged cells. After an incubation period of roughly one to several hours, the area is exposed to a special light source, which activates the solution and destroys the abnormal cells while largely sparing normal skin.</p>
+              <p class="text-slate/80 mb-2"><strong>Course:</strong> Typically one to two sessions, spaced a few weeks apart, each taking place over one office visit (incubation plus light exposure).</p>
+              <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Significant redness, swelling, crusting, and peeling over the following days to a couple of weeks; a stinging or burning sensation during the light exposure itself; several days of sun avoidance are required afterward because treated skin becomes very photosensitive.</p>
+              <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> A large four-way comparative trial found PDT's 12-month clearance held up moderately well, though behind fluorouracil cream in that particular study.</p>
+              <p class="text-slate/80"><strong>Best fit:</strong> Widespread AKs on cosmetically visible areas like the face and scalp, especially for patients who want an in-office procedure rather than weeks of at-home application — at the cost of a more intense, though shorter, recovery.</p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Chemical Peels</h3>
+              <p class="text-slate/80 mb-2"><strong>How it works:</strong> A medical-grade chemical solution (commonly trichloroacetic acid) is applied to the skin, causing the damaged outer layers — including AKs and surrounding sun-damaged cells — to peel away over the following days, revealing new skin underneath.</p>
+              <p class="text-slate/80 mb-2"><strong>Course:</strong> Usually a single in-office session.</p>
+              <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Marked redness and visible peeling for roughly a week, temporary sensitivity, and a need for diligent sun protection during healing.</p>
+              <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> Well established for field treatment of facial AKs, though less commonly used today than topical medications or PDT.</p>
+              <p class="text-slate/80"><strong>Best fit:</strong> Patients with diffuse facial AKs who are also interested in the cosmetic skin-texture benefits a peel can provide, and who can tolerate about a week of visible peeling.</p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Laser Resurfacing</h3>
+              <p class="text-slate/80 mb-2"><strong>How it works:</strong> A laser ablates (removes) the surface layer of skin, taking damaged cells with it. It's used less often for typical AKs and most often for actinic cheilitis — AK affecting the lip.</p>
+              <p class="text-slate/80 mb-2"><strong>Course:</strong> Usually a single session, occasionally requiring a touch-up.</p>
+              <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Redness and raw-appearing skin during healing, which typically takes one to two weeks; risk of pigment change.</p>
+              <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> Good for its niche indications, but not typically a first-line option for AKs on the face or scalp broadly.</p>
+              <p class="text-slate/80"><strong>Best fit:</strong> Actinic cheilitis or other specific situations your dermatologist identifies as well-suited to precise ablation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:pill" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">At-Home Topical Treatments</h2>
+              <p class="text-slate/80 mb-6">
+                Topical medications are prescribed and typically applied by the patient at home over a period of weeks. All of them work as field therapy — they treat the AKs you can see along with the sun-damaged skin around them — and all of them follow the same general pattern: little visible change at first, then a period of noticeable inflammation, followed by healing and clearance.
+              </p>
+
+              <div class="space-y-6">
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-semibold text-navy mb-2">5-Fluorouracil (5-FU) Cream</h3>
+                  <p class="text-slate/80 mb-2"><strong>How it works:</strong> An antimetabolite that interferes with DNA synthesis in rapidly dividing cells, preferentially damaging the abnormal keratinocytes that make up AKs.</p>
+                  <p class="text-slate/80 mb-2"><strong>Course:</strong> Typically applied once or twice daily for two to four weeks.</p>
+                  <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Often the most intense reaction of the topical options — significant redness, burning, crusting, and erosions during treatment, which is expected and considered a marker the medication is reaching affected cells.</p>
+                  <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> In a large randomized comparison of four field treatments, 5-FU cream had the highest 12-month clearance rate of the group.</p>
+                  <p class="text-slate/80"><strong>Best fit:</strong> Patients with multiple AKs across a field who can tolerate a fairly intense, visible reaction for a few weeks in exchange for strong effectiveness.</p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-semibold text-navy mb-2">Imiquimod Cream</h3>
+                  <p class="text-slate/80 mb-2"><strong>How it works:</strong> An immune-response modifier that stimulates the local immune system to recognize and clear abnormal keratinocytes, rather than acting as a direct cell toxin.</p>
+                  <p class="text-slate/80 mb-2"><strong>Course:</strong> Applied a few times per week for several weeks to months, depending on the specific regimen prescribed.</p>
+                  <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Redness, swelling, and crusting similar in kind to 5-FU but often perceived as somewhat milder; occasional flu-like symptoms since it engages the immune system more broadly.</p>
+                  <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> Solid but, in the same head-to-head trial referenced above, somewhat lower 12-month clearance than 5-FU.</p>
+                  <p class="text-slate/80"><strong>Best fit:</strong> Patients who want a field treatment but prefer a longer, gentler course over a shorter, more intense one.</p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-semibold text-navy mb-2">Diclofenac Sodium Gel</h3>
+                  <p class="text-slate/80 mb-2"><strong>How it works:</strong> A nonsteroidal anti-inflammatory (NSAID) gel, typically combined with hyaluronic acid, thought to work through anti-inflammatory and pro-apoptotic effects on damaged cells.</p>
+                  <p class="text-slate/80 mb-2"><strong>Course:</strong> Applied twice daily for a comparatively long course — roughly two to three months.</p>
+                  <p class="text-slate/80 mb-2"><strong>Side effects:</strong> Generally the mildest of the topical options — mild redness, dryness, or itching — which is its main selling point.</p>
+                  <p class="text-slate/80 mb-2"><strong>Effectiveness:</strong> Lower than 5-FU or imiquimod in most comparisons, trading some effectiveness for tolerability.</p>
+                  <p class="text-slate/80"><strong>Best fit:</strong> Patients who are especially sensitive to the more dramatic reactions caused by other topicals, or who have mild AKs and prioritize comfort over the fastest possible clearance.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Setting Expectations: "Worse Before Better"</h2>
+          <p class="text-slate/80 mb-4">
+            Nearly every field treatment — 5-FU, imiquimod, diclofenac, and PDT alike — follows a similar arc: the treated skin looks noticeably worse (redder, crustier, sometimes raw) before it looks better. This isn't a sign something has gone wrong; it's the visible evidence of damaged cells being cleared, often revealing AKs you couldn't see beforehand alongside the ones you could.
+          </p>
+          <p class="text-slate/80 mb-4">
+            A few things are worth knowing ahead of time so this doesn't feel alarming mid-treatment:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The reaction typically peaks partway through the course, then resolves over one to a few weeks after the medication is stopped or the procedure is complete</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Applying a moisturizer (but not a corticosteroid, which can blunt the treatment's effect) can help with comfort during the reactive phase</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Strict sun protection during and after treatment is essential — treated skin is more vulnerable to UV damage while it heals</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>If a reaction feels far more severe than what your dermatologist described, or isn't improving on the expected timeline, that's worth a call rather than waiting it out</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:compass" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">A Framework for Choosing</h2>
+              <p class="text-slate/80 mb-4">Your dermatologist is weighing several factors together, not picking from a menu at random. Useful questions to think through before your appointment:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>How many AKs, and how are they distributed?</strong> A single spot generally favors lesion-directed treatment (cryotherapy, curettage); many lesions or diffusely damaged skin favor field therapy (a topical, PDT, or a peel).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>How much visible downtime can you tolerate, and when?</strong> An in-office procedure like PDT concentrates the reaction into a shorter, more intense window; a topical like diclofenac spreads a milder reaction over a longer course. If you have an event coming up, timing matters.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Do you prefer in-office procedures or at-home management?</strong> Some patients would rather have everything handled in one or two visits; others prefer the control of an at-home regimen they can manage on their own schedule.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Are cosmetically sensitive areas involved?</strong> The face, especially around the eyes, nose, and lips, may steer treatment choice toward options with more predictable healing and lower scarring risk.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What does your insurance cover, and what will it cost out of pocket?</strong> Coverage and cost-sharing for these treatments vary by plan and by whether a treatment is billed as a procedure or a prescription; it's reasonable to ask your dermatologist's office to check authorization requirements before you commit to a specific regimen.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given the number and location of my AKs, would you recommend lesion-directed or field therapy?</li>
+                <li>What kind of reaction should I expect from this specific treatment, and how long should it last?</li>
+                <li>Are there sun-protection or activity restrictions I need to follow during treatment?</li>
+                <li>How will we know if the treatment worked, and when should I come back to check?</li>
+                <li>If this treatment doesn't fully clear things, what's the next option?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            There's no universal "right" AK treatment — only the right one for your particular pattern of sun damage, your tolerance for downtime, and your priorities around cosmetics and convenience. Cryotherapy and curettage handle isolated spots quickly; topical creams and photodynamic therapy address broader fields of damage, at the cost of a temporary, expected worsening in appearance along the way.
+          </p>
+          <p class="text-slate/80">
+            The best next step is a direct conversation with your dermatologist about which factors matter most to you, so the plan you leave with is one you're actually prepared to follow through on.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Jansen MHE, Kessels JPHM, Nelemans PJ, et al. Randomized trial of four treatment approaches for actinic keratosis. <em>N Engl J Med.</em> 2019;380(10):935-946. <a href="https://pubmed.ncbi.nlm.nih.gov/30855743/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/actinic-keratosis/actinic-keratosis-treatment-options/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Actinic Keratosis Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Only a dermatologist who has examined your skin can recommend the treatment plan that's right for your specific actinic keratoses.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about actinic keratosis and skin cancer</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
