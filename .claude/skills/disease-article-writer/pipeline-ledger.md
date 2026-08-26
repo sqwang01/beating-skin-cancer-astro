@@ -9,15 +9,18 @@ Tracks every hub's "Key Topics" slot. Status values:
 
 Re-check this file at the start of every disease-article-writer run; update it at the end.
 
-## melanoma (hub fully linked — baseline, predates this pipeline)
+## melanoma (8/8 slots real articles, all published and linked)
 
-| Slug | Status |
+| Slug / working title | Status |
 |---|---|
 | melanoma-treatment-options | published (pre-existing) |
 | melanoma-stage-meaning | published (pre-existing) |
 | sentinel-lymph-node-biopsy | published (pre-existing) |
 | what-to-expect-after-diagnosis | published (pre-existing) |
 | pathology-report | published — 2026-08-22 |
+| breslow-depth-explained | published — 2026-08-25 |
+| finding-a-melanoma-specialist | published — 2026-08-25 |
+| melanoma-clinical-trials | published — 2026-08-25 |
 
 ## basal-cell-carcinoma
 
@@ -76,6 +79,9 @@ Re-check this file at the start of every disease-article-writer run; update it a
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
 - 16 pages remain not-started across 2 hubs (8 SCC + 8 atypical-nevi). BCC's hub is now fully
-  published (all 8/8 slots live and linked) as of 2026-08-24. Melanoma's hub is fully published as
-  of 2026-08-22. Actinic-keratosis is now fully published (8/8 slots live and linked) as of
-  2026-08-25.
+  published (all 8/8 slots live and linked) as of 2026-08-24. Actinic-keratosis is now fully
+  published (8/8 slots live and linked) as of 2026-08-25. Melanoma is now fully published (8/8
+  slots live and linked) as of 2026-08-25 — the 3 remaining cards (Breslow depth, finding a
+  specialist, clinical trials) were drafted 2026-08-25, reviewed and approved by the user the same
+  day, and published: byline/JSON-LD added and hub cards converted from external-navigator links
+  to real internal links (this also fixed the `hhttps://` typo on the clinical trials card).

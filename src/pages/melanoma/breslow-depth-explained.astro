@@ -1,0 +1,307 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/breslow-depth-explained";
+const title = "Breslow Depth & Melanoma Prognosis | Beating Skin Cancer";
+const description = "Learn what Breslow depth means, how pathologists measure it, and why melanoma thickness drives staging, excision margins, and sentinel node biopsy decisions.";
+const lastReviewed = "2026-08-25";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Breslow Depth Explained: How \"Thickness\" Affects Prognosis",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Breslow Depth Explained", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Breslow depth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Breslow depth is a measurement, in millimeters, of how deeply a melanoma has grown into the skin. A pathologist measures it from the top of the granular layer of the epidermis (or the base of an ulcer, if present) down to the single deepest melanoma cell found under the microscope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is Breslow depth so important for melanoma prognosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Breslow depth is the strongest single predictor of how a melanoma is likely to behave. Thinner melanomas are far less likely to have spread to lymph nodes or elsewhere, while thicker melanomas carry a higher risk of recurrence and metastasis. It is the main factor used to assign the T (tumor) category in melanoma staging."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Breslow depth determine my excision margins and whether I need a sentinel lymph node biopsy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Recommended surgical margins widen as Breslow depth increases, and current guidelines use specific thickness thresholds (generally starting around 0.8 mm to 1 mm) to decide whether a sentinel lymph node biopsy should be discussed or offered."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Breslow Depth Explained: How "Thickness" Affects Prognosis
+          </h1>
+          <p class="text-xl text-white/80">Why a single number in millimeters shapes your stage, treatment, and outlook</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            If you or a loved one has been diagnosed with melanoma, one number on the pathology report tends to come up again and again in conversations with your care team: Breslow depth. It's usually written as a decimal followed by "mm"—something like "0.6 mm" or "2.3 mm."
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            That small number carries outsized weight. Breslow depth is widely considered the single most important prognostic factor in early-stage melanoma, and it directly shapes your stage, your surgery, and whether additional procedures like a sentinel lymph node biopsy are recommended. This guide explains what Breslow depth is, how it's measured, and why it matters so much.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Is Breslow Depth?</h2>
+          <p class="text-slate/80 mb-4">
+            Breslow depth (also called Breslow thickness) is a measurement of how far a melanoma has grown downward into the skin, expressed in millimeters. It's named for Dr. Alexander Breslow, the pathologist who first showed in 1970 that tumor thickness predicted survival better than the staging methods used at the time.
+          </p>
+          <p class="text-slate/80">
+            Technically, it's measured from the top of the granular layer of the epidermis (the outermost living layer of skin)—or from the base of an ulcer, if the tumor surface has broken down—straight down to the single deepest melanoma cell the pathologist can find under the microscope. It is not the same as how wide the mole looked on your skin, and it isn't something you or your doctor can estimate by eye; it can only be measured accurately on tissue under a microscope after a biopsy.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Pathologists Measure It</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">1. The Tissue Is Sectioned and Stained</h3>
+              <p class="text-slate/80">
+                After a biopsy or excision, the tissue is processed, sliced into very thin sections, mounted on slides, and stained (typically with hematoxylin and eosin) so the pathologist can see individual cells under the microscope.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">2. A Calibrated Micrometer Does the Measuring</h3>
+              <p class="text-slate/80">
+                Using an eyepiece fitted with a calibrated ocular micrometer, the pathologist measures the vertical distance from the starting point (top of the granular layer, or ulcer base) to the deepest identifiable melanoma cell, recorded to the nearest tenth of a millimeter.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">3. Why Measurements Can Vary Slightly</h3>
+              <p class="text-slate/80">
+                Because this is a manual measurement on a physical slide, results can shift a little depending on how the tissue was cut or oriented—which is one reason a second pathology opinion is sometimes requested for melanomas that fall right at a staging cutoff, such as 0.8 mm or 1.0 mm. See our guide to <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 underline">understanding your melanoma pathology report</a> for more on what else appears alongside Breslow depth.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:trending-up" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why It's the Strongest Prognostic Factor</h2>
+              <p class="text-slate/80 mb-4">
+                Decades of outcomes data, going back to Dr. Breslow's original 1970 study, have consistently shown that survival tracks closely with tumor thickness. As a general pattern:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Thin melanomas (roughly ≤1 mm):</strong> Have a very low chance of having already spread to lymph nodes, and typically carry an excellent long-term outlook after surgery alone.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Intermediate-thickness melanomas (roughly 1–4 mm):</strong> Carry a meaningfully higher chance of microscopic spread, which is why sentinel lymph node biopsy becomes a standard part of the conversation.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Thick melanomas (roughly &gt;4 mm):</strong> Carry the highest risk of spread and recurrence, and are more likely to prompt discussion of adjuvant (after-surgery) therapy.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                These are general patterns, not guarantees—other pathology findings like ulceration, and your own health history, also factor into your individual outlook. Ulceration in particular can shift risk upward even at the same thickness.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Breslow Depth Drives Staging</h2>
+          <p class="text-slate/80 mb-4">
+            Under the American Joint Committee on Cancer (AJCC) staging system, Breslow depth is the primary factor used to assign the "T" (tumor) category—T1 through T4—with ulceration as a secondary modifier at each level:
+          </p>
+          <ul class="space-y-2 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>T1:</strong> ≤1.0 mm</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>T2:</strong> &gt;1.0–2.0 mm</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>T3:</strong> &gt;2.0–4.0 mm</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>T4:</strong> &gt;4.0 mm</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The T category, combined with lymph node (N) and metastasis (M) findings, is what ultimately determines your overall stage (0–IV). For the full picture of how staging works and what each stage means for treatment and outlook, see our guide on <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">what your melanoma stage means</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How It Drives Treatment Decisions</h2>
+          <div class="space-y-6">
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Excision Margins</h3>
+              <p class="text-slate/80">
+                After a melanoma diagnosis, surgery to remove additional healthy-looking skin around the original site (a "wide local excision") is standard, and the recommended margin width is set largely by Breslow depth. Thin melanomas (≤1 mm) are generally treated with a 1 cm margin, melanomas 1–2 mm thick with a 1–2 cm margin, and melanomas thicker than 2 mm with a 2 cm margin. These thresholds come from randomized trials comparing narrower and wider margins at different thicknesses.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Sentinel Lymph Node Biopsy Eligibility</h3>
+              <p class="text-slate/80">
+                Breslow depth is also the main factor used to decide whether a sentinel lymph node biopsy (SLNB) should be offered. Current guidelines generally do not recommend SLNB for melanomas thinner than about 0.8 mm without other high-risk features, since the chance of a positive node is very low. SLNB is typically recommended for melanomas ≥1 mm, and may be discussed on a case-by-case basis for melanomas between 0.8 and 1.0 mm with additional risk factors such as ulceration. Learn more in our guide to <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">sentinel lymph node biopsy</a>.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Follow-Up and Adjuvant Therapy Discussions</h3>
+              <p class="text-slate/80">
+                Thicker melanomas, or those found to have spread to a lymph node, more often lead to discussions about adjuvant immunotherapy or targeted therapy, and closer follow-up schedules. See our guide on <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 underline">melanoma treatment options by stage</a> for how these decisions unfold.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>What is my exact Breslow depth, and which T category does it place me in?</li>
+                <li>Is there ulceration, and how does that affect my risk alongside the depth?</li>
+                <li>What excision margin do you recommend based on my thickness?</li>
+                <li>Given my depth, is a sentinel lymph node biopsy recommended, optional, or not indicated?</li>
+                <li>Is my case close enough to a staging cutoff that a second pathology opinion would be worthwhile?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Breslow depth can feel like just one more number on a dense report, but it's the thread that connects nearly every major decision in early melanoma care—from how your tumor is staged, to how wide a margin your surgeon removes, to whether a sentinel lymph node biopsy makes sense for you.
+          </p>
+          <p class="text-slate/80">
+            Ask your dermatologist or surgical oncologist to walk you through your own Breslow depth and what it means for your specific plan. Understanding this one measurement can make the rest of your pathology report—and your treatment path—much easier to follow.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Breslow A. Thickness, cross-sectional areas and depth of invasion in the prognosis of cutaneous melanoma. <em>Ann Surg.</em> 1970;172(5):902-908. <a href="https://pubmed.ncbi.nlm.nih.gov/5477666/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Gershenwald JE, Scolyer RA, Hess KR, et al. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. <em>CA Cancer J Clin.</em> 2017;67(6):472-492. <a href="https://pubmed.ncbi.nlm.nih.gov/29028110/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wong SL, Faries MB, Kennedy EB, et al. Sentinel Lymph Node Biopsy and Management of Regional Lymph Nodes in Melanoma: American Society of Clinical Oncology and Society of Surgical Oncology Clinical Practice Guideline Update. <em>J Clin Oncol.</em> 2018;36(4):399-413. <a href="https://pubmed.ncbi.nlm.nih.gov/29232171/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Hayes AJ, Maynard L, Coombes G, et al. Wide versus narrow excision margins for high-risk, primary cutaneous melanomas: long-term follow-up of survival in a randomised trial. <em>Lancet Oncol.</em> 2016;17(2):184-192. <a href="https://pubmed.ncbi.nlm.nih.gov/26790922/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.curemelanoma.org/about-melanoma/melanoma-staging/breslow-depth-and-clark-level" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> — Breslow Depth of Melanoma Staging Explained
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/melanoma-skin-cancer/detection-diagnosis-staging/melanoma-skin-cancer-stages.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Stages of Melanoma Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.nccn.org/patients/guidelines/content/PDF/melanoma-patient.pdf" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">NCCN Guidelines for Patients®</a> — Melanoma
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. <a href="https://www.amazon.com/dp/1421449870" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Amazon</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about your Breslow depth and staging</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

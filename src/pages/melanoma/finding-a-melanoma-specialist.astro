@@ -1,0 +1,459 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/finding-a-melanoma-specialist";
+const title = "Finding a Melanoma Specialist Near You | Beating Skin Cancer";
+const description =
+  "Learn which specialists treat melanoma, when a general dermatologist is enough vs. a melanoma center, and how to find and vet the right provider.";
+const lastReviewed = "2026-08-25";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Find the Right Melanoma Specialist Near You",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Finding a Melanoma Specialist", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I need a melanoma specialist, or can my regular dermatologist treat me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For a thin, early-stage melanoma (Stage 0–I) with no unusual features, an experienced dermatologist or general surgeon can often perform the excision and follow-up safely. A melanoma-specific center becomes more important for thicker or higher-stage melanoma, unusual subtypes, cases needing a sentinel lymph node biopsy or immunotherapy, or if you simply want a specialist opinion for peace of mind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is an NCI-designated cancer center, and does it matter for melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NCI-designated cancer centers meet rigorous National Cancer Institute standards for research and multidisciplinary care. Studies using national cancer registry data have found that patients treated at high-volume, often academic, melanoma centers have measurably better long-term survival than those treated at low-volume facilities, particularly for stage III and IV disease."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it okay to get a second opinion after a melanoma diagnosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A second opinion from a melanoma specialist is a normal, expected part of good cancer care, not an insult to your current doctor. It can confirm your diagnosis and stage, surface treatment options you weren't offered, and give you confidence in your plan — most oncologists welcome the extra set of eyes."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">How to Find the Right Melanoma Specialist Near You</h1>
+          <p class="text-xl text-white/80">Tips for locating experienced melanoma doctors and treatment centers</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Why the Right Doctor Matters</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Once you've been diagnosed with melanoma, one of the most important decisions you'll make isn't
+            a treatment choice — it's <strong>who treats you</strong>. Melanoma care spans a wide range, from
+            a straightforward outpatient excision to complex, multi-step treatment involving surgery, lymph
+            node evaluation, and systemic therapy. Choosing a doctor and team with the right experience for
+            your situation can affect not just your comfort during treatment, but your outcomes.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            The good news: you don't have to figure this out alone, and you don't have to guess. This guide
+            walks through who treats melanoma, when a general dermatologist is enough versus when to seek out
+            a melanoma-specific center, how to vet a center's credentials, and the questions worth asking
+            before you commit to a plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:stethoscope" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Who Actually Treats Melanoma?</h2>
+              <p class="text-slate/80 mb-4">
+                Melanoma care usually involves more than one type of doctor, and the mix depends on your
+                stage and situation. Understanding these roles helps you know who you're talking to — and
+                who else you might need to meet.
+              </p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse">
+              <thead>
+                <tr class="bg-teal/10">
+                  <th class="border border-teal/20 p-3 text-left text-navy font-semibold">Specialist</th>
+                  <th class="border border-teal/20 p-3 text-left text-navy font-semibold">Role in Your Care</th>
+                </tr>
+              </thead>
+              <tbody class="text-slate/80">
+                <tr>
+                  <td class="border border-teal/20 p-3"><strong>Dermatologist</strong></td>
+                  <td class="border border-teal/20 p-3">Diagnoses via biopsy, often performs excision for early-stage melanoma, and provides long-term skin surveillance</td>
+                </tr>
+                <tr class="bg-ivory">
+                  <td class="border border-teal/20 p-3"><strong>Surgical oncologist</strong></td>
+                  <td class="border border-teal/20 p-3">Performs wide excision and sentinel lymph node biopsy for thicker or higher-risk melanomas</td>
+                </tr>
+                <tr>
+                  <td class="border border-teal/20 p-3"><strong>Medical (melanoma) oncologist</strong></td>
+                  <td class="border border-teal/20 p-3">Manages systemic treatments — immunotherapy, targeted therapy — for higher-stage or recurrent disease</td>
+                </tr>
+                <tr class="bg-ivory">
+                  <td class="border border-teal/20 p-3"><strong>Dermatopathologist</strong></td>
+                  <td class="border border-teal/20 p-3">Reads your biopsy tissue under the microscope and writes the pathology report that guides staging</td>
+                </tr>
+                <tr>
+                  <td class="border border-teal/20 p-3"><strong>Radiation oncologist</strong></td>
+                  <td class="border border-teal/20 p-3">Treats select cases where radiation helps control disease in lymph nodes or other sites</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-slate/80 mt-6 bg-teal/5 p-4 rounded-lg">
+            At academic and NCI-designated cancer centers, these specialists often meet as a
+            <strong>multidisciplinary tumor board</strong> — a group that reviews complex cases together and
+            builds a coordinated plan, rather than you shuttling opinions between separate offices.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:compass" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">General Dermatologist or Melanoma Center? How to Decide</h2>
+              <p class="text-slate/80 mb-4">
+                Not every melanoma diagnosis requires a trip to a major cancer center — but some situations
+                genuinely call for it. Here's a general guide:
+              </p>
+
+              <h3 class="text-xl font-semibold text-navy mb-3 mt-6">A general dermatologist may be enough when:</h3>
+              <ul class="space-y-3 text-slate/80 mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Your melanoma is thin (early Stage 0–I) with no ulceration or other high-risk features</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>A straightforward wide local excision is all that's recommended</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Your dermatologist has specific experience diagnosing and managing melanoma, not just general skin conditions</span>
+                </li>
+              </ul>
+
+              <h3 class="text-xl font-semibold text-navy mb-3 mt-6">Consider a melanoma-specific center when:</h3>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Your melanoma is thicker, ulcerated, or otherwise higher-risk on pathology</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>You may need a <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">sentinel lymph node biopsy</a> or have a palpable lymph node</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Your melanoma is Stage III or IV, or has an atypical subtype (acral, mucosal, desmoplastic, or ocular melanoma)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Systemic therapy — immunotherapy or targeted therapy — is being considered</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>You want access to melanoma-specific clinical trials, or you simply want a specialist's opinion</span>
+                </li>
+              </ul>
+
+              <p class="text-slate/80 mt-6 bg-white p-4 rounded-lg">
+                For a closer look at what treatment might involve at each stage, see our
+                <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 underline">Melanoma Treatment Options</a> guide.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:map-pin" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Finding NCI-Designated Cancer Centers and Melanoma Centers of Excellence</h2>
+              <p class="text-slate/80 mb-4">
+                The National Cancer Institute (NCI) designates a select group of centers nationwide that meet
+                rigorous standards for research infrastructure, clinical trial access, and multidisciplinary
+                cancer care. Research using national cancer registry data has found that patients treated at
+                high-volume, often academic centers had meaningfully better long-term survival than those
+                treated at low-volume facilities — a gap that widened for more advanced-stage melanoma.
+              </p>
+              <p class="text-slate/80 mb-4">To find one near you:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Search the NCI's own directory of designated cancer centers by state</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Look for centers with a dedicated melanoma or cutaneous oncology program, not just general oncology</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Check whether the center offers a multidisciplinary melanoma clinic where surgery, medical oncology, and pathology coordinate in one visit</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Ask whether the center participates in melanoma clinical trials, which is often a marker of active specialization</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-6 bg-teal/5 p-4 rounded-lg">
+                You don't have to live near a major city to benefit — many academic centers offer telehealth
+                consultations or coordinate care with your local dermatologist so most follow-up happens
+                closer to home.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:clipboard-list" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">Questions to Ask When Choosing a Provider</h2>
+              <p class="text-slate/80 mb-4">
+                Whether you're evaluating a local dermatologist or a major cancer center, these questions can
+                help you gauge experience and fit:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>How many melanoma cases do you (or this center) treat each year?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Is my case reviewed by a multidisciplinary tumor board?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Do you have a dermatopathologist experienced specifically in melanoma?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>What clinical trials, if any, might I be eligible for here?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>How will you coordinate with my local dermatologist for ongoing skin checks?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>What support is available — nurse navigators, social workers, financial counseling?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:users" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-6">The Role of Second Opinions</h2>
+              <p class="text-slate/80 mb-4">
+                Seeking a second opinion is a normal, expected part of good cancer care — not a sign of
+                distrust in your current doctor. Most oncologists and dermatologists welcome it, and many
+                actively encourage it for anything beyond the most straightforward, early-stage cases.
+              </p>
+              <p class="text-slate/80 mb-4">A second opinion can be especially valuable when:</p>
+              <ul class="space-y-3 text-slate/80 mb-6">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Your melanoma is thick, ulcerated, or an unusual subtype</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>You're facing a decision about systemic therapy or a clinical trial</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>You simply want confidence before moving forward with a treatment plan</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 bg-white p-4 rounded-lg">
+                Ask your current doctor to send your pathology slides and records ahead of the visit — a
+                specialist reviewing the actual tissue, not just the report, can sometimes refine the
+                diagnosis or staging.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-white mb-4">What to Ask Your Doctor</h2>
+              <ul class="space-y-3 text-white/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Given my stage, should I be seen at a melanoma-specific center?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Would you recommend a specific surgical oncologist or melanoma center for my case?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Will my case be reviewed by a multidisciplinary team?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Can you send my pathology report and slides if I want a second opinion?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>How will care be coordinated between you and any specialist I see?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Key Takeaway</h2>
+          <p class="text-slate/80 mb-4">
+            Most melanoma care starts with your dermatologist — and for early-stage disease, that's often
+            all you'll need. But as thickness, stage, or treatment complexity increases, involving a
+            melanoma-specific surgical oncologist, medical oncologist, or an NCI-designated cancer center can
+            meaningfully improve both your options and your outcomes. Asking direct questions about
+            experience, multidisciplinary review, and clinical trial access — and never hesitating to seek a
+            second opinion — puts you in the driver's seat of your own care.
+          </p>
+          <p class="text-slate/80">
+            Learn more in our <a href="/melanoma" class="text-teal hover:text-teal/80 underline">Melanoma section</a> and related articles:
+          </p>
+          <ul class="space-y-2 text-slate/80 mt-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <a href="/melanoma/what-to-expect-after-diagnosis" class="text-teal hover:text-teal/80 underline">What to Expect After a Melanoma Diagnosis</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 underline">Melanoma Treatment Options</a>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">Sentinel Lymph Node Biopsy: What It Means for Melanoma</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Cheraghlou S, Agogo GO, Girardi M. Treatment of primary nonmetastatic melanoma at high-volume academic facilities is associated with improved long-term patient survival. <em>J Am Acad Dermatol.</em> 2019;80(4):979-989. <a href="https://pubmed.ncbi.nlm.nih.gov/30365997/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tella SH, Kommalapati A, Ganti AK, Marr AS. Association Between Hospital Volume, Therapy Types, and Overall Survival in Stage III and IV Cutaneous Malignant Melanoma. <em>J Natl Compr Canc Netw.</em> 2019;17(11):1334-1342. <a href="https://pubmed.ncbi.nlm.nih.gov/31693989/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Johnson D, Albertini MR, et al. NCCN Guidelines® Insights: Melanoma: Cutaneous, Version 2.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(5):290-298. <a href="https://pubmed.ncbi.nlm.nih.gov/39019054/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/research/infrastructure/cancer-centers/find" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Find an NCI-Designated Cancer Center
+                </li>
+                <li>
+                  <a href="https://find-a-derm.aad.org/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Find a Dermatologist
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-learning-center/find-a-melanoma-specialist/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> — Find a Melanoma Specialist Directory
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/patient-eng/ten-tips-for-people-just-diagnosed-with-melanoma/choosing-your-doctor" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> — Choosing Your Doctor
+                </li>
+                <li>
+                  <a href="https://www.nccn.org/patients/guidelines/content/PDF/melanoma-patient.pdf" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">NCCN Guidelines for Patients®</a> — Melanoma
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. <a href="https://www.amazon.com/dp/1421449870" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Amazon</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about melanoma care and specialists</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
