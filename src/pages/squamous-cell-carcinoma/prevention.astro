@@ -1,0 +1,268 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/prevention";
+const title = "Reducing Your Risk of Another SCC | Beating Skin Cancer";
+const description = "Sun protection, treating actinic keratoses, nicotinamide and retinoid chemoprevention, and follow-up schedules that lower your risk of another SCC.";
+const lastReviewed = "2026-08-26";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Prevention Steps and Skin-Care Practices Reduce My Chance of Getting Another SCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Prevention", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does nicotinamide (vitamin B3) really reduce the risk of another SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the ONTRAC trial, a phase 3 randomized controlled study of 386 people with a history of at least two nonmelanoma skin cancers in the prior 5 years, oral nicotinamide 500 mg twice daily reduced the rate of new nonmelanoma skin cancers by about 23% compared with placebo over 12 months. It's inexpensive, well tolerated, and available over the counter, but it's not a substitute for sun protection or scheduled skin checks — it reduces risk, it doesn't eliminate it, and its benefit fades once you stop taking it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I take oral retinoids to prevent SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oral retinoids like acitretin have the strongest chemoprevention evidence of any medication for people at very high risk of repeated SCC, particularly organ transplant recipients, and studies of low-dose acitretin in this group have shown significant reductions in new keratinocyte carcinomas during treatment. They require specialist supervision because of side effects (dry skin and lips, elevated lipids, potential liver effects) and are not appropriate for everyone who has had one SCC — this is a decision to make with a dermatologist based on your individual risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I stop my immunosuppressant medication to lower my skin cancer risk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — never adjust or stop immunosuppressive medication on your own. Immunosuppression is a major driver of SCC risk, especially in organ transplant recipients, but these medications are prescribed to prevent organ rejection, a life-threatening event. Any change has to be made in close coordination between your dermatologist and your transplant or rheumatology team, weighing your skin cancer risk against the risk of rejection or disease flare."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Prevention Steps and Skin-Care Practices Reduce My Chance of Getting Another SCC?
+          </h1>
+          <p class="text-xl text-white/80">A realistic, evidence-based plan for lowering — not eliminating — your risk of a second squamous cell carcinoma</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            If you've already had one squamous cell carcinoma (SCC), you're at meaningfully higher risk of developing another — both because the sun damage that caused the first one is still present in the surrounding skin, and because whatever made you susceptible (skin type, cumulative UV exposure, immune status) hasn't changed. Studies consistently find that people with one keratinocyte cancer have a substantially higher chance of a second one within the following years compared to the general population.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            That's the reality this guide starts from: prevention here isn't about avoiding a first diagnosis, it's about reducing the odds of a repeat one. None of the steps below bring your risk to zero, which is exactly why they're paired with ongoing surveillance rather than treated as a one-time fix.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:sun" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Rigorous Sun Protection, Every Day</h2>
+              <p class="text-slate/80 mb-4">
+                Sun protection matters more, not less, after an SCC diagnosis. The routine that actually reduces risk combines several habits rather than relying on any single product:
+              </p>
+              <ul class="space-y-2 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>A <strong>broad-spectrum sunscreen, SPF 30 or higher</strong>, applied daily to all exposed skin, including on overcast days, and reapplied every two hours outdoors or immediately after swimming or sweating.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Sun-protective clothing and a wide-brimmed hat.</strong> UPF-rated fabric protects consistently and doesn't wear off the way a topical product can — especially valuable for covering the scalp, ears, and neck, common SCC sites.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Avoiding peak UV hours</strong>, roughly 10 a.m. to 4 p.m., or seeking shade during that window when you're outdoors.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Never using tanning beds.</strong> Indoor tanning adds concentrated UV exposure with no protective benefit, and there's no safe amount for someone with a personal history of skin cancer.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:scan" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Treat Field-Damaged Skin, Not Just Individual Spots</h2>
+              <p class="text-slate/80 mb-4">
+                Skin that has developed one SCC has usually absorbed years of UV damage across a wider area than the tumor itself — a concept dermatologists call "field cancerization." That damaged field often contains actinic keratoses (AKs), precancerous spots that share the same UV-driven origin as SCC, and treating them proactively — rather than only reacting to new individual lesions — measurably reduces the future burden of skin cancer in that area.
+              </p>
+              <p class="text-slate/80">
+                Field-directed treatments (topical 5-fluorouracil, imiquimod, photodynamic therapy, or diclofenac gel, depending on your dermatologist's recommendation) address visible AKs and the subclinical damage around them at the same time. If you have multiple AKs, our <a href="/actinic-keratosis/treatment-options" class="text-teal hover:text-teal/80 underline">actinic keratosis treatment options guide</a> and <a href="/actinic-keratosis/field-therapy-multiple-aks" class="text-teal hover:text-teal/80 underline">guide to field therapy for multiple AKs</a> cover how these approaches work and how to choose between them.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Chemoprevention: What the Evidence Supports</h2>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Oral Nicotinamide (Vitamin B3)</h3>
+              <p class="text-slate/80">
+                The ONTRAC trial, a phase 3 randomized controlled study, tested oral nicotinamide 500 mg twice daily in 386 people with a history of at least two nonmelanoma skin cancers. Over 12 months, the nicotinamide group had about 23% fewer new nonmelanoma skin cancers than the placebo group. It's inexpensive, available without a prescription, and well tolerated, which is why many dermatologists now recommend it for patients with a strong history of repeat keratinocyte cancers — though its benefit requires ongoing use and is modest, not a replacement for sun protection.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Oral Retinoids for Very High-Risk Patients</h3>
+              <p class="text-slate/80">
+                For patients at the highest risk of repeated SCC — most notably organ transplant recipients, whose long-term immunosuppression dramatically raises SCC risk — oral retinoids such as acitretin have the strongest evidence of any chemoprevention option. A study of low-dose acitretin in solid-organ transplant recipients found a significant reduction in new keratinocyte carcinomas during treatment. Retinoids require specialist supervision because of side effects like dry skin, elevated blood lipids, and the need for monitoring, so this is a decision made together with a dermatologist experienced in transplant dermatology.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:shield-alert" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Managing Immunosuppression, Carefully</h2>
+              <p class="text-slate/80">
+                A weakened immune system — from organ transplant medication, certain autoimmune drugs, or conditions like chronic lymphocytic leukemia — is one of the strongest risk factors for developing multiple or aggressive SCCs. If you're on long-term immunosuppression, this is worth an active conversation between your dermatologist and the specialist managing that medication (your transplant team or rheumatologist), since in some cases the immunosuppressive regimen itself can be adjusted to lower skin cancer risk while still protecting the organ or condition it's treating. This is never a decision to make on your own — stopping or reducing immunosuppression without medical guidance can risk organ rejection or a serious disease flare, and any change has to be coordinated and monitored by the team who prescribed it.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Prevention Works Alongside Surveillance, Not Instead of It</h2>
+          <p class="text-slate/80 mb-4">
+            Every step above reduces risk — none of them eliminates it. That's the reason scheduled dermatology follow-up remains essential even for someone doing everything right on the prevention side. Regular professional skin exams catch new or recurrent SCC while it's still small and straightforward to treat, and monthly self-checks between visits catch changes sooner than an annual appointment alone would.
+          </p>
+          <p class="text-slate/80">
+            Our <a href="/squamous-cell-carcinoma/follow-up-care" class="text-teal hover:text-teal/80 underline">SCC follow-up care guide</a> covers how often you should be seen based on your risk level, and our <a href="/squamous-cell-carcinoma/self-skin-checks" class="text-teal hover:text-teal/80 underline">guide to self skin checks</a> walks through how to do a thorough exam at home and what changes should prompt a call to your dermatologist sooner than your next scheduled visit.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given my history, am I a candidate for nicotinamide or a prescription chemoprevention option?</li>
+                <li>Do I have actinic keratoses or field damage that should be treated proactively?</li>
+                <li>How often should I be seen for follow-up skin exams based on my risk?</li>
+                <li>If I'm on immunosuppressive medication, should my dermatologist and my other specialist be coordinating on my skin cancer risk?</li>
+                <li>Are there specific areas of my skin, based on where my prior SCC was, that I should be paying closer attention to?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            After one SCC, prevention is a layered effort: rigorous daily sun protection, proactively treating the actinic keratoses and field damage that share the same cause, and — for the right patients — chemoprevention with nicotinamide or, for very high-risk cases like transplant recipients, a supervised retinoid.
+          </p>
+          <p class="text-slate/80">
+            None of this guarantees you won't develop another SCC, which is exactly why it's paired with regular dermatology follow-up and consistent self-checks. Together, prevention and surveillance are what actually keep a second SCC small, early, and easy to treat if it does occur.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Chen AC, Martin AJ, Choy B, et al. A Phase 3 Randomized Trial of Nicotinamide for Skin-Cancer Chemoprevention. <em>N Engl J Med.</em> 2015;373(17):1618-1626. <a href="https://pubmed.ncbi.nlm.nih.gov/26488693/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Solomon-Cohen E, Reiss-Huss S, Hodak E, Davidovici B. Low-Dose Acitretin for Secondary Prevention of Keratinocyte Carcinomas in Solid-Organ Transplant Recipients. <em>Dermatology.</em> 2022;238(1):161-166. <a href="https://pubmed.ncbi.nlm.nih.gov/33902035/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Aggarwal I, Puyana C, Chandan N, Jetter N, Tsoukas M. Field Cancerization Therapies for the Management of Actinic Keratosis: An Updated Review. <em>Am J Clin Dermatol.</em> 2024;25(3):391-405. <a href="https://pubmed.ncbi.nlm.nih.gov/38351246/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/how-to-prevent" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — How to Prevent Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/early-detection/self-exams/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Skin Cancer Foundation</a> — How to Do a Skin Self-Exam
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist before starting any chemoprevention medication or changing an immunosuppressive regimen.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about preventing another SCC</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -35,18 +35,18 @@ Re-check this file at the start of every disease-article-writer run; update it a
 | self-exam-when-to-see-doctor | How do I check my skin for basal cell carcinoma — and when should I see a doctor? | published — 2026-08-24 |
 | lifestyle-prevention | What lifestyle or skin-care habits help reduce the chance of another basal cell carcinoma? | published — 2026-08-24 |
 
-## squamous-cell-carcinoma (all 8 slots not-started)
+## squamous-cell-carcinoma (8/8 slots real articles, all published and linked)
 
 | Working title | Question the card promises to answer | Status |
 |---|---|---|
-| early-signs-vs-other-skin-cancers | What are the early signs of SCC and how is it different from other skin cancers? | not-started |
-| staging-and-grading | How do doctors grade or stage an SCC and why does that matter for treatment? | not-started |
-| treatment-options | What are the main treatment approaches for SCC, and what are the pros and cons of each? | not-started |
-| follow-up-care | What follow-up care is required after SCC treatment? | not-started |
-| recurrence-and-metastasis-risk | What increases the risk of SCC coming back or spreading to lymph nodes or other organs? | not-started |
-| self-skin-checks | How do I perform regular skin checks for SCC and what changes should alert me? | not-started |
-| high-risk-locations | Are there special considerations for SCC in high-risk areas (ears, lips, fingers)? | not-started |
-| prevention | What prevention steps and skin-care practices reduce my chance of getting another SCC? | not-started |
+| early-signs-vs-other-skin-cancers | What are the early signs of SCC and how is it different from other skin cancers? | published — 2026-08-26 |
+| staging-and-grading | How do doctors grade or stage an SCC and why does that matter for treatment? | published — 2026-08-26 |
+| treatment-options | What are the main treatment approaches for SCC, and what are the pros and cons of each? | published — 2026-08-26 |
+| follow-up-care | What follow-up care is required after SCC treatment? | published — 2026-08-26 |
+| recurrence-and-metastasis-risk | What increases the risk of SCC coming back or spreading to lymph nodes or other organs? | published — 2026-08-26 |
+| self-skin-checks | How do I perform regular skin checks for SCC and what changes should alert me? | published — 2026-08-26 |
+| high-risk-locations | Are there special considerations for SCC in high-risk areas (ears, lips, fingers)? | published — 2026-08-26 |
+| prevention | What prevention steps and skin-care practices reduce my chance of getting another SCC? | published — 2026-08-26 |
 
 ## atypical-nevi (all 8 slots not-started)
 
@@ -78,10 +78,14 @@ Re-check this file at the start of every disease-article-writer run; update it a
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
-- 16 pages remain not-started across 2 hubs (8 SCC + 8 atypical-nevi). BCC's hub is now fully
-  published (all 8/8 slots live and linked) as of 2026-08-24. Actinic-keratosis is now fully
-  published (8/8 slots live and linked) as of 2026-08-25. Melanoma is now fully published (8/8
-  slots live and linked) as of 2026-08-25 — the 3 remaining cards (Breslow depth, finding a
-  specialist, clinical trials) were drafted 2026-08-25, reviewed and approved by the user the same
-  day, and published: byline/JSON-LD added and hub cards converted from external-navigator links
-  to real internal links (this also fixed the `hhttps://` typo on the clinical trials card).
+- 8 pages remain not-started (atypical-nevi hub, 8/8). BCC's hub is now fully published (all 8/8
+  slots live and linked) as of 2026-08-24. Actinic-keratosis is now fully published (8/8 slots
+  live and linked) as of 2026-08-25. Melanoma is now fully published (8/8 slots live and linked)
+  as of 2026-08-25 — the 3 remaining cards (Breslow depth, finding a specialist, clinical trials)
+  were drafted 2026-08-25, reviewed and approved by the user the same day, and published:
+  byline/JSON-LD added and hub cards converted from external-navigator links to real internal
+  links (this also fixed the `hhttps://` typo on the clinical trials card). SCC's hub is now fully
+  published (8/8 slots live and linked) as of 2026-08-26 — all 8 cards were drafted the same day
+  (4 parallel writers, 2 articles each), reviewed and approved by the user, then published:
+  byline/JSON-LD added to each article and the hub's placeholder `<div>` cards converted to real
+  `<a href>` links (matching the existing `bg-sky/5` hub-card pattern used site-wide).

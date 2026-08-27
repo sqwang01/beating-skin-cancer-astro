@@ -1,0 +1,278 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/staging-and-grading";
+const title = "SCC Staging and Grading Explained | Beating Skin Cancer";
+const description = "How SCC staging (TNM) and tumor grade determine risk category, guiding margin width, treatment intensity, and whether nodal imaging is needed.";
+const lastReviewed = "2026-08-26";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do Doctors Grade or Stage an SCC and Why Does That Matter for Treatment?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Staging and Grading", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between SCC staging and SCC grading?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Staging (the AJCC TNM system) describes the tumor's extent — its size, depth, whether it has reached lymph nodes, and whether it has spread elsewhere. Grading describes how abnormal the cancer cells look under the microscope, ranging from well to poorly differentiated. Both are assessed separately and both independently affect risk and treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes an SCC 'high-risk'?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "High-risk features include a tumor larger than 2 cm (very high risk above 4 cm), depth greater than 6mm or invasion beyond the subcutaneous fat, poor differentiation on pathology, perineural or lymphovascular invasion, location on the ear or lip, being a recurrent tumor, and occurring in someone who is immunosuppressed or has had prior radiation to the area."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does every SCC need a sentinel lymph node biopsy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Sentinel lymph node biopsy and nodal imaging are reserved for high-risk and very-high-risk SCC, where the chance of occult lymph node spread is meaningfully elevated. Most low-risk SCCs are treated with local excision alone and don't require any nodal workup."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Do Doctors Grade or Stage an SCC and Why Does That Matter for Treatment?
+          </h1>
+          <p class="text-xl text-white/80">Understanding TNM staging, differentiation grade, and how risk category drives your treatment plan</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Not every squamous cell carcinoma carries the same risk, and not every SCC is treated the same way. Two people can both be diagnosed with "SCC" and end up on very different paths — one with a simple in-office excision, another with wider surgical margins, imaging of the lymph nodes, or a consultation with a head and neck surgeon. What separates these paths is staging and grading.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            These two systems answer different questions. Staging describes how far the tumor has grown and spread. Grading describes how abnormal the cancer cells look under the microscope. Together, they feed into a practical risk category — low, high, or very high risk — that actually drives the decisions your care team makes. This guide walks through both systems and explains why the risk category, more than a single number, is what matters most.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:ruler" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">TNM Staging (AJCC 8th Edition)</h2>
+              <p class="text-slate/80 mb-4">
+                The American Joint Committee on Cancer (AJCC) staging manual, 8th edition, is the standard framework U.S. clinicians use to stage cutaneous SCC of the head and neck (the region it was specifically designed for). It scores three things: the primary Tumor (T), whether regional lymph Nodes are involved (N), and whether there's distant Metastasis (M).
+              </p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">T Category — the Primary Tumor</h3>
+              <p class="text-slate/80 mb-2">T stage is based primarily on tumor size, plus a defined list of high-risk features:</p>
+              <ul class="space-y-2 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>T1:</strong> Tumor smaller than 2 cm, with no high-risk features.</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>T2:</strong> Tumor 2 cm to 4 cm, or a tumor of any size with one high-risk feature.</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>T3:</strong> Tumor 4 cm or larger, or any tumor with minor bone erosion, perineural invasion, or deep invasion (thickness greater than 6mm, or invasion beyond the subcutaneous fat).</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>T4:</strong> Tumor with gross cortical bone or bone marrow invasion (T4a), or invasion of the skull base or skull foramen (T4b).</span></li>
+              </ul>
+              <p class="text-slate/80 mt-3">
+                High-risk features that can push a tumor to a higher T category on their own include depth greater than 6mm or invasion beyond the fat, perineural invasion (cancer tracking along a nerve), poor differentiation, and location on the ear or non-glabrous (hair-bearing) lip.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">N Category — Lymph Node Involvement</h3>
+              <p class="text-slate/80">
+                N stage classifies whether cancer has reached nearby lymph nodes, and if so, how many nodes, their size, which side of the neck, and whether the cancer has grown beyond the node's capsule (extranodal extension) — a feature associated with a higher risk of recurrence.
+              </p>
+            </div>
+            <div class="bg-white rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">M Category — Distant Metastasis</h3>
+              <p class="text-slate/80">
+                M stage simply indicates whether the cancer has spread to distant organs (M1) or not (M0). Distant metastasis from cutaneous SCC is uncommon overall but becomes more likely once a tumor has already reached the lymph nodes.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:microscope" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Histologic Grading: Differentiation</h2>
+              <p class="text-slate/80 mb-4">
+                Separately from stage, a pathologist assigns a grade based on how closely the cancer cells resemble normal squamous cells under the microscope — a property called differentiation:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Well differentiated:</strong> Cells closely resemble normal squamous cells and tend to behave less aggressively.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Moderately differentiated:</strong> Cells show intermediate abnormality.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Poorly differentiated:</strong> Cells look markedly different from normal squamous cells and are associated with a higher risk of recurrence and spread.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Differentiation isn't just a footnote — it's an independent risk factor. A small, poorly differentiated tumor can carry more concern than a larger, well-differentiated one, which is exactly why grade and stage are considered together rather than either one alone telling the full story.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Low-Risk vs. High-Risk: The Category That Actually Drives Treatment</h2>
+          <p class="text-slate/80 mb-6">
+            In everyday practice, dermatologists and NCCN/AAD guidelines lean on a practical risk category — low-risk, high-risk, or very-high-risk — that synthesizes stage, grade, and additional clinical factors AJCC staging doesn't fully capture. This is often more useful day-to-day than the numeric stage alone, because it maps directly onto treatment decisions.
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Factors That Raise Risk Category</h3>
+              <p class="text-slate/80">
+                Tumor size (especially over 2 cm, and particularly over 4 cm), location (ear, lip, and other central-face "mask" areas carry extra weight), depth of invasion or thickness beyond 6mm, perineural or lymphovascular invasion, poor differentiation or aggressive subtypes on pathology, a tumor that has recurred after prior treatment, immunosuppression (such as organ transplant recipients), and prior radiation therapy to the area.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">How Risk Category Changes Treatment</h3>
+              <p class="text-slate/80">
+                Low-risk SCC is typically treated with standard excision using narrower margins (often around 4-6mm) or, in appropriate cases, destruction techniques, followed by routine surveillance. High-risk and very-high-risk SCC generally call for wider surgical margins or Mohs micrographic surgery for maximal margin control, more frequent follow-up, and — depending on the specific features present — nodal imaging or a sentinel lymph node biopsy to check whether the cancer has silently reached nearby lymph nodes before that would be evident on exam. Adjuvant radiation is sometimes added for very-high-risk disease, particularly with perineural invasion or positive margins. See our <a href="/squamous-cell-carcinoma/treatment-options" class="text-teal hover:text-teal/80 underline">treatment options guide</a> for how these approaches compare.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Why This Matters Beyond the Initial Treatment</h3>
+              <p class="text-slate/80">
+                Risk category also determines how closely you're followed afterward and how much attention is paid to the possibility of recurrence or spread. Our <a href="/squamous-cell-carcinoma/recurrence-and-metastasis-risk" class="text-teal hover:text-teal/80 underline">recurrence and metastasis risk guide</a> and <a href="/squamous-cell-carcinoma/follow-up-care" class="text-teal hover:text-teal/80 underline">follow-up care guide</a> go into how that surveillance schedule is built around your specific risk factors.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>What is the T stage of my tumor, and were any high-risk features found on pathology?</li>
+                <li>What is the differentiation grade, and how does that affect my overall risk category?</li>
+                <li>Am I considered low-risk, high-risk, or very-high-risk — and what specifically puts me in that category?</li>
+                <li>Based on my risk category, what margin width or surgical approach are you recommending, and why?</li>
+                <li>Do I need imaging or a sentinel lymph node biopsy to check my lymph nodes, or is that not indicated for my case?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Staging and grading can sound like technical bookkeeping, but they translate directly into decisions that affect your care: how wide your surgical margins need to be, whether Mohs surgery is recommended over standard excision, whether your lymph nodes need to be imaged or sampled, and how closely you'll be watched afterward. The T, N, and M categories describe the tumor's extent; the grade describes how the cells behave; and your overall risk category — low, high, or very high — is where all of that comes together into a plan.
+          </p>
+          <p class="text-slate/80">
+            If you've had an SCC diagnosed, ask your dermatologist directly where your tumor falls on both scales. Understanding your specific risk category, rather than just hearing "you have skin cancer," is what lets you engage meaningfully in decisions about your treatment.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Motaparthi K, Kapil JP, Velazquez EF. Cutaneous Squamous Cell Carcinoma: Review of the Eighth Edition of the American Joint Committee on Cancer Staging Guidelines, Prognostic Factors, and Histopathologic Variants. <em>Adv Anat Pathol.</em> 2017;24(4):171-194. <a href="https://pubmed.ncbi.nlm.nih.gov/28590951/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Alam M, Armstrong A, Baum C, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Stevens JS, Murad F, Smile TD, et al. Validation of the 2022 National Comprehensive Cancer Network Risk Stratification for Cutaneous Squamous Cell Carcinoma. <em>JAMA Dermatol.</em> 2023;159(7):728-735. <a href="https://pubmed.ncbi.nlm.nih.gov/37285135/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.nccn.org/patients/guidelines/content/PDF/squamous_cell-patient.pdf" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">NCCN Guidelines for Patients</a> — Squamous Cell Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/detection-diagnosis-staging/staging.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Basal and Squamous Cell Skin Cancer Stages
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Only your pathology report and treating physician can determine your specific stage, grade, and risk category.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about SCC staging and risk categories</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

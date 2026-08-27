@@ -1,0 +1,272 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/treatment-options";
+const title = "SCC Treatment Options Compared | Beating Skin Cancer";
+const description = "A side-by-side comparison of Mohs surgery, excision, curettage, radiation, and immunotherapy for SCC — cure rates, cosmetic outcomes, and recovery time.";
+const lastReviewed = "2026-08-26";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Are the Main Treatment Approaches for SCC, and What Are the Pros and Cons of Each?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Treatment Options", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Mohs surgery always better than standard excision for SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always — it's the preferred option for high-risk or cosmetically sensitive tumors, with cure rates around 95-99%, because it checks 100% of the surgical margin during the procedure. But it requires a fellowship-trained Mohs surgeon and more appointment time. For many low-risk SCCs on the trunk or limbs, standard excision with a 4-6mm margin achieves similarly excellent cure rates with a simpler, faster procedure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is curettage and electrodesiccation not appropriate for SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Curettage and electrodesiccation should be reserved for select low-risk, superficial SCCs on the trunk or extremities. It is not appropriate for tumors on the face, ears, scalp, hands, or genitals, for lesions larger than 2cm, for recurrent tumors, for poorly differentiated cancers, or for any SCC with perineural invasion — because it doesn't allow the tissue margins to be checked under a microscope."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the first-line treatment for advanced or metastatic SCC that can't be treated with surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PD-1 checkpoint inhibitor immunotherapy — cemiplimab or pembrolizumab — is now the first-line systemic treatment for locally advanced or metastatic cutaneous SCC that isn't a candidate for curative surgery or radiation. In the pivotal trial, cemiplimab produced a response in roughly 47% of patients with advanced disease, a result that led to its FDA approval and shifted treatment away from older chemotherapy and EGFR-inhibitor regimens."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Are the Main Treatment Approaches for SCC, and What Are the Pros and Cons of Each?
+          </h1>
+          <p class="text-xl text-white/80">A side-by-side comparison to help you understand your options</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            There is no single "best" treatment for squamous cell carcinoma (SCC) — the right approach depends on the tumor's size, location, depth, and risk features, along with your own health and preferences. What works well for a small, low-risk SCC on the forearm may be entirely wrong for a larger, high-risk tumor near the eye or ear.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide compares the main treatment options honestly — cure rates, cosmetic outcome, recovery time, and when each one is and isn't appropriate — so you can have an informed conversation with your dermatologist or Mohs surgeon about which path fits your specific tumor. If you're still working out how your particular SCC was classified, our guide to <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">staging and grading</a> explains how that classification shapes the recommendations below.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:scissors" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Surgical Treatment: Mohs vs. Standard Excision</h2>
+              <p class="text-slate/80">
+                Surgery cures the large majority of SCCs, but the two most common surgical approaches differ significantly in how the margins are checked and where each is best suited.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Mohs Micrographic Surgery</h3>
+              <p class="text-slate/80 mb-3">
+                Considered the gold standard for high-risk SCC and for tumors in cosmetically sensitive or tissue-sparing areas — the face, ears, nose, lips, hands, and genitals. The surgeon removes the tumor in thin layers, examining 100% of the surgical margin under a microscope in real time before closing the wound, rather than checking a small sample after the fact.
+              </p>
+              <p class="text-slate/80 mb-2"><strong>Pros:</strong> the highest reported cure rates (roughly 95-99% for primary tumors), the most tissue-sparing option since only cancerous tissue is removed, and same-day margin confirmation.</p>
+              <p class="text-slate/80"><strong>Cons:</strong> requires a specially trained Mohs surgeon, appointments can take several hours as layers are processed, and it isn't necessary — or typically covered as first-line — for small, low-risk tumors that standard excision handles just as well.</p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Standard Excisional Surgery</h3>
+              <p class="text-slate/80 mb-3">
+                The tumor is cut out along with a margin of visibly normal skin around it — a 4-6mm margin is the standard recommendation for well-defined, low-risk SCCs under 2cm, per NCCN guidelines, with wider margins recommended for higher-risk tumors. The tissue is then sent to a lab for margin analysis, with results typically available in several days.
+              </p>
+              <p class="text-slate/80 mb-2"><strong>Pros:</strong> faster in the office than Mohs, widely available from general dermatologists and surgeons, and excellent cure rates for appropriately selected low-risk tumors.</p>
+              <p class="text-slate/80"><strong>Cons:</strong> only a fraction of the margin is actually examined (unlike Mohs' complete margin check), so there's a small chance the pathology later shows a positive margin requiring a second procedure; also removes more healthy tissue than Mohs to achieve the same margin, which matters more in cosmetically sensitive areas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:zap" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Curettage and Electrodesiccation</h2>
+              <p class="text-slate/80 mb-4">
+                This technique scrapes away the visible tumor with a curette, then uses an electric current to destroy any remaining cancer cells and control bleeding — often repeated for two or three cycles in the same visit. It's fast, doesn't require stitches, and can be done in a standard office visit.
+              </p>
+              <p class="text-slate/80 mb-2"><strong>Pros:</strong> quick, low cost, no suturing, and good cosmetic results on the trunk and limbs for the right tumor.</p>
+              <p class="text-slate/80">
+                <strong>Cons and important limits:</strong> this method should only be used for select low-risk, superficial SCCs on the trunk or extremities. It is not appropriate for tumors with high-risk features — on the face, ears, scalp, hands, feet, or genitals; larger than 2cm; recurrent; poorly differentiated; or with perineural invasion — because the tissue isn't examined under a microscope, so there's no way to confirm the margins are actually clear. Using it on a high-risk tumor raises the chance the cancer isn't fully removed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:radiation" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Radiation Therapy</h2>
+              <p class="text-slate/80 mb-4">
+                Radiation uses targeted energy delivered over a series of sessions (often several weeks) to destroy cancer cells. It has two main roles in SCC treatment: as a primary treatment for patients who aren't good surgical candidates — due to age, other medical conditions, tumor location, or personal preference — and as an adjuvant treatment after surgery, most often when the pathology shows a positive or close margin, or evidence of perineural invasion, that raises the risk of leftover microscopic disease.
+              </p>
+              <p class="text-slate/80 mb-2"><strong>Pros:</strong> avoids surgery and its recovery entirely when used as primary treatment; as an adjuvant treatment, meaningfully lowers local recurrence risk after surgery for high-risk features.</p>
+              <p class="text-slate/80"><strong>Cons:</strong> requires multiple visits over several weeks rather than a single procedure, cure rates as a stand-alone treatment are generally somewhat lower than surgery for equivalent tumors, and it carries its own long-term skin changes at the treatment site (thinning, discoloration, or telangiectasias) that develop over months to years.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:syringe" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Advanced or Metastatic Disease: Systemic Therapy</h2>
+              <p class="text-slate/80">
+                A small minority of SCCs grow too large, invade too deeply, or spread to lymph nodes or distant organs to be managed with surgery or radiation alone. For these cases, systemic treatment has changed dramatically over the past decade. See our guide on <a href="/squamous-cell-carcinoma/recurrence-and-metastasis-risk" class="text-teal hover:text-teal/80 underline">recurrence and metastasis risk</a> for the features that make a tumor more likely to reach this stage.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Immunotherapy (PD-1 Inhibitors)</h3>
+              <p class="text-slate/80">
+                Cemiplimab and pembrolizumab, both PD-1 checkpoint inhibitors, are now the first-line systemic treatment for locally advanced or metastatic cutaneous SCC that isn't curable with surgery or radiation. In the pivotal trial that led to cemiplimab's approval, about 47% of patients with advanced disease had a measurable response, with many responses proving durable. <strong>Pros:</strong> meaningfully better response rates and generally more tolerable side-effect profile than older chemotherapy. <strong>Cons:</strong> can cause immune-related side effects affecting the skin, gut, lungs, or hormone glands, and not every patient responds.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">EGFR Inhibitors and Chemotherapy</h3>
+              <p class="text-slate/80">
+                Before immunotherapy became available, EGFR inhibitors (such as cetuximab) and platinum-based chemotherapy were the standard options for advanced SCC, and they're still used today for patients who can't tolerate or don't respond to immunotherapy. <strong>Pros:</strong> long track record and an option when immunotherapy isn't suitable. <strong>Cons:</strong> generally lower response rates and more difficult side effects (including significant fatigue, skin reactions, and blood count suppression) than current PD-1 inhibitors, which is why they've moved to a second-line role for most patients.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Based on my tumor's size, location, and risk features, which treatment do you recommend, and why over the alternatives?</li>
+                <li>What is the expected cure rate for this specific approach with my type of tumor?</li>
+                <li>What will the cosmetic outcome and recovery time realistically look like?</li>
+                <li>Is a Mohs surgeon available for my case, and would that meaningfully change my odds compared to standard excision?</li>
+                <li>If surgery isn't an option for me, what would radiation or systemic therapy involve, and what results should I expect?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Most SCCs — especially when caught early — are cured with a single, relatively straightforward surgical procedure. The choice between Mohs surgery, standard excision, and less common options like curettage and electrodesiccation comes down to the tumor's risk features and location, not which one is universally "better." Radiation and systemic therapy exist as important options for the smaller group of patients for whom surgery alone isn't the right fit.
+          </p>
+          <p class="text-slate/80">
+            Whatever treatment you and your doctor choose, understanding the trade-offs — cure rate, cosmetic outcome, and recovery — helps you feel confident in the plan rather than simply following a recommendation you don't fully understand. Once treatment is complete, our guide to <a href="/squamous-cell-carcinoma/follow-up-care" class="text-teal hover:text-teal/80 underline">follow-up care after SCC treatment</a> covers what surveillance looks like next.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines&reg; Insights: Squamous Cell Skin Cancer, Version 1.2022. <em>J Natl Compr Canc Netw.</em> 2021;19(12):1382-1394. <a href="https://pubmed.ncbi.nlm.nih.gov/34902824/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Alam M, Armstrong A, Baum C, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Rischin D, Schmults CD, et al. PD-1 Blockade with Cemiplimab in Advanced Cutaneous Squamous-Cell Carcinoma. <em>N Engl J Med.</em> 2018;379(4):341-351. <a href="https://pubmed.ncbi.nlm.nih.gov/29863979/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.nccn.org/patients/guidelines/content/PDF/squamous_cell-patient.pdf" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">NCCN Guidelines for Patients</a> — Squamous Cell Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/scc-treatment-options/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Skin Cancer Foundation</a> — Squamous Cell Carcinoma Treatment Options
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma/advanced-squamous-cell-carcinoma-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Advanced Squamous Cell Carcinoma: Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Treatment decisions depend on your specific tumor and health history — always consult a qualified dermatologist or oncologist about which option is right for you.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about SCC treatment options</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

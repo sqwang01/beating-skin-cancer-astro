@@ -1,0 +1,291 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/self-skin-checks";
+const title = "How to Check Your Skin for SCC | Beating Skin Cancer";
+const description = "A step-by-step guide to performing skin self-checks for squamous cell carcinoma, what changes to look for, and when to see a dermatologist sooner.";
+const lastReviewed = "2026-08-26";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do I Perform Regular Skin Checks for SCC and What Changes Should Alert Me?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Self-Skin Checks", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often should I do a skin self-exam to check for SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once a month is the general recommendation for most adults. People with a prior skin cancer, organ transplant recipients, and older fair-skinned men should also keep up with professional dermatology exams — often every 3 to 12 months depending on individual risk — in addition to, not instead of, monthly self-checks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a spot suspicious for SCC actually look like?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common patterns include a scaly or crusted patch that hasn't healed in 4 or more weeks, a sore that bleeds or keeps reopening, a firm or tender growing bump, a new change within an old scar or chronic wound, or an existing rough spot (actinic keratosis) that suddenly becomes thicker, tender, or starts to ulcerate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I see a dermatologist right away instead of waiting for my next scheduled visit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seek a same-week appointment for a sore that's bleeding, rapidly enlarging over days to a few weeks, painful or tender to the touch, or arising within a scar or long-standing wound. A slowly evolving scaly patch you're unsure about can usually wait for a routine visit, but when in doubt, it's always reasonable to get it looked at sooner."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Do I Perform Regular Skin Checks for SCC and What Changes Should Alert Me?
+          </h1>
+          <p class="text-xl text-white/80">A practical, step-by-step self-exam technique and the specific warning signs worth a closer look</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Squamous cell carcinoma (SCC) rarely announces itself dramatically. It's much more likely to show up as a rough patch you assume is just dry skin, a small sore that keeps scabbing over instead of healing, or a spot within an old scar that you'd otherwise never think twice about. That quiet presentation is exactly why a regular, systematic self-exam matters — most SCCs are caught by patients or their partners noticing something has changed, not by chance.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            The good news is that a thorough self-exam takes only a few minutes, requires no special equipment beyond a couple of mirrors, and gets easier with repetition. This guide walks through exactly how to do one, what to look for that's specific to SCC, the areas that deserve extra attention, and how to tell whether something needs a same-week visit or can wait for your next routine appointment.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:search" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How to Do a Systematic Self-Exam</h2>
+              <p class="text-slate/80 mb-4">
+                Pick a well-lit room and aim to do this once a month — tying it to a routine, like the first of the month, makes it easier to keep up. You'll need a full-length mirror and a hand mirror; a partner can help with the areas you can't see well yourself.
+              </p>
+              <ol class="space-y-2 text-slate/80 list-decimal list-inside">
+                <li>Start at your face and scalp — check your ears (front, back, and inside the folds), lips, nose, and around the eyes. If you're thinning or balding, part your hair in sections or use a comb to expose the scalp fully.</li>
+                <li>Move down your neck and chest, then check your shoulders and both arms, including the backs of your hands, between your fingers, and under your nails.</li>
+                <li>Face the full-length mirror and check your torso and abdomen, then turn and use the hand mirror to check your back, buttocks, and the backs of your legs — or ask a partner to check these harder-to-see areas directly.</li>
+                <li>Sit down to examine your legs, feet, soles, between your toes, and toenails.</li>
+                <li>Don't skip areas that see little sun — the exam should cover your whole body, not just sun-exposed skin, especially if you're in a higher-risk group.</li>
+              </ol>
+              <p class="text-slate/80 mt-4">
+                Pay the closest attention to sun-exposed sites — the face, ears, scalp, lips, neck, forearms, and backs of the hands — since these are where most SCCs develop. Our <a href="/squamous-cell-carcinoma/high-risk-locations" class="text-teal hover:text-teal/80 underline">guide to high-risk locations</a> covers why these particular areas matter so much.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:eye" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Look For</h2>
+              <p class="text-slate/80 mb-6">
+                Unlike melanoma, SCC doesn't fit neatly into the ABCDE mole checklist — it's less about pigment and asymmetry and more about texture, healing, and change over time. Our <a href="/squamous-cell-carcinoma/early-signs-vs-other-skin-cancers" class="text-teal hover:text-teal/80 underline">guide to early SCC signs</a> covers how it compares to other skin cancers in more depth; here's what to specifically flag on a self-exam:
+              </p>
+              <div class="space-y-4">
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Scaly or Crusted Patch That Won't Heal</h3>
+                  <p class="text-slate/80">
+                    A rough, scaly, or crusted area that persists for 4 or more weeks without healing — rather than resolving the way a scrape or irritation normally would — is one of the most common and most commonly dismissed warning signs.
+                  </p>
+                </div>
+                <div class="bg-ivory rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Sore That Bleeds or Won't Close</h3>
+                  <p class="text-slate/80">
+                    An open area that bleeds with minor contact, oozes, or appears to scab over and then reopens in a repeating cycle has gone past what's typical for a healing wound.
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A Growing, Firm, or Tender Bump</h3>
+                  <p class="text-slate/80">
+                    A dome-shaped or wart-like growth that's enlarging over weeks to months, and feels firm or tender to the touch, is worth an evaluation — especially if the growth rate has picked up noticeably between checks.
+                  </p>
+                </div>
+                <div class="bg-ivory rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">A New Change Within a Scar or Chronic Wound</h3>
+                  <p class="text-slate/80">
+                    SCC can arise within old burn scars, long-standing ulcers, or areas of chronic skin injury — a change in texture, a new raised area, or a spot that starts to break down within an existing scar deserves attention even though it's easy to attribute to the old injury itself.
+                  </p>
+                </div>
+                <div class="bg-white rounded-lg p-6">
+                  <h3 class="text-xl font-serif text-navy mb-2">An Existing Rough Spot That Changes</h3>
+                  <p class="text-slate/80">
+                    If you have actinic keratoses (the rough, sandpapery precancerous spots common on sun-damaged skin), watch for any of them becoming noticeably thicker, tender, or developing an open or ulcerated area — that shift is one of the more reliable signs an AK may be progressing toward SCC.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">When to Escalate</h2>
+          <p class="text-slate/80 mb-6">
+            Not every finding needs to be treated as an emergency, but some warrant faster action than others. Here's a rough guide to how urgently to respond:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Same-Week Visit</h3>
+              <p class="text-slate/80">
+                A sore that's actively bleeding without an obvious cause, a growth that's visibly enlarging over just days to a few weeks, a spot that's become painful or tender, or any new change arising within a scar or chronic wound. These features are associated with more aggressive behavior, so getting evaluated promptly — rather than waiting to see if it resolves — is the safer choice.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Routine Follow-Up</h3>
+              <p class="text-slate/80">
+                A scaly patch you've noticed for a while that hasn't changed much, or a spot you're simply unsure about with no other concerning features, can generally wait for your next scheduled dermatology appointment — as long as that appointment isn't more than a few months out. If it is, and the spot is still nagging at you, it's reasonable to move the visit up.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Higher-Risk Groups Need More Than Self-Checks</h2>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Prior Skin Cancer or Organ Transplant</h3>
+              <p class="text-slate/80">
+                If you've had SCC or another skin cancer before, or you're an organ transplant recipient on long-term immunosuppression, self-exams are an important addition to — not a replacement for — professional skin exams. Transplant recipients in particular face a substantially elevated risk of developing SCC and are typically advised to have a full-body skin exam by a dermatologist at least annually, sometimes more often depending on individual risk factors like age, skin type, and time since transplant.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Older Fair-Skinned Men</h3>
+              <p class="text-slate/80">
+                This group carries a disproportionate share of SCC diagnoses, likely reflecting a combination of cumulative sun exposure, skin type, and historically lower rates of sun protection. If this describes you, a standing professional skin check — beyond your own monthly self-exam — is a reasonable and often-recommended addition to your routine care.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Can you show me what specifically to look for so I recognize "changed" for this spot in the future?</li>
+                <li>Given my history and skin type, how often should I be getting a professional full-body skin exam?</li>
+                <li>Are there areas of my body I should be paying extra attention to during self-checks?</li>
+                <li>If I have actinic keratoses, what would tell me one of them is starting to change into something more concerning?</li>
+                <li>Is this spot something I can keep watching, or should it be biopsied now?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            A monthly self-exam is a small habit with an outsized payoff: most SCCs are caught because someone noticed a sore that wasn't healing, a patch that wasn't going away, or a bump that kept growing — not because it was found incidentally. Knowing the specific patterns SCC tends to follow makes that noticing far more reliable.
+          </p>
+          <p class="text-slate/80">
+            If you're in a higher-risk group, pair those self-checks with regular professional exams rather than relying on either one alone. And when something doesn't look or feel right, the safest move is always to get it looked at rather than wait and see.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Weinstock MA, Risica PM, Martin RA, et al. Melanoma early detection with thorough skin self-examination: the "Check It Out" randomized trial. <em>Am J Prev Med.</em> 2007;32(6):517-524. <a href="https://pubmed.ncbi.nlm.nih.gov/17533068/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Jiang R, Fritz M, Que SKT. Cutaneous squamous cell carcinoma: an updated review. <em>Cancers (Basel).</em> 2024;16(10):1800. <a href="https://pubmed.ncbi.nlm.nih.gov/38791879/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Crow LD, Jambusaria-Pahlajani A, Chung CL, et al. Initial skin cancer screening for solid organ transplant recipients in the United States: Delphi method development of expert consensus guidelines. <em>Transpl Int.</em> 2019;32(12):1268-1276. <a href="https://pubmed.ncbi.nlm.nih.gov/31502728/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/scc-warning-signs-and-images/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Skin Cancer Foundation</a> — Squamous Cell Carcinoma Warning Signs and Images
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/scc/symptoms" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Squamous Cell Carcinoma Symptoms
+                </li>
+                <li>
+                  <a href="https://www.ucsfhealth.org/health-articles/organ-transplant-and-skin-cancer-risk" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">UCSF Health</a> — Organ Transplant and Skin Cancer Risk
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist about any changes to your skin.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about self-exams and SCC warning signs</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,284 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/follow-up-care";
+const title = "SCC Follow-Up Care: What to Expect | Beating Skin Cancer";
+const description = "How often you need skin exams after squamous cell carcinoma treatment, what each visit involves, your risk of a second skin cancer, and ongoing prevention.";
+const lastReviewed = "2026-08-26";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Follow-Up Care Is Required After SCC Treatment?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Follow-Up Care", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often do I need follow-up visits after SCC treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on your tumor's risk category. For low-risk SCC, NCCN guidelines generally recommend a skin exam every 6-12 months for the first few years, then annually. For high-risk SCC, exams are recommended every 3-6 months for the first 2 years — when the large majority of recurrences and nodal metastases occur — then spacing out gradually over 5 years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is my risk of getting another skin cancer after an SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Substantially elevated. A meta-analysis found that within 3 years of a first keratinocyte carcinoma, roughly 44% of patients developed a subsequent basal cell carcinoma and about 18% developed another squamous cell carcinoma. This is why ongoing surveillance and prevention matter as much after treatment as the initial diagnosis itself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can anything reduce my risk of another SCC besides sun protection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For select high-risk patients, dermatologists may recommend chemoprevention. Oral nicotinamide (vitamin B3) reduced the rate of new squamous cell carcinomas by about 30% in a large randomized trial of high-risk, immunocompetent patients. Oral retinoids are another option used in select high-risk or immunosuppressed patients, though they require ongoing monitoring for side effects. Neither replaces sun protection or scheduled skin exams."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Follow-Up Care Is Required After SCC Treatment?
+          </h1>
+          <p class="text-xl text-white/80">Surveillance schedules, what a visit involves, and lowering your future risk</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Successfully treating a squamous cell carcinoma (SCC) is not the end of the story. Because most recurrences and nodal metastases happen within the first two years, and because having one SCC significantly raises the odds of developing another skin cancer, ongoing follow-up is a core part of your care — not an optional extra.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide walks through how often you'll need to be seen based on your tumor's risk category, what actually happens at a follow-up visit, what the data says about your long-term risk, and what you can do between visits to lower it.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar-clock" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Surveillance Schedules by Risk Category</h2>
+              <p class="text-slate/80">
+                How closely you're monitored after treatment depends heavily on whether your SCC was classified as low-risk or high-risk — a distinction based on factors like size, depth, location, and differentiation. See our guide to <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">staging and grading</a> for how that classification is determined, and to <a href="/squamous-cell-carcinoma/recurrence-and-metastasis-risk" class="text-teal hover:text-teal/80 underline">recurrence and metastasis risk</a> for the specific features that push a tumor into the high-risk group.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Low-Risk SCC</h3>
+              <p class="text-slate/80">
+                NCCN guidelines generally recommend a full skin exam every 6-12 months for the first several years after treatment, then transitioning to an annual exam once you've remained clear for a period your dermatologist determines. Low-risk tumors have a low recurrence rate, but ongoing checks still matter because of the elevated risk of a new, unrelated skin cancer.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">High-Risk SCC</h3>
+              <p class="text-slate/80">
+                For high-risk tumors, guidelines recommend a more intensive schedule: every 3-6 months for the first 2 years, then spacing out to every 6-12 months through year 5, and annually after that. This tighter early schedule exists because the data consistently shows that the great majority of local recurrences and lymph node metastases occur within that first two-year window — a cohort study following high-risk patients found a median time to nodal metastasis of well under a year among those who developed it. Catching a recurrence or nodal spread early, while it's still treatable, is the entire purpose of this schedule.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:stethoscope" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What a Follow-Up Visit Actually Involves</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>A full skin exam, head to toe</strong> — not just the treatment site. Since a prior SCC raises your risk of an entirely new skin cancer anywhere on your body, your dermatologist checks all your skin, not only the area that was treated.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Careful examination of the treatment site or scar</strong> for any new nodule, ulceration, or firmness that could signal a local recurrence.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Palpation of regional lymph nodes</strong>, especially for high-risk tumors — your dermatologist will feel the lymph node basins that drain the area where the SCC was, since these are the most common first site of spread when SCC does metastasize.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>A conversation about any symptoms you've noticed</strong> between visits, such as new pain, numbness, or a lump.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Reinforcement of self-exam technique</strong>, so you know what to look for on your own between scheduled appointments — see our guide to <a href="/squamous-cell-carcinoma/self-skin-checks" class="text-teal hover:text-teal/80 underline">performing regular self-skin checks</a>.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:trending-up" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Your Long-Term Risk of Another Skin Cancer</h2>
+              <p class="text-slate/80 mb-4">
+                One of the most important reasons follow-up doesn't stop after the "high-risk window" closes is that a history of SCC substantially raises your lifetime odds of developing another keratinocyte carcinoma — not necessarily a recurrence of the same tumor, but a brand-new one elsewhere on sun-exposed skin.
+              </p>
+              <p class="text-slate/80">
+                A widely cited meta-analysis of patients with a history of nonmelanoma skin cancer found that within 3 years, about 44% developed a subsequent basal cell carcinoma and about 18% developed another squamous cell carcinoma — far above the risk in someone with no prior skin cancer history. That elevated risk is exactly why "you're done" isn't really how SCC treatment ends; ongoing surveillance is treated as part of managing a chronic risk, similar to how other cancer survivors are monitored for new primary tumors.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:umbrella" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Sun Protection and Chemoprevention</h2>
+              <p class="text-slate/80">
+                Between scheduled visits, two things do the most to lower your risk of another SCC.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Rigorous, Daily Sun Protection</h3>
+              <p class="text-slate/80">
+                Broad-spectrum SPF 30+ sunscreen reapplied every two hours outdoors, sun-protective clothing, and avoiding peak UV hours remain the foundation of prevention after any keratinocyte cancer. UV exposure is the dominant driver of SCC risk, and this doesn't change once treatment is finished.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Chemoprevention for Select High-Risk Patients</h3>
+              <p class="text-slate/80">
+                For patients with a strong history of skin cancer, dermatologists sometimes add chemoprevention. Oral nicotinamide (vitamin B3) — an inexpensive, over-the-counter supplement, distinct from niacin — reduced the rate of new SCCs by about 30% and new BCCs by about 20% in a large randomized trial of high-risk, immunocompetent patients, with a favorable safety profile. Oral retinoids are another option used more selectively, particularly in organ transplant recipients or others at very high risk, though they require monitoring for side effects like dry skin, elevated lipids, and liver enzyme changes. Neither is a substitute for sunscreen or your scheduled exams — they're additive tools your dermatologist may discuss if your risk profile warrants it.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my SCC classified as low-risk or high-risk, and what follow-up schedule does that mean for me?</li>
+                <li>Will you be checking my lymph nodes at each visit, and what would a concerning finding feel like?</li>
+                <li>Based on my history, what is my realistic risk of developing another skin cancer?</li>
+                <li>Would chemoprevention, like nicotinamide, make sense for someone with my risk profile?</li>
+                <li>What symptoms at or near the treatment site should prompt me to call before my next scheduled visit?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Follow-up after SCC treatment isn't a formality — it's built around a well-documented pattern of when recurrences and nodal spread actually happen, which is why high-risk tumors are watched most closely in the first two years. Just as importantly, a history of SCC raises your odds of developing another skin cancer for years to come, which keeps regular skin exams relevant long after any individual tumor is considered cured.
+          </p>
+          <p class="text-slate/80">
+            Between visits, sun protection remains your single most effective tool, with chemoprevention as an added option for some high-risk patients. Sticking with your recommended schedule — and learning your own skin well enough to notice changes yourself — gives you and your dermatologist the best chance of catching anything new while it's still easy to treat.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Alam M, Armstrong A, Baum C, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Karia PS, Carter JB, Han J, Qureshi AA. Factors predictive of recurrence and death from cutaneous squamous cell carcinoma: a 10-year, single-institution cohort study. <em>JAMA Dermatol.</em> 2013;149(5):541-547. <a href="https://pubmed.ncbi.nlm.nih.gov/23677079/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Marcil I, Stern RS. Risk of developing a subsequent nonmelanoma skin cancer in patients with a history of nonmelanoma skin cancer: a critical review of the literature and meta-analysis. <em>Arch Dermatol.</em> 2000;136(12):1524-1530. <a href="https://pubmed.ncbi.nlm.nih.gov/11115165/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Chen AC, Martin AJ, Choy B, et al. A Phase 3 Randomized Trial of Nicotinamide for Skin-Cancer Chemoprevention. <em>N Engl J Med.</em> 2015;373(17):1618-1626. <a href="https://pubmed.ncbi.nlm.nih.gov/26488693/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma/outlook-life-after-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Squamous Cell Carcinoma: Outlook and Life After Treatment
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Your personal follow-up schedule and prevention plan should be determined by your dermatologist based on your specific tumor and risk factors.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about follow-up care after SCC</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
