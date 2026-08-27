@@ -84,7 +84,7 @@ const reviewPrinciples = [
         {reviewers.length > 0 && (
           <section aria-labelledby="medical-reviewers" class="mb-8">
             <h2 id="medical-reviewers" class="text-3xl font-serif text-navy mb-6">Medical Reviewers</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="space-y-6">
               {reviewers.map((member) => <BoardMember member={member} />)}
             </div>
           </section>
@@ -122,4 +122,18 @@ const reviewPrinciples = [
         </div>
       </div>
     </div>
+
+    <script>
+      // Open a reviewer's collapsed bio when the page is deep-linked to their anchor
+      // (e.g. from an article's "Medically reviewed by" byline).
+      function openTargetCard() {
+        const id = decodeURIComponent(location.hash.slice(1));
+        if (!id) return;
+        const card = document.getElementById(id);
+        const details = card?.querySelector('details');
+        if (details) details.open = true;
+      }
+      openTargetCard();
+      window.addEventListener('hashchange', openTargetCard);
+    </script>
 </Layout>

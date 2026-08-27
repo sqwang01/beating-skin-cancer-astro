@@ -16,8 +16,8 @@ const avatarSize = featured ? 'w-32 h-32' : 'w-24 h-24';
 <div
   id={member.slug}
   class:list={[
-    'scroll-mt-24 bg-white rounded-xl p-6 sm:p-8 flex flex-col gap-6 items-start',
-    featured ? 'sm:flex-row shadow-lg' : 'shadow-sm border border-slate/10',
+    'scroll-mt-24 bg-white rounded-xl p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-start',
+    featured ? 'shadow-lg' : 'shadow-sm border border-slate/10',
   ]}
 >
   {member.headshot ? (
@@ -46,17 +46,29 @@ const avatarSize = featured ? 'w-32 h-32' : 'w-24 h-24';
     <p class="text-slate/70 text-sm mt-1">
       {member.credentials}<br />{member.affiliation}
     </p>
-    <p class="text-slate/70 text-sm mt-2 mb-3">
+    <p class="text-slate/70 text-sm mt-2">
       <span class="font-semibold text-navy">Specialty:</span> {member.specialty}
     </p>
-    <p class="text-slate/80 leading-relaxed mb-3">{member.bio}</p>
-    <a
-      href={member.profileUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-teal hover:text-teal/80 font-medium inline-flex items-center gap-1"
-    >
-      View full profile <Icon name="lucide:external-link" size={16} />
-    </a>
+
+    <details class="group mt-3">
+      <summary class="flex items-center gap-1 cursor-pointer list-none text-teal font-medium text-sm select-none [&::-webkit-details-marker]:hidden">
+        <span class="group-open:hidden">Read full bio &amp; profile</span>
+        <span class="hidden group-open:inline">Show less</span>
+        <Icon
+          name="lucide:chevron-down"
+          size={16}
+          class="transition-transform group-open:rotate-180"
+        />
+      </summary>
+      <p class="text-slate/80 leading-relaxed mt-3 mb-3">{member.bio}</p>
+      <a
+        href={member.profileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-teal hover:text-teal/80 font-medium inline-flex items-center gap-1"
+      >
+        View full profile <Icon name="lucide:external-link" size={16} />
+      </a>
+    </details>
   </div>
 </div>

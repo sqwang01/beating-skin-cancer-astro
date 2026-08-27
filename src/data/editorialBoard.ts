@@ -2,6 +2,7 @@ import type { ImageMetadata } from 'astro';
 import stevenWangHeadshot from '../assets/steven-wang-headshot.jpg';
 import davidSwansonHeadshot from '../assets/david-swanson-headshot.webp';
 import yaserHomsiHeadshot from '../assets/yaser-homsi-headshot.jpg';
+import thomasWangHeadshot from '../assets/thomas-wang-headshot.jpg';
 
 export type BoardRole = 'Editor-in-Chief' | 'Medical Reviewer';
 
@@ -78,6 +79,20 @@ export const editorialBoard: BoardMember[] = [
     profileUrl: 'https://www.mayoclinic.org/biographies/swanson-david-l-m-d/bio-20054444',
     medicalSpecialty: ['Dermatology', 'Internal Medicine', 'Dermoscopy'],
     sameAs: ['https://www.mayoclinic.org/biographies/swanson-david-l-m-d/bio-20054444'],
+  },
+  {
+    slug: 'thomas-wang-md',
+    name: 'Thomas N. Wang, MD, PhD',
+    role: 'Medical Reviewer',
+    credentials: 'MD, PhD · Board Certified in Surgery (American Board of Surgery)',
+    affiliation: 'Surgical Oncologist and Medical Director, Hoag Melanoma/Advanced Skin Cancer Program, Hoag Family Cancer Institute',
+    specialty: 'Surgical oncology, melanoma, soft tissue sarcoma, and endocrine surgery',
+    bio: 'Dr. Thomas Wang is a board-certified surgical oncologist and Medical Director of the Hoag Melanoma/Advanced Skin Cancer Program at Hoag Family Cancer Institute. He joins Hoag after 15 years at the University of Alabama at Birmingham, where he served as Professor of Surgery and Chief of Surgical Oncology for the Birmingham VA Medical Center. He completed his surgical oncology fellowship at MD Anderson Cancer Center and has published over 40 peer-reviewed manuscripts, with clinical interests in melanoma, soft tissue sarcomas, and endocrine surgery.',
+    headshot: thomasWangHeadshot,
+    profileUrl: 'https://www.hoag.org/physician/thomas-n-wang-md',
+    medicalSpecialty: ['Surgical Oncology', 'Surgery', 'Endocrine Surgery'],
+    alumniOf: ['The University of Texas MD Anderson Cancer Center'],
+    sameAs: ['https://www.hoag.org/physician/thomas-n-wang-md'],
   },
 ];
 
