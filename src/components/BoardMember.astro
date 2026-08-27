@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { initials, type BoardMember } from '../data/editorialBoard';
+
+interface Props {
+  member: BoardMember;
+  /** Editor-in-Chief card: larger headshot, side-by-side layout, heavier shadow. */
+  featured?: boolean;
+}
+
+const { member, featured = false } = Astro.props;
+const avatarSize = featured ? 'w-32 h-32' : 'w-24 h-24';
+---
+
+<div
+  id={member.slug}
+  class:list={[
+    'scroll-mt-24 bg-white rounded-xl p-6 sm:p-8 flex flex-col gap-6 items-start',
+    featured ? 'sm:flex-row shadow-lg' : 'shadow-sm border border-slate/10',
+  ]}
+>
+  {member.headshot ? (
+    <Image
+      src={member.headshot}
+      alt={`Dr. ${member.name}`}
+      width={featured ? 256 : 192}
+      height={featured ? 256 : 192}
+      class:list={['flex-shrink-0 rounded-full object-cover', avatarSize]}
+    />
+  ) : (
+    <div
+      class:list={[
+        'flex-shrink-0 rounded-full bg-navy text-white font-serif flex items-center justify-center select-none',
+        avatarSize,
+        featured ? 'text-3xl' : 'text-2xl',
+      ]}
+      aria-hidden="true"
+    >
+      {initials(member.name)}
+    </div>
+  )}
+  <div>
+    <h3 class="text-xl font-semibold text-navy">{member.name}</h3>
+    <p class="text-teal font-medium">{member.role}</p>
+    <p class="text-slate/70 text-sm mt-1">
+      {member.credentials}<br />{member.affiliation}
+    </p>
+    <p class="text-slate/70 text-sm mt-2 mb-3">
+      <span class="font-semibold text-navy">Specialty:</span> {member.specialty}
+    </p>
+    <p class="text-slate/80 leading-relaxed mb-3">{member.bio}</p>
+    <a
+      href={member.profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-teal hover:text-teal/80 font-medium inline-flex items-center gap-1"
+    >
+      View full profile <Icon name="lucide:external-link" size={16} />
+    </a>
+  </div>
+</div>

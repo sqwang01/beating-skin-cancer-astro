@@ -1,10 +1,15 @@
 ---
+import { DEFAULT_REVIEWER_SLUG, getBoardMember } from '../data/editorialBoard';
+
 interface Props {
   date: string; // YYYY-MM-DD
+  /** Board member slug from src/data/editorialBoard.ts. Defaults to the Editor-in-Chief. */
+  reviewer?: string;
   class?: string;
 }
 
-const { date, class: className = '' } = Astro.props;
+const { date, reviewer = DEFAULT_REVIEWER_SLUG, class: className = '' } = Astro.props;
+const member = getBoardMember(reviewer);
 
 const formatted = new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -17,8 +22,11 @@ const formatted = new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
 <div class:list={['flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/70 mt-4', className]}>
   <span>
     Medically reviewed by{' '}
-    <a href="/about#steven-wang-md" class="text-teal hover:text-teal/80 underline underline-offset-2">
-      Dr. Steven Q. Wang, MD
+    <a
+      href={`/editorial-board#${member.slug}`}
+      class="text-teal hover:text-teal/80 underline underline-offset-2"
+    >
+      Dr. {member.name}
     </a>
   </span>
   <span class="text-white/40" aria-hidden="true">•</span>

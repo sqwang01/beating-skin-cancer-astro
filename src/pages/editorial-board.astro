@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import BoardMember from '../components/BoardMember.astro';
+import { editorialBoard } from '../data/editorialBoard';
+import { physicianJsonLd } from '../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/editorial-board";
+const title = "Medical Editorial Board | Beating Skin Cancer";
+const description = "Meet the board-certified physicians who review every article on BeatingSkinCancer.com for accuracy against current skin cancer clinical guidelines.";
+
+const editorsInChief = editorialBoard.filter((m) => m.role === 'Editor-in-Chief');
+const reviewers = editorialBoard.filter((m) => m.role === 'Medical Reviewer');
+
+const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  "name": "BeatingSkinCancer.com Medical Editorial Board",
+  "url": canonical,
+  "member": editorialBoard.map(physicianJsonLd),
+};
+
+const jsonLd = [organizationJsonLd];
+
+const reviewPrinciples = [
+  {
+    icon: 'lucide:user-check',
+    title: 'Independent review',
+    body: 'Every article is checked by a board-certified physician on our editorial board who did not write it, before it is published.',
+  },
+  {
+    icon: 'lucide:book-check',
+    title: 'Guideline-aligned',
+    body: 'Reviewers verify each page against current guidance from the NCCN, the American Academy of Dermatology, and the Skin Cancer Foundation.',
+  },
+  {
+    icon: 'lucide:calendar-clock',
+    title: 'Dated and re-reviewed',
+    body: 'The "Last reviewed" date on each article shows when a physician most recently confirmed its accuracy. Pages are re-reviewed when guidelines change.',
+  },
+  {
+    icon: 'lucide:scale',
+    title: 'Editorial independence',
+    body: 'Our content is educational and is not written, selected, or influenced by advertisers, sponsors, or product manufacturers.',
+  },
+];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Medical Editorial Board</h1>
+          <p class="text-xl text-white/80">
+            Board-certified physicians who review our content for medical accuracy
+          </p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-6">
+            <Icon name="lucide:clipboard-check" class="text-coral" size={32} />
+            <h2 class="text-3xl font-serif text-navy">How We Review</h2>
+          </div>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Every article on BeatingSkinCancer.com is written under the direction of our
+            Editor-in-Chief and reviewed by a board-certified physician on our editorial
+            board before publication. That review keeps the site aligned with current
+            clinical evidence and national guidelines, so the guidance you read here
+            reflects how skin cancer is actually diagnosed and treated today.
+          </p>
+        </div>
+
+        <section aria-labelledby="editor-in-chief" class="mb-8">
+          <h2 id="editor-in-chief" class="text-3xl font-serif text-navy mb-6">Editor-in-Chief</h2>
+          <div class="space-y-6">
+            {editorsInChief.map((member) => <BoardMember member={member} featured />)}
+          </div>
+        </section>
+
+        {reviewers.length > 0 && (
+          <section aria-labelledby="medical-reviewers" class="mb-8">
+            <h2 id="medical-reviewers" class="text-3xl font-serif text-navy mb-6">Medical Reviewers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {reviewers.map((member) => <BoardMember member={member} />)}
+            </div>
+          </section>
+        )}
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8">
+          <div class="flex items-center gap-3 mb-6">
+            <Icon name="lucide:shield-check" class="text-teal" size={32} />
+            <h2 class="text-3xl font-serif text-navy">Our Review Standards</h2>
+          </div>
+          <div class="space-y-6">
+            {reviewPrinciples.map((principle) => (
+              <div class="flex items-start gap-4">
+                <Icon name={principle.icon} class="text-teal flex-shrink-0 mt-1" size={24} />
+                <div>
+                  <h3 class="text-xl font-semibold text-navy mb-2">{principle.title}</h3>
+                  <p class="text-slate/80 leading-relaxed">{principle.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Ready to Learn More?</h3>
+          <p class="text-white/80 mb-6">Explore our resources and chat with our AI guide</p>
+          <a
+            href={chatUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
