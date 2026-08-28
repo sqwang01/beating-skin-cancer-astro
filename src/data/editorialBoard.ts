@@ -3,6 +3,7 @@ import stevenWangHeadshot from '../assets/steven-wang-headshot.jpg';
 import davidSwansonHeadshot from '../assets/david-swanson-headshot.webp';
 import yaserHomsiHeadshot from '../assets/yaser-homsi-headshot.jpg';
 import thomasWangHeadshot from '../assets/thomas-wang-headshot.jpg';
+import vernonSondakHeadshot from '../assets/vernon-sondak-headshot.webp';
 
 export type BoardRole = 'Editor-in-Chief' | 'Medical Reviewer';
 
@@ -66,6 +67,19 @@ export const editorialBoard: BoardMember[] = [
     medicalSpecialty: ['Hematology', 'Medical Oncology', 'Internal Medicine'],
     alumniOf: ['University of Aleppo', 'Indiana University School of Medicine'],
     sameAs: ['https://www.hoag.org/physician/yaser-homsi-md'],
+  },
+  {
+    slug: 'vernon-sondak-md',
+    name: 'Vernon K. Sondak, MD',
+    role: 'Medical Reviewer',
+    credentials: 'Board Certified in Surgery · Richard M. Schulze Family Foundation Distinguished Endowed Chair in Cutaneous Oncology',
+    affiliation: 'Chair, Department of Cutaneous Oncology, H. Lee Moffitt Cancer Center and Research Institute',
+    specialty: 'Surgical oncology, melanoma, and sentinel lymph node biopsy',
+    bio: "Dr. Vernon Sondak is Chair of the Department of Cutaneous Oncology at the H. Lee Moffitt Cancer Center and Research Institute in Tampa, Florida, where he holds the Richard M. Schulze Family Foundation Distinguished Endowed Chair in Cutaneous Oncology. He is a Professor in the Departments of Oncologic Sciences and Surgery at the University of South Florida Morsani College of Medicine and has been a leader in the surgical treatment of melanoma and other cutaneous malignancies, particularly the application of sentinel lymph node biopsy to melanoma staging. Since joining Moffitt in 2004, he has helped build its Cutaneous Oncology Clinic into one of the world's leading multidisciplinary treatment centers for melanoma. He is the author or coauthor of hundreds of peer-reviewed publications.",
+    headshot: vernonSondakHeadshot,
+    profileUrl: 'https://www.moffitt.org/providers/vernon-sondak/',
+    medicalSpecialty: ['Surgical Oncology', 'Surgery', 'Cutaneous Oncology'],
+    sameAs: ['https://www.moffitt.org/providers/vernon-sondak/'],
   },
   {
     slug: 'david-swanson-md',
