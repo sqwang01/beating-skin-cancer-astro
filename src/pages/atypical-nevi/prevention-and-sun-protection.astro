@@ -1,0 +1,293 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/prevention-and-sun-protection";
+const title = "Preventing New Atypical Moles | Beating Skin Cancer";
+const description = "Sun exposure drives new mole formation, especially in youth. Learn how sunscreen, shade, clothing, and avoiding tanning beds can limit new atypical moles.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Protect Your Skin and Prevent New Atypical Moles",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "Prevention & Sun Protection", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can you prevent new atypical moles from forming?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can reduce them. Moles form mainly during childhood and adolescence, and ultraviolet exposure is the major changeable driver. A randomized trial in children showed that regular broad-spectrum sunscreen use reduced the number of new moles, with the biggest effect in freckled children. Sun protection in adulthood can't erase existing moles, but it lowers the ongoing stimulus for new ones."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does sun protection actually lower melanoma risk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In a randomized controlled trial, adults assigned to daily sunscreen use had a lower rate of melanoma over long-term follow-up than those using sunscreen at their discretion. Combined with shade, protective clothing, and avoiding tanning beds, sun protection is the main way to reduce melanoma risk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are tanning beds safe if I use them briefly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Indoor tanning increases melanoma risk, the risk rises with more sessions, and starting before age 35 raises it substantially. There is no safe level of tanning-bed use, particularly for someone who already has atypical moles."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How to Protect Your Skin and Prevent New Atypical Moles
+          </h1>
+          <p class="text-xl text-white/80">What the evidence says about sun exposure, new moles, and lowering melanoma risk</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most of the moles you'll ever have appear in the first two or three decades of life. You can't undo the moles you already have — including <a href="/atypical-nevi/what-makes-a-mole-atypical" class="text-teal hover:text-teal/80 underline">atypical ones</a> — but you can influence how many new ones form, and, more importantly, you can lower your risk of melanoma.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            The lever for both is the same: ultraviolet (UV) exposure. This guide covers what the research shows about sun protection and mole formation, and lays out a practical routine.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Moles Form — and Why UV Matters</h2>
+          <p class="text-slate/80 mb-4">
+            Acquired moles are clusters of pigment cells that develop mostly during childhood and adolescence, plateau in early adulthood, and slowly regress later in life. Sun exposure is the main environmental driver of how many you get: studies consistently link greater UV exposure — especially intermittent, intense exposure and sunburns — to higher mole counts, with fair skin and freckling amplifying the effect.
+          </p>
+          <p class="text-slate/80">
+            The same UV exposure that promotes moles also damages the DNA in skin cells in ways that can lead to melanoma. Reducing it addresses both problems at once.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:flask-conical" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Evidence That Sun Protection Works</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>New moles in children:</strong> In a randomized controlled trial, schoolchildren given broad-spectrum sunscreen developed <em>fewer new moles</em> over three years than those who weren't — an effect that was strongest among freckled children.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Melanoma in adults:</strong> In a separate randomized trial, adults assigned to apply sunscreen daily had a lower long-term rate of melanoma — including invasive melanoma — than those left to use it at their discretion.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Overall:</strong> reviews of the epidemiology conclude that sun exposure in early life is a key determinant of mole number, and that limiting it is a meaningful prevention strategy.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                This is why protecting children and teenagers is especially high-value — and why it's still worth doing as an adult with atypical moles.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">A Practical Sun-Protection Routine</h2>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Sunscreen:</strong> broad-spectrum, SPF 30 or higher, water resistant. Apply generously to all exposed skin about 15 minutes before going out, and reapply every 2 hours — and after swimming or heavy sweating.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Shade:</strong> seek it especially between 10 a.m. and 4 p.m., when UV is strongest.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clothing:</strong> tightly woven or UPF-rated long sleeves, a wide-brim hat, and UV-blocking sunglasses. Fabric is the most reliable barrier there is.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Reflective settings:</strong> take extra care near water, sand, snow, and at altitude, where UV is intensified.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Children:</strong> be strict about sun protection for kids and teens, keep infants under 6 months out of direct sun, and model the habit.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            Our general <a href="/prevention" class="text-teal hover:text-teal/80 underline">skin cancer prevention guide</a> covers these habits in more detail.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:ban" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Skip Tanning Beds Entirely</h2>
+              <p class="text-slate/80">
+                Indoor tanning delivers a concentrated dose of UV and raises melanoma risk in a dose-dependent way — more sessions, more risk — with the sharpest increase in people who start before age 35. If you have atypical moles, there is no version of tanning-bed use that makes sense. For a sun-kissed look, use a sunless self-tanner instead.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">A Note on Vitamin D</h2>
+          <p class="text-slate/80">
+            You don't need to trade sun protection for vitamin D. Deliberate UV exposure is an unreliable and risky way to raise vitamin D levels; dietary sources and supplements are safer and more predictable. If you're concerned about your levels, ask your doctor to check them and advise on supplementation.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Sun Protection Does and Doesn't Do</h2>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>It does:</strong> reduce new mole formation, reduce sunburns and cumulative UV damage, and lower melanoma risk over time.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>It doesn't:</strong> remove existing atypical moles, reverse past sun damage, or eliminate melanoma risk. It lowers the odds — it doesn't zero them.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            That's why prevention and surveillance go together. Keep the skin-check schedule your dermatologist sets — see <a href="/atypical-nevi/surveillance-schedule" class="text-teal hover:text-teal/80 underline">how often should I get my skin checked?</a> — and understand where you stand in <a href="/atypical-nevi/melanoma-risk-association" class="text-teal hover:text-teal/80 underline">does having atypical moles mean I'm at higher risk for melanoma?</a>
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given my skin type and moles, how aggressive should my sun protection be?</li>
+                <li>Which sunscreen type and SPF do you recommend for daily use?</li>
+                <li>Should my children be screened or counseled given our family's mole pattern?</li>
+                <li>Should I have my vitamin D level checked?</li>
+                <li>Beyond sun protection, is there anything else that would lower my risk?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            New moles are largely a response to UV exposure, and randomized trials show that sun protection reduces both new mole formation and melanoma risk. Daily broad-spectrum sunscreen, shade, protective clothing, and a firm no to tanning beds are the core of it — and they matter most for children and teens.
+          </p>
+          <p class="text-slate/80">
+            Sun protection lowers your risk; it doesn't remove it. Pair it with regular skin exams and monthly self-checks, and you've covered both halves of managing atypical moles.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Gallagher RP, Rivers JK, Lee TK, et al. Broad-spectrum sunscreen use and the development of new nevi in white children: a randomized controlled trial. <em>JAMA.</em> 2000;283(22):2955-2960. <a href="https://pubmed.ncbi.nlm.nih.gov/10865273/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Green AC, Williams GM, Logan V, Strutton GM. Reduced melanoma after regular sunscreen use: randomized trial follow-up. <em>J Clin Oncol.</em> 2011;29(3):257-263. <a href="https://pubmed.ncbi.nlm.nih.gov/21135266/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Bauer J, Garbe C. Acquired melanocytic nevi as risk factor for melanoma development. A comprehensive review of epidemiological data. <em>Pigment Cell Res.</em> 2003;16(3):297-306. <a href="https://pubmed.ncbi.nlm.nih.gov/12753404/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Tsao H, Bichakjian CK, et al. Guidelines of care for the management of primary cutaneous melanoma. <em>J Am Acad Dermatol.</em> 2019;80(1):208-250. <a href="https://pubmed.ncbi.nlm.nih.gov/30392755/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/how-to-prevent" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — How to Prevent Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/everyday-care/sun-protection/shade-clothing-sunscreen/how-to-select-sunscreen" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — How to Select a Sunscreen
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/melanoma-skin-cancer/causes-risks-prevention.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Causes, Risk Factors, and Prevention of Melanoma Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/moles-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute</a> — Common Moles, Dysplastic Nevi, and Risk of Melanoma
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist about sun protection and skin monitoring for your situation.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about sun protection and moles</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

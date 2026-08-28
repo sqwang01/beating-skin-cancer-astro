@@ -48,18 +48,18 @@ Re-check this file at the start of every disease-article-writer run; update it a
 | high-risk-locations | Are there special considerations for SCC in high-risk areas (ears, lips, fingers)? | published — 2026-08-26 |
 | prevention | What prevention steps and skin-care practices reduce my chance of getting another SCC? | published — 2026-08-26 |
 
-## atypical-nevi (all 8 slots not-started)
+## atypical-nevi (8/8 slots real articles, all published and linked)
 
 | Working title | Question the card promises to answer | Status |
 |---|---|---|
-| what-makes-a-mole-atypical | What makes a mole "atypical," and how is it different from a normal mole? | not-started |
-| warning-signs-of-melanoma-change | How can I tell if an atypical mole might be turning into melanoma? | not-started |
-| dermatologist-evaluation-dermoscopy | What does a dermatologist look for when examining atypical moles? | not-started |
-| when-to-biopsy-or-remove | When does an atypical mole need to be biopsied or removed? | not-started |
-| surveillance-schedule | If I have atypical moles, how often should I get my skin checked? | not-started |
-| melanoma-risk-association | Does having atypical moles mean I'm at higher risk for melanoma? | not-started |
-| tracking-changes-over-time | What's the best way to track changes in my moles over time? | not-started |
-| prevention-and-sun-protection | How can I protect my skin and prevent new atypical moles from forming? | not-started |
+| what-makes-a-mole-atypical | What makes a mole "atypical," and how is it different from a normal mole? | published — 2026-08-27 |
+| warning-signs-of-melanoma-change | How can I tell if an atypical mole might be turning into melanoma? | published — 2026-08-27 |
+| dermatologist-evaluation-dermoscopy | What does a dermatologist look for when examining atypical moles? | published — 2026-08-27 |
+| when-to-biopsy-or-remove | When does an atypical mole need to be biopsied or removed? | published — 2026-08-27 |
+| surveillance-schedule | If I have atypical moles, how often should I get my skin checked? | published — 2026-08-27 |
+| melanoma-risk-association | Does having atypical moles mean I'm at higher risk for melanoma? | published — 2026-08-27 |
+| tracking-changes-over-time | What's the best way to track changes in my moles over time? | published — 2026-08-27 |
+| prevention-and-sun-protection | How can I protect my skin and prevent new atypical moles from forming? | published — 2026-08-27 |
 
 ## actinic-keratosis (all 8 slots not-started)
 
@@ -78,7 +78,14 @@ Re-check this file at the start of every disease-article-writer run; update it a
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
-- 8 pages remain not-started (atypical-nevi hub, 8/8). BCC's hub is now fully published (all 8/8
+- 0 pages remain not-started. Every hub is now fully published (8/8 slots live and linked).
+  Atypical-nevi hub: all 8/8 drafted 2026-08-27, reviewed and approved by Dr. Wang the same day,
+  and published 2026-08-27 — byline (`<MedicalReviewer date={lastReviewed} />`, default
+  Editor-in-Chief) + `lastReviewed = "2026-08-27"` + `medicalReviewJsonLd(canonical, lastReviewed)`
+  added to each article, and the hub's placeholder `<div>` Key Topics cards in
+  `src/pages/atypical-nevi.astro` converted to real `<a href>` links (matching the site-wide
+  `bg-sky/5 ... hover:bg-sky/10` hub-card pattern).
+  BCC's hub is now fully published (all 8/8
   slots live and linked) as of 2026-08-24. Actinic-keratosis is now fully published (8/8 slots
   live and linked) as of 2026-08-25. Melanoma is now fully published (8/8 slots live and linked)
   as of 2026-08-25 — the 3 remaining cards (Breslow depth, finding a specialist, clinical trials)

@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/dermatologist-evaluation-dermoscopy";
+const title = "Dermoscopy & the Atypical Mole Exam | Beating Skin Cancer";
+const description = "What a dermatologist does during a mole check — the full-body exam, dermoscopy, photography, and the clues that lead to a biopsy or watchful waiting.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What a Dermatologist Looks For When Examining Atypical Moles",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "Dermatologist Evaluation & Dermoscopy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is dermoscopy and does it hurt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Dermoscopy (also called dermatoscopy) is examination of a mole with a handheld magnifier that uses bright, often polarized light to reveal pigment patterns and structures below the surface that the naked eye can't see. The device rests lightly on the skin or hovers just above it. It is completely painless and takes only seconds per mole."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does dermoscopy make melanoma detection more accurate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In trained hands, adding dermoscopy to a naked-eye exam substantially improves the accuracy of diagnosing melanoma compared with naked-eye examination alone, and it also reduces the number of benign moles that get biopsied unnecessarily."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my dermatologist take photos of my moles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For people with many atypical moles, baseline total-body photography and close-up dermoscopic images give the dermatologist something to compare against at future visits. A mole that looks unremarkable on its own but has clearly changed since the last photo is a key trigger for biopsy — change over time is often more telling than appearance at a single visit."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What a Dermatologist Looks For When Examining Atypical Moles
+          </h1>
+          <p class="text-xl text-white/80">Inside the full-skin exam, the dermatoscope, and the decision to biopsy or monitor</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            A skin check for someone with atypical moles can feel like it's over in a flash — a few minutes of the dermatologist moving a small lit magnifier from spot to spot. But a lot of structured judgment is packed into those minutes.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide explains what your dermatologist is doing and thinking during that exam: the systematic full-body look, what the dermatoscope reveals, how your moles are compared to one another and to past photos, and what tips the decision toward a biopsy versus continued monitoring.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">1. The Full-Body Skin Exam</h2>
+          <p class="text-slate/80 mb-4">
+            A thorough check is systematic, not just a look at the spots you point out. Under bright light, the dermatologist works methodically from the scalp and behind the ears, across the face and neck, down the trunk and back, along the arms and between the fingers, and down to the legs, soles, and between the toes. Areas that are easy to miss — scalp, buttocks, genital skin, nail beds — are included because melanoma can arise there too.
+          </p>
+          <p class="text-slate/80">
+            As they go, they're building a mental (and often photographic) map: how many moles you have, your overall mole "pattern," which ones are atypical, and whether any one mole is out of step with the rest.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:scan-search" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">2. The Dermatoscope: A Window Below the Surface</h2>
+              <p class="text-slate/80 mb-4">
+                A dermatoscope is a handheld lens with a powerful built-in light, often polarized to cut surface glare. Pressed gently against a mole (or held just above it), it makes visible a layer of detail the naked eye simply cannot resolve:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>The <strong>pigment network</strong> — a mesh-like pattern of pigment. In benign moles it's usually regular and fades gently at the edges; in melanoma it's often irregular, thickened, or ends abruptly.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Dots, globules, streaks, and blotches</strong> — and whether they're distributed evenly or chaotically.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Blood vessel patterns</strong> and areas of <strong>regression</strong> (scar-like white zones) that can signal a problem.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Overall symmetry of structure and color</strong> — arguably the single most important dermoscopic question.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                This matters because it works. Adding dermoscopy to a naked-eye exam meaningfully improves the accuracy of melanoma diagnosis in trained hands, and helps spare benign moles from unnecessary biopsy. Many atypical moles have a reassuringly <em>orderly</em> dermoscopic pattern despite looking irregular to the eye — which is exactly why the tool is so useful.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">3. Comparing Each Mole to Its Neighbors</h2>
+          <p class="text-slate/80 mb-4">
+            Because your atypical moles may all look somewhat unusual, the dermatologist isn't hunting for irregularity in isolation — they're hunting for the <strong>outlier</strong>. A mole whose color or dermoscopic structure clearly differs from your other moles (the "ugly duckling") draws scrutiny even if, judged alone, it might pass.
+          </p>
+          <p class="text-slate/80">
+            This comparative approach is one reason a specialist who sees many pigmented lesions can be more reassuring <em>and</em> more discerning than a quick glance in a general visit.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">4. Photography and Digital Follow-Up</h2>
+          <p class="text-slate/80 mb-4">
+            If you have many atypical moles, your dermatologist may use a two-part system:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Total-body photography:</strong> a set of standardized overview photos capturing all your moles at baseline, so new or enlarging lesions stand out at future visits.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Sequential digital dermoscopy:</strong> stored close-up dermoscopic images of selected moles, re-taken over time. Subtle changes that would be invisible from memory become obvious side by side.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            In high-risk patients, this "two-step" monitoring helps find melanomas earlier while reducing the number of benign moles removed. Your own photos play a supporting role — see <a href="/atypical-nevi/tracking-changes-over-time" class="text-teal hover:text-teal/80 underline">the best way to track changes in your moles over time</a>.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">5. What Tips the Decision Toward a Biopsy</h2>
+          <p class="text-slate/80 mb-4">
+            After all of the above, the dermatologist is answering one question: <em>Can I confidently call this benign?</em> A biopsy is more likely when:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The dermoscopic pattern is asymmetric or contains melanoma-specific structures.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The mole has changed compared with a prior photo or your description.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>It's a clear ugly duckling.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>It's symptomatic — bleeding, itching, or a non-healing sore.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>It sits somewhere hard to monitor reliably, or you have a strong personal or family melanoma history.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            For how that decision is made and what the biopsy itself involves, see <a href="/atypical-nevi/when-to-biopsy-or-remove" class="text-teal hover:text-teal/80 underline">when does an atypical mole need to be biopsied or removed?</a>
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Making the Exam More Useful</h2>
+          <p class="text-slate/80 mb-4">
+            A few simple things help your dermatologist do a better job:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Skip makeup, and remove nail polish so nail-bed pigment can be seen.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Wear your hair loose so the scalp can be parted and checked.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Bring a written list (and phone photos) of any spots you're worried about, with when you first noticed them.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Mention new family history of melanoma since your last visit.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Do you use dermoscopy, and did any of my moles look concerning under it?</li>
+                <li>Would I benefit from baseline total-body photography or digital mole mapping?</li>
+                <li>Which specific moles are you planning to re-check next time?</li>
+                <li>Are we biopsying anything today, or monitoring — and why?</li>
+                <li>How thoroughly were my scalp, soles, and nails checked?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            A good atypical-mole exam is systematic, uses dermoscopy, compares each mole to your overall pattern, and — when you have many atypical moles — leans on photography to track change over time. The aim is to catch the rare melanoma early while leaving the many harmless moles alone.
+          </p>
+          <p class="text-slate/80">
+            Knowing what the exam involves lets you be an active participant: point out your concerns, ask what was seen, and leave clear on the plan until your next visit.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Vestergaard ME, Macaskill P, Holt PE, Menzies SW. Dermoscopy compared with naked eye examination for the diagnosis of primary melanoma: a meta-analysis of studies performed in a clinical setting. <em>Br J Dermatol.</em> 2008;159(3):669-676. <a href="https://pubmed.ncbi.nlm.nih.gov/18616769/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Salerni G, Carrera C, Lovatto L, et al. Benefits of total body photography and digital dermatoscopy ("two-step method of digital follow-up") in the early diagnosis of melanoma in patients at high risk for melanoma. <em>J Am Acad Dermatol.</em> 2012;67(1):e17-e27. <a href="https://pubmed.ncbi.nlm.nih.gov/21683472/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Goodson AG, Grossman D. Strategies for early melanoma detection: approaches to the patient with nevi. <em>J Am Acad Dermatol.</em> 2009;60(5):719-735. <a href="https://pubmed.ncbi.nlm.nih.gov/19389517/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Watts CG, Dieng M, Morton RL, et al. Clinical practice guidelines for identification, screening and follow-up of individuals at high risk of primary cutaneous melanoma: a systematic review. <em>Br J Dermatol.</em> 2015;172(1):33-47. <a href="https://pubmed.ncbi.nlm.nih.gov/25204572/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/check-skin" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Find Skin Cancer: How to Perform a Skin Self-Exam
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/early-detection/self-exams/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Self-Exams
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/moles-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute</a> — Common Moles, Dysplastic Nevi, and Risk of Melanoma
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist about your personal skin-monitoring plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about skin exams and dermoscopy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

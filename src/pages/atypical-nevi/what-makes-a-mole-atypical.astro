@@ -1,0 +1,307 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/what-makes-a-mole-atypical";
+const title = "What Makes a Mole Atypical vs. Normal | Beating Skin Cancer";
+const description = "Atypical moles, also called dysplastic nevi, look different from ordinary moles. Learn the features that set them apart and why dermatologists track them.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Makes a Mole \"Atypical\" — and How It Differs From a Normal Mole",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "What Makes a Mole Atypical", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between an atypical mole and a normal mole?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A normal (common) mole is usually small (under 5 mm), round or oval, evenly tan or brown, with a smooth, sharply defined edge. An atypical mole tends to be larger, has an irregular or fuzzy border, mixes several shades of brown, tan, pink, or red, and may have a raised center with a flatter surrounding rim (a \"fried egg\" look). Atypical moles are still benign, but they resemble melanoma more closely than common moles do."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is an atypical mole cancerous?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. An atypical mole (dysplastic nevus) is a benign growth, not a skin cancer. Only rarely does an individual atypical mole turn into melanoma. However, having several atypical moles is a marker that a person is at higher-than-average risk of developing melanoma somewhere on the skin, so these moles are worth monitoring."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do doctors use different names like dysplastic nevus, atypical mole, and Clark nevus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They largely refer to the same thing. \"Atypical mole\" describes how the mole looks to the eye, while \"dysplastic nevus\" describes what it looks like under the microscope. \"Clark nevus\" is an older pathology term. Because the clinical and microscopic pictures don't always match perfectly, your dermatologist may use one term for what they see on your skin and another for what the pathology report shows."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Makes a Mole "Atypical" — and How It Differs From a Normal Mole
+          </h1>
+          <p class="text-xl text-white/80">The specific features that separate a dysplastic nevus from an ordinary mole</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most adults have somewhere between 10 and 40 ordinary moles, and the vast majority never cause a problem. But at a skin check your dermatologist may point to one and call it "atypical," or note on a pathology report that a mole was "dysplastic." Those words can be unsettling — they sound halfway to cancer.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            They aren't. An atypical mole is a benign growth. What makes it worth a second look is that it shares some visual features with early melanoma, and that people who have several of them are, as a group, at higher risk of melanoma over their lifetime. This guide explains exactly what a dermatologist means by "atypical," how those moles differ from common ones, and why the label matters.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What a "Normal" Mole Looks Like</h2>
+          <p class="text-slate/80 mb-4">
+            A common mole (the medical term is a common acquired melanocytic nevus) is a cluster of pigment-producing cells called melanocytes. Typical features include:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Small:</strong> usually less than 5 mm across — about the width of a pencil eraser or smaller.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Round or oval,</strong> with a smooth, sharply defined edge you could trace with a pen.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>One even color</strong> throughout — usually a single shade of tan, brown, or pink.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Symmetrical:</strong> one half mirrors the other.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Stable:</strong> most appear before age 40 and then stay roughly the same for decades, fading slowly in later life.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:search" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Makes a Mole "Atypical"</h2>
+              <p class="text-slate/80 mb-4">
+                Dermatologists generally call a mole atypical when it has <strong>three or more</strong> of the following features. The more features present, and the more a mole stands out from the person's other moles, the more "atypical" it is considered:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Larger than 5–6 mm.</strong> Atypical moles are often bigger than a pencil eraser, and some are considerably larger.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Irregular or poorly defined border.</strong> The edge may be fuzzy, notched, or fade gradually into the surrounding skin instead of stopping cleanly.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>More than one color.</strong> A mix of tan, dark brown, pink, or red within the same mole, often unevenly distributed.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Asymmetry.</strong> One half doesn't match the other in shape or color.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>A "fried egg" or "target" look.</strong> A darker, sometimes raised center surrounded by a flatter, lighter rim is a classic pattern for a dysplastic nevus.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>A pebbly or uneven surface texture.</strong></span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                These features overlap deliberately with the <a href="/atypical-nevi/warning-signs-of-melanoma-change" class="text-teal hover:text-teal/80 underline">ABCDE warning signs of melanoma</a>. That overlap is the whole point: an atypical mole is a benign mole that borrows part of melanoma's appearance, which is why it deserves attention even though it is not cancer.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">"Atypical Mole" vs. "Dysplastic Nevus": Same Thing?</h2>
+          <p class="text-slate/80 mb-4">
+            You'll hear several terms used almost interchangeably, and the history behind them explains the confusion:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80">
+                <strong class="text-navy">Atypical mole</strong> is a <em>clinical</em> description — how the mole looks to the naked eye and under a dermatoscope.
+              </p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80">
+                <strong class="text-navy">Dysplastic nevus</strong> is a <em>pathology</em> description — what the mole looks like under the microscope after it's removed, where a pathologist may grade the changes as mild, moderate, or severe.
+              </p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80">
+                <strong class="text-navy">Clark nevus</strong> is an older name for the same microscopic pattern, after the pathologist who first described it.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-4">
+            A mole that looks atypical on your skin doesn't always come back "dysplastic" on pathology, and vice versa — the clinical and microscopic pictures correlate only loosely. Because the terminology has never been fully standardized, some dermatology groups now favor describing the specific features instead of relying on the label alone. What matters for you is less the exact word and more what your dermatologist recommends doing about the mole.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Why the Label Matters</h2>
+          <p class="text-slate/80 mb-4">
+            Calling a mole atypical does two things:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>It flags that mole for follow-up.</strong> Your dermatologist may photograph it, measure it, or ask you back in a few months to see whether it changes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>It helps estimate your overall melanoma risk.</strong> Having multiple atypical moles — especially five or more — is one of the stronger predictors of melanoma risk, independent of any single mole. See <a href="/atypical-nevi/melanoma-risk-association" class="text-teal hover:text-teal/80 underline">does having atypical moles mean I'm at higher risk for melanoma?</a></span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            It's worth repeating: most atypical moles stay stable for life and never become anything. The label is a prompt for sensible monitoring and sun protection, not a prediction.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Which of my moles do you consider atypical, and how many are there?</li>
+                <li>Is any one of them concerning enough to biopsy now, or are we monitoring?</li>
+                <li>Should we take baseline photos so we can compare at my next visit?</li>
+                <li>Given my moles, how often should I be seen, and should I do monthly self-exams?</li>
+                <li>Does my family history change how closely you want to watch these?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            An atypical mole is an ordinary, benign mole that happens to look unusual — larger, unevenly colored, irregularly bordered, or asymmetric. It is not cancer, and on its own it is very unlikely to become cancer. What it does is resemble melanoma closely enough to warrant a closer look, and signal that your skin as a whole deserves regular attention.
+          </p>
+          <p class="text-slate/80">
+            If you've been told you have atypical moles, the practical takeaways are simple: protect your skin from UV, learn what your moles look like now, and keep the skin-check schedule your dermatologist recommends.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Naeyaert JM, Brochez L. Clinical practice. Dysplastic nevi. <em>N Engl J Med.</em> 2003;349(23):2233-2240. <a href="https://pubmed.ncbi.nlm.nih.gov/14657431/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Duffy K, Grossman D. The dysplastic nevus: from historical perspective to management in the modern era: part I. Historical, histologic, and clinical aspects. <em>J Am Acad Dermatol.</em> 2012;67(1):1.e1-16. <a href="https://pubmed.ncbi.nlm.nih.gov/22703915/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tucker MA, Halpern A, Holly EA, et al. Clinically recognized dysplastic nevi. A central risk factor for cutaneous melanoma. <em>JAMA.</em> 1997;277(18):1439-1444. <a href="https://pubmed.ncbi.nlm.nih.gov/9145715/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Gandini S, Sera F, Cattaruzza MS, et al. Meta-analysis of risk factors for cutaneous melanoma: I. Common and atypical naevi. <em>Eur J Cancer.</em> 2005;41(1):28-44. <a href="https://pubmed.ncbi.nlm.nih.gov/15617989/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/moles-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute</a> — Common Moles, Dysplastic Nevi, and Risk of Melanoma
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/risk-factors/atypical-moles/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Atypical Moles
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/melanoma-skin-cancer/causes-risks-prevention.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Causes, Risk Factors, and Prevention of Melanoma Skin Cancer
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist about your personal diagnosis and skin-monitoring plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about atypical moles</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
+

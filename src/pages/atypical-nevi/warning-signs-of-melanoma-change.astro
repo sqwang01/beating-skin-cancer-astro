@@ -1,0 +1,309 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/warning-signs-of-melanoma-change";
+const title = "When an Atypical Mole Becomes Melanoma | Beating Skin Cancer";
+const description = "Learn the ABCDE warning signs and the changes in an atypical mole — new growth, color, itching, or bleeding — that should prompt a dermatologist visit.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Warning Signs an Atypical Mole May Be Turning Into Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "Warning Signs of Melanoma Change", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can I tell if an atypical mole is turning into melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most useful sign is change. Compare a mole to how it looked a few months ago: watch for a mole that is growing, developing new colors, becoming more asymmetric, spreading an irregular border, or starting to itch, bleed, or crust. Also watch for the \"ugly duckling\" — a mole that stands out as clearly different from your others. Any of these warrants a prompt dermatologist visit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do melanomas always look scary or large?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Early melanomas can be small — under 6 mm — and only subtly different from a normal mole. This is why the \"E\" for evolving in the ABCDE system matters so much: a small spot that is changing is more concerning than a large spot that has looked the same for years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How quickly should I act if a mole changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contact your dermatologist within a few weeks, not months, for any mole that is new, changing, bleeding, or clearly different from your others. Melanoma found early is highly treatable, and most changes turn out to be harmless — but a timely check is what makes early detection work."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Warning Signs an Atypical Mole May Be Turning Into Melanoma
+          </h1>
+          <p class="text-xl text-white/80">How to spot the changes that separate a stable mole from an early melanoma</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            If you have <a href="/atypical-nevi/what-makes-a-mole-atypical" class="text-teal hover:text-teal/80 underline">atypical moles</a>, you already know they can look unusual — uneven color, a fuzzy border, a larger size. The hard part is telling an atypical mole that is simply <em>unusual</em> from one that is genuinely <em>changing</em> in a way that could mean melanoma.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            The good news: a small number of specific signs catch the large majority of early melanomas, and you can learn all of them. This guide covers the ABCDE system, the "ugly duckling" sign, the symptoms you feel rather than see, and how quickly to act.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Start With a Baseline</h2>
+          <p class="text-slate/80 mb-4">
+            Every warning sign below is really a comparison — this mole, now, versus how it looked before. That comparison only works if you have a baseline. Take clear, well-lit photos of your atypical moles (a coin or ruler in frame for scale helps), and repeat every few months. Our guide to <a href="/atypical-nevi/tracking-changes-over-time" class="text-teal hover:text-teal/80 underline">tracking changes in your moles over time</a> walks through how to do this well.
+          </p>
+          <p class="text-slate/80">
+            With a baseline in hand, the signs below become far easier to judge.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The ABCDE Signs</h2>
+              <p class="text-slate/80 mb-4">
+                The ABCDE system is the most widely taught tool for spotting melanoma. Check each atypical mole against all five:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>A — Asymmetry:</strong> One half of the mole doesn't match the other in shape or color.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>B — Border:</strong> Edges are ragged, notched, scalloped, or blurred rather than smooth and sharp.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>C — Color:</strong> More than one color, or new colors appearing — especially black, blue-gray, red, or white areas.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>D — Diameter:</strong> Larger than about 6 mm (a pencil eraser). Useful, but melanomas can be smaller, so don't dismiss a small spot that has other features.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>E — Evolving:</strong> Any change over weeks to months in size, shape, color, elevation, or symptoms. For someone with atypical moles, <strong>E is the single most important letter.</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The "Ugly Duckling" Sign</h2>
+          <p class="text-slate/80 mb-4">
+            People tend to have a personal "signature" mole pattern — their moles resemble one another. The ugly duckling sign is a mole that clearly breaks that pattern: darker than the rest, larger than the rest, or simply the one your eye keeps returning to.
+          </p>
+          <p class="text-slate/80">
+            This is especially valuable when you have many atypical moles, because they can all look somewhat irregular. You're not looking for irregularity — you're looking for the <em>outlier</em>. If one mole stands apart from its neighbors, have it checked even if it doesn't tick an obvious ABCDE box.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Changes You Feel or Notice, Not Just See</h2>
+          <p class="text-slate/80 mb-4">
+            Some warning signs aren't about appearance:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Itching, tingling, or tenderness</strong> in one specific mole that persists.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Bleeding, oozing, or crusting</strong> without an obvious injury.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A sore that won't heal</strong> within a few weeks, or a mole that becomes raised, firm, or develops a bump within it.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A brand-new mole</strong> appearing after age 40, particularly if it looks different from your others.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Changes That Are Usually Harmless</h2>
+          <p class="text-slate/80 mb-4">
+            Not every change is a red flag. These are common and generally reassuring, though it's still fine to mention them at your next visit:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Moles that darken slightly and symmetrically during pregnancy or adolescence.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A mole that becomes slightly raised over years while keeping its shape and even color.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A mole that grows a coarse hair, or an inflamed bump around a hair follicle that settles in a week.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Seborrheic keratoses — waxy, "stuck-on" brown growths that are not moles at all and are entirely benign.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            When in doubt, get it checked. Dermatologists would far rather see ten harmless moles than miss one melanoma.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Quickly to Act</h2>
+          <p class="text-slate/80 mb-4">
+            For a mole that is changing, bleeding, or standing out as an ugly duckling, call your dermatologist and ask to be seen within a few weeks — not at some vague future annual visit. If a spot is bleeding persistently or growing visibly week to week, ask for the soonest available appointment.
+          </p>
+          <p class="text-slate/80">
+            Melanoma caught while it is thin is usually cured with a straightforward excision. Its outlook worsens as it grows deeper, which is what makes the timing of that first visit matter. To understand how depth and stage affect treatment, see our guide on <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">what your melanoma stage means</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Which of my moles should I photograph and watch most closely?</li>
+                <li>This mole has changed — do you want to biopsy it or monitor it?</li>
+                <li>What specific changes should make me call you before my next scheduled visit?</li>
+                <li>Can you show me which of my moles is the "ugly duckling," if any?</li>
+                <li>How do I check areas I can't see well, like my scalp, back, and soles?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            You don't need to memorize dermatology to catch a melanoma early. Know what your atypical moles look like now, watch for change, trust the mole that stands out from the crowd, and take bleeding or a non-healing sore seriously.
+          </p>
+          <p class="text-slate/80">
+            Most changes you notice will be harmless. But acting promptly on the few that aren't is exactly how early detection saves lives.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Abbasi NR, Shaw HM, Rigel DS, et al. Early diagnosis of cutaneous melanoma: revisiting the ABCD criteria. <em>JAMA.</em> 2004;292(22):2771-2776. <a href="https://pubmed.ncbi.nlm.nih.gov/15585738/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Goodson AG, Grossman D. Strategies for early melanoma detection: approaches to the patient with nevi. <em>J Am Acad Dermatol.</em> 2009;60(5):719-735. <a href="https://pubmed.ncbi.nlm.nih.gov/19389517/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Duffy K, Grossman D. The dysplastic nevus: from historical perspective to management in the modern era: part I. Historical, histologic, and clinical aspects. <em>J Am Acad Dermatol.</em> 2012;67(1):1.e1-16. <a href="https://pubmed.ncbi.nlm.nih.gov/22703915/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tucker MA, Halpern A, Holly EA, et al. Clinically recognized dysplastic nevi. A central risk factor for cutaneous melanoma. <em>JAMA.</em> 1997;277(18):1439-1444. <a href="https://pubmed.ncbi.nlm.nih.gov/9145715/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/abcdes-melanoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — What to Look For: ABCDEs of Melanoma
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/risk-factors/atypical-moles/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Atypical Moles
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/moles-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute</a> — Common Moles, Dysplastic Nevi, and Risk of Melanoma
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/risk-prevention/sun-and-uv/skin-exams.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — How to Do a Skin Self-Exam
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist about any changing or concerning mole.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about mole changes and melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

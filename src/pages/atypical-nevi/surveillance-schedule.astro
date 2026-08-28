@@ -1,0 +1,290 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/surveillance-schedule";
+const title = "Skin Check Schedule for Atypical Moles | Beating Skin Cancer";
+const description = "How often you need a dermatologist skin exam with atypical moles depends on your risk. Learn typical 6- to 12-month schedules and when self-checks matter.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Often Should You Get Your Skin Checked If You Have Atypical Moles?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "Surveillance Schedule", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often should someone with atypical moles see a dermatologist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on risk. A person with just a few atypical moles and no other risk factors is often seen once a year. Someone with many atypical moles, or an atypical mole plus a family history of melanoma, is commonly seen every 6 to 12 months. People with atypical mole syndrome or a personal history of melanoma may be seen every 3 to 6 months, often with total-body photography."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I still need self-exams if I see a dermatologist regularly?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Professional exams are periodic snapshots, and a melanoma can appear and grow in the months between visits. A monthly self-exam, ideally with reference photos and help checking your back and scalp, is what catches changes early between appointments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I wait for my scheduled visit if a mole changes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A schedule is a baseline, not a ceiling. If a mole is new, changing, bleeding, itching, or clearly different from your others, call your dermatologist to be seen within a few weeks regardless of when your next routine exam is due."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Often Should You Get Your Skin Checked If You Have Atypical Moles?
+          </h1>
+          <p class="text-xl text-white/80">Matching your skin-exam interval to your personal melanoma risk</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            "Come back in a year" and "I'd like to see you every three months" are both reasonable advice — for different people. There's no universal skin-check interval for atypical moles, because the right frequency depends on how much your overall melanoma risk is elevated.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide lays out the schedules dermatologists typically use, the factors that move you toward more or less frequent exams, and why monthly self-checks matter no matter how often you're seen professionally.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Typical Professional Exam Schedules</h2>
+          <p class="text-slate/80 mb-4">
+            These are common patterns, not rules — your dermatologist will tailor the interval to you:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">A few atypical moles, no other risk factors:</strong> a full-skin exam about once a year.</p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">Many atypical moles, or atypical moles plus a family history of melanoma:</strong> every 6 to 12 months.</p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">Atypical mole syndrome (numerous atypical moles, often with a family melanoma history), or a personal history of melanoma:</strong> every 3 to 6 months, frequently paired with total-body photography and digital dermoscopy.</p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">After a biopsy of a changing mole:</strong> a short-interval recheck (often 3 months) before returning to your usual schedule.</p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-4">
+            Guidelines from different countries vary in specifics, but all converge on the same principle: <em>higher risk, shorter interval.</em>
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:sliders-horizontal" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Moves Your Interval</h2>
+              <p class="text-slate/80 mb-4">Factors that push toward <strong>more frequent</strong> exams:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A higher number of atypical moles (five or more is a common threshold), and a high total mole count.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A personal history of melanoma or non-melanoma skin cancer.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Melanoma in one or more close relatives, especially if multiple or diagnosed young.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Very fair skin, red or blond hair, freckling, or a history of blistering sunburns or tanning-bed use.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A weakened immune system (for example, after an organ transplant).</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                For how these same factors translate into an actual risk estimate, see <a href="/atypical-nevi/melanoma-risk-association" class="text-teal hover:text-teal/80 underline">does having atypical moles mean I'm at higher risk for melanoma?</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Monthly Self-Exams Fill the Gaps</h2>
+          <p class="text-slate/80 mb-4">
+            Even an every-3-months schedule leaves 90 days between professional looks — long enough for a melanoma to appear and thicken. A monthly self-exam closes that gap. Make it a routine:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Same day each month, in good light, using a full-length and a hand mirror.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Work head to toe, including the scalp, behind the ears, between the fingers and toes, the soles, and the buttocks.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Ask a partner to check your back, the back of your neck, and your scalp — or use photos.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Compare against reference images so you're judging <em>change</em>, not memory. See <a href="/atypical-nevi/tracking-changes-over-time" class="text-teal hover:text-teal/80 underline">the best way to track changes in your moles over time</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The First Visit Sets the Baseline</h2>
+          <p class="text-slate/80 mb-4">
+            Your initial appointment with a dermatologist who will follow you does more than the interval number suggests. If you have many atypical moles, this is when baseline total-body photography is usually taken, and when the moles worth close tracking are identified. A dermatologist who specializes in pigmented lesions is worth seeking out for this — see our guide to <a href="/melanoma/finding-a-melanoma-specialist" class="text-teal hover:text-teal/80 underline">finding a melanoma specialist</a>.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Symptoms Override the Schedule</h2>
+          <p class="text-slate/80">
+            A skin-check interval tells you the <em>minimum</em> frequency of routine surveillance. It never means "wait." If you notice a new mole, a changing mole, a spot that bleeds or won't heal, or an "ugly duckling" that stands out from your others, call your dermatologist and ask to be seen within a few weeks. The <a href="/atypical-nevi/warning-signs-of-melanoma-change" class="text-teal hover:text-teal/80 underline">warning signs guide</a> covers exactly what to watch for.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given my moles and history, how often do you want to see me?</li>
+                <li>What puts me in that risk category, and could it change over time?</li>
+                <li>Should I have baseline total-body photography?</li>
+                <li>How should I do my monthly self-exam, and which moles matter most?</li>
+                <li>What specifically should make me call before my next scheduled visit?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            With a few atypical moles and no other risk factors, an annual skin exam is often enough. With many atypical moles, a family history, or a prior melanoma, expect to be seen every 3 to 12 months, often with photography. Your dermatologist sets the number based on your risk profile — and it can be revisited as that profile changes.
+          </p>
+          <p class="text-slate/80">
+            Whatever your interval, a monthly self-exam and a low threshold to call about a changing spot are what make surveillance actually work.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Watts CG, Dieng M, Morton RL, et al. Clinical practice guidelines for identification, screening and follow-up of individuals at high risk of primary cutaneous melanoma: a systematic review. <em>Br J Dermatol.</em> 2015;172(1):33-47. <a href="https://pubmed.ncbi.nlm.nih.gov/25204572/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Salerni G, Carrera C, Lovatto L, et al. Benefits of total body photography and digital dermatoscopy ("two-step method of digital follow-up") in the early diagnosis of melanoma in patients at high risk for melanoma. <em>J Am Acad Dermatol.</em> 2012;67(1):e17-e27. <a href="https://pubmed.ncbi.nlm.nih.gov/21683472/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Tsao H, Bichakjian CK, et al. Guidelines of care for the management of primary cutaneous melanoma. <em>J Am Acad Dermatol.</em> 2019;80(1):208-250. <a href="https://pubmed.ncbi.nlm.nih.gov/30392755/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tucker MA, Halpern A, Holly EA, et al. Clinically recognized dysplastic nevi. A central risk factor for cutaneous melanoma. <em>JAMA.</em> 1997;277(18):1439-1444. <a href="https://pubmed.ncbi.nlm.nih.gov/9145715/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.skincancer.org/early-detection/self-exams/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Self-Exams
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/check-skin" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Find Skin Cancer: How to Perform a Skin Self-Exam
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/risk-prevention/sun-and-uv/skin-exams.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — How to Do a Skin Self-Exam
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/moles-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute</a> — Common Moles, Dysplastic Nevi, and Risk of Melanoma
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always follow the skin-check schedule your dermatologist recommends for you.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about skin-check schedules</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

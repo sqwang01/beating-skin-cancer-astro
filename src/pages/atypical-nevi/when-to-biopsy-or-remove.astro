@@ -1,0 +1,313 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/when-to-biopsy-or-remove";
+const title = "When an Atypical Mole Needs a Biopsy | Beating Skin Cancer";
+const description = "Not every atypical mole needs removal. Learn which features lead a dermatologist to biopsy, what the biopsy involves, and what a dysplastic result means.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "When Does an Atypical Mole Need to Be Biopsied or Removed?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "When to Biopsy or Remove", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does every atypical mole need to be removed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The large majority of atypical moles are simply monitored with periodic skin exams and photography. Removal is reserved for moles that are changing, that look concerning under dermoscopy, that stand out from your other moles, that have symptoms like bleeding or itching, or that sit somewhere hard to watch reliably."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of biopsy is used for a suspicious mole?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "When melanoma is a possibility, the preferred approach is to remove the entire lesion down to fat with a narrow margin — an excisional biopsy, or a broad shave (saucerization) that captures the whole mole. This gives the pathologist the full lesion to assess depth and margins. Small partial samples are avoided for pigmented lesions when it can be helped."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "My biopsy showed a dysplastic nevus with mild atypia and clear margins. Do I need another surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not. Mildly dysplastic nevi that are completely removed with clear margins are generally observed rather than re-excised. Re-excision is more often recommended for severely dysplastic nevi, or when the mole extends to the edge of the biopsy specimen. Practice varies, so confirm the plan with your dermatologist."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            When Does an Atypical Mole Need to Be Biopsied or Removed?
+          </h1>
+          <p class="text-xl text-white/80">How dermatologists decide between watching a mole and taking it out</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            A common worry after being told you have atypical moles is that they'll all need to come off. They won't. Removing every unusual-looking mole isn't practical, isn't pleasant, and — importantly — doesn't lower your melanoma risk, because melanomas frequently arise on normal-looking skin rather than in an existing mole.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            So dermatologists are selective. This guide covers what makes a specific atypical mole worth biopsying, which biopsy technique is used and why, and how to read the pathology result — including the common question of whether a "dysplastic nevus" needs a second procedure.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Most Atypical Moles Are Just Monitored</h2>
+          <p class="text-slate/80 mb-4">
+            The default for a stable atypical mole is watchful monitoring: periodic full-skin exams, dermoscopy, and — if you have many — baseline photography so change can be detected. A mole that has looked the same for years, has an orderly dermoscopic pattern, and blends in with your other moles does not need to be removed just for being atypical.
+          </p>
+          <p class="text-slate/80">
+            Biopsy enters the picture when the dermatologist cannot confidently call a mole benign, or when a mole can't be reliably followed.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:scissors" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Reasons to Biopsy a Specific Mole</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>It's changing.</strong> Documented growth, new colors, an evolving border, or change versus a prior photo — the strongest single trigger.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>It looks atypical under dermoscopy.</strong> Asymmetric structures, an irregular pigment network, blue-white areas, or atypical vessels.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>It's an "ugly duckling."</strong> A mole that clearly stands apart from your others in color, size, or structure.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>It has symptoms.</strong> Persistent itching, bleeding, oozing, or a spot that won't heal.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>It can't be monitored well.</strong> Located on the scalp, a nail, genital skin, or another site that's hard to photograph and re-check.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Your risk context is high.</strong> A strong personal or family melanoma history can lower the threshold to sample a borderline mole.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Which Biopsy Technique — and Why</h2>
+          <p class="text-slate/80 mb-4">
+            When melanoma is on the differential, the goal is to remove the <strong>entire lesion</strong> so the pathologist can assess its full architecture, depth, and edges:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Excisional biopsy</strong> (narrow-margin excision) is generally preferred — the whole mole plus a 1–3 mm rim, down to fat, closed with stitches.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Broad shave / saucerization</strong> can be appropriate when the mole is flat, capturing the full lesion in a single deep shave.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Partial (incisional, small punch) sampling</strong> of a pigmented lesion is avoided when full removal is feasible, because sampling error can miss the most abnormal area. It's reserved for very large lesions or special sites.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            The biopsy is a quick in-office procedure under local anesthetic. For how the resulting report is structured if melanoma is found, see our guide to <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 underline">understanding your melanoma pathology report</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Reading the Pathology Result</h2>
+          <p class="text-slate/80 mb-4">
+            Results for an atypical mole generally fall into one of these categories:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">Benign nevus:</strong> an ordinary mole. No further treatment needed.</p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">Dysplastic (atypical) nevus, graded mild / moderate / severe:</strong> benign, but with architectural and cellular changes. The grade reflects how pronounced those changes are.</p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">Margin status:</strong> the report notes whether dysplastic cells reach the edge of the specimen ("involved" / "positive") or not ("clear" / "negative").</p>
+            </div>
+            <div class="bg-teal/5 p-4 rounded-lg">
+              <p class="text-slate/80"><strong class="text-navy">Melanoma:</strong> triggers a separate treatment pathway with wider excision and staging.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Does a Dysplastic Nevus Need Re-excision?</h2>
+          <p class="text-slate/80 mb-4">
+            This is one of the most common follow-up questions, and practice has shifted toward doing less:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Mild atypia, clear margins:</strong> observation is typical; re-excision is generally not needed.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Mild–moderate atypia with a positive margin but no clinical pigment left:</strong> many dermatologists observe, especially for mild.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Severe atypia:</strong> re-excision with a small clear margin is commonly recommended, since these can be hard to distinguish from early melanoma.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            Guidelines in this area are based on limited evidence and differ between institutions, so your dermatologist's recommendation may reasonably differ from a friend's. Ask them to explain the reasoning for your specific grade and margin.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Why "Just Remove Them All" Isn't the Answer</h2>
+          <p class="text-slate/80 mb-4">
+            Prophylactically excising large numbers of atypical moles is not recommended. It leaves many scars, and it doesn't address risk, because a substantial share of melanomas develop on previously normal skin — not within a pre-existing mole. Surveillance and sun protection do more to protect you than mass removal.
+          </p>
+          <p class="text-slate/80">
+            The exception is targeted removal of the small number of moles that are genuinely worrying or impossible to monitor. See <a href="/atypical-nevi/prevention-and-sun-protection" class="text-teal hover:text-teal/80 underline">how to protect your skin and prevent new atypical moles</a> for the risk-reduction side.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Why are we biopsying this mole — what did you see that concerned you?</li>
+                <li>Which technique will you use, and will the whole mole be removed?</li>
+                <li>When will results be back, and how will I hear them?</li>
+                <li>If it comes back as a dysplastic nevus, what grade and margin would prompt more surgery?</li>
+                <li>For the moles we're not removing, what's the monitoring plan?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            An atypical mole earns a biopsy when it's changing, looks concerning under dermoscopy, breaks your mole pattern, has symptoms, or can't be watched reliably — not simply for being atypical. When a mole is sampled, the aim is to take all of it so the pathologist can give a definitive answer.
+          </p>
+          <p class="text-slate/80">
+            Most results come back benign or dysplastic, and most dysplastic nevi with clear margins need nothing further. When the plan is less clear-cut, ask your dermatologist to walk you through the specific grade, margin, and reasoning.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Duffy K, Grossman D. The dysplastic nevus: from historical perspective to management in the modern era: part I. Historical, histologic, and clinical aspects. <em>J Am Acad Dermatol.</em> 2012;67(1):1.e1-16. <a href="https://pubmed.ncbi.nlm.nih.gov/22703915/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Tsao H, Bichakjian CK, et al. Guidelines of care for the management of primary cutaneous melanoma. <em>J Am Acad Dermatol.</em> 2019;80(1):208-250. <a href="https://pubmed.ncbi.nlm.nih.gov/30392755/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Naeyaert JM, Brochez L. Clinical practice. Dysplastic nevi. <em>N Engl J Med.</em> 2003;349(23):2233-2240. <a href="https://pubmed.ncbi.nlm.nih.gov/14657431/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Goodson AG, Grossman D. Strategies for early melanoma detection: approaches to the patient with nevi. <em>J Am Acad Dermatol.</em> 2009;60(5):719-735. <a href="https://pubmed.ncbi.nlm.nih.gov/19389517/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/moles-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute</a> — Common Moles, Dysplastic Nevi, and Risk of Melanoma
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/risk-factors/atypical-moles/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Atypical Moles
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/abcdes-melanoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — What to Look For: ABCDEs of Melanoma
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist about whether a specific mole should be biopsied or removed.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about mole biopsies</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,305 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/atypical-nevi/tracking-changes-over-time";
+const title = "How to Track Changes in Your Moles | Beating Skin Cancer";
+const description = "Reliable mole tracking beats memory. Learn how to photograph moles for scale and detail, set a self-exam routine, use mole maps, and what change to report.";
+const lastReviewed = "2026-08-27";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Best Way to Track Changes in Your Moles Over Time",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Atypical Nevi", "item": "https://www.beatingskincancer.com/atypical-nevi" },
+    { "@type": "ListItem", "position": 3, "name": "Tracking Changes Over Time", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best way to keep track of my moles?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Take dated baseline photos: wide shots of each body region plus close-ups with a ruler or coin in frame for scale, using consistent lighting and distance. Repeat every few months, or on the schedule your dermatologist advises, and compare new photos side by side with the old ones. Pair this with a monthly head-to-toe self-exam and bring the photos to your appointments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are mole-tracking phone apps reliable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apps can be useful for organizing photos, dating them, and sending reminders. They should not be used to rule out melanoma — app-based risk scores are not a substitute for a dermatologist's assessment. For people with many atypical moles, professional total-body photography and digital dermoscopy are the most accurate way to track change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of mole change should I report to my dermatologist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Report a mole that has grown, developed new colors, changed shape or border, or become raised; any new symptom such as itching, bleeding, or crusting; a brand-new mole appearing after about age 40; or a mole that now stands out from your others. When in doubt, send a photo and ask."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/atypical-nevi"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Atypical Nevi
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            The Best Way to Track Changes in Your Moles Over Time
+          </h1>
+          <p class="text-xl text-white/80">A practical system: baseline photos, a monthly routine, and knowing what counts as change</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The most important melanoma warning sign — the "E" for evolving — is a comparison over time. You can't judge whether a mole has changed unless you have a reliable record of what it looked like before. Memory isn't that record; the human eye is poor at recalling fine visual detail months later.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide gives you a simple, repeatable system for tracking your moles: how to build a photographic baseline, how to run a monthly self-exam, where apps and professional mole-mapping fit, and exactly what kind of change is worth a call.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:camera" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Build a Photographic Baseline</h2>
+              <p class="text-slate/80 mb-4">A good baseline set has two layers:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Regional overview shots.</strong> Photograph each body area — face, chest, abdomen, each arm, upper and lower back, each leg, feet — so you can spot a <em>new</em> mole, not just changes to known ones.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Close-ups of your atypical moles</strong> and any that your dermatologist flagged, with a <strong>ruler or coin in the frame</strong> for scale.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">For the photos to be comparable, keep these consistent every time:</p>
+              <ul class="space-y-3 text-slate/80 mt-2">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Same lighting (bright, even, no harsh shadows — daylight near a window works well).</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Same distance and angle; fill the frame but stay in focus.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Plain background, flash off if it washes out color.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Use anatomical landmarks (a scar, a freckle cluster) so you can relocate the exact mole later.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Date each set, store it in a dedicated album organized by body region, and repeat every 3 months — or on whatever schedule your dermatologist recommends.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Apps and Professional Mole-Mapping</h2>
+          <p class="text-slate/80 mb-4">
+            Consumer mole-tracking apps are handy for keeping photos dated, organized, and on a reminder schedule. Use them for that. Do <strong>not</strong> rely on an app's automated "risk score" to decide whether a mole is safe — those tools are not a substitute for a clinician.
+          </p>
+          <p class="text-slate/80">
+            If you have many atypical moles, the most accurate tracking is done in the clinic: <strong>total-body photography</strong> plus <strong>sequential digital dermoscopy</strong>, where the dermatologist re-photographs selected moles under magnification and compares them frame by frame. This approach helps find melanomas earlier while removing fewer benign moles. See <a href="/atypical-nevi/dermatologist-evaluation-dermoscopy" class="text-teal hover:text-teal/80 underline">what a dermatologist looks for when examining atypical moles</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">A Monthly Self-Exam Routine</h2>
+          <p class="text-slate/80 mb-4">Pick the same date each month and work through it the same way:</p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Bright room, full-length mirror, and a hand mirror for hard-to-see areas.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Go head to toe in a fixed order: scalp and face, neck and ears, chest and abdomen, both sides and underarms, arms and hands including between fingers and under nails, back and buttocks (hand mirror), legs, then soles and between the toes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Have a partner check your back, rear scalp, and other blind spots — or compare with your overview photos.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Use a body mole map (a simple front/back diagram) to note the location of moles you're watching.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Counts as a Change Worth Reporting</h2>
+          <p class="text-slate/80 mb-4">Put the new photo next to the old one and look for:</p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A clear increase in size, or a change in shape or symmetry.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>New colors — especially black, blue-gray, red, or white — or color spreading unevenly.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A border that has become ragged, notched, or blurred.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A mole becoming raised, firm, or developing a lump within it.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>New symptoms: itching, tenderness, bleeding, oozing, or crusting.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A brand-new mole after about age 40, or any mole that now stands out from your others.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            Any of these deserves a call within a few weeks. The <a href="/atypical-nevi/warning-signs-of-melanoma-change" class="text-teal hover:text-teal/80 underline">warning signs guide</a> goes deeper on interpreting them.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Keep a Simple Log</h2>
+          <p class="text-slate/80">
+            Alongside the photos, keep a short dated note: which moles you're watching, where they are, and anything you noticed this month. Bring both the log and the photos to every dermatology visit — it lets your dermatologist compare against your record, not just theirs, and makes the appointment far more productive. This record also supports the interval planning in <a href="/atypical-nevi/surveillance-schedule" class="text-teal hover:text-teal/80 underline">how often should I get my skin checked?</a>
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Which specific moles do you want me to photograph and watch closely?</li>
+                <li>How often should I redo my baseline photos?</li>
+                <li>Do you offer total-body photography or digital dermoscopy for my situation?</li>
+                <li>What's the best way to send you a photo if I spot a change between visits?</li>
+                <li>Can you mark my watched moles on a body map I can take home?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Good mole tracking isn't complicated: a dated set of consistent baseline photos, a fixed monthly self-exam, and a habit of comparing new against old. That's what turns the vague worry of "is this mole different?" into a clear yes or no.
+          </p>
+          <p class="text-slate/80">
+            Bring your photos and notes to every appointment. The combination of your record and your dermatologist's is the most reliable early-warning system there is.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Salerni G, Carrera C, Lovatto L, et al. Benefits of total body photography and digital dermatoscopy ("two-step method of digital follow-up") in the early diagnosis of melanoma in patients at high risk for melanoma. <em>J Am Acad Dermatol.</em> 2012;67(1):e17-e27. <a href="https://pubmed.ncbi.nlm.nih.gov/21683472/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Goodson AG, Grossman D. Strategies for early melanoma detection: approaches to the patient with nevi. <em>J Am Acad Dermatol.</em> 2009;60(5):719-735. <a href="https://pubmed.ncbi.nlm.nih.gov/19389517/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Abbasi NR, Shaw HM, Rigel DS, et al. Early diagnosis of cutaneous melanoma: revisiting the ABCD criteria. <em>JAMA.</em> 2004;292(22):2771-2776. <a href="https://pubmed.ncbi.nlm.nih.gov/15585738/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Watts CG, Dieng M, Morton RL, et al. Clinical practice guidelines for identification, screening and follow-up of individuals at high risk of primary cutaneous melanoma: a systematic review. <em>Br J Dermatol.</em> 2015;172(1):33-47. <a href="https://pubmed.ncbi.nlm.nih.gov/25204572/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.skincancer.org/early-detection/self-exams/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Self-Exams
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/check-skin" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Find Skin Cancer: How to Perform a Skin Self-Exam
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/risk-prevention/sun-and-uv/skin-exams.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — How to Do a Skin Self-Exam
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Photo tracking supports, but does not replace, regular dermatologist skin exams.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about tracking your moles</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
