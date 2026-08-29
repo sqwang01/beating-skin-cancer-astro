@@ -4,6 +4,7 @@ import davidSwansonHeadshot from '../assets/david-swanson-headshot.webp';
 import yaserHomsiHeadshot from '../assets/yaser-homsi-headshot.jpg';
 import thomasWangHeadshot from '../assets/thomas-wang-headshot.jpg';
 import vernonSondakHeadshot from '../assets/vernon-sondak-headshot.webp';
+import lauraFerrisHeadshot from '../assets/Ferris-Laura-wc.avif';
 
 export type BoardRole = 'Editor-in-Chief' | 'Medical Reviewer';
 
@@ -53,6 +54,20 @@ export const editorialBoard: BoardMember[] = [
     medicalSpecialty: ['Dermatology', 'Dermatologic Oncology', 'Mohs Micrographic Surgery'],
     alumniOf: ['Albert Einstein College of Medicine', 'University of Minnesota School of Medicine'],
     sameAs: ['https://www.hoag.org/physician/steven-q-wang-md'],
+  },
+  {
+    slug: 'laura-ferris-md',
+    name: 'Laura K. Ferris, M.D., Ph.D.',
+    role: 'Medical Reviewer',
+    credentials: 'M.D., Ph.D. · Board Certified in Dermatology · Clayton E. Wheeler, Jr. Distinguished Professor',
+    affiliation: 'Chair, Department of Dermatology, University of North Carolina School of Medicine',
+    specialty: 'Dermatology, pigmented lesions, and melanoma early detection',
+    bio: 'Dr. Laura Ferris is Chair of the Department of Dermatology at UNC-Chapel Hill and holds the Clayton E. Wheeler, Jr. Distinguished Professorship. She earned her M.D. from the University of Maryland and her Ph.D. in immunology from Johns Hopkins, and completed her dermatology residency and cutaneous oncology fellowship at the University of Pittsburgh, where she previously served as clinical vice chair of dermatology and director of clinical trials at UPMC. Her clinical and research focus spans pigmented lesions and melanoma as well as psoriasis, with an emphasis on improving melanoma early detection through screening and novel diagnostic technologies.',
+    headshot: lauraFerrisHeadshot,
+    profileUrl: 'https://www.med.unc.edu/derm/directory/laura-ferris-md-phd/',
+    medicalSpecialty: ['Dermatology', 'Dermatologic Oncology', 'Cutaneous Oncology'],
+    alumniOf: ['University of Maryland School of Medicine', 'Johns Hopkins University', 'University of Pittsburgh'],
+    sameAs: ['https://www.med.unc.edu/derm/directory/laura-ferris-md-phd/'],
   },
   {
     slug: 'yaser-homsi-md',
