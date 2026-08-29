@@ -26,6 +26,8 @@ const avatarSize = featured ? 'w-32 h-32' : 'w-24 h-24';
       alt={`Dr. ${member.name}`}
       width={featured ? 256 : 192}
       height={featured ? 256 : 192}
+      fit="cover"
+      position={member.headshotPosition ?? 'center'}
       class:list={['flex-shrink-0 rounded-full object-cover', avatarSize]}
     />
   ) : (

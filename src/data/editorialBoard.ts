@@ -24,6 +24,8 @@ export interface BoardMember {
   bio: string;
   /** Omit until a real headshot is supplied; the card falls back to an initials avatar. */
   headshot?: ImageMetadata;
+  /** Crop anchor (sharp `position`) for the square headshot; defaults to `center`. Use e.g. `"top"` when the subject's head sits high in the source frame. */
+  headshotPosition?: string;
   /** External profile page (hospital, practice, or university bio). */
   profileUrl: string;
   /** Specialties for Physician JSON-LD. */
@@ -64,6 +66,7 @@ export const editorialBoard: BoardMember[] = [
     specialty: 'Dermatology, pigmented lesions, and melanoma early detection',
     bio: 'Dr. Laura Ferris is Chair of the Department of Dermatology at UNC-Chapel Hill and holds the Clayton E. Wheeler, Jr. Distinguished Professorship. She earned her M.D. from the University of Maryland and her Ph.D. in immunology from Johns Hopkins, and completed her dermatology residency and cutaneous oncology fellowship at the University of Pittsburgh, where she previously served as clinical vice chair of dermatology and director of clinical trials at UPMC. Her clinical and research focus spans pigmented lesions and melanoma as well as psoriasis, with an emphasis on improving melanoma early detection through screening and novel diagnostic technologies.',
     headshot: lauraFerrisHeadshot,
+    headshotPosition: 'top',
     profileUrl: 'https://www.med.unc.edu/derm/directory/laura-ferris-md-phd/',
     medicalSpecialty: ['Dermatology', 'Dermatologic Oncology', 'Cutaneous Oncology'],
     alumniOf: ['University of Maryland School of Medicine', 'Johns Hopkins University', 'University of Pittsburgh'],
