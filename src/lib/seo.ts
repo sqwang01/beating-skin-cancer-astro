@@ -49,3 +49,27 @@ export function medicalReviewJsonLd(
     lastReviewed,
   };
 }
+
+/**
+ * FAQPage block for a set of question/answer pairs (e.g. one section of the
+ * questions-to-ask library). `url` is the page or section anchor the FAQ lives
+ * on. `answer` text must be plain text — strip any HTML/links before passing.
+ */
+export function faqPageJsonLd(
+  url: string,
+  qa: ReadonlyArray<{ question: string; answer: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    url,
+    mainEntity: qa.map(({ question, answer }) => ({
+      '@type': 'Question',
+      name: question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: answer,
+      },
+    })),
+  };
+}

@@ -2,13 +2,126 @@
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../components/MedicalReviewer.astro';
-import { medicalReviewJsonLd } from '../lib/seo';
+import { medicalReviewJsonLd, faqPageJsonLd } from '../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/questions-to-ask";
 const title = "200 Smart Questions to Ask About Skin Cancer | Beating Skin Cancer";
 const description = "Explore physician-created questions to ask your doctor about skin cancer diagnosis, treatment, and prevention, so you can prepare and advocate for yourself.";
 const lastReviewed = "2026-08-22";
-const jsonLd = [medicalReviewJsonLd(canonical, lastReviewed)];
+
+// Per-section review dates. A section gets a date + <MedicalReviewer> byline + FAQ
+// schema only once a board dermatologist has reviewed its on-page answers.
+const melanomaDiagnosedReviewed = "2026-08-30";
+
+// Plain-text mirror of the answers in the "Melanoma – If You've Just Been Diagnosed"
+// section, for FAQPage structured data. Keep in sync with the section's <details> copy.
+const melanomaDiagnosedFaq = [
+  {
+    question: "What exactly is melanoma, and how is it different from other skin cancers?",
+    answer: "Melanoma is a cancer of melanocytes, the cells that give skin its pigment. It's less common than basal cell and squamous cell carcinoma, but more dangerous because it can spread to lymph nodes and organs if it isn't caught early. Most melanomas show up as a new or changing mole.",
+  },
+  {
+    question: "Why do doctors pay so much attention to how deep a melanoma is?",
+    answer: "Depth predicts behavior. The deeper melanoma cells reach into the skin, the more access they have to blood vessels and lymphatic channels that can carry them elsewhere. Pathologists measure this in millimeters as the Breslow depth, and it's the strongest single factor in staging, in deciding whether you need a sentinel lymph node biopsy, and in estimating outlook.",
+  },
+  {
+    question: 'What does "stage 1 vs stage 3" mean in plain language?',
+    answer: "Staging describes how far melanoma has traveled. Stage 1 means it's still confined to the skin and thin, with a high cure rate after surgery alone. Stage 3 means melanoma cells have reached nearby lymph nodes but not distant organs, so treatment usually adds immunotherapy or targeted therapy after surgery. Stage 2 sits between them.",
+  },
+  {
+    question: "Where in the skin does melanoma start, and why can it sometimes spread?",
+    answer: "Melanoma begins in melanocytes along the border between the epidermis, the outer layer of skin, and the dermis beneath it. Early on it spreads sideways and is easy to cure. If it isn't removed, it can grow downward into the dermis, where blood and lymph vessels give cells a route to lymph nodes and distant organs. That's why depth matters so much.",
+  },
+  {
+    question: "How common is melanoma, and what are the main causes or risk factors?",
+    answer: "Melanoma is the fifth most common cancer in the United States, with roughly 100,000 new invasive cases each year. The biggest risk factor is ultraviolet exposure from sun and tanning beds, especially blistering sunburns. Others include fair skin, many or unusual moles, a personal or family history of melanoma, and a weakened immune system. Sun protection lowers the risk.",
+  },
+  {
+    question: "After a biopsy confirms melanoma, what usually happens next?",
+    answer: "Your doctor reviews the pathology report, which lists the melanoma's thickness, ulceration, and other features. Most people then have a wide local excision to remove extra tissue around the biopsy site with a safe margin. Depending on thickness, a sentinel lymph node biopsy may be done at the same time. Thin, early melanomas often need nothing more.",
+  },
+  {
+    question: "Who are the typical specialists involved — and what does each one do?",
+    answer: "A dermatologist usually finds the melanoma and does the first biopsy. A surgical oncologist or dermatologic surgeon performs the wide excision and any lymph node surgery. A pathologist examines the tissue and writes the report. For advanced disease, a medical oncologist manages immunotherapy or targeted therapy, and a radiation oncologist may help.",
+  },
+  {
+    question: "How do doctors decide whether to order more tests or imaging?",
+    answer: "They base it on the melanoma's stage. For thin, early-stage melanoma with no symptoms, scans rarely help and can cause false alarms, so a skin and lymph node exam is usually enough. Thicker tumors, a positive sentinel lymph node biopsy, or symptoms like pain or weight loss prompt imaging such as CT, PET-CT, or MRI. Staging guides the choice.",
+  },
+  {
+    question: 'What does the phrase "clear margins" mean after surgery?',
+    answer: 'Clear margins means the removed tissue has a border of normal skin all the way around the tumor. After surgery a pathologist checks the edges of the specimen under a microscope. If no melanoma cells touch the cut edge, margins are clear or negative and the tumor was fully removed. Positive margins mean cells reach the edge, so more surgery is usually advised. Margins appear on your pathology report.',
+  },
+  {
+    question: "How soon does treatment usually begin, and what factors affect timing?",
+    answer: "Surgery for melanoma is important but rarely an emergency. Most people have their wide excision within a few weeks of diagnosis. Timing depends on booking the right surgeon, coordinating a sentinel lymph node biopsy if one is planned, other health conditions, and sometimes arranging a second opinion. A short, planned wait to line up the right team does not worsen outcomes.",
+  },
+  {
+    question: "What are the main treatment options for early melanoma?",
+    answer: "For melanoma confined to the skin, surgery is the mainstay. A wide local excision removes the site with a margin of healthy tissue, usually in the office or as day surgery, and cures most thin melanomas. A sentinel lymph node biopsy may be added once the tumor is about 0.8 mm thick or thicker. Radiation or drug therapy is seldom needed this early.",
+  },
+  {
+    question: "What's the difference between wide local excision and Mohs surgery for melanoma in situ?",
+    answer: "Both remove the lesion with a clear margin. Wide local excision takes the visible spot plus a measured rim of normal skin in one step, and the edges are checked afterward. Mohs surgery removes tissue in thin layers, mapping and checking each layer under the microscope during the same visit, which spares healthy skin on the face. For melanoma in situ, either can be appropriate; your surgeon recommends which fits.",
+  },
+  {
+    question: "How do doctors decide if a sentinel lymph node biopsy is needed?",
+    answer: "The main trigger is tumor thickness. A sentinel lymph node biopsy is generally offered once a melanoma is around 0.8 mm deep, or thinner but ulcerated, and discussed for thicker tumors. Features like a high mitotic rate can tip the decision. It's usually skipped for very thin melanomas, where node spread is unlikely. Your age and other health conditions also count.",
+  },
+  {
+    question: "What are the goals of immunotherapy and targeted therapy?",
+    answer: "Both treat melanoma that has spread or has a high risk of coming back. Immunotherapy helps your own immune system recognize and attack melanoma cells, and can give long-lasting control. Targeted therapy uses pills that block a specific mutation, most often BRAF, to shrink tumors quickly. The aim is to lower recurrence risk after surgery or to control advanced disease.",
+  },
+  {
+    question: "How do side effects from these treatments usually feel for patients?",
+    answer: "With immunotherapy, most side effects come from an over-active immune system: fatigue, rash, itching, diarrhea, or thyroid changes. Most are mild, but some need steroids, so report new symptoms early. Targeted therapy more often brings fever, joint aches, rash, and fatigue that ease when the dose is adjusted. Many people keep working through treatment while the oncology team checks bloodwork regularly.",
+  },
+  {
+    question: "How can I manage the stress or fear that comes with a melanoma diagnosis?",
+    answer: "Fear is normal, especially in the weeks before staging is finished. Many people find it helps to focus on the next concrete step, bring someone to appointments, and write questions down beforehand. Ask your team about a counselor or support group; most cancer centers offer them at no cost. Limit late-night searching, keep daily routines, and lean on people you trust.",
+  },
+  {
+    question: "How do most people explain melanoma to their family or children?",
+    answer: "Keep it simple and honest. Many people say melanoma is a serious skin cancer that the doctors caught and are treating, and that surgery removes it. With young children, short, calm explanations work best: name the illness, say who is helping, and reassure them it isn't their fault and isn't contagious. Invite questions and answer them in small doses over time.",
+  },
+  {
+    question: "What can I expect during recovery from surgery?",
+    answer: "After a wide local excision, expect a line of stitches, some bruising, and mild soreness for a week or two. You'll get wound-care instructions and usually return in one to two weeks for stitch removal and the final pathology result. Most people return to desk work within days, avoiding heavy lifting or stretching the area for a few weeks. Larger wounds may need a skin graft or flap.",
+  },
+  {
+    question: "Are there questions I should ask about scarring and healing?",
+    answer: "Yes. Helpful questions include: How long will the scar be, and which way will it run? Will you close it directly, or might it need a graft or flap? What helps it heal — scar massage, taping, sun protection? When can I exercise again? What is normal, and what signals infection? Asking before surgery lets you plan clothing and time off work.",
+  },
+  {
+    question: "How can I stay organized with appointments and test results?",
+    answer: "Keep one folder or binder — paper or digital — for pathology reports, imaging, and visit summaries. Sign up for each office's patient portal and save results as they post. Keep a running list of dates, doctors, and next steps, and bring it to every visit. Jot down questions as they occur to you. A single point person, such as a spouse, can help track everything.",
+  },
+  {
+    question: "What are smart questions to ask at my first oncology or surgery visit?",
+    answer: "Good openers: What is my exact diagnosis and stage? How thick was the melanoma, and was it ulcerated? What surgery do you recommend, and will I need a sentinel lymph node biopsy? Do I need any scans? What are the next steps and the expected timeline? Who do I call with problems? Ask for the plan in writing and bring someone to take notes.",
+  },
+  {
+    question: "What information should I bring to help my doctor make the best plan?",
+    answer: "Bring your biopsy pathology report, plus the slides or tissue block if you were treated elsewhere, and any earlier skin-cancer history or photos of the spot. List your medications, allergies, and past surgeries, and note any family history of melanoma. Add insurance details and a written list of questions. The actual pathology material lets a new team confirm the diagnosis without repeating the biopsy.",
+  },
+  {
+    question: "How can I make sure I understand my pathology report when it's explained?",
+    answer: 'Ask for a copy ahead of time and read it alongside our pathology report guide. In the visit, ask the doctor to translate each line — Breslow thickness, ulceration, margins, mitotic rate, and stage. Say it back in your own words, then ask, "What does this mean for my treatment and outlook?" Request a written summary, and feel free to ask again next time.',
+  },
+  {
+    question: "What are the pros and cons of getting a second opinion at a melanoma center?",
+    answer: "Pros: high-volume centers re-read your pathology, confirm the stage, offer the newest surgical and drug options, and can open access to clinical trials, and many patients simply feel more confident. Cons: added travel, appointments, and cost, a short delay, and sometimes conflicting advice to sort out. Most melanoma specialists expect and welcome second opinions, and a brief planned delay is safe.",
+  },
+  {
+    question: "How can I take notes or record my visit so I don't miss important details?",
+    answer: "Bring a notebook or use your phone, and record the date, the main points, and any numbers such as thickness or stage. Bring a second person to listen and write while you focus on the conversation. Ask permission to make an audio recording; most doctors agree. Afterward, read the visit summary in the patient portal and send follow-up questions there. Keep it all in one place.",
+  },
+];
+
+const jsonLd = [
+  medicalReviewJsonLd(canonical, lastReviewed),
+  faqPageJsonLd(`${canonical}#melanoma-diagnosed`, melanomaDiagnosedFaq),
+];
 ---
 
 <Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
@@ -95,257 +208,533 @@ const jsonLd = [medicalReviewJsonLd(canonical, lastReviewed)];
         <section id="melanoma-diagnosed" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Melanoma – If You've Just Been Diagnosed</h2>
-            <p class="text-slate mb-6">Starter questions to help you understand your diagnosis and what comes next.</p>
-            <ol class="space-y-3 list-decimal list-inside text-slate leading-relaxed">
+            <p class="text-slate">Starter questions to help you understand your diagnosis and what comes next.</p>
+            <MedicalReviewer date={melanomaDiagnosedReviewed} tone="light" class="mb-6" />
+            <ol class="space-y-4 text-slate leading-relaxed">
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20exactly%20is%20melanoma%2C%20and%20how%20is%20it%20different%20from%20other%20skin%20cancers%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What exactly is melanoma, and how is it different from other skin cancers?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What exactly is melanoma, and how is it different from other skin cancers?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Melanoma is a cancer of melanocytes, the cells that give skin its pigment. It's less common than <a href="/basal-cell-carcinoma" class="text-teal hover:text-teal/80 hover:underline transition-colors">basal cell</a> and <a href="/squamous-cell-carcinoma" class="text-teal hover:text-teal/80 hover:underline transition-colors">squamous cell carcinoma</a>, but more dangerous because it can spread to lymph nodes and organs if it isn't caught early. Most melanomas show up as a new or changing mole. Our <a href="/melanoma" class="text-teal hover:text-teal/80 hover:underline transition-colors">melanoma overview</a> explains the basics.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20exactly%20is%20melanoma%2C%20and%20how%20is%20it%20different%20from%20other%20skin%20cancers%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Why%20do%20doctors%20pay%20so%20much%20attention%20to%20how%20deep%20a%20melanoma%20is%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  Why do doctors pay so much attention to how deep a melanoma is?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>Why do doctors pay so much attention to how deep a melanoma is?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Depth predicts behavior. The deeper melanoma cells reach into the skin, the more access they have to blood vessels and lymphatic channels that can carry them elsewhere. Pathologists measure this in millimeters as the <a href="/melanoma/breslow-depth-explained" class="text-teal hover:text-teal/80 hover:underline transition-colors">Breslow depth</a>, and it's the strongest single factor in staging, in deciding whether you need a <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 hover:underline transition-colors">sentinel lymph node biopsy</a>, and in estimating outlook.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Why%20do%20doctors%20pay%20so%20much%20attention%20to%20how%20deep%20a%20melanoma%20is%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20does%20%22stage%201%20vs%20stage%203%22%20mean%20in%20plain%20language%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What does "stage 1 vs stage 3" mean in plain language?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What does "stage 1 vs stage 3" mean in plain language?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Staging describes how far melanoma has traveled. Stage 1 means it's still confined to the skin and thin, with a high cure rate after surgery alone. Stage 3 means melanoma cells have reached nearby lymph nodes but not distant organs, so treatment usually adds immunotherapy or targeted therapy after surgery. Stage 2 sits between them. Our <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 hover:underline transition-colors">stage-meaning guide</a> walks through each one.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20does%20%22stage%201%20vs%20stage%203%22%20mean%20in%20plain%20language%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Where%20in%20the%20skin%20does%20melanoma%20start%2C%20and%20why%20can%20it%20sometimes%20spread%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  Where in the skin does melanoma start, and why can it sometimes spread?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>Where in the skin does melanoma start, and why can it sometimes spread?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Melanoma begins in melanocytes along the border between the epidermis, the outer layer of skin, and the dermis beneath it. Early on it spreads sideways and is easy to cure. If it isn't removed, it can grow downward into the dermis, where blood and lymph vessels give cells a route to lymph nodes and distant organs. That's why <a href="/melanoma/breslow-depth-explained" class="text-teal hover:text-teal/80 hover:underline transition-colors">depth matters</a> so much.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Where%20in%20the%20skin%20does%20melanoma%20start%2C%20and%20why%20can%20it%20sometimes%20spread%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20common%20is%20melanoma%2C%20and%20what%20are%20the%20main%20causes%20or%20risk%20factors%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How common is melanoma, and what are the main causes or risk factors?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How common is melanoma, and what are the main causes or risk factors?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Melanoma is the fifth most common cancer in the United States, with roughly 100,000 new invasive cases each year. The biggest risk factor is ultraviolet exposure from sun and tanning beds, especially blistering sunburns. Others include fair skin, many or <a href="/atypical-nevi" class="text-teal hover:text-teal/80 hover:underline transition-colors">unusual moles</a>, a personal or family history of melanoma, and a weakened immune system. <a href="/prevention" class="text-teal hover:text-teal/80 hover:underline transition-colors">Sun protection</a> lowers the risk.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20common%20is%20melanoma%2C%20and%20what%20are%20the%20main%20causes%20or%20risk%20factors%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=After%20a%20biopsy%20confirms%20melanoma%2C%20what%20usually%20happens%20next%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  After a biopsy confirms melanoma, what usually happens next?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>After a biopsy confirms melanoma, what usually happens next?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Your doctor reviews the <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 hover:underline transition-colors">pathology report</a>, which lists the melanoma's thickness, ulceration, and other features. Most people then have a wide local excision to remove extra tissue around the biopsy site with a safe margin. Depending on thickness, a sentinel lymph node biopsy may be done at the same time. Thin, early melanomas often need nothing more. See <a href="/melanoma/what-to-expect-after-diagnosis" class="text-teal hover:text-teal/80 hover:underline transition-colors">what to expect after diagnosis</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=After%20a%20biopsy%20confirms%20melanoma%2C%20what%20usually%20happens%20next%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Who%20are%20the%20typical%20specialists%20involved%20%E2%80%94%20and%20what%20does%20each%20one%20do%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  Who are the typical specialists involved — and what does each one do?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>Who are the typical specialists involved — and what does each one do?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>A dermatologist usually finds the melanoma and does the first biopsy. A surgical oncologist or dermatologic surgeon performs the wide excision and any lymph node surgery. A pathologist examines the tissue and writes the report. For advanced disease, a medical oncologist manages immunotherapy or targeted therapy, and a radiation oncologist may help. Learn <a href="/melanoma/finding-a-melanoma-specialist" class="text-teal hover:text-teal/80 hover:underline transition-colors">how to find a melanoma specialist</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Who%20are%20the%20typical%20specialists%20involved%20%E2%80%94%20and%20what%20does%20each%20one%20do%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20doctors%20decide%20whether%20to%20order%20more%20tests%20or%20imaging%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How do doctors decide whether to order more tests or imaging?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How do doctors decide whether to order more tests or imaging?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>They base it on the melanoma's stage. For thin, early-stage melanoma with no symptoms, scans rarely help and can cause false alarms, so a skin and lymph node exam is usually enough. Thicker tumors, a positive <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 hover:underline transition-colors">sentinel lymph node biopsy</a>, or symptoms like pain or weight loss prompt imaging such as CT, PET-CT, or MRI. <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 hover:underline transition-colors">Staging</a> guides the choice.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20doctors%20decide%20whether%20to%20order%20more%20tests%20or%20imaging%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20does%20the%20phrase%20%22clear%20margins%22%20mean%20after%20surgery%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What does the phrase "clear margins" mean after surgery?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What does the phrase "clear margins" mean after surgery?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>"Clear margins" means the removed tissue has a border of normal skin all the way around the tumor. After surgery a pathologist checks the edges of the specimen under a microscope. If no melanoma cells touch the cut edge, margins are "clear" or "negative" and the tumor was fully removed. "Positive" margins mean cells reach the edge, so more surgery is usually advised. Margins appear on your <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 hover:underline transition-colors">pathology report</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20does%20the%20phrase%20%22clear%20margins%22%20mean%20after%20surgery%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20soon%20does%20treatment%20usually%20begin%2C%20and%20what%20factors%20affect%20timing%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How soon does treatment usually begin, and what factors affect timing?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How soon does treatment usually begin, and what factors affect timing?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Surgery for melanoma is important but rarely an emergency. Most people have their wide excision within a few weeks of diagnosis. Timing depends on booking the right surgeon, coordinating a <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 hover:underline transition-colors">sentinel lymph node biopsy</a> if one is planned, other health conditions, and sometimes arranging a <a href="/melanoma/finding-a-melanoma-specialist" class="text-teal hover:text-teal/80 hover:underline transition-colors">second opinion</a>. A short, planned wait to line up the right team does not worsen outcomes.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20soon%20does%20treatment%20usually%20begin%2C%20and%20what%20factors%20affect%20timing%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20the%20main%20treatment%20options%20for%20early%20melanoma%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What are the main treatment options for early melanoma?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What are the main treatment options for early melanoma?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>For melanoma confined to the skin, surgery is the mainstay. A wide local excision removes the site with a margin of healthy tissue, usually in the office or as day surgery, and cures most thin melanomas. A <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 hover:underline transition-colors">sentinel lymph node biopsy</a> may be added once the tumor is about 0.8 mm thick or thicker. Radiation or drug therapy is seldom needed this early. See our <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 hover:underline transition-colors">treatment options guide</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20the%20main%20treatment%20options%20for%20early%20melanoma%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%27s%20the%20difference%20between%20wide%20local%20excision%20and%20Mohs%20surgery%20for%20melanoma%20in%20situ%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What's the difference between wide local excision and Mohs surgery for melanoma in situ?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What's the difference between wide local excision and Mohs surgery for melanoma in situ?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Both remove the lesion with a clear margin. Wide local excision takes the visible spot plus a measured rim of normal skin in one step, and the edges are checked afterward. Mohs surgery removes tissue in thin layers, mapping and checking each layer under the microscope during the same visit, which spares healthy skin on the face. For <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 hover:underline transition-colors">melanoma in situ</a>, either can be appropriate; your surgeon recommends which fits.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%27s%20the%20difference%20between%20wide%20local%20excision%20and%20Mohs%20surgery%20for%20melanoma%20in%20situ%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20doctors%20decide%20if%20a%20sentinel%20lymph%20node%20biopsy%20is%20needed%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How do doctors decide if a sentinel lymph node biopsy is needed?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How do doctors decide if a sentinel lymph node biopsy is needed?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>The main trigger is <a href="/melanoma/breslow-depth-explained" class="text-teal hover:text-teal/80 hover:underline transition-colors">tumor thickness</a>. A sentinel lymph node biopsy is generally offered once a melanoma is around 0.8 mm deep, or thinner but ulcerated, and discussed for thicker tumors. Features like a high mitotic rate can tip the decision. It's usually skipped for very thin melanomas, where node spread is unlikely. Your age and other health conditions also count. See our <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 hover:underline transition-colors">sentinel node guide</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20doctors%20decide%20if%20a%20sentinel%20lymph%20node%20biopsy%20is%20needed%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20the%20goals%20of%20immunotherapy%20and%20targeted%20therapy%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What are the goals of immunotherapy and targeted therapy?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What are the goals of immunotherapy and targeted therapy?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Both treat melanoma that has spread or has a high risk of coming back. Immunotherapy helps your own immune system recognize and attack melanoma cells, and can give long-lasting control. Targeted therapy uses pills that block a specific mutation, most often BRAF, to shrink tumors quickly. The aim is to lower recurrence risk after surgery or to control advanced disease. See our <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 hover:underline transition-colors">treatment options guide</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20the%20goals%20of%20immunotherapy%20and%20targeted%20therapy%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20side%20effects%20from%20these%20treatments%20usually%20feel%20for%20patients%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How do side effects from these treatments usually feel for patients?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How do side effects from these treatments usually feel for patients?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>With immunotherapy, most side effects come from an over-active immune system: fatigue, rash, itching, diarrhea, or thyroid changes. Most are mild, but some need steroids, so report new symptoms early. Targeted therapy more often brings fever, joint aches, rash, and fatigue that ease when the dose is adjusted. Many people keep working through treatment while the oncology team checks bloodwork regularly. See our <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 hover:underline transition-colors">treatment options guide</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20side%20effects%20from%20these%20treatments%20usually%20feel%20for%20patients%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20manage%20the%20stress%20or%20fear%20that%20comes%20with%20a%20melanoma%20diagnosis%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How can I manage the stress or fear that comes with a melanoma diagnosis?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How can I manage the stress or fear that comes with a melanoma diagnosis?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Fear is normal, especially in the weeks before <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 hover:underline transition-colors">staging</a> is finished. Many people find it helps to focus on the next concrete step, bring someone to appointments, and write questions down beforehand. Ask your team about a counselor or support group; most cancer centers offer them at no cost. Limit late-night searching, keep daily routines, and lean on people you trust.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20manage%20the%20stress%20or%20fear%20that%20comes%20with%20a%20melanoma%20diagnosis%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20most%20people%20explain%20melanoma%20to%20their%20family%20or%20children%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How do most people explain melanoma to their family or children?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How do most people explain melanoma to their family or children?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Keep it simple and honest. Many people say melanoma is a serious skin cancer that the doctors caught and are treating, and that surgery removes it. With young children, short, calm explanations work best: name the illness, say who is helping, and reassure them it isn't their fault and isn't contagious. Invite questions and answer them in small doses over time.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20do%20most%20people%20explain%20melanoma%20to%20their%20family%20or%20children%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20can%20I%20expect%20during%20recovery%20from%20surgery%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What can I expect during recovery from surgery?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What can I expect during recovery from surgery?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>After a wide local excision, expect a line of stitches, some bruising, and mild soreness for a week or two. You'll get wound-care instructions and usually return in one to two weeks for stitch removal and the final <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 hover:underline transition-colors">pathology result</a>. Most people return to desk work within days, avoiding heavy lifting or stretching the area for a few weeks. Larger wounds may need a skin graft or flap. See <a href="/melanoma/what-to-expect-after-diagnosis" class="text-teal hover:text-teal/80 hover:underline transition-colors">what to expect after diagnosis</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20can%20I%20expect%20during%20recovery%20from%20surgery%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Are%20there%20questions%20I%20should%20ask%20about%20scarring%20and%20healing%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  Are there questions I should ask about scarring and healing?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>Are there questions I should ask about scarring and healing?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Yes. Helpful questions include: How long will the scar be, and which way will it run? Will you close it directly, or might it need a graft or flap? What helps it heal &mdash; scar massage, taping, <a href="/prevention" class="text-teal hover:text-teal/80 hover:underline transition-colors">sun protection</a>? When can I exercise again? What is normal, and what signals infection? Asking before surgery lets you plan clothing and time off work.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=Are%20there%20questions%20I%20should%20ask%20about%20scarring%20and%20healing%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20stay%20organized%20with%20appointments%20and%20test%20results%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How can I stay organized with appointments and test results?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How can I stay organized with appointments and test results?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Keep one folder or binder &mdash; paper or digital &mdash; for <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 hover:underline transition-colors">pathology reports</a>, imaging, and visit summaries. Sign up for each office's patient portal and save results as they post. Keep a running list of dates, doctors, and next steps, and bring it to every visit. Jot down questions as they occur to you. A single point person, such as a spouse, can help track everything.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20stay%20organized%20with%20appointments%20and%20test%20results%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20smart%20questions%20to%20ask%20at%20my%20first%20oncology%20or%20surgery%20visit%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What are smart questions to ask at my first oncology or surgery visit?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What are smart questions to ask at my first oncology or surgery visit?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Good openers: What is my exact diagnosis and <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 hover:underline transition-colors">stage</a>? How thick was the melanoma, and was it ulcerated? What surgery do you recommend, and will I need a <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 hover:underline transition-colors">sentinel lymph node biopsy</a>? Do I need any scans? What are the next steps and the expected timeline? Who do I call with problems? Ask for the plan in writing and bring someone to take notes.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20smart%20questions%20to%20ask%20at%20my%20first%20oncology%20or%20surgery%20visit%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20information%20should%20I%20bring%20to%20help%20my%20doctor%20make%20the%20best%20plan%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What information should I bring to help my doctor make the best plan?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What information should I bring to help my doctor make the best plan?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Bring your biopsy <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 hover:underline transition-colors">pathology report</a>, plus the slides or tissue block if you were treated elsewhere, and any earlier skin-cancer history or photos of the spot. List your medications, allergies, and past surgeries, and note any family history of melanoma. Add insurance details and a written list of questions. The actual pathology material lets a new team confirm the diagnosis without repeating the biopsy.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20information%20should%20I%20bring%20to%20help%20my%20doctor%20make%20the%20best%20plan%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20make%20sure%20I%20understand%20my%20pathology%20report%20when%20it%27s%20explained%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How can I make sure I understand my pathology report when it's explained?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How can I make sure I understand my pathology report when it's explained?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Ask for a copy ahead of time and read it alongside our <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 hover:underline transition-colors">pathology report guide</a>. In the visit, ask the doctor to translate each line &mdash; <a href="/melanoma/breslow-depth-explained" class="text-teal hover:text-teal/80 hover:underline transition-colors">Breslow thickness</a>, ulceration, margins, mitotic rate, and stage. Say it back in your own words, then ask, "What does this mean for my treatment and outlook?" Request a written summary, and feel free to ask again next time.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20make%20sure%20I%20understand%20my%20pathology%20report%20when%20it%27s%20explained%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20the%20pros%20and%20cons%20of%20getting%20a%20second%20opinion%20at%20a%20melanoma%20center%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  What are the pros and cons of getting a second opinion at a melanoma center?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>What are the pros and cons of getting a second opinion at a melanoma center?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Pros: high-volume centers re-read your pathology, confirm the stage, offer the newest surgical and drug options, and can open access to <a href="/melanoma/melanoma-clinical-trials" class="text-teal hover:text-teal/80 hover:underline transition-colors">clinical trials</a>, and many patients simply feel more confident. Cons: added travel, appointments, and cost, a short delay, and sometimes conflicting advice to sort out. Most melanoma specialists expect and welcome second opinions, and a brief planned delay is safe. Learn <a href="/melanoma/finding-a-melanoma-specialist" class="text-teal hover:text-teal/80 hover:underline transition-colors">how to find a melanoma specialist</a>.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=What%20are%20the%20pros%20and%20cons%20of%20getting%20a%20second%20opinion%20at%20a%20melanoma%20center%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
               <li>
-                <a
-                  href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20take%20notes%20or%20record%20my%20visit%20so%20I%20don%27t%20miss%20important%20details%3F"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-teal hover:text-teal/80 hover:underline transition-colors"
-                >
-                  How can I take notes or record my visit so I don't miss important details?
-                </a>
+                <details class="group border-b border-slate/10 pb-4">
+                  <summary class="flex items-start gap-2 cursor-pointer list-none [&::-webkit-details-marker]:hidden font-medium text-navy hover:text-teal transition-colors">
+                    <Icon name="lucide:chevron-right" size={18} class="mt-0.5 shrink-0 text-teal transition-transform group-open:rotate-90" aria-hidden="true" />
+                    <span>How can I take notes or record my visit so I don't miss important details?</span>
+                  </summary>
+                  <div class="mt-3 ml-7 space-y-3">
+                    <p>Bring a notebook or use your phone, and record the date, the main points, and any numbers such as thickness or <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 hover:underline transition-colors">stage</a>. Bring a second person to listen and write while you focus on the conversation. Ask permission to make an audio recording; most doctors agree. Afterward, read the visit summary in the patient portal and send follow-up questions there. Keep it all in one place.</p>
+                    <p class="text-sm">
+                      <a
+                        href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator?prompt=How%20can%20I%20take%20notes%20or%20record%20my%20visit%20so%20I%20don%27t%20miss%20important%20details%3F"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-teal hover:text-teal/80 hover:underline transition-colors"
+                      >
+                        Still need more clarity? Chat with the Navigator <Icon name="lucide:arrow-right" size={14} aria-hidden="true" />
+                      </a>
+                    </p>
+                  </div>
+                </details>
               </li>
             </ol>
             <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-6 border-t border-slate/10">

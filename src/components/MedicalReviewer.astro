@@ -5,10 +5,17 @@ interface Props {
   date: string; // YYYY-MM-DD
   /** Board member slug from src/data/editorialBoard.ts. Defaults to the Editor-in-Chief. */
   reviewer?: string;
+  /** 'dark' (default) for hero/gradient backgrounds; 'light' for white cards. */
+  tone?: 'dark' | 'light';
   class?: string;
 }
 
-const { date, reviewer = DEFAULT_REVIEWER_SLUG, class: className = '' } = Astro.props;
+const {
+  date,
+  reviewer = DEFAULT_REVIEWER_SLUG,
+  tone = 'dark',
+  class: className = '',
+} = Astro.props;
 const member = getBoardMember(reviewer);
 
 const formatted = new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -17,9 +24,12 @@ const formatted = new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
   day: 'numeric',
   timeZone: 'UTC',
 });
+
+const textClass = tone === 'light' ? 'text-slate/70' : 'text-white/70';
+const dotClass = tone === 'light' ? 'text-slate/40' : 'text-white/40';
 ---
 
-<div class:list={['flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/70 mt-4', className]}>
+<div class:list={['flex flex-wrap items-center gap-x-2 gap-y-1 text-sm mt-4', textClass, className]}>
   <span>
     Medically reviewed by{' '}
     <a
@@ -29,6 +39,6 @@ const formatted = new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', {
       Dr. {member.name}
     </a>
   </span>
-  <span class="text-white/40" aria-hidden="true">•</span>
+  <span class={dotClass} aria-hidden="true">•</span>
   <span>Last reviewed <time datetime={date}>{formatted}</time></span>
 </div>
