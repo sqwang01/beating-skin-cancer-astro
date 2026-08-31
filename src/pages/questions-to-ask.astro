@@ -2,12 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../components/MedicalReviewer.astro';
-import { medicalReviewJsonLd, faqPageJsonLd } from '../lib/seo';
+import { faqPageJsonLd } from '../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/questions-to-ask";
 const title = "200 Smart Questions to Ask About Skin Cancer | Beating Skin Cancer";
 const description = "Explore physician-created questions to ask your doctor about skin cancer diagnosis, treatment, and prevention, so you can prepare and advocate for yourself.";
-const lastReviewed = "2026-08-22";
 
 // Per-section review dates. A section gets a date + <MedicalReviewer> byline + FAQ
 // schema only once a board dermatologist has reviewed its on-page answers.
@@ -226,7 +225,6 @@ const bccDiagnosedFaq = [
 ];
 
 const jsonLd = [
-  medicalReviewJsonLd(canonical, lastReviewed),
   faqPageJsonLd(`${canonical}#melanoma-diagnosed`, melanomaDiagnosedFaq),
   faqPageJsonLd(`${canonical}#bcc-diagnosed`, bccDiagnosedFaq),
 ];
@@ -244,7 +242,6 @@ const jsonLd = [
           <p class="text-xl text-white/90 max-w-3xl mx-auto">
             A physician-created library of questions to help you understand, prepare, and advocate for yourself at every stage
           </p>
-          <MedicalReviewer date={lastReviewed} class="justify-center" />
         </div>
       </section>
 
