@@ -1,0 +1,387 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node";
+const lastReviewed = "2026-08-31";
+const title = "When SCC Spreads to the Lymph Nodes | Beating Skin Cancer";
+const description = "Cutaneous SCC spreads to lymph nodes in only a few percent of cases. Learn the warning signs, how nodes are staged, and when a sentinel node biopsy is used.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "When Does SCC Spread to Lymph Nodes, and What Is a Sentinel Node Biopsy?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Nodal Metastasis and Sentinel Node Biopsy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How likely is my squamous cell carcinoma to spread to lymph nodes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most cutaneous SCCs the risk is low — only a few percent overall. It rises with specific features: a tumor 2 cm or larger, invasion below the fat, poorly differentiated cells, perineural invasion, a location on the ear or lip, recurrence after treatment, or a weakened immune system. Tumors with two or more of these high-risk factors (Brigham and Women's Hospital stage T2b) can carry a nodal spread risk of roughly 20 to 30 percent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a sentinel lymph node biopsy standard for squamous cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Unlike melanoma, sentinel lymph node biopsy is not a routine part of cutaneous SCC care and has not been shown to lengthen survival. It is sometimes offered for very high-risk tumors when the lymph nodes feel normal on exam, to gather staging information, ideally within a clinical study. Whether to do it is a shared decision with your surgical team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does extranodal extension mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It means cancer inside a lymph node has grown through the node's outer capsule into the surrounding tissue. It signals more aggressive disease and a higher chance of recurrence. In the AJCC staging system, clinically obvious extranodal extension raises the node stage to N3, and it usually means radiation is added after surgery, sometimes with systemic therapy."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            When Does SCC Spread to Lymph Nodes, and What Is a Sentinel Node Biopsy?
+          </h1>
+          <p class="text-xl text-white/80">Regional (nodal) metastasis, node staging, and when a sentinel node biopsy is offered</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Cutaneous squamous cell carcinoma (SCC) is the second most common skin cancer, and the great majority are cured with a single procedure. Only a small fraction ever spread beyond the skin. When SCC does spread, its first stop is almost always the "regional" (nearby, draining) lymph nodes rather than distant organs.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The overall risk of nodal spread across all cutaneous SCCs is only a few percent. But that average hides a wide range: tumors with high-risk features, and SCCs in people whose immune system is suppressed, carry a substantially higher risk. Knowing which category a tumor falls into shapes how closely the lymph nodes are watched and whether any test of the nodes is offered.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains how often cutaneous SCC spreads to nodes, which nodal basins drain which parts of the body, how a suspicious node is evaluated, what a sentinel lymph node biopsy is and why it is debated in SCC, and how node involvement is staged and treated. For the features that raise metastatic risk in the first place, see <a href="/squamous-cell-carcinoma/recurrence-and-metastasis-risk" class="text-teal hover:text-teal/80 underline">recurrence and metastasis risk</a> and <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">what makes a squamous cell carcinoma "high-risk"</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Often Does Cutaneous SCC Spread?</h2>
+          <p class="text-slate/80 mb-4">
+            Across unselected cutaneous SCCs, cohort studies put the rate of nodal metastasis at roughly 2% to 5%, and death from the disease at around 1.5% to 2%. The risk concentrates in tumors with recognized high-risk features. In one of the largest outcome studies — 985 patients with 1,832 tumors — the factors independently linked to nodal spread were:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Tumor diameter of 2 cm or more</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Poorly differentiated (high-grade) tumor cells</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Invasion beyond the fat, into muscle, cartilage, or bone</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Perineural invasion (growth along nerves)</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mb-4">
+            Tumors carrying two or more of these features — Brigham and Women's Hospital (BWH) stage T2b — have been reported to metastasize to nodes in roughly 20% to 30% of cases, and BWH T3 tumors more often still. People on long-term immunosuppression (solid-organ transplant recipients, and those with chronic lymphocytic leukemia or lymphoma) develop more SCCs and more aggressive ones, with higher rates of nodal spread.
+          </p>
+          <p class="text-slate/80">
+            See <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">staging and grading</a> for how these features are combined into a stage.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:git-branch" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Which Lymph Nodes Drain Which Areas</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Lymph fluid flows from the skin toward a predictable set of nodes, so doctors examine the basin that drains the site of the primary tumor:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Face, scalp, ear, and lip:</strong> the parotid nodes (in front of and below the ear) and the nodes of the neck. Head and neck skin is the single most common site for SCC that spreads to nodes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Hand and arm:</strong> the axilla (armpit); occasionally a node at the elbow first.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Leg, foot, genital and perineal skin:</strong> the groin (inguinal) nodes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Trunk:</strong> the nearest axilla or groin, depending on where on the trunk the tumor sits.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Signs of a Nodal Metastasis</h2>
+              <p class="text-slate/80 mb-4">
+                A node containing cancer usually shows up as a lump you or your doctor can feel. Watch for, and promptly report:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A new lump in front of or below the ear, in the neck, the armpit, or the groin — often firm and painless</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A lump that is enlarging over weeks, feels hard, or seems fixed to deeper tissue</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>New swelling of a limb, or numbness or facial weakness if a node presses on a nerve</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Most nodal metastases appear within about two years of the original SCC, which is why follow-up visits after a high-risk tumor include a careful exam of the draining basin.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How a Suspicious Node Is Evaluated</h2>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Physical exam</strong> of the whole draining basin.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Ultrasound</strong> — the first-line imaging test for neck and other superficial nodes. It shows size and shape and guides a needle for sampling.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Fine-needle aspiration (FNA)</strong> or a core-needle biopsy to confirm whether a node contains cancer.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>CT with contrast</strong> of the neck and chest to map the nodes and look for deeper or more distant disease.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>PET/CT</strong> in selected situations — several involved nodes, or a suspicion of spread beyond the regional basin.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The results are pulled together by the care team. See <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">how advanced SCC is evaluated before treatment</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What Is a Sentinel Lymph Node Biopsy?</h2>
+          <p class="text-slate/80 mb-4">
+            The sentinel node is the first node that a given patch of skin drains into — the node a tumor would reach first if it spread. In a sentinel lymph node biopsy (SLNB), a surgeon injects a small amount of radioactive tracer (and sometimes a blue dye) near the primary tumor site, identifies the one or few nodes that take up the tracer, removes them, and has a pathologist examine them for microscopic cancer.
+          </p>
+          <p class="text-slate/80 mb-4">
+            SLNB is a routine part of care for melanoma and Merkel cell carcinoma. <strong>In cutaneous SCC it is not standard of care.</strong> It is offered selectively, and mainly for research and staging purposes, when:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The tumor is high-risk — typically BWH stage T2b to T3 (or AJCC 8th edition T3) — and often thick or deeply invasive, and</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The lymph nodes feel normal on examination and look normal on imaging.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mb-4">
+            In pooled series of high-risk cutaneous SCC, a sentinel node contained cancer in roughly 10% to 20% of cases, which upstages those patients and can prompt earlier treatment of the basin. However, several caveats keep SLNB from being standard: there is no randomized evidence that it improves survival; many high-risk SCCs sit on the head and neck, where lymphatic mapping is technically difficult and false-negative results occur; and the 2018 AAD guideline concluded there was insufficient evidence to recommend it routinely, while noting it can be considered for very high-risk tumors, ideally in a study setting.
+          </p>
+          <p class="text-slate/80">
+            Whether SLNB makes sense in a given case is a shared decision that weighs the extra surgery against the staging information it provides.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">If Nodes Are Involved: Treatment</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Lymph node dissection</strong> — surgical removal of the nodal basin (for example a neck dissection, often with removal of the parotid gland for facial tumors, or an axillary or inguinal dissection).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Adjuvant radiation</strong> to the basin, especially when multiple nodes are involved, a node is large, or there is <strong>extranodal extension (ENE)</strong> — cancer breaking through the node's capsule into surrounding tissue. ENE is a strong adverse sign and is now built into AJCC 8th edition node staging.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>For a positive sentinel node</strong> specifically, the options are completion lymph node dissection or radiation to the basin. Neither has been proven better than the other, so the choice is individualized.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Systemic therapy</strong> — a PD-1 immunotherapy drug (cemiplimab or pembrolizumab) — when disease is unresectable or has spread widely, and increasingly studied before or after surgery in trials. See <a href="/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">when surgery and radiation are no longer enough</a> and <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced SCC</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">AJCC 8th Edition Node Staging, in Brief</h2>
+          <p class="text-slate/80 mb-4">
+            For head and neck cutaneous SCC, node involvement is graded roughly as follows (your report may add "(+)" or "(&minus;)" for extranodal extension):
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>N1:</strong> one node on the same side as the tumor, 3 cm or smaller, without extranodal extension.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>N2:</strong> one node larger than 3 cm but not larger than 6 cm; or more than one node on the same side, none larger than 6 cm; or nodes on both sides or the opposite side, none larger than 6 cm — all without extranodal extension.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>N3:</strong> a node larger than 6 cm, or any node with clinically obvious extranodal extension.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            A higher N stage and the presence of extranodal extension both worsen the outlook and generally mean combined treatment — surgery plus radiation, sometimes with systemic therapy. Cutaneous SCC on the trunk and limbs is staged with a simpler node count rather than this system.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Based on my tumor's features and stage, what is my estimated risk of spread to lymph nodes?</li>
+                <li>Which lymph node basin drains my tumor, and how will it be checked and followed?</li>
+                <li>Do you recommend a sentinel lymph node biopsy in my case? What are the pros and cons for me?</li>
+                <li>If a node is involved, would you recommend surgery, radiation, or both — and would systemic therapy be added?</li>
+                <li>Was extranodal extension present, and how does that change my treatment?</li>
+                <li>How often will I have exams and imaging, and for how long?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Most cutaneous squamous cell carcinomas never spread. When SCC does travel, it usually goes first to the lymph nodes that drain the area of skin where it started, and the risk is concentrated in tumors with high-risk features and in people who are immunosuppressed.
+          </p>
+          <p class="text-slate/80">
+            A new, firm lump near a treated skin cancer is the finding to act on. Sentinel lymph node biopsy can add staging information for the highest-risk tumors but is not a routine part of SCC care and has not been shown to prolong life. When nodes are involved, treatment combines surgery, radiation, and — for advanced disease — systemic medication, coordinated by a multidisciplinary team.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Karia PS, Carter JB, Han J, Qureshi AA. Factors predictive of recurrence and death from cutaneous squamous cell carcinoma: a 10-year, single-institution cohort study. <em>JAMA Dermatol.</em> 2013;149(5):541-547. <a href="https://pubmed.ncbi.nlm.nih.gov/23677079/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Jambusaria-Pahlajani A, Kanetsky PA, Karia PS, et al. Evaluation of AJCC tumor staging for cutaneous squamous cell carcinoma and a proposed alternative tumor staging system. <em>JAMA Dermatol.</em> 2013;149(4):402-410. <a href="https://pubmed.ncbi.nlm.nih.gov/23325457/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Navarrete-Dechent C, Veness MJ, Droppelmann N, Uribe P. High-risk cutaneous squamous cell carcinoma and the emerging role of sentinel lymph node biopsy: a literature review. <em>J Am Acad Dermatol.</em> 2015;73(1):127-137. <a href="https://pubmed.ncbi.nlm.nih.gov/26089049/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> &mdash; Squamous Cell Carcinoma
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/scc/treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> &mdash; Squamous Cell Carcinoma: From Symptoms to Treatments
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
+</content>

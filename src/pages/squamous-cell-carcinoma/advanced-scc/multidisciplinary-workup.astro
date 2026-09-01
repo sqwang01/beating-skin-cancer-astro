@@ -1,0 +1,392 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup";
+const lastReviewed = "2026-08-31";
+const title = "Advanced SCC Workup Before Treatment | Beating Skin Cancer";
+const description = "How advanced squamous cell carcinoma is evaluated before treatment: pathology re-review, CT, MRI and PET-CT imaging, staging, and the multidisciplinary team.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Is Advanced Squamous Cell Carcinoma Evaluated Before Treatment?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "How Advanced SCC Is Evaluated Before Treatment", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does advanced squamous cell carcinoma always need a scan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Most cutaneous squamous cell carcinomas never need imaging. A scan such as CT, MRI, or PET-CT is ordered when the tumor is large, thick, or fixed to deeper tissue, has recurred after treatment, sits near the eye, ear, or parotid gland, when there are symptoms of nerve involvement like numbness or weakness, or when a lymph node feels abnormal. MRI is preferred when perineural spread is suspected; CT shows bone and lymph nodes well; PET-CT is used mainly to look for spread."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why would my biopsy slides be looked at a second time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For advanced or high-risk squamous cell carcinoma, a dermatopathologist at the treating center often re-reviews the original slides. The re-read confirms the diagnosis and makes sure the report specifies the features that drive treatment: how well the tumor is differentiated, how deep or thick it is, whether it invades nerves (perineural invasion) or lymphatic and blood vessels (lymphovascular invasion), the margin status, and any aggressive subtype such as desmoplastic or acantholytic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a tumor board?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A tumor board is a scheduled meeting where a Mohs or dermatologic surgeon, a head and neck surgeon, radiation and medical oncologists, a pathologist, and a radiologist review a complex case together and agree on a recommended plan. Your case can be discussed without you being present; you then hear the combined recommendation from your main doctor, along with any clinical trials that fit."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Is Advanced Squamous Cell Carcinoma Evaluated Before Treatment?
+          </h1>
+          <p class="text-xl text-white/80">Imaging, pathology review, and the multidisciplinary care team</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most cutaneous squamous cell carcinomas (SCCs) are diagnosed with a single skin biopsy and treated with one office procedure. No scans, no specialists, no waiting. When an SCC is <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="text-teal hover:text-teal/80 underline">advanced</a> — large or deep, growing along nerves, recurring after treatment, or spreading to lymph nodes — the evaluation becomes more involved.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The point of this workup is to answer a few questions before anyone picks a treatment: exactly how far has the tumor grown, is there any sign it has traveled, how aggressive does it look under the microscope, and which combination of specialists should be involved. The answers determine whether the plan is surgery, surgery plus radiation, radiation alone, systemic medication, or a clinical trial.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide walks through each part of that evaluation — pathology re-review, imaging, staging, and the tumor board — so you know what to expect and why each step matters.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:search" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why Advanced SCC Needs a Fuller Evaluation</h2>
+              <p class="text-slate/80 mb-4">
+                A small, new SCC on the forearm can be measured with a ruler and seen in its entirety by the naked eye. An advanced tumor often cannot. It may extend under normal-looking skin, track along a nerve toward the skull base, invade the parotid gland, or seed a lymph node in the neck. How wide a margin to take, whether radiation is needed, whether to start medication first — all of it depends on knowing the true extent of the disease.
+              </p>
+              <p class="text-slate/80">
+                A thorough workup also prevents surprises. Discovering mid-surgery that a tumor reaches the eye socket or wraps a major nerve is far worse than knowing beforehand and planning for it. The steps below are designed to map the tumor completely, check whether it has spread, and bring the right specialists in from the start.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:microscope" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Pathology Re-Review: Reading the Slides Again</h2>
+          </div>
+          <p class="text-slate/80 mb-6">
+            The tissue diagnosis drives much of what follows, so for advanced disease a dermatopathologist at the treating center usually re-reads the original biopsy slides. If the first sample was shallow or fragmented, a deeper or repeat biopsy may be done so the full growth pattern can be seen. A complete report for a high-risk SCC should specify:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Differentiation (grade).</strong> Well, moderately, or poorly differentiated. Poorly differentiated tumors behave more aggressively and are more likely to recur or spread.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Depth and thickness.</strong> Tumor thickness in millimeters and the deepest structure reached — fat, muscle, cartilage, or bone. Invasion beyond the fat or beyond about 6 mm is a high-risk feature.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Perineural invasion (PNI).</strong> Cancer cells tracking along nerves. Large-caliber PNI (nerves 0.1 mm or wider) carries the most weight and often prompts an MRI and consideration of radiation. See <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">what perineural invasion means for your SCC</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Lymphovascular invasion (LVI).</strong> Tumor inside lymphatic channels or blood vessels, which raises the risk of nodal spread.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Margin status.</strong> If the SCC was already partly removed, whether tumor reaches the edge of what was taken.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Aggressive subtype.</strong> Desmoplastic, acantholytic (adenoid), spindle-cell, and adenosquamous patterns have a higher risk of recurrence and spread and are flagged specifically.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-6">
+            These are the same features that push a tumor into the "high-risk" category on the staging systems described below — see <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">what makes an SCC "high-risk"</a>.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:scan" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Imaging: Which Scan, and When</h2>
+              <p class="text-slate/80 mb-4">
+                Imaging is <em>not</em> routine for SCC. It is added when the exam or pathology raises specific concerns — a tumor whose edges cannot be judged by looking and feeling, suspected involvement of bone or deep tissue, symptoms of nerve involvement, recurrent disease, a tumor near the eye, ear, or parotid, or an abnormal lymph node. In studies of high-stage tumors, cross-sectional imaging changed management in roughly a quarter to a third of cases.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>CT with contrast</strong> is the usual first study. It shows bone erosion, enlarged lymph nodes, and deep soft-tissue extent, and it is fast and widely available. It is often used for tumors over the jaw, orbital rim, or nasal bones and to survey the draining node basins.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>MRI</strong> shows soft tissue and nerves in the most detail and is preferred when perineural spread is suspected or needs to be traced toward the skull base, or when the tumor is near the orbit or brain.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>PET-CT</strong> is used mainly when distant spread is suspected or when a node is positive, to look for disease elsewhere in the body before committing to aggressive local treatment.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Nodal ultrasound</strong> is a low-cost way to examine the lymph nodes that drain the tumor, and it can guide a needle biopsy of any node that looks abnormal.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Scans have limits: very small nerve involvement or thin sheets of tumor can be invisible on imaging, so a normal scan does not always mean the tumor is small. Doctors combine imaging with the exam and pathology rather than relying on any one piece. For how nodes are assessed and when a sentinel node biopsy is offered, see <a href="/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node" class="text-teal hover:text-teal/80 underline">when SCC spreads to lymph nodes</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:layers" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Staging: BWH and AJCC8</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Once the pathology and imaging are in, the tumor is staged. Two systems are used for cutaneous SCC of the head and neck, and many centers report both:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">AJCC 8th edition (AJCC8)</h3>
+              <p class="text-slate/80">
+                The American Joint Committee on Cancer system, revised in 2017, assigns a T category from tumor size and features such as deep invasion, bone involvement, and perineural invasion, plus N and M categories for nodes and distant spread. It is the system most cancer registries and trials use.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Brigham and Women's Hospital (BWH)</h3>
+              <p class="text-slate/80">
+                The BWH system counts four risk factors — tumor 2 cm or larger, poor differentiation, perineural invasion of a nerve 0.1 mm or wider, and invasion beyond the fat — and sorts tumors into T1, T2a, T2b, or T3. In published comparisons it has concentrated the poor outcomes into a smaller, better-defined high-risk group (T2b/T3) than AJCC8, which helps target imaging and closer follow-up.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Staging is not just paperwork: a T2b or T3 tumor is the kind that a team watches closely, images, and often treats with surgery plus radiation. More detail is on the SCC hub's <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">staging and grading</a> page.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:users" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">The Multidisciplinary Care Team</h2>
+          </div>
+          <p class="text-slate/80 mb-6">
+            Advanced SCC is managed by a group rather than a single doctor. You may not meet everyone on this list, but each has a defined role:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Mohs / dermatologic surgeon</h3>
+              <p class="text-slate/80">Often makes the diagnosis and coordinates the workup, and performs margin-controlled surgery when the tumor is still resectable.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Head and neck surgeon</h3>
+              <p class="text-slate/80">Handles large resections involving cartilage, bone, the parotid gland, or the orbit, and performs lymph node surgery (neck dissection or sentinel node biopsy) when needed.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Radiation oncologist</h3>
+              <p class="text-slate/80">Delivers radiation as a primary treatment for inoperable tumors or after surgery when the recurrence risk is high — for example with perineural invasion, positive margins, or nodal disease.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Medical oncologist</h3>
+              <p class="text-slate/80">Prescribes and monitors systemic therapy — a <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">PD-1 inhibitor such as cemiplimab or pembrolizumab</a> — when surgery and radiation are not enough, and manages side effects.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Dermatopathologist and radiologist</h3>
+              <p class="text-slate/80">Interpret the tissue and the scans, and re-review outside material so everyone is working from the same information.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Reconstructive (plastic) surgeon</h3>
+              <p class="text-slate/80">Plans how a large defect will be closed or rebuilt, which sometimes shapes the surgical approach itself.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Transplant physician or immunologist</h3>
+              <p class="text-slate/80">Involved when someone takes anti-rejection or other immune-suppressing drugs, because those medications drive more aggressive SCC and complicate the decision to use immunotherapy. See <a href="/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients" class="text-teal hover:text-teal/80 underline">advanced SCC in transplant recipients</a>.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Oncology nurses, social workers, and dietitians</h3>
+              <p class="text-slate/80">Support side-effect management, transportation and cost concerns, nutrition before radiation to the mouth or throat, and dental care.</p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Many centers bring these specialists together at a <strong>tumor board</strong> — a meeting where a complex case is presented and the group agrees on a recommendation. Your case can be reviewed there without you attending; you then hear the combined plan from your primary doctor.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:clipboard-list" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Fitness, Other Conditions, and Trials</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            The workup is also where the team looks at the whole person, not just the tumor:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Performance status</strong> — a simple rating of how active and independent you are — helps predict how well you would tolerate surgery, radiation, or immunotherapy.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Other medical conditions</strong> such as heart or lung disease, diabetes, kidney function, and autoimmune disease are reviewed, because they affect anesthesia risk and whether a checkpoint inhibitor is safe.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunosuppression review.</strong> Organ transplant, long-term steroids, and blood cancers such as chronic lymphocytic leukemia all matter for both prognosis and treatment choice.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials</strong> are discussed up front, not saved for last. Neoadjuvant immunotherapy, new drug combinations, and trials for people who cannot take standard immunotherapy may all be options — see <a href="/squamous-cell-carcinoma/advanced-scc/clinical-trials-for-advanced-scc" class="text-teal hover:text-teal/80 underline">how to find a clinical trial for advanced SCC</a>.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Bringing these up early means fewer detours later, and it keeps every path — including <a href="/squamous-cell-carcinoma/advanced-scc/neoadjuvant-immunotherapy-before-surgery" class="text-teal hover:text-teal/80 underline">shrinking the tumor before surgery</a> — on the table before a plan is locked in.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Has a dermatopathologist re-reviewed my slides, and does the report list differentiation, depth, perineural and lymphovascular invasion, margins, and subtype?</li>
+                <li>What is my stage under the BWH and AJCC8 systems, and what does that predict?</li>
+                <li>Do I need a scan — and should it be CT, MRI, PET-CT, or ultrasound?</li>
+                <li>Is there any sign the cancer has reached a nerve or a lymph node?</li>
+                <li>Which specialists will be involved, and will my case go to a tumor board?</li>
+                <li>Are there clinical trials I should consider now, before we start treatment?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            The evaluation for advanced SCC is more thorough than for an ordinary skin cancer because the anatomy and the stakes are more complex. A close re-read of the pathology, targeted imaging when it is warranted, formal staging, and input from several specialties together produce a treatment plan built on a complete picture of the tumor.
+          </p>
+          <p class="text-slate/80">
+            If any part of your workup feels rushed or unclear, it is reasonable to ask for the tumor to be fully mapped and staged before a treatment decision is made — and to <a href="/squamous-cell-carcinoma/advanced-scc/questions-to-ask-your-care-team" class="text-teal hover:text-teal/80 underline">bring a written list of questions</a> to each visit.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines Insights: Squamous Cell Skin Cancer, Version 1.2022. <em>J Natl Compr Canc Netw.</em> 2021;19(12):1382-1394. <a href="https://pubmed.ncbi.nlm.nih.gov/34902824/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Stratigos AJ, Garbe C, Dessinioti C, et al. European interdisciplinary guideline on invasive squamous cell carcinoma of the skin: Part 1. epidemiology, diagnostics and prevention. <em>Eur J Cancer.</em> 2020;128:60-82. <a href="https://pubmed.ncbi.nlm.nih.gov/32113941/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Karia PS, Jambusaria-Pahlajani A, Harrington DP, Murphy GF, Qureshi AA, Schmults CD. Evaluation of American Joint Committee on Cancer, International Union Against Cancer, and Brigham and Women's Hospital tumor staging for cutaneous squamous cell carcinoma. <em>J Clin Oncol.</em> 2014;32(4):327-334. <a href="https://pubmed.ncbi.nlm.nih.gov/24366933/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ruiz ES, Karia PS, Besaw R, Schmults CD. Performance of the American Joint Committee on Cancer Staging Manual, 8th Edition vs the Brigham and Women's Hospital Tumor Classification System for Cutaneous Squamous Cell Carcinoma. <em>JAMA Dermatol.</em> 2019;155(7):819-825. <a href="https://pubmed.ncbi.nlm.nih.gov/30969315/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ruiz ES, Karia PS, Morgan FC, Schmults CD. The positive impact of radiologic imaging on high-stage cutaneous squamous cell carcinoma management. <em>J Am Acad Dermatol.</em> 2017;76(2):217-225. <a href="https://pubmed.ncbi.nlm.nih.gov/27707594/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma/advanced-squamous-cell-carcinoma-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> &mdash; Advanced Squamous Cell Carcinoma: Treatment
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/advanced-scc/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> &mdash; Advanced Squamous Cell Carcinoma Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about how advanced squamous cell carcinoma is evaluated</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

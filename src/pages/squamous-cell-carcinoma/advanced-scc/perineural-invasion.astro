@@ -1,0 +1,348 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/perineural-invasion";
+const lastReviewed = "2026-08-31";
+const title = "What Perineural Invasion Means for SCC | Beating Skin Cancer";
+const description = "Perineural invasion means an SCC is growing along nerves. Learn how incidental and clinical PNI differ, how they change staging, and when radiation is added.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Does Perineural Invasion Mean for My SCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Perineural Invasion", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does perineural invasion mean my SCC has spread?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Perineural invasion means cancer cells are tracking along a nerve near the original tumor — it is a local growth pattern, not the same as spread to lymph nodes or distant organs. It does raise the risk of spread over time, which is why it prompts closer staging and follow-up. Most perineural invasion is incidental, found only under the microscope in tiny nerves, and when fully removed it has a far better outlook than clinical large-nerve involvement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I need radiation if my pathology report mentions perineural invasion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. A single focus of perineural invasion in a tiny nerve that was completely removed, with no other high-risk features, often needs only close monitoring. Adjuvant radiation is usually recommended when the invasion is extensive, involves a named or large-caliber nerve, or the surgical margins are close or positive. This decision is best made by a multidisciplinary team."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my doctor order an MRI of the head?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MRI with contrast is the best way to see whether cancer is tracking along a larger nerve toward the skull base. It looks for nerve thickening, abnormal enhancement, and enlargement of the bony channels the nerves pass through. The result helps the team decide how far surgery and radiation need to reach."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Does Perineural Invasion Mean for My SCC?
+          </h1>
+          <p class="text-xl text-white/80">When an SCC grows along nerves, and how that changes treatment</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Nerves run through the skin the way wiring runs through a wall — in bundles, each wrapped in a thin sheath. "Perineural invasion" (PNI) means a pathologist or a radiologist has found squamous cell carcinoma (SCC) cells traveling along or around one of those nerves. It is one of the features that can move an otherwise ordinary skin cancer into the "high-risk" category.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Seeing "perineural invasion" on a pathology report is understandably alarming, but the term covers a wide range. In most cases it is a microscopic finding in a tiny nerve, picked up only because the tissue was examined carefully, and it carries a relatively small added risk. In a minority of cases it involves a larger, named nerve and is causing symptoms — a very different situation that changes the whole treatment plan.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains what PNI is, how doctors tell the low-risk form from the high-risk form, why an MRI is sometimes ordered, how PNI affects <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">staging and grading</a>, and when radiation or systemic medication is added. For the broader picture of what pushes an SCC into high-risk territory, see <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">what makes a squamous cell carcinoma "high-risk"</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Two Very Different Situations: Incidental vs. Clinical PNI</h2>
+          <p class="text-slate/80 mb-6">
+            The single most important question about perineural invasion is which of these two forms you have. They are grouped under the same name but behave very differently.
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Incidental (microscopic) PNI</h3>
+              <p class="text-slate/80">
+                Found only when the pathologist examines the biopsy or excision under the microscope. There are no symptoms and nothing shows up on a scan. It usually involves small, unnamed nerves less than 0.1 mm across. When this is the only high-risk feature and the tumor has been fully removed, the added risk of recurrence or spread is modest.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Clinical (large-nerve) PNI</h3>
+              <p class="text-slate/80">
+                Nerve involvement large enough to cause symptoms — numbness, pain, weakness — or to be visible on MRI. It often involves a larger, named nerve. In a pooled analysis, patients with clinical PNI had roughly double the local recurrence rate of those with incidental PNI (about 37% vs. 17%) and a markedly higher rate of death from the disease (about 27% vs. 6%).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Nerve Caliber and Named Nerves</h2>
+          <p class="text-slate/80 mb-4">
+            Pathologists and treatment guidelines pay attention to two details beyond the simple presence of PNI:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Nerve caliber.</strong> Invasion of nerves that measure 0.1 mm or more in diameter ("large-caliber" PNI) is treated as a high-risk finding. In an 11-year cohort study, large-nerve invasion was linked to higher rates of nodal metastasis and death from disease — though it usually traveled together with other risk factors such as tumor size of 2 cm or more, invasion beyond the fat, or involvement of several nerves.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Named-nerve involvement.</strong> On the face, the nerves most often affected are branches of the trigeminal nerve (which carries sensation from the forehead, cheek, and jaw) and the facial nerve (which moves the muscles of expression). Cancer can use these nerves as a highway back toward the skull base, where they enter the skull through small bony openings.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            A report that says "focal perineural invasion of a small dermal nerve" describes a very different problem from one that says "extensive perineural invasion of a named branch of the trigeminal nerve." Ask your doctor to translate exactly what yours says.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Symptoms to Report</h2>
+              <p class="text-slate/80 mb-4">
+                Nerve involvement can announce itself before any lump is visible. Tell your dermatologist, surgeon, or oncologist promptly if you notice, near a current or previously treated skin cancer:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Numbness, or a persistent pins-and-needles tingling</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Burning pain, or a deep ache under a scar that had healed</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Formication — the sensation of insects crawling on or under the skin</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Muscle weakness or a facial droop (drooping brow, eyelid, or corner of the mouth)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Double vision (diplopia), or trouble moving an eye</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                These symptoms do not always mean cancer — they have many causes — but near a known SCC they deserve prompt evaluation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Imaging: MRI of the Skull Base</h2>
+          <p class="text-slate/80 mb-4">
+            When a named or large nerve is involved, or when symptoms suggest nerve involvement, the key test is an <strong>MRI with contrast</strong> of the face and skull base. It can show:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Thickening or abnormal brightening (enhancement) of a nerve</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Tumor tracking along a nerve toward the skull base</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Widening of the bony foramina where nerves pass into the skull</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mb-4">
+            A CT scan can add detail about the bony openings, and a PET/CT is sometimes used to check for spread elsewhere. Importantly, a normal MRI does not rule out microscopic (incidental) PNI — it is looking for larger-volume disease. But a positive MRI changes the plan significantly, usually widening the field that surgery and radiation need to cover.
+          </p>
+          <p class="text-slate/80">
+            Imaging and pathology are reviewed together by the care team. See <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">how advanced SCC is evaluated before treatment</a> for what that review involves.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">How PNI Changes Staging</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Two staging systems are commonly used for high-risk cutaneous SCC of the head and neck, and both treat perineural invasion as a warning sign:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>AJCC 8th edition.</strong> Perineural invasion is listed as a high-risk feature. Involvement of a nerve lying deeper than the dermis, or a nerve measuring 0.1 mm or more in caliber, contributes to a T3 classification.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Brigham and Women's Hospital (BWH) system.</strong> Invasion of a large-caliber (≥0.1 mm) or named nerve is one of four high-risk factors. Two or more factors make a tumor BWH stage T2b; invasion of bone or a named nerve beneath the skull base makes it T3. In the studies that developed and validated this system, T2b and T3 tumors accounted for the large majority of nodal metastases and deaths.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The practical effect is that PNI often bumps a tumor into a higher-risk category — one that triggers imaging, closer follow-up, and a discussion about radiation. Read more on <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">staging and grading</a> and on <a href="/squamous-cell-carcinoma/recurrence-and-metastasis-risk" class="text-teal hover:text-teal/80 underline">recurrence and metastasis risk</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Treatment: Surgery First, Often Followed by Radiation</h2>
+          <p class="text-slate/80 mb-4">
+            Complete surgical removal remains the foundation. That usually means Mohs surgery or wide local excision with careful margin assessment; when a named nerve is involved, the surgeon may follow and sample that nerve toward its origin to find a clear endpoint.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Adjuvant radiation therapy</strong> to the tumor bed — sometimes extended along the nerve pathway toward the skull base — is commonly recommended when PNI is extensive, involves a large or named nerve, or the margins are close or positive. A single focus of small-nerve PNI that has been completely excised, with no other high-risk features, may be watched rather than irradiated.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Systemic therapy</strong> is considered when surgery and radiation cannot clear the disease — for example, clinical PNI tracking into the skull base, or a tumor deemed unresectable. The main option is a PD-1 immunotherapy drug (cemiplimab or pembrolizumab). See <a href="/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">when surgery and radiation are no longer enough</a> and <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced SCC</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials</strong> — including studies of immunotherapy given before surgery — may be an option at any stage.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my perineural invasion incidental (microscopic) or clinical, and what size nerve is involved?</li>
+                <li>Was a named nerve involved, and were my surgical margins clear of nerve?</li>
+                <li>Do I need an MRI, and what did it show about the nerve and the skull base?</li>
+                <li>Does the PNI change my stage under the AJCC or BWH systems?</li>
+                <li>Do you recommend radiation after surgery? Why or why not, and what area would it cover?</li>
+                <li>What symptoms should prompt me to call, and how often will I be seen for follow-up?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Perineural invasion is a spectrum, not a single diagnosis. Most of the time it is a microscopic finding in a small nerve that, once fully removed, adds only a modest amount of risk. Less often it involves a larger, named nerve and produces symptoms — and that form needs aggressive, coordinated treatment.
+          </p>
+          <p class="text-slate/80">
+            The right response depends on the details: the size of the nerve, whether it was named, what the margins and imaging showed, and what other high-risk features are present. Those questions are best answered by a team that treats these tumors regularly.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Carter JB, Johnson MM, Chua TL, Karia PS, Schmults CD. Outcomes of primary cutaneous squamous cell carcinoma with perineural invasion: an 11-year cohort study. <em>JAMA Dermatol.</em> 2013;149(1):35-41. <a href="https://pubmed.ncbi.nlm.nih.gov/23324754/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Karia PS, Morgan FC, Ruiz ES, Schmults CD. Clinical and incidental perineural invasion of cutaneous squamous cell carcinoma: a systematic review and pooled analysis of outcomes data. <em>JAMA Dermatol.</em> 2017;153(8):781-788. <a href="https://pubmed.ncbi.nlm.nih.gov/28678985/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Jambusaria-Pahlajani A, Kanetsky PA, Karia PS, et al. Evaluation of AJCC tumor staging for cutaneous squamous cell carcinoma and a proposed alternative tumor staging system. <em>JAMA Dermatol.</em> 2013;149(4):402-410. <a href="https://pubmed.ncbi.nlm.nih.gov/23325457/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ruiz ES, Karia PS, Besaw R, Schmults CD. Performance of the American Joint Committee on Cancer Staging Manual, 8th edition vs the Brigham and Women's Hospital tumor classification system for cutaneous squamous cell carcinoma. <em>JAMA Dermatol.</em> 2019;155(7):819-825. <a href="https://pubmed.ncbi.nlm.nih.gov/30969315/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/scc/treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> &mdash; Squamous Cell Carcinoma: From Symptoms to Treatments
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> &mdash; Squamous Cell Carcinoma
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
+</content>
+</invoke>

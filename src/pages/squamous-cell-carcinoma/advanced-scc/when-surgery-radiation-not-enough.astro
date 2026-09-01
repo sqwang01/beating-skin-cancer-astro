@@ -1,0 +1,352 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough";
+const lastReviewed = "2026-08-31";
+const title = "When SCC Is Past Surgery and Radiation | Beating Skin Cancer";
+const description = "What \"locally advanced\" and \"unresectable\" squamous cell carcinoma mean, why re-operating or re-irradiating can do more harm than good, and what comes next.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "When Are Surgery and Radiation No Longer Enough for Advanced SCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "When Surgery and Radiation Aren't Enough", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does \"unresectable\" mean surgery is truly impossible?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually not in a literal sense. \"Unresectable\" almost always means that removing the tumor with clear margins would cost more than it is worth — sacrificing an eye, the facial nerve, or a large part of the face — or that the surgery needed would carry unacceptable risk given the person's health. It is a judgment about benefit versus harm, and a multidisciplinary team, not one surgeon, should make it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can't I just have more radiation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Normal tissue has a lifetime radiation limit. Once an area has received a full course, giving more risks serious injury such as non-healing wounds, bone death, and nerve damage. Re-irradiation is sometimes possible with modern techniques, but the dose and the area that can be treated safely are limited, and it is generally reserved for situations with no better option."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "If surgery and radiation are off the table, what is the treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For locally advanced or metastatic cutaneous SCC that cannot be cured with surgery or radiation, the first-line treatment is usually a PD-1 immunotherapy drug — cemiplimab or pembrolizumab. Sometimes immunotherapy is given first to shrink the tumor enough that a smaller operation becomes possible (neoadjuvant therapy). When cure is not achievable, treatment can still be given to control the tumor and relieve symptoms."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            When Are Surgery and Radiation No Longer Enough?
+          </h1>
+          <p class="text-xl text-white/80">What "unresectable" and "locally advanced" mean in practice</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            For almost every cutaneous squamous cell carcinoma (SCC), surgery is straightforward and curative. Radiation is a reliable option when surgery is not a good fit, or an add-on after surgery when the recurrence risk is high. Together they resolve the large majority of cases.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            But a small number of SCCs reach a point where neither one is the right answer anymore. When that happens, you will hear words like "unresectable," "inoperable," or "locally advanced." These terms sound absolute, and they can be frightening. In practice they describe a careful weighing of what a treatment can achieve against what it would cost the patient.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains what those terms actually mean, how doctors reach that conclusion, and what treatment looks like on the other side of it. For the broader picture of what "advanced" covers, see <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="text-teal hover:text-teal/80 underline">what advanced squamous cell carcinoma means</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Surgery and Radiation Are the Default — and They Usually Work</h2>
+          <p class="text-slate/80 mb-4">
+            It helps to start with what "enough" normally looks like. Standard excision clears most low-risk SCCs with high cure rates, and Mohs micrographic surgery — used for high-risk tumors and sensitive locations — checks every margin under the microscope during the procedure and cures the large majority of previously untreated tumors. Radiation, delivered over several outpatient sessions, is a well-established alternative for people who cannot have surgery, and is often added after surgery when there is <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">perineural invasion</a>, a positive margin that cannot be re-excised, or nodal disease.
+          </p>
+          <p class="text-slate/80">
+            An SCC only becomes a problem for these tools when it has been allowed to grow for a long time, has come back repeatedly, or has invaded structures that cannot be removed or irradiated safely. For how the local treatments compare, see the SCC hub's <a href="/squamous-cell-carcinoma/treatment-options" class="text-teal hover:text-teal/80 underline">treatment options</a> page.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:scissors" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Makes an SCC "Unresectable"</h2>
+              <p class="text-slate/80 mb-4">
+                "Unresectable" or "inoperable" rarely means a surgeon physically cannot cut the tumor out. It means that doing so would cause harm out of proportion to the benefit. An SCC is generally considered unresectable when one or more of the following is true:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Removing it with a clear margin would sacrifice a critical structure</strong> — the eye and orbit, the facial nerve that controls movement of the face, the skull base, or a large functional part of the nose, lip, or ear.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>The tumor tracks along a major nerve toward the skull base</strong>, where the true extent cannot be reliably traced or reached with surgery.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>It has recurred after both prior surgery and prior radiation</strong>, so the usual next steps have already been used.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>It is extensive or multifocal</strong>, or fixed to bone or deep muscle over a wide area, so that clear margins are not realistically achievable.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>The patient is not medically fit</strong> for the anesthesia, the operation, and the reconstruction that a clear-margin resection would require.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What "Locally Advanced" Means in Practice</h2>
+          <p class="text-slate/80 mb-4">
+            "Locally advanced SCC" is the umbrella label for a tumor that has outgrown what surgery and radiation can safely offer but has not spread to distant organs. Guidelines do not set a single size cutoff; instead they describe a pattern:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A large or deeply invasive tumor — often on the head or neck — that keeps enlarging</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Invasion of bone, the skull base, the orbit, or a named nerve</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Multiple recurrences at the same site despite surgery, radiation, or both</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A location where further surgery or radiation would threaten vision, facial movement, eating, or speech</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The phrase that appears again and again in guidelines is that surgery or radiation is "not appropriate" or the tumor is "not curable" by local treatment — not that it is physically impossible, but that a reasonable team has concluded the harm outweighs the gain. That judgment is made after the full evaluation described in <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">how advanced SCC is evaluated before treatment</a>.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:radiation" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">When Radiation Comes Off the Table</h2>
+              <p class="text-slate/80 mb-4">
+                Radiation is often the fallback when surgery is ruled out, so it is worth understanding why it, too, sometimes cannot be used:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>The area has already been irradiated.</strong> Normal tissue has a lifetime dose limit; exceeding it risks non-healing wounds, bone death (osteoradionecrosis), and nerve injury. Re-irradiation is possible in selected cases but the safe dose and field are limited.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>The treatment field would be very large</strong>, exposing too much healthy tissue or a nearby radiation-sensitive structure such as the eye, brain, or spinal cord.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>The tumor has already progressed despite radiation</strong>, signaling it is unlikely to respond to more.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>The tumor is too bulky for radiation alone</strong> to achieve durable control, and surgery to debulk it first is not feasible.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Who Makes the Call</h2>
+          <p class="text-slate/80 mb-4">
+            No single doctor declares an SCC unresectable on their own. Guidelines recommend that these cases go to a multidisciplinary tumor board — typically a Mohs or dermatologic surgeon, a head and neck surgeon, a radiation oncologist, a medical oncologist, a pathologist, and a radiologist — who review the imaging and pathology together and agree on whether local treatment still has a role, and if so, in what order.
+          </p>
+          <p class="text-slate/80">
+            This is also the point at which the balance of morbidity is weighed openly: what function and appearance a clear-margin operation would cost, and whether a treatment that controls the tumor without that cost is the better choice.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">The Handoff to Systemic Therapy</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            When surgery and radiation are set aside, treatment shifts to medication that works throughout the body:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>PD-1 immunotherapy is first-line.</strong> Cemiplimab and pembrolizumab help the immune system attack the cancer and are the standard first systemic treatment for locally advanced or metastatic cutaneous SCC that cannot be cured with surgery or radiation. In trials, roughly 40–50% of tumors shrank, and many responses lasted well over a year. See <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced SCC</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Neoadjuvant therapy can convert a tumor to resectable.</strong> Giving immunotherapy first sometimes shrinks the tumor enough that a smaller, less destructive operation becomes possible after all — explored in <a href="/squamous-cell-carcinoma/advanced-scc/neoadjuvant-immunotherapy-before-surgery" class="text-teal hover:text-teal/80 underline">can immunotherapy shrink an SCC before surgery</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>EGFR inhibitors and chemotherapy</strong> (cetuximab, platinum-based drugs) are options mainly when immunotherapy is not appropriate — for example, in some transplant recipients where a checkpoint inhibitor carries a high risk of organ rejection. See <a href="/squamous-cell-carcinoma/advanced-scc/chemotherapy-and-egfr-targeted-therapy" class="text-teal hover:text-teal/80 underline">where chemotherapy and EGFR-targeted therapy fit</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials</strong> test newer drugs and combinations and can be an option at any point — see <a href="/squamous-cell-carcinoma/advanced-scc/clinical-trials-for-advanced-scc" class="text-teal hover:text-teal/80 underline">how to find a clinical trial for advanced SCC</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:hand-heart" class="text-slate flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">When the Goal Is Control, Not Cure</h2>
+              <p class="text-slate/80 mb-4">
+                Sometimes the team concludes that no treatment is likely to cure the cancer. That does not mean nothing is done. Treatment given with palliative intent aims to slow the tumor, shrink it, and relieve what it is causing — pain, bleeding, odor, a wound that will not close, or pressure on a nerve.
+              </p>
+              <p class="text-slate/80">
+                Immunotherapy, a limited course of radiation, or a smaller "clean-up" operation can all be used this way, alongside pain management and wound care. The aim shifts from removing every cancer cell to keeping you comfortable and functioning for as long as possible. The <a href="/squamous-cell-carcinoma/advanced-scc/living-with-advanced-scc" class="text-teal hover:text-teal/80 underline">outlook and support</a> page covers this in more depth.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Why specifically is surgery not an option — location, extent, prior operations, or my overall health?</li>
+                <li>Has radiation been ruled out, and if so, why — have I already had radiation to this area?</li>
+                <li>Could immunotherapy shrink this tumor enough to make surgery possible later?</li>
+                <li>Will my case be presented at a multidisciplinary tumor board?</li>
+                <li>Is the goal of treatment to cure the cancer, to control it, or to relieve symptoms?</li>
+                <li>If we start systemic therapy, how will we measure whether it is working?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            "Unresectable" and "locally advanced" are not statements that nothing can be done. They mean that cutting out or irradiating the tumor would take more from you than it gives back — and that the focus should move to treatments that can control the disease without that cost.
+          </p>
+          <p class="text-slate/80">
+            If you have been told your SCC has reached this point, it is reasonable to ask for a second opinion at a center that treats advanced skin cancer regularly, and to have your case reviewed by a full team before a systemic plan is set.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Stratigos AJ, Garbe C, Dessinioti C, et al. European interdisciplinary guideline on invasive squamous cell carcinoma of the skin: Part 2. Treatment. <em>Eur J Cancer.</em> 2020;128:83-102. <a href="https://pubmed.ncbi.nlm.nih.gov/32113942/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines Insights: Squamous Cell Skin Cancer, Version 1.2022. <em>J Natl Compr Canc Netw.</em> 2021;19(12):1382-1394. <a href="https://pubmed.ncbi.nlm.nih.gov/34902824/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Rischin D, Schmults CD, et al. PD-1 blockade with cemiplimab in advanced cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2018;379(4):341-351. <a href="https://pubmed.ncbi.nlm.nih.gov/29863979/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Gross ND, Miller DM, Khushalani NI, et al. Neoadjuvant cemiplimab for stage II to IV cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2022;387(17):1557-1568. <a href="https://pubmed.ncbi.nlm.nih.gov/36094839/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/advanced-scc/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> &mdash; Advanced Squamous Cell Carcinoma Treatment
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma/advanced-squamous-cell-carcinoma-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> &mdash; Advanced Squamous Cell Carcinoma: Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

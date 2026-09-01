@@ -1,0 +1,308 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc";
+const lastReviewed = "2026-08-31";
+const title = "Advanced Squamous Cell Carcinoma | Beating Skin Cancer";
+const description = "Advanced squamous cell carcinoma includes locally advanced and metastatic disease. Learn how it's diagnosed, when surgery isn't enough, and treatment options.";
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": canonical }
+  ],
+};
+
+const jsonLd = [breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Advanced Squamous Cell Carcinoma</h1>
+          <p class="text-xl text-white/80">When cutaneous SCC is locally advanced or has spread</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What Is Advanced Squamous Cell Carcinoma?</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Squamous cell carcinoma (SCC) is the second most common skin cancer, and the great majority are cured with a single procedure in a dermatologist's office. A small fraction behave differently — growing quickly and deeply, invading nerves, coming back after surgery or radiation, or spreading to lymph nodes and, less often, to distant organs. Doctors call these tumors "advanced," and they are managed with a different set of tools, usually by a team rather than a single dermatologist.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            "Advanced SCC" is an umbrella term for two distinct situations:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Locally advanced SCC</h3>
+              <p class="text-slate/80">
+                The tumor has grown large or deep, invaded nerves, muscle, cartilage, or bone, or recurred after treatment — and surgery or radiation can no longer clear it without unacceptable damage to function or appearance, or it is considered inoperable. This accounts for the large majority of advanced cases.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic SCC</h3>
+              <p class="text-slate/80">
+                The cancer has spread beyond the skin — most often to nearby (regional) lymph nodes, and less commonly to the lungs, liver, or bone. Overall this happens in only a few percent of cutaneous SCCs, but the risk is far higher for tumors with high-risk features or in people who are immunosuppressed.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Key Topics</h2>
+          <p class="text-slate/80 mb-6">
+            Explore these topics to understand what advanced squamous cell carcinoma means, how it is evaluated, and the treatment options available:
+          </p>
+          <div class="space-y-3">
+            <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What does "advanced" squamous cell carcinoma mean?</div>
+              <div class="text-sm text-slate/70">Locally advanced vs. metastatic disease, and how uncommon each one is</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What makes a squamous cell carcinoma "high-risk"?</div>
+              <div class="text-sm text-slate/70">Size, depth, differentiation, and the staging systems that flag aggressive tumors</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What does perineural invasion mean for my SCC?</div>
+              <div class="text-sm text-slate/70">When an SCC grows along nerves, and how that changes treatment</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">When does SCC spread to lymph nodes, and what is a sentinel node biopsy?</div>
+              <div class="text-sm text-slate/70">Regional (nodal) metastasis, node staging, and when a sentinel node biopsy is offered</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How is advanced SCC evaluated before treatment?</div>
+              <div class="text-sm text-slate/70">Imaging, pathology review, and the multidisciplinary care team</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">When are surgery and radiation no longer enough?</div>
+              <div class="text-sm text-slate/70">What "unresectable" and "locally advanced" mean in practice</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How does immunotherapy treat advanced SCC?</div>
+              <div class="text-sm text-slate/70">PD-1 inhibitors (cemiplimab, pembrolizumab) as first-line systemic therapy</div>
+            </a>
+            <a href="/squamous-cell-carcinoma/advanced-scc/managing-immunotherapy-side-effects" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How are the side effects of immunotherapy managed?</div>
+              <div class="text-sm text-slate/70">Immune-related side effects, monitoring, and when treatment is paused</div>
+            </a>
+            <div class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Can immunotherapy shrink an SCC before surgery?</div>
+              <div class="text-sm text-slate/70">Neoadjuvant therapy to reduce tumor size and preserve tissue</div>
+            </div>
+            <div class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Advanced SCC in transplant recipients and immunosuppressed patients</div>
+              <div class="text-sm text-slate/70">Why SCC is more aggressive with immunosuppression, and the immunotherapy dilemma</div>
+            </div>
+            <div class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Where do chemotherapy and EGFR-targeted therapy fit?</div>
+              <div class="text-sm text-slate/70">Cetuximab and platinum chemotherapy when immunotherapy isn't an option</div>
+            </div>
+            <div class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How do I find a clinical trial for advanced SCC?</div>
+              <div class="text-sm text-slate/70">Where to look, what the phases mean, and questions to ask</div>
+            </div>
+            <div class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What should I ask my care team about advanced SCC?</div>
+              <div class="text-sm text-slate/70">Questions for your dermatologist, surgeon, radiation oncologist, and medical oncologist</div>
+            </div>
+            <div class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What is the outlook, and what support is available?</div>
+              <div class="text-sm text-slate/70">Prognosis, follow-up, and supportive care for advanced disease</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Signs an SCC May Be Advanced</h2>
+              <p class="text-slate/80 mb-4">Most SCCs are small and treated easily. Features that prompt a doctor to consider advanced disease include:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A tumor that has come back one or more times after surgery or radiation</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A large growth (roughly 2 cm or more, especially on the head or neck) or one enlarging rapidly over weeks</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A lesion fixed to deeper tissue, or that has grown into fat, muscle, cartilage, or bone</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Numbness, tingling, burning, weakness, double vision, or facial drooping near the tumor (possible nerve involvement)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A "poorly differentiated" (high-grade) tumor, or one with perineural or lymphovascular invasion on the pathology report</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A firm or enlarging lymph node near a known or treated skin cancer (in front of the ear, in the neck, armpit, or groin)</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:users" class="text-teal" size={28} />
+              <h2 class="text-2xl font-serif text-navy">Who Develops Advanced SCC</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People whose tumor went untreated for months to years, or was dismissed as a sore that would not heal</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Tumors with high-risk pathology — poor differentiation, deep or thick invasion, or perineural invasion</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Solid-organ transplant recipients and others on long-term immunosuppression, who develop more SCCs and more aggressive ones</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People with chronic lymphocytic leukemia or lymphoma</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>SCCs arising in old burn scars, chronic wounds, or previously irradiated skin</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Rare genetic conditions such as xeroderma pigmentosum or epidermolysis bullosa</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:clock" class="text-teal" size={28} />
+              <h2 class="text-2xl font-serif text-navy">Why Timely Treatment Matters</h2>
+            </div>
+            <p class="text-slate/80 mb-4">
+              Advanced cutaneous SCC is largely preventable. Most cases follow a tumor that was watched too long, mistaken for a wart or a non-healing sore, or that recurred repeatedly without a change in approach.
+            </p>
+            <p class="text-slate/80">
+              An SCC caught and treated early is cured with a single procedure the large majority of the time. The same tumor left to grow can invade nerves, require major reconstruction, or spread to lymph nodes — at which point treatment may involve surgery plus radiation, systemic medication, or a multidisciplinary team. If you have an SCC that has recurred, is growing quickly, or is causing numbness or tingling, ask your dermatologist whether you should be referred to a Mohs surgeon or a head and neck cancer team.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} />
+            <h2 class="text-2xl font-serif text-navy">Advanced Treatment Overview</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            When surgery and radiation cannot cure the disease on their own, advanced SCC is treated with medication that works throughout the body, often alongside local treatment. Every option below is individualized and carries meaningful side effects that are weighed against its benefits.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy (PD-1 inhibitors):</strong> Cemiplimab and pembrolizumab help the immune system recognize and attack the cancer. They are now the first-line systemic treatment for locally advanced or metastatic cutaneous SCC that cannot be cured with surgery or radiation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Surgery and radiation together:</strong> For tumors that have reached lymph nodes or carry high-risk features, treatment often combines surgery (sometimes including lymph node dissection) with radiation to the tumor site and/or the draining nodes.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>EGFR inhibitors and chemotherapy:</strong> Cetuximab and platinum-based chemotherapy are older options, now used mainly when immunotherapy is not appropriate — for example, in some transplant recipients where checkpoint inhibitors carry a high risk of triggering organ rejection.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials:</strong> New drugs, drug combinations, and approaches such as giving immunotherapy before surgery (neoadjuvant therapy) are under active study and may be an option at any point.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Rischin D, Schmults CD, et al. PD-1 blockade with cemiplimab in advanced cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2018;379(4):341-351. <a href="https://pubmed.ncbi.nlm.nih.gov/29863979/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Grob JJ, Gonzalez R, Basset-Seguin N, et al. Pembrolizumab monotherapy for recurrent or metastatic cutaneous squamous cell carcinoma: a single-arm phase II trial (KEYNOTE-629). <em>J Clin Oncol.</em> 2020;38(25):2916-2925. <a href="https://pubmed.ncbi.nlm.nih.gov/32673170/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Squamous Cell Carcinoma of the Skin: Overview
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/blog/when-a-common-skin-cancer-advances/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — When a Common Skin Cancer Advances
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

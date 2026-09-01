@@ -1,0 +1,320 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means";
+const lastReviewed = "2026-08-31";
+const title = "What Advanced SCC Means for Patients | Beating Skin Cancer";
+const description = "\"Advanced\" squamous cell carcinoma covers locally advanced tumors that surgery and radiation cannot clear plus rarer metastatic spread. What each one means.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Does \"Advanced\" Squamous Cell Carcinoma Mean?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "What Advanced SCC Means", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is advanced squamous cell carcinoma the same as metastatic squamous cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. \"Advanced\" is an umbrella term for two situations. Locally advanced cutaneous SCC has grown large or deep, invaded nerves or bone, or kept coming back, so that surgery and radiation can no longer clear it safely — but it has not spread. Metastatic SCC has spread beyond the skin, usually first to nearby lymph nodes and less often to distant organs. Most advanced cases are locally advanced, not metastatic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often does cutaneous squamous cell carcinoma spread?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uncommonly. The large majority of cutaneous SCCs are cured with one office procedure. Across all comers, only a few percent — most estimates fall between roughly 2% and 5% — ever reach the lymph nodes, and deaths from the disease are rarer still. The risk is much higher, though, for tumors with high-risk features and for people who are immunosuppressed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can locally advanced squamous cell carcinoma still be treated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When surgery and radiation can no longer cure the tumor on their own, locally advanced SCC is treated with medication that works throughout the body — most often a PD-1 immunotherapy drug such as cemiplimab or pembrolizumab. Some tumors shrink enough on immunotherapy that surgery becomes possible again."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Does "Advanced" Squamous Cell Carcinoma Mean?
+          </h1>
+          <p class="text-xl text-white/80">Locally advanced vs. metastatic disease, and how uncommon each one is</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Cutaneous squamous cell carcinoma (SCC) is the second most common skin cancer, and for the great majority of people who develop one, treatment is straightforward: a dermatologist removes it in a single office procedure and it never returns. So it can be unsettling to hear a doctor call an SCC "advanced."
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            "Advanced SCC" is not a single stage number. It is a practical label for the small minority of squamous cell carcinomas that can no longer be handled with routine surgery. It covers two different situations — one much more common than the other — and knowing which one applies to you shapes the entire conversation about treatment.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains what each term means, how doctors decide a tumor has crossed that line, and why the label matters. For the specific point at which surgeons and radiation oncologists step back, see <a href="/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">when surgery and radiation are no longer enough</a>. For how doctors sort ordinary SCCs from concerning ones in the first place, see <a href="/squamous-cell-carcinoma/staging-and-grading" class="text-teal hover:text-teal/80 underline">SCC staging and grading</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">"Advanced" Is an Umbrella Term</h2>
+          <p class="text-slate/80 mb-6">
+            When clinicians and treatment guidelines say "advanced SCC," they are grouping together two distinct problems that happen to be treated with the same systemic medications:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Locally advanced SCC</h3>
+              <p class="text-slate/80">
+                The tumor has grown large or deep, invaded nerves, muscle, cartilage, or bone, or come back after previous treatment — to the point where surgery or radiation can no longer clear it without unacceptable loss of function or disfigurement, or it is considered inoperable. It has <em>not</em> spread elsewhere. This accounts for the large majority of advanced cases.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic SCC</h3>
+              <p class="text-slate/80">
+                The cancer has traveled beyond the skin — most often to nearby (regional) lymph nodes, and less commonly to the lungs, liver, or bone. It is treated with the same drugs used for locally advanced disease. When spread is limited to regional nodes and can be removed or irradiated, the outlook is meaningfully better than with distant spread.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Locally Advanced SCC in More Detail</h2>
+          <p class="text-slate/80 mb-4">
+            Locally advanced SCC is defined less by a single measurement and more by a judgment: could this tumor be removed with surgery, or treated with radiation, and still leave the patient with a reasonable outcome? When the honest answer is no, the tumor is considered locally advanced. Features that push an SCC into this category include:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A large tumor — often several centimeters across — or one that is enlarging steadily over weeks</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Deep invasion into muscle, cartilage, or bone, or a lesion fixed to the tissue beneath it</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Growth along nerves (perineural invasion), sometimes causing numbness, tingling, burning, weakness, double vision, or facial drooping</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Repeated recurrences in the same area despite one or more rounds of surgery or radiation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A location — around the eye, nose, or ear — where clearing the tumor would sacrifice a critical structure</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Aggressive pathology, such as a poorly differentiated (high-grade) tumor or an infiltrative or desmoplastic growth pattern with roots that extend well past the visible edge</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Most people who reach this point got there over months to years — a tumor that was ignored, dismissed as a sore that would not heal, or treated repeatedly without changing the approach. It is uncommon, but it is also, in hindsight, usually preventable. Many of these same features are what doctors mean by a <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">"high-risk" SCC</a>, and <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">perineural invasion</a> in particular changes how a tumor is treated.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Metastatic SCC: How Common Is It?</h2>
+              <p class="text-slate/80 mb-4">
+                Most cutaneous SCCs never spread. Estimates vary with how studies are done, but across all comers only a few percent — most figures fall between roughly 2% and 5% — ever reach the lymph nodes, and deaths from the disease are less common still. Because SCC is so common overall, however, those small percentages still add up to thousands of cases a year in the United States.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Spread is far more likely when a tumor carries <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">high-risk features</a> — large size, deep invasion, poor differentiation, or perineural invasion — or when it arises in someone who is immunosuppressed, such as an organ transplant recipient. The first stop is almost always the regional lymph nodes (in front of the ear, in the neck, the armpit, or the groin, depending on where the tumor is); distant organs are involved much less often.
+              </p>
+              <p class="text-slate/80">
+                For a fuller picture of what raises the odds of spread, and how nodes are checked, see <a href="/squamous-cell-carcinoma/recurrence-and-metastasis-risk" class="text-teal hover:text-teal/80 underline">recurrence and metastasis risk</a> and <a href="/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node" class="text-teal hover:text-teal/80 underline">nodal metastasis and sentinel node biopsy</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Doctors Decide an SCC Is "Advanced"</h2>
+          <p class="text-slate/80 mb-4">
+            There is no single blood test or scan that returns an "advanced" result. The determination is made by a team looking at the whole picture:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Pathology</strong> from the biopsy or prior excisions — differentiation grade, depth, growth pattern, and whether nerves or lymphatic channels were involved</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Imaging</strong> (CT, MRI, or sometimes PET/CT) to map how far the tumor extends into deeper tissue and to check the lymph nodes</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A surgeon's assessment</strong> of whether the tumor can be removed with clear margins and reconstructed acceptably</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A radiation oncologist's assessment</strong> of whether radiation is feasible and has not already been used to its limit in that area</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Guidelines recommend that these hard cases be reviewed by a multidisciplinary tumor board rather than decided by one clinician alone. The details of that evaluation are covered in <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">how advanced SCC is evaluated before treatment</a>.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Why the Label Matters for Treatment</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            The reason "locally advanced" and "metastatic" are grouped together is that once an SCC cannot be cured by cutting it out or irradiating it, the treatment strategy is similar for both: medication that circulates through the whole body, sometimes combined with surgery or radiation.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy with PD-1 inhibitors</strong> (cemiplimab, pembrolizumab) is now the first-line systemic treatment for locally advanced or metastatic cutaneous SCC that surgery and radiation cannot cure. See <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced SCC</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>EGFR inhibitors and chemotherapy</strong> (cetuximab, platinum-based drugs) are older options, used mainly when immunotherapy is not appropriate — for example, in some transplant recipients where checkpoint inhibitors carry a high risk of triggering organ rejection.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Sometimes the goal is not lifelong medication.</strong> A tumor may shrink enough on immunotherapy that surgery becomes possible again — an approach explored in <a href="/squamous-cell-carcinoma/advanced-scc/neoadjuvant-immunotherapy-before-surgery" class="text-teal hover:text-teal/80 underline">immunotherapy before surgery</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my SCC locally advanced, or has it actually spread? What did the imaging show?</li>
+                <li>Why can't this be treated with surgery or radiation — is that permanent, or could it change?</li>
+                <li>Will my case be reviewed by a multidisciplinary team?</li>
+                <li>What systemic treatment would you start with, and what is the goal — cure, control, or shrinking the tumor before surgery?</li>
+                <li>How will we know whether the treatment is working, and how often will I be scanned?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            "Advanced" squamous cell carcinoma is a small corner of a very common disease. It means one of two things: a tumor that has grown or recurred beyond what surgery and radiation can fix, or one that has spread beyond the skin — usually to nearby lymph nodes first. The first is uncommon; true metastasis is uncommon still, and much of the risk is concentrated in tumors with recognizable high-risk features.
+          </p>
+          <p class="text-slate/80">
+            Either way, the diagnosis is not the dead end it once was. Immunotherapy now gives people with advanced cutaneous SCC real, durable options, and the right next step usually begins with a team that treats these tumors regularly.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Invited Reviewers; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Karia PS, Han J, Schmults CD. Cutaneous squamous cell carcinoma: estimated incidence of disease, nodal metastasis, and deaths from disease in the United States, 2012. <em>J Am Acad Dermatol.</em> 2013;68(6):957-966. <a href="https://pubmed.ncbi.nlm.nih.gov/23375456/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Rischin D, Schmults CD, et al. PD-1 blockade with cemiplimab in advanced cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2018;379(4):341-351. <a href="https://pubmed.ncbi.nlm.nih.gov/29863979/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Khushalani NI, Chang ALS, et al. Cemiplimab in locally advanced cutaneous squamous cell carcinoma: results from an open-label, phase 2, single-arm trial. <em>Lancet Oncol.</em> 2020;21(2):294-305. <a href="https://pubmed.ncbi.nlm.nih.gov/31952975/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> &mdash; Squamous Cell Carcinoma: From Symptoms to Treatments
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> &mdash; Squamous Cell Carcinoma Overview
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,346 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc";
+const lastReviewed = "2026-08-31";
+const title = "Immunotherapy for Advanced SCC | Beating Skin Cancer";
+const description = "PD-1 inhibitors cemiplimab and pembrolizumab are the first-line systemic treatment for locally advanced or metastatic cutaneous squamous cell carcinoma.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Does Immunotherapy Treat Advanced Squamous Cell Carcinoma?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Immunotherapy for Advanced SCC", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does immunotherapy work so well for advanced squamous cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cutaneous squamous cell carcinoma carries one of the highest mutation counts of any cancer because it is caused by years of ultraviolet damage to DNA. Those mutations make the tumor look abnormal, or \"foreign,\" to the immune system. PD-1 inhibitors release a brake that the tumor uses to avoid immune attack, and against a heavily mutated cancer that unblocking produces frequent, often long-lasting responses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How well does cemiplimab or pembrolizumab work for advanced SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the trials that led to approval, roughly 45 to 50 percent of patients treated with cemiplimab had significant tumor shrinkage, and pembrolizumab produced responses in about 35 percent of people with recurrent or metastatic disease and about 50 percent of those with locally advanced disease. When a response occurs it tends to last a long time, frequently more than a year, and some tumors disappear completely."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a solid-organ transplant recipient receive immunotherapy for SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is possible but risky. PD-1 inhibitors can trigger the immune system to reject a transplanted kidney, liver, heart, or lung, and rejection has occurred in roughly 40 percent of transplant recipients treated with these drugs in published reports, sometimes leading to permanent graft loss. The decision requires the transplant team and the oncology team to plan together, and non-immunotherapy options are often considered first."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Does Immunotherapy Treat Advanced Squamous Cell Carcinoma?
+          </h1>
+          <p class="text-xl text-white/80">PD-1 inhibitors (cemiplimab, pembrolizumab) as first-line systemic therapy</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most cutaneous squamous cell carcinomas (SCCs) are cured with a single procedure. A small number grow deep, invade nerves, keep coming back, or spread to lymph nodes or distant organs. When surgery and radiation
+            <a href="/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">can no longer clear the disease</a>,
+            treatment shifts to medication that works throughout the body.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            For
+            <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="text-teal hover:text-teal/80 underline">advanced SCC</a>,
+            that first medication is almost always immunotherapy with a PD-1 inhibitor. This article explains why SCC responds so well to this approach, how the drugs work in plain language, what the trials showed for cemiplimab and pembrolizumab, who is eligible, the special problem for transplant recipients, and what treatment and monitoring involve.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why SCC Responds to Immunotherapy</h2>
+              <p class="text-slate/80 mb-4">
+                The immune system keeps its T cells from attacking the body's own tissue using "checkpoint" switches. One switch is a protein called PD-1. Many cancers press that switch to hide from the immune system.
+              </p>
+              <p class="text-slate/80 mb-4">
+                A <strong>PD-1 inhibitor</strong> — also called a checkpoint inhibitor — is an antibody given by vein that blocks the PD-1 switch, so T cells can recognize the tumor and attack it. It does not poison cancer cells the way chemotherapy does; it takes a brake off the immune system.
+              </p>
+              <p class="text-slate/80">
+                Cutaneous SCC is an unusually good target for this. Because it is driven by years of ultraviolet damage, it carries one of the <strong>highest tumor mutational burdens</strong> of any cancer — a huge number of DNA changes. Those changes make the tumor look "foreign," so once the brake is released the immune system has many abnormal features to recognize. That biology is why response rates in SCC are higher than in most other solid tumors treated with these drugs.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Two Approved Drugs</h2>
+          <p class="text-slate/80 mb-6">
+            Two PD-1 inhibitors are approved by the U.S. Food and Drug Administration for advanced cutaneous SCC. They have not been compared head-to-head; the choice usually comes down to physician experience, scheduling, and insurance coverage.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Cemiplimab (Libtayo)</h3>
+              <p class="text-slate/80 mb-3">
+                Approved in 2018 as the first drug specifically for advanced cutaneous SCC, based on the phase 2 <strong>EMPOWER-CSCC-1</strong> trial (also called Study 1540) in patients with metastatic or locally advanced disease not curable by surgery or radiation.
+              </p>
+              <p class="text-slate/80">
+                Across the trial's groups, roughly <strong>45–50%</strong> of patients had an objective response (significant tumor shrinkage), and a subset had complete disappearance of the tumor. In extended follow-up, the median duration of response had not been reached — meaning the typical response was still ongoing past several years — and estimated survival at two years was around 70%.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Pembrolizumab (Keytruda)</h3>
+              <p class="text-slate/80 mb-3">
+                Approved for recurrent or metastatic cutaneous SCC in 2020 and expanded in 2021 to include locally advanced disease, based on the phase 2 <strong>KEYNOTE-629</strong> trial.
+              </p>
+              <p class="text-slate/80">
+                Objective responses occurred in about <strong>35%</strong> of patients with recurrent or metastatic disease and about <strong>50%</strong> of patients with locally advanced disease. As with cemiplimab, responses tended to be durable, frequently lasting well over a year.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            The headline for both drugs is the same: a minority-to-half of patients get a major response, but those responses are unusually <strong>long-lasting</strong> compared with older chemotherapy, and a meaningful number of tumors clear entirely.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Who Is Eligible</h2>
+          <p class="text-slate/80 mb-6">
+            PD-1 immunotherapy is the <strong>first-line</strong> systemic treatment for advanced cutaneous SCC. It is generally offered when:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The SCC is <strong>locally advanced</strong> or <strong>metastatic</strong> and cannot be cured by surgery, radiation, or the two combined — as judged by a <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">multidisciplinary team</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The person is well enough for treatment (reasonable performance status) and organ function is adequate.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>There is no absolute reason to avoid it — the main ones being an organ transplant (see below) and certain active autoimmune diseases requiring strong immune-suppressing drugs.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Immunotherapy is also being studied <em>before</em> surgery, to shrink a borderline tumor so a smaller operation is possible — covered in <a href="/squamous-cell-carcinoma/advanced-scc/neoadjuvant-immunotherapy-before-surgery" class="text-teal hover:text-teal/80 underline">neoadjuvant immunotherapy before surgery</a>. A history of controlled autoimmune disease (such as psoriasis or well-managed thyroid disease) does not automatically rule it out, but calls for a careful discussion.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Transplant and Immunosuppression Problem</h2>
+              <p class="text-slate/80 mb-4">
+                The same checkpoints that a PD-1 inhibitor blocks are also what keep a transplant recipient's immune system from attacking the donated organ. Releasing that brake to fight the cancer can cause the immune system to <strong>reject the transplant</strong>.
+              </p>
+              <p class="text-slate/80 mb-4">
+                In published series of solid-organ transplant recipients treated with checkpoint inhibitors for skin cancer, roughly <strong>40%</strong> experienced allograft rejection, and in many of those cases the organ was permanently lost. For a kidney recipient that can mean a return to dialysis; for a liver, heart, or lung recipient it can be life-threatening.
+              </p>
+              <p class="text-slate/80">
+                This does not make immunotherapy impossible, but it makes it a shared decision between the oncology and transplant teams, sometimes with adjusted anti-rejection medication or preventive steroids. Non-immunotherapy options — such as cetuximab or platinum chemotherapy — are often weighed first. This is covered in depth in <a href="/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients" class="text-teal hover:text-teal/80 underline">advanced SCC in transplant recipients and immunosuppressed patients</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar-clock" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Treatment and Monitoring Involve</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Infusion schedule:</strong> an intravenous infusion in an oncology clinic, taking about 30 minutes. Cemiplimab is given every 3 weeks; pembrolizumab is given every 3 weeks or, at a higher dose, every 6 weeks.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Bloodwork before each cycle:</strong> blood counts and tests of the liver, kidneys, and thyroid, plus other hormone levels as needed, to catch immune-related side effects early.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Response checks:</strong> a CT or MRI scan roughly every 8 to 12 weeks, along with physical exam and photographs of any visible tumor, to measure whether the cancer is shrinking, stable, or growing.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Duration:</strong> treatment usually continues as long as it is helping and side effects are manageable — often up to about two years, sometimes longer. Responses can be slow to appear, so doctors typically repeat imaging before concluding a drug is not working.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">If Immunotherapy Stops Working</h2>
+          <p class="text-slate/80 mb-4">
+            Some tumors never respond, and some respond and then start growing again months or years later. Options at that point depend on the situation and may include:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Local treatment to a single problem spot:</strong> radiation or surgery aimed at one area of growth, while continuing the drug if the rest of the disease is still controlled.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Switching to EGFR-targeted therapy or chemotherapy:</strong> cetuximab, or platinum-based chemotherapy, used mainly when immunotherapy has failed or cannot be given.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A clinical trial:</strong> combinations of a PD-1 inhibitor with another immune drug, injected (intralesional) therapies, and other approaches are under study. See <a href="/squamous-cell-carcinoma/advanced-scc/clinical-trials-for-advanced-scc" class="text-teal hover:text-teal/80 underline">clinical trials for advanced SCC</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Surgery that has become possible:</strong> occasionally a tumor shrinks enough on immunotherapy that an operation which was once too risky can now remove what remains.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Managing the side effects of these drugs is its own topic — see <a href="/squamous-cell-carcinoma/advanced-scc/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">how the side effects of immunotherapy are managed</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my SCC locally advanced or metastatic, and is immunotherapy the right first step?</li>
+                <li>Would you use cemiplimab or pembrolizumab for me, and why?</li>
+                <li>Given my tumor, what is a realistic chance it will shrink, and how long until we know?</li>
+                <li>Do I have any condition — a transplant, an autoimmune disease — that raises my risk with this treatment?</li>
+                <li>How often will I have scans and blood tests, and how long would I stay on treatment?</li>
+                <li>If it does not work or stops working, what would we do next? Is there a clinical trial for me?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Immunotherapy has changed the outlook for advanced cutaneous squamous cell carcinoma. Because the cancer is so heavily mutated by sun damage, PD-1 inhibitors — cemiplimab and pembrolizumab — produce responses in a large share of patients, and those responses often last for years. They are now the first systemic treatment for locally advanced or metastatic disease that surgery and radiation cannot cure.
+          </p>
+          <p class="text-slate/80">
+            The main cautions are the immune-related side effects these drugs can cause and the serious risk of transplant rejection in organ recipients. Both are reasons to have this treatment guided by a medical oncologist who manages advanced skin cancer regularly.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Migden MR, Rischin D, Schmults CD, et al. PD-1 blockade with cemiplimab in advanced cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2018;379(4):341-351. <a href="https://pubmed.ncbi.nlm.nih.gov/29863979/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Rischin D, Khushalani NI, Schmults CD, et al. Integrated analysis of a phase 2 study of cemiplimab in advanced cutaneous squamous cell carcinoma: extended follow-up of outcomes and quality of life analysis. <em>J Immunother Cancer.</em> 2021;9(8):e002757. <a href="https://pubmed.ncbi.nlm.nih.gov/34413166/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Grob JJ, Gonzalez R, Basset-Seguin N, et al. Pembrolizumab monotherapy for recurrent or metastatic cutaneous squamous cell carcinoma: a single-arm phase II trial (KEYNOTE-629). <em>J Clin Oncol.</em> 2020;38(25):2916-2925. <a href="https://pubmed.ncbi.nlm.nih.gov/32673170/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Hughes BGM, Munoz-Couselo E, Mortier L, et al. Pembrolizumab for locally advanced and recurrent/metastatic cutaneous squamous cell carcinoma (KEYNOTE-629 study): an open-label, nonrandomized, multicenter, phase II trial. <em>Ann Oncol.</em> 2021;32(10):1276-1285. <a href="https://pubmed.ncbi.nlm.nih.gov/34293460/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ji S, Liu H, Pachella L, et al. Use of immune checkpoint inhibitors in solid organ transplant recipients with advanced cutaneous malignancies. <em>Front Transplant.</em> 2023;2:1284740. <a href="https://pubmed.ncbi.nlm.nih.gov/38993910/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/scc-treatment-options/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Squamous Cell Carcinoma Treatment
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Squamous Cell Carcinoma of the Skin: Overview
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
