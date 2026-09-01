@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const canonical = "https://www.beatingskincancer.com/advanced-metastatic";
+const title = "Advanced & Metastatic Skin Cancer | Beating Skin Cancer";
+const description = "When skin cancer is advanced or has spread, treatment changes. A guide to stage III–IV melanoma and advanced basal cell and squamous cell carcinoma.";
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Advanced & Metastatic Skin Cancer", "item": canonical }
+  ],
+};
+
+const jsonLd = [breadcrumbsJsonLd];
+
+const paths = [
+  {
+    href: "/melanoma/advanced-melanoma",
+    icon: "lucide:circle-dot",
+    label: "Stage III & IV Melanoma",
+    desc: "Regionally advanced (stage III) and metastatic (stage IV) melanoma — staging workup, immunotherapy, targeted therapy, and newer options.",
+  },
+  {
+    href: "/basal-cell-carcinoma/advanced-bcc",
+    icon: "lucide:shield",
+    label: "Advanced Basal Cell Carcinoma",
+    desc: "Locally advanced and metastatic BCC — when surgery and radiation aren't enough, hedgehog pathway inhibitors, and immunotherapy.",
+  },
+  {
+    href: "/squamous-cell-carcinoma/advanced-scc",
+    icon: "lucide:layers",
+    label: "Advanced Squamous Cell Carcinoma",
+    desc: "Locally advanced and metastatic cutaneous SCC — high-risk features, nodal spread, multidisciplinary workup, and immunotherapy.",
+  },
+];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Advanced &amp; Metastatic Skin Cancer</h1>
+          <p class="text-xl text-white/80">When melanoma, basal cell carcinoma, or squamous cell carcinoma has spread or can no longer be cured with surgery alone</p>
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What "Advanced" and "Metastatic" Mean</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Most skin cancers are found early and cured with a single procedure. A minority behave differently — growing deep into nearby tissue, returning after surgery or radiation, or spreading to lymph nodes and distant organs. Doctors call these tumors "advanced," and they are managed with a different set of tools, usually by a team rather than one clinician.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Across melanoma, basal cell carcinoma, and squamous cell carcinoma, "advanced" covers two broad situations:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Locally or regionally advanced</h3>
+              <p class="text-slate/80">
+                The tumor has grown large or deep, invaded structures such as cartilage, bone, or nerves, reached nearby lymph nodes, or recurred — and surgery or radiation can no longer control it without unacceptable harm to function or appearance.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic</h3>
+              <p class="text-slate/80">
+                The cancer has spread to distant lymph nodes or organs such as the lungs, liver, bone, or brain. How often this happens varies enormously by type — common enough to stage for in melanoma, exceedingly rare in basal cell carcinoma.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Choose Your Diagnosis</h2>
+          <p class="text-slate/80 mb-6">
+            Each guide below covers what advanced disease means for that cancer, how it is evaluated, and the treatment options available.
+          </p>
+          <div class="grid md:grid-cols-3 gap-6">
+            {paths.map((p) => (
+              <a href={p.href} class="flex flex-col p-6 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 hover:border-teal/30 transition-colors">
+                <Icon name={p.icon} class="text-teal mb-3" size={28} aria-hidden="true" />
+                <div class="font-serif text-lg text-navy mb-2">{p.label}</div>
+                <p class="text-sm text-slate/70 flex-1">{p.desc}</p>
+                <span class="text-teal font-medium mt-4 inline-block">Explore →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:users" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">What Advanced Skin Cancers Have in Common</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            The specifics differ by cancer type, but advanced disease tends to change care in the same ways:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A multidisciplinary team.</strong> Dermatology, surgery, radiation oncology, medical oncology, and pathology review the case together, often at a tumor board.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Imaging and a fuller workup.</strong> Scans and repeat pathology map how far the cancer has reached before treatment is chosen.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Systemic therapy.</strong> Immunotherapy and targeted drugs work throughout the body when surgery and radiation can't reach or control the disease.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials.</strong> New drugs and combinations are under active study for all three cancers and may be an option at any point.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Managing side effects.</strong> Modern treatments are effective but demanding; recognizing and treating side effects early is part of the plan.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced and metastatic skin cancer</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
