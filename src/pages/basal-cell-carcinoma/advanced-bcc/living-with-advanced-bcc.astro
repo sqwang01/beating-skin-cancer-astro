@@ -1,0 +1,402 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/living-with-advanced-bcc";
+const lastReviewed = "2026-08-31";
+const title = "Advanced BCC: Outlook and Support | Beating Skin Cancer";
+const description = "Understand the outlook for locally advanced and metastatic basal cell carcinoma, plus follow-up care, managing side effects, and emotional support.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Advanced Basal Cell Carcinoma: What Is the Outlook, and What Support Is Available?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "Outlook and Support", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the outlook for advanced basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most advanced basal cell carcinoma is locally advanced rather than metastatic, and it is treatable. Targeted hedgehog pathway inhibitors and immunotherapy shrink or control the tumor in a large share of people, and responses can last for years. Metastatic BCC is far rarer and harder to cure, but the same medications can control it for extended periods. Individual outlook depends on tumor size and location, whether it has spread, your overall health, and how the cancer responds to treatment, so ask your own care team what to expect in your situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often will I need follow-up after treatment for advanced BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Follow-up is usually frequent at first, often every few months, with skin exams, a physical check of the treated area and nearby lymph nodes, and imaging when the tumor was deep or had spread. Visits are typically spaced out over time if the cancer stays controlled. Because anyone who has had one basal cell carcinoma is at higher risk for more, lifelong skin checks continue even after the advanced tumor is treated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What support is available for people living with advanced BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Support includes reconstructive and prosthetic care for wounds and appearance changes, palliative (supportive) care teams that manage symptoms and side effects alongside cancer treatment, oncology social workers and counselors, peer support groups, financial-assistance programs, and dedicated resources for caregivers. Organizations such as the National Cancer Institute, the American Cancer Society, and CancerCare offer free information and services."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Advanced Basal Cell Carcinoma: What Is the Outlook, and What Support Is Available?
+          </h1>
+          <p class="text-xl text-white/80">Prognosis, follow-up, and supportive care for advanced disease</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            A diagnosis of advanced basal cell carcinoma (BCC) raises two questions almost immediately: <em>What does this mean for me?</em> and <em>Where do I turn for help?</em> Both deserve honest answers. Advanced BCC is uncommon, and the great majority of cases are <a href="/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means" class="text-teal hover:text-teal/80 underline">locally advanced</a> rather than spread to other organs. It is a serious diagnosis, but for most people it is also a treatable and often controllable one.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through how doctors think about prognosis for locally advanced versus metastatic disease, what follow-up looks like after treatment with targeted therapy or immunotherapy, how long-term side effects and wound or appearance concerns are managed, and the emotional, practical, and caregiver support that exists alongside medical care.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Understanding the Outlook</h2>
+          <p class="text-slate/80 mb-4">
+            "Prognosis" is a doctor's best estimate of how a cancer is likely to behave. For advanced BCC it depends on several things: whether the disease is locally advanced or metastatic, the tumor's size and location, whether it has invaded nerve, cartilage, or bone, your general health, and — importantly — how the cancer responds once treatment starts. No single number captures all of that, and published survival statistics for a condition this rare come from small groups of patients who may differ from you. Use the framing below for orientation, and ask your own oncology team what it means in your case.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Locally advanced BCC</h3>
+              <p class="text-slate/80 mb-3">
+                This is by far the more common form of advanced disease — a tumor that has grown large or deep, or come back repeatedly, so that surgery or radiation can no longer clear it without unacceptable harm. It has <em>not</em> spread to lymph nodes or distant organs.
+              </p>
+              <p class="text-slate/80">
+                The outlook here is generally encouraging. Targeted <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">hedgehog pathway inhibitors</a> shrink or clear the tumor in a large proportion of people, and in the pivotal long-term trial of vismodegib many responses lasted well over a year, with some patients still benefiting years later. When a hedgehog inhibitor stops working or can't be tolerated, <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">immunotherapy</a> offers a second line of durable responses. Some tumors can even be shrunk enough to make <a href="/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery" class="text-teal hover:text-teal/80 underline">surgery possible again</a>.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Metastatic BCC</h3>
+              <p class="text-slate/80 mb-3">
+                Metastatic BCC — spread to lymph nodes, lungs, or bone — is one of the rarest events in oncology, occurring in well under 1% of all basal cell carcinomas. Because it is so uncommon, it is harder to cure, and the goal of treatment is more often long-term control than eradication.
+              </p>
+              <p class="text-slate/80">
+                Even so, the same hedgehog inhibitors and immunotherapy drugs used for locally advanced disease can control metastatic BCC, sometimes for extended periods. Many people live for years with the disease managed as a chronic condition, adjusting treatment as circumstances change.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-slate/70 text-sm mt-6">
+            A note on statistics: online survival figures usually lump BCC together with far more common and less dangerous forms, or come from an era before targeted therapy and immunotherapy existed. They rarely reflect what a person facing advanced BCC today can expect. Your care team's individualized estimate is more meaningful than any general number.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar-check" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Follow-Up and Surveillance After Treatment</h2>
+              <p class="text-slate/80 mb-4">
+                After systemic therapy, radiation, or surgery for advanced BCC, follow-up is close at first and then spaced out if the cancer stays controlled. A typical schedule looks something like this, tailored to your situation:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Clinic visits every few months</strong> in the first year or two, then less often. Each visit usually includes a full skin exam and a hands-on check of the treated area and nearby lymph nodes.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Imaging</strong> (CT or MRI) when the original tumor was deep, involved nerves or bone, or had spread — to confirm the response is holding and to catch any regrowth early.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Ongoing medication monitoring</strong> if you remain on a hedgehog inhibitor or immunotherapy: blood tests, symptom reviews, and decisions about <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">planned treatment breaks</a>.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Lifelong skin checks.</strong> Anyone who has had one BCC is at higher risk of developing more. Regular dermatology exams and sun protection continue indefinitely — see <a href="/basal-cell-carcinoma/types" class="text-teal hover:text-teal/80 underline">BCC types</a> and the main <a href="/basal-cell-carcinoma/treatment-options" class="text-teal hover:text-teal/80 underline">treatment options</a> page for context.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Tell your team promptly about any new lump, non-healing sore, numbness or weakness near the old tumor site, or symptoms such as a persistent cough or bone pain. Between visits, keep a simple written record of symptoms and questions to bring with you.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Living With Long-Term Treatment Side Effects</h2>
+          <p class="text-slate/80 mb-4">
+            Some people take a hedgehog pathway inhibitor for months or years, and its side effects — muscle cramps, taste loss, hair thinning, and fatigue — tend to build over time rather than fade. These are rarely dangerous, but they wear on quality of life, and managing them well is part of staying on effective treatment.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Planned treatment breaks.</strong> Pausing the drug for a few weeks at a time can relieve cumulative side effects while keeping the cancer controlled. This is a common, evidence-based strategy — ask whether it fits your situation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Symptom-specific care.</strong> Hydration, stretching, and certain medications help muscle cramps; a dietitian can help with taste changes and weight loss; scalp cooling or gentle hair care addresses thinning.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy follow-up.</strong> PD-1 inhibitors can occasionally trigger inflammation in the thyroid, skin, gut, liver, or lungs even after treatment ends, so report new symptoms promptly and keep endocrine and other lab checks on schedule.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The companion article on <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">managing hedgehog inhibitor side effects</a> covers these in more detail.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:bandage" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Wounds, Reconstruction, and Appearance</h2>
+              <p class="text-slate/80 mb-4">
+                Advanced BCC often affects the face — the nose, eyelid, ear, or scalp — and treatment can leave a wound, a surgical defect, or a visible change in a part of the body that is hard to hide. This is one of the most difficult parts of the experience, and there is real help for it:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Reconstructive surgery.</strong> A facial plastic or oculoplastic surgeon can rebuild tissue in stages, often after the cancer is controlled. Timing is planned around your other treatment.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Prosthetics.</strong> A specialist (an anaplastologist or maxillofacial prosthodontist) can custom-make a lifelike nasal, ear, or orbital prosthesis when reconstruction isn't possible or preferred.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Wound care.</strong> A wound-care nurse can teach dressing routines that keep an open area clean, comfortable, and less noticeable while it heals or while you wait for reconstruction.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Camouflage and support.</strong> Medical tattooing, corrective cosmetics, and appearance-focused programs help many people feel more like themselves in public.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Research on facial skin cancer surgery finds that appearance-related distress is often highest right after treatment and tends to ease over the following months, and that people with a history of anxiety or depression benefit most from proactive support. If the change is weighing on you, say so — it is a medical concern, not vanity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Emotional and Social Support</h2>
+          <p class="text-slate/80 mb-4">
+            Living with a rare cancer can feel isolating, especially when friends assume "skin cancer" always means something minor. Anxiety about scans, low mood, and strain on relationships are common and treatable.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Oncology social workers and counselors</strong> at your cancer center help with coping, communication, and connecting to services — usually at no cost.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Support groups</strong>, in person or online, let you talk with others who understand advanced or facial skin cancer. Organizations like CancerCare run free phone and online groups.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Mental health care.</strong> A therapist or psychiatrist experienced with serious illness can treat scan-related anxiety, depression, or trauma. Ask for a referral.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Financial navigation.</strong> Social workers and nonprofit programs help with the cost of medication, travel, and time off work.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:heart-handshake" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Palliative and Supportive Care</h2>
+              <p class="text-slate/80 mb-4">
+                Palliative care — also called supportive care — is specialized care focused on relief from symptoms, side effects, and stress at any stage of a serious illness. It is <em>not</em> the same as hospice, and it does not mean giving up on treatment. It is delivered alongside cancer treatment, and studies show it can improve quality of life and mood.
+              </p>
+              <p class="text-slate/80 mb-4">A palliative care team can help with:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Pain, fatigue, poor appetite, and other physical symptoms</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Odor, bleeding, or discomfort from an open tumor or wound</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Coordinating care across your dermatologist, surgeon, radiation oncologist, and medical oncologist</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Talking through goals of care and planning ahead</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                You can ask for a palliative care referral at any point — earlier is often better. If the cancer is advanced and treatment is no longer helping, hospice care provides comfort-focused support at home or in a facility.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Support for Caregivers</h2>
+          <p class="text-slate/80 mb-4">
+            The partner, adult child, or friend helping with dressings, appointments, and daily life carries a real load. Caregivers do better — and can give better care — when they are supported too.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Ask the team to teach you.</strong> A nurse can show wound-care and medication routines so they feel manageable at home.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Use respite and practical help.</strong> Home health aides, meal programs, and transportation services exist so one person isn't doing everything.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Caregiver counseling and groups.</strong> Cancer centers and nonprofits offer support specifically for caregivers, including short-term counseling.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Protect your own health.</strong> Keep your own checkups, sleep, and breaks. Burnout helps no one.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my BCC locally advanced or metastatic, and what does that mean for my outlook?</li>
+                <li>What is the goal of my treatment right now — to cure, to shrink the tumor, or to control it long term?</li>
+                <li>What will my follow-up schedule and imaging look like over the next year?</li>
+                <li>If long-term side effects become hard to live with, what are my options — dose changes, treatment breaks, or switching therapy?</li>
+                <li>Can you refer me for reconstruction or a prosthesis, and when would that happen?</li>
+                <li>Can I meet with a palliative (supportive) care team, and how do I connect with a social worker?</li>
+                <li>What support is available for my caregiver?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Advanced basal cell carcinoma is serious, but for most people it is locally advanced, treatable, and often controllable for a long time. Targeted therapy and immunotherapy have changed the outlook substantially, and metastatic disease — though harder to cure — can frequently be managed as a chronic condition.
+          </p>
+          <p class="text-slate/80">
+            Just as important as the medical treatment is the web of support around it: close follow-up, thoughtful management of long-term side effects, reconstruction and appearance care, mental health and peer support, palliative care, and help for the people caring for you. Ask for these things early. You do not have to navigate advanced BCC alone.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Sekulic A, Migden MR, Basset-Seguin N, et al. Long-term safety and efficacy of vismodegib in patients with advanced basal cell carcinoma: final update of the pivotal ERIVANCE BCC study. <em>BMC Cancer.</em> 2017;17(1):332. <a href="https://pubmed.ncbi.nlm.nih.gov/28511673/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Stratigos AJ, Sekulic A, Peris K, et al. Cemiplimab in locally advanced basal cell carcinoma after hedgehog inhibitor therapy: an open-label, multi-centre, single-arm, phase 2 trial. <em>Lancet Oncol.</em> 2021;22(6):848-857. <a href="https://pubmed.ncbi.nlm.nih.gov/34000246/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Bichakjian C, Armstrong A, Baum C, et al. Guidelines of care for the management of basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):540-559. <a href="https://pubmed.ncbi.nlm.nih.gov/29331385/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Vaidya TS, Mori S, Dusza SW, et al. Appearance-related psychosocial distress following facial skin cancer surgery using the FACE-Q Skin Cancer. <em>Arch Dermatol Res.</em> 2019;311(9):691-696. <a href="https://pubmed.ncbi.nlm.nih.gov/31338583/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/about-cancer/advanced-cancer/care-choices/palliative-care-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Palliative Care in Cancer
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/after-treatment/follow-up.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — After Treatment for Basal Cell Carcinoma: Follow-Up Care
+                </li>
+                <li>
+                  <a href="https://www.cancercare.org/diagnosis/skin_cancer" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">CancerCare</a> — Skin Cancer: Free counseling, support groups, and financial assistance
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis, prognosis, and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about living with advanced basal cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

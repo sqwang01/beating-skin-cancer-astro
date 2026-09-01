@@ -1,0 +1,364 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/gorlin-syndrome";
+const lastReviewed = "2026-08-31";
+const title = "Gorlin Syndrome and Multiple BCCs | Beating Skin Cancer";
+const description =
+  "Gorlin syndrome, or basal cell nevus syndrome, is an inherited PTCH1 condition causing many basal cell carcinomas. Learn its features, genetics, and care.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Gorlin Syndrome (Basal Cell Nevus Syndrome)?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "Gorlin Syndrome", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Gorlin syndrome inherited?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gorlin syndrome follows an autosomal dominant pattern, so a parent with the condition has a one-in-two chance of passing it to each child. Roughly 20 to 30 percent of people are the first in their family to have it, from a new gene change that arose spontaneously. An affected person can still pass that change on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do people with Gorlin syndrome get so many basal cell carcinomas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most cases are caused by a loss-of-function change in PTCH1, a gene that normally restrains the hedgehog signaling pathway. With one copy already impaired in every skin cell, the pathway is prone to switching on and driving basal cell carcinomas, and ultraviolet light and radiation accelerate the process."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can people with Gorlin syndrome have radiation therapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Radiation is used cautiously. People with Gorlin syndrome are unusually sensitive to ionizing radiation, and treatment fields can sprout large numbers of new basal cell carcinomas within a few years. Radiotherapy is generally avoided when another option exists, and the trade-offs are weighed carefully when it is needed."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Is Gorlin Syndrome (Basal Cell Nevus Syndrome)?
+          </h1>
+          <p class="text-xl text-white/80">The inherited condition behind many multiple and recurrent BCCs</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Gorlin syndrome — also called basal cell nevus syndrome or nevoid basal cell carcinoma syndrome (NBCCS) — is a rare inherited condition that predisposes a person to develop many basal cell carcinomas (BCCs) over a lifetime, often starting in the teens or twenties and sometimes numbering in the dozens or hundreds. It also affects the jaw, the skeleton, and, less commonly, the developing brain and heart. Estimates of how common it is range from about 1 in 30,000 to 1 in 60,000 people.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Recognizing the syndrome matters because it changes how BCCs are managed: the goal shifts from treating one tumor aggressively to protecting skin and healthy tissue over decades. This article covers the main features, how it is inherited, why it drives so many BCCs, how it is diagnosed, and what it means for treatment — including an important caution about radiation.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:list-checks" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Main Features</h2>
+              <p class="text-slate/80 mb-4">
+                Gorlin syndrome affects several body systems, and no two people have exactly the same combination. Features doctors look for include:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Multiple basal cell carcinomas</strong> — often beginning in adolescence or early adulthood, appearing on both sun-exposed and sun-protected skin such as the trunk, and recurring in the same areas. Some lesions can be mistaken for skin tags or moles.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Jaw keratocysts</strong> — fluid-filled cysts in the jawbone (odontogenic keratocysts), typically from the second decade of life, which can displace teeth and weaken the bone. They are frequently the first sign that leads to diagnosis.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Palmar and plantar pits</strong> — small shallow depressions in the skin of the palms and soles.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Calcification of the falx cerebri</strong> — an early hardening of a membrane between the brain's hemispheres, visible on skull imaging.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Skeletal changes</strong> — rib abnormalities (bifid, fused, or splayed ribs), vertebral changes, and a larger-than-average head (macrocephaly), sometimes with a prominent forehead and widely spaced eyes.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Less common findings</strong> — benign heart or ovarian fibromas, cleft lip or palate, eye abnormalities, and, in a small percentage of children, a brain tumor called medulloblastoma, usually before age 3.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                In a classic series of 105 affected people, basal cell carcinomas were present in the large majority of adults, jaw cysts in about three-quarters, and rib anomalies in roughly one-third — a reminder that the picture is variable, not uniform.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:dna" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How It Is Inherited</h2>
+              <p class="text-slate/80 mb-4">
+                Gorlin syndrome is <strong>autosomal dominant</strong>: a single altered gene copy is enough to cause it, and a parent who carries it has a 50% chance of passing it to each child. About 20–30% of people with the syndrome have no affected relative — in them the gene change is <em>de novo</em> (new), arising around the time of conception, and they can still pass it to their own children.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Most cases (roughly 50–75% of those with a clinical diagnosis) are caused by loss-of-function changes in <strong>PTCH1</strong>, a gene on chromosome 9. A smaller number are due to changes in <strong>SUFU</strong> (associated with a higher medulloblastoma risk) or, rarely, <strong>PTCH2</strong>. Some people who clearly have the syndrome on clinical grounds have no identifiable gene change with current testing.
+              </p>
+              <p class="text-slate/80">
+                PTCH1 and SUFU are both brakes on the <strong>hedgehog signaling pathway</strong>, a system that guides tissue growth before birth and is normally switched off in adult skin. This is the same pathway targeted by the drugs used for <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">advanced BCC</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why So Many BCCs</h2>
+              <p class="text-slate/80 mb-4">
+                In sporadic (non-inherited) BCC, both copies of a hedgehog-pathway gene have to be knocked out by chance in a single skin cell before a tumor starts — an uncommon event, which is why most people who get BCCs get only one or a few.
+              </p>
+              <p class="text-slate/80 mb-4">
+                In Gorlin syndrome, every skin cell already starts with one faulty copy of PTCH1. Only one more "hit" — from ultraviolet light, radiation, or ordinary cell division — is needed to release the brake on hedgehog signaling in that cell. Across a lifetime and billions of skin cells, that second hit happens again and again, so new BCCs keep forming, including on skin that rarely sees the sun.
+              </p>
+              <p class="text-slate/80">
+                This also explains two practical points: <strong>sun protection matters even more</strong> than usual, because UV is a major source of the second hit; and <strong>ionizing radiation is a potent trigger</strong>, which is central to the treatment cautions below.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:stethoscope" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How It Is Diagnosed</h2>
+              <p class="text-slate/80 mb-4">
+                Diagnosis rests on a published set of <strong>major and minor criteria</strong> (from an international consensus panel), combined where possible with genetic testing. A clinical diagnosis is generally made when someone has two major criteria, or one major plus two minor criteria; identifying a PTCH1 or SUFU change confirms it.
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Major criteria</strong> include multiple BCCs (or a BCC before age 20), jaw keratocysts, three or more palmar/plantar pits, falx calcification, characteristic rib anomalies, and a first-degree relative with the syndrome.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Minor criteria</strong> include macrocephaly, cleft lip or palate, certain eye findings, vertebral anomalies, ovarian or cardiac fibromas, and childhood medulloblastoma.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mb-4">
+                Work-up often includes a panoramic jaw X-ray (orthopantomogram), skull imaging, a spine and rib series, a thorough skin exam, and, for children, close developmental and neurologic follow-up.
+              </p>
+              <p class="text-slate/80">
+                <strong>Genetic counseling</strong> is recommended for anyone with a confirmed or suspected diagnosis. A counselor can explain testing options, coordinate testing of relatives, and discuss reproductive choices. Because the syndrome can appear in childhood, testing of at-risk children is often considered so surveillance can begin early.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:pill" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What It Means for Treatment</h2>
+              <p class="text-slate/80 mb-4">
+                The strategy is lifelong tissue preservation, not just tumor removal:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Surgery, chosen carefully.</strong> Individual BCCs are still treated with excision, curettage, or <a href="/basal-cell-carcinoma/treatment-options" class="text-teal hover:text-teal/80 underline">Mohs surgery</a> when appropriate, but with an eye toward limiting cumulative scarring over many procedures. See <a href="/basal-cell-carcinoma/types" class="text-teal hover:text-teal/80 underline">BCC subtypes</a> for how tumor type guides that choice.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Skin-directed options for many small lesions.</strong> Topical treatments (such as imiquimod or 5-fluorouracil), photodynamic therapy, curettage, and laser can reduce the burden of superficial BCCs and delay the need for surgery.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Hedgehog pathway inhibitors.</strong> Oral vismodegib reduces the rate of new surgically eligible BCCs and shrinks existing ones in Gorlin syndrome — in a randomized trial, new-tumor rates fell sharply on the drug. Side effects (muscle cramps, taste loss, hair thinning) often limit how long people can stay on it, so it is typically used in courses or during high-burden periods rather than indefinitely. See <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">managing hedgehog inhibitor side effects</a>.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Vigilant surveillance.</strong> Frequent full-skin exams (often every few months), regular dental and jaw imaging for keratocysts, and diligent daily sun protection are the backbone of care.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">A Caution About Radiation</h2>
+              <p class="text-slate/80 mb-4">
+                People with Gorlin syndrome are <strong>unusually sensitive to ionizing radiation</strong>. Radiation therapy delivered to the skin — or to deeper structures, with skin in the beam's path — can trigger large numbers of new BCCs within the treated field, sometimes appearing only 6 months to 3 years later. Historically, children treated with craniospinal radiation for medulloblastoma have developed dense clusters of BCCs across the back.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Because of this, radiotherapy for a BCC is generally <strong>avoided in Gorlin syndrome whenever an alternative exists</strong>, and diagnostic radiation (such as repeated CT scans) is kept to what is clinically necessary. When radiation is genuinely needed, the risks and benefits are weighed carefully by the team, and techniques that spare skin are preferred.
+              </p>
+              <p class="text-slate/80">
+                Tell every clinician you see — dermatologist, dentist, oncologist, radiologist — that you have Gorlin syndrome, so imaging and treatment decisions account for it.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Do my features meet the criteria for Gorlin syndrome, and should I have genetic testing and counseling?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Should my children or other relatives be tested or screened, and starting at what age?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>How often should I have skin exams and jaw imaging?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Which of my BCCs can be managed with creams, light therapy, or curettage rather than surgery?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Am I a candidate for a hedgehog pathway inhibitor, and would it be a short course or longer term?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Given my radiation sensitivity, how should imaging and any future radiotherapy be handled?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Are there clinical trials or specialty clinics for Gorlin syndrome I should know about?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Gorlin syndrome is the inherited condition behind many cases of multiple and recurrent BCCs. It comes from a change in a hedgehog-pathway gene — usually PTCH1 — that leaves every skin cell one step closer to forming a tumor, and it also affects the jaw and skeleton. Care is a long game: frequent skin checks, tissue-sparing treatment of individual BCCs, selective use of hedgehog pathway inhibitors, meticulous sun protection, and caution with radiation.
+          </p>
+          <p class="text-slate/80">
+            If you or a close relative has had unusually early or numerous BCCs, ask a dermatologist whether an evaluation for Gorlin syndrome and a referral for genetic counseling make sense.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Bree AF, Shah MR; BCNS Colloquium Group. Consensus statement from the first international colloquium on basal cell nevus syndrome (BCNS). <em>Am J Med Genet A.</em> 2011;155A(9):2091-2097. <a href="https://pubmed.ncbi.nlm.nih.gov/21834049/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Kimonis VE, Goldstein AM, Pastakia B, et al. Clinical manifestations in 105 persons with nevoid basal cell carcinoma syndrome. <em>Am J Med Genet.</em> 1997;69(3):299-308. <a href="https://pubmed.ncbi.nlm.nih.gov/9096761/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tang JY, Mackay-Wiggan JM, Aszterbaum M, et al. Inhibiting the hedgehog pathway in patients with the basal-cell nevus syndrome. <em>N Engl J Med.</em> 2012;366(23):2180-2188. <a href="https://pubmed.ncbi.nlm.nih.gov/22670904/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://medlineplus.gov/genetics/condition/gorlin-syndrome/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">MedlinePlus Genetics (NIH)</a> — Gorlin Syndrome
+                </li>
+                <li>
+                  <a href="https://www.ncbi.nlm.nih.gov/books/NBK1151/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">GeneReviews (NIH)</a> — Nevoid Basal Cell Carcinoma Syndrome
+                </li>
+                <li>
+                  <a href="https://gorlinsyndrome.org/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Gorlin Syndrome Alliance</a> — patient support, clinician directory, and registry
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist, geneticist, or genetic counselor about diagnosis, testing, and management of Gorlin syndrome.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about Gorlin syndrome and basal cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

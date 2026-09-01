@@ -1,0 +1,296 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors";
+const lastReviewed = "2026-08-31";
+const title = "Hedgehog Inhibitors for Advanced BCC | Beating Skin Cancer";
+const description = "Hedgehog pathway inhibitors are oral targeted drugs for advanced basal cell carcinoma. Learn how vismodegib and sonidegib work and what to expect.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do Hedgehog Pathway Inhibitors Treat Advanced BCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "How Do Hedgehog Pathway Inhibitors Treat Advanced BCC?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How well do hedgehog pathway inhibitors work for advanced basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the trials that led to approval, roughly 30 to 60 percent of tumors shrank meaningfully. In the vismodegib ERIVANCE study, about 43% of locally advanced and 30% of metastatic BCCs responded, and about one in five locally advanced tumors disappeared on examination. Sonidegib produced responses in roughly four to six of every ten locally advanced tumors in the BOLT study, with responses lasting a median of about two years in longer follow-up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does it take to see a response to a hedgehog inhibitor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tumor shrinkage often begins within the first one to three months of daily treatment. The fullest response can take six months to a year, so doctors usually give the drug a fair trial before deciding whether it is working, using photographs, skin exams, and scans where needed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a hedgehog inhibitor a cure for advanced BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is best thought of as disease control rather than a cure. Many people have durable responses, and the drug is sometimes used for a few months to shrink a tumor before surgery. In others the tumor eventually finds a way around the blocked pathway and starts growing again, at which point immunotherapy or a clinical trial may be the next step."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Do Hedgehog Pathway Inhibitors Treat Advanced BCC?
+          </h1>
+          <p class="text-xl text-white/80">How this class of oral targeted therapy works and what to expect</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Almost every basal cell carcinoma (BCC) is cured by a single surgery or a course of radiation. A small number are not: the tumor may be too large or deep, wrapped around a nerve, destroying cartilage or bone, back for the third or fourth time, or in a spot on the face where removing it would cause unacceptable damage. A very few spread to lymph nodes or beyond. Doctors call these tumors <a href="/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means" class="text-teal hover:text-teal/80 underline">advanced BCC</a>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            When <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">surgery and radiation are no longer good options</a>, the first systemic (whole-body) treatment for advanced BCC is usually a hedgehog pathway inhibitor — an oral targeted drug taken as a capsule once a day at home. Two are approved: vismodegib (Erivedge) and sonidegib (Odomzo). This article explains the pathway they block, how well they work, and what living with the treatment involves.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Hedgehog Pathway and Why It Matters in BCC</h2>
+          <p class="text-slate/80 mb-4">
+            The "hedgehog" signaling pathway is a chain of molecules inside cells that carries a "grow and divide" message. It is intensely busy before birth, when it helps build skin, hair, bone, and other tissues. In adults it is mostly switched off, kept in reserve for repair and for the normal upkeep of hair follicles, taste buds, and a few other tissues.
+          </p>
+          <p class="text-slate/80 mb-4">
+            In roughly nine out of ten basal cell carcinomas, a genetic change jams this pathway in the "on" position. Most often the tumor has lost a gene called <em>PTCH1</em>, which normally acts as the pathway's brake. Less often, a gene called <em>SMO</em> is altered so that it stays active. Either way, the cell receives a nonstop growth signal, and a BCC is the result.
+          </p>
+          <div class="bg-teal/5 rounded-lg p-6">
+            <p class="text-slate/80">
+              This is why the hedgehog pathway is such a useful target in BCC: the same faulty signal is driving the large majority of these tumors, so a drug that interrupts it can work across many different patients. The same pathway is overactive in nearly all the tumors of people with <a href="/basal-cell-carcinoma/advanced-bcc/gorlin-syndrome" class="text-teal hover:text-teal/80 underline">Gorlin syndrome</a>, an inherited condition that causes many BCCs over a lifetime.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:target" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How the Drugs Work</h2>
+              <p class="text-slate/80 mb-4">
+                Both vismodegib and sonidegib block the same protein — <strong>SMO (smoothened)</strong>, which sits in the middle of the hedgehog pathway and passes the growth signal along. With SMO blocked, the signal is cut off:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Tumor cells stop receiving the "keep multiplying" message, so growth slows or stops.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Many tumor cells mature or die, and the visible tumor can shrink over weeks to months.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Because the drug targets one specific pathway rather than all fast-dividing cells, it is <strong>targeted therapy</strong>, not chemotherapy — the side-effect pattern is different (see <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">managing hedgehog inhibitor side effects</a>).</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Vismodegib is taken as a 150 mg capsule once a day; sonidegib as a 200 mg capsule once a day. There are no infusions and no hospital stays — treatment happens at home, with regular clinic visits to check on progress.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What the Research Shows</h2>
+          <p class="text-slate/80 mb-6">
+            Both drugs were approved on the strength of clinical trials in people with advanced BCC that could not be treated by surgery or radiation.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Vismodegib (Erivedge)</h3>
+              <p class="text-slate/80 mb-3">
+                In the pivotal ERIVANCE study, about <strong>43% of locally advanced</strong> tumors and <strong>30% of metastatic</strong> tumors shrank significantly, and roughly one in five locally advanced tumors could no longer be seen on examination. The larger STEVIE study, which followed more than 1,200 patients treated in routine practice, found a similar level of benefit and no unexpected safety problems.
+              </p>
+              <p class="text-slate/80">
+                Vismodegib is approved for adults with metastatic BCC, and for locally advanced BCC that has come back after surgery or that is not suitable for surgery or radiation.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Sonidegib (Odomzo)</h3>
+              <p class="text-slate/80 mb-3">
+                In the BOLT study, roughly <strong>four to six of every ten locally advanced</strong> tumors responded at the approved 200 mg dose, depending on how response was measured. Longer follow-up showed responses lasting a median of about two years. Sonidegib is approved for adults with locally advanced BCC that has recurred after surgery or radiation, or who are not candidates for those treatments; it is not approved for metastatic disease.
+              </p>
+              <p class="text-slate/80">
+                The two drugs have never been compared head-to-head. The choice between them comes down to availability, the exact type of advanced disease, other medical conditions, and the expected side-effect profile.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What to Expect on Treatment</h2>
+
+          <h3 class="text-xl font-serif text-navy mb-2">A gradual response</h3>
+          <p class="text-slate/80 mb-6">
+            Shrinkage usually begins in the first one to three months, but the fullest response can take six months to a year. Your team will track progress with photographs, skin exams, and — if there is disease deeper in the body — periodic scans.
+          </p>
+
+          <h3 class="text-xl font-serif text-navy mb-2">Side effects are expected</h3>
+          <p class="text-slate/80 mb-6">
+            Nearly everyone develops side effects, because the drug also dials down the hedgehog pathway's normal jobs in muscle, hair follicles, and taste buds. Muscle cramps, changes or loss of taste, hair thinning, weight loss, and fatigue are the common ones. They are rarely dangerous, but over months they can be wearing — and they, not the cancer, are the usual reason people pause or stop. Many of these effects can be eased with supportive care or planned treatment breaks: see <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">how the side effects of hedgehog inhibitors are managed</a>.
+          </p>
+
+          <h3 class="text-xl font-serif text-navy mb-2">Strict pregnancy precautions</h3>
+          <p class="text-slate/80 mb-6">
+            Both drugs cause severe birth defects. Patients who can become pregnant must use reliable contraception during treatment and for a period after the last dose (longer for vismodegib), and pregnancy must be ruled out before starting. Male patients should use condoms with a pregnant or potentially pregnant partner. Neither patients nor, for vismodegib, male patients should donate blood during treatment or for a set time afterward. Your team will go through the exact timelines with you.
+          </p>
+
+          <h3 class="text-xl font-serif text-navy mb-2">How long treatment lasts</h3>
+          <p class="text-slate/80 mb-6">
+            Many people stay on treatment for as long as it is helping and the side effects are manageable. In some people the tumor eventually adapts and starts growing again after months or years — the pathway finds a route around the blocked SMO protein. If that happens, options include <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">immunotherapy</a> or a <a href="/basal-cell-carcinoma/advanced-bcc/clinical-trials-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">clinical trial</a>.
+          </p>
+
+          <h3 class="text-xl font-serif text-navy mb-2">Sometimes used before surgery</h3>
+          <p class="text-slate/80">
+            A hedgehog inhibitor is occasionally given for a few months to shrink a tumor first, so that surgery can be smaller and spare more healthy tissue — an approach called <a href="/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery" class="text-teal hover:text-teal/80 underline">neoadjuvant therapy</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my BCC locally advanced or metastatic, and which hedgehog inhibitor do you recommend for me and why?</li>
+                <li>What response is realistic for a tumor like mine, and how will we measure whether it is working?</li>
+                <li>How long might I need to take it, and what would make us stop or switch?</li>
+                <li>What side effects should I expect, and what is the plan for managing them or taking breaks?</li>
+                <li>If the drug stops working, what are my next options — immunotherapy or a trial?</li>
+                <li>What contraception and blood-donation precautions apply, and for how long after the last dose?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Hedgehog pathway inhibitors gave advanced BCC its first effective drug treatment. By blocking the single faulty signal that drives most basal cell carcinomas, vismodegib and sonidegib can shrink tumors that surgery and radiation cannot reach, and for many people they hold the disease in check for years.
+          </p>
+          <p class="text-slate/80">
+            They are demanding drugs to take, and side effects shape the experience as much as the response does. Going in with realistic expectations — steady control rather than a quick cure, with a plan for managing side effects — makes the treatment easier to stay with.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Sekulic A, Migden MR, Oro AE, et al. Efficacy and safety of vismodegib in advanced basal-cell carcinoma. <em>N Engl J Med.</em> 2012;366(23):2171-2179. <a href="https://pubmed.ncbi.nlm.nih.gov/22670903/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Guminski A, Gutzmer R, et al. Treatment with two different doses of sonidegib in patients with locally advanced or metastatic basal cell carcinoma (BOLT): a multicentre, randomised, double-blind phase 2 trial. <em>Lancet Oncol.</em> 2015;16(6):716-728. <a href="https://pubmed.ncbi.nlm.nih.gov/25981810/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Basset-Séguin N, Hauschild A, Kunstfeld R, et al. Vismodegib in patients with advanced basal cell carcinoma: primary analysis of STEVIE, an international, open-label trial. <em>Eur J Cancer.</em> 2017;86:334-348. <a href="https://pubmed.ncbi.nlm.nih.gov/29073584/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Gutzmer R, Solomon JA. Hedgehog pathway inhibition for the treatment of basal cell carcinoma. <em>Target Oncol.</em> 2019;14(3):253-267. <a href="https://pubmed.ncbi.nlm.nih.gov/31243642/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/treating/targeted-therapy.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Targeted Therapy Drugs for Basal Cell Carcinoma
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/basal-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Basal Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

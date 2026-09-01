@@ -1,0 +1,290 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc";
+const lastReviewed = "2026-08-31";
+const title = "Advanced Basal Cell Carcinoma | Beating Skin Cancer";
+const description = "Advanced basal cell carcinoma includes locally advanced and metastatic disease. Learn how it's diagnosed, when surgery isn't enough, and treatment options.";
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": canonical }
+  ],
+};
+
+const jsonLd = [breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Advanced Basal Cell Carcinoma</h1>
+          <p class="text-xl text-white/80">When BCC is locally advanced or has spread</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What Is Advanced Basal Cell Carcinoma?</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Nearly all basal cell carcinomas (BCCs) are cured with a single office procedure. A small fraction behave differently — growing deep into surrounding tissue, coming back repeatedly after surgery or radiation, or, very rarely, spreading beyond the skin. Doctors call these tumors "advanced," and they are managed with a different set of tools, often by a team rather than a single dermatologist.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            "Advanced BCC" is an umbrella term for two distinct situations:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Locally advanced BCC</h3>
+              <p class="text-slate/80">
+                The tumor has grown large or deep, invaded cartilage, bone, or nerves, or recurred after treatment — and surgery or radiation can no longer remove it without unacceptable damage to function or appearance. This accounts for the large majority of advanced cases.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic BCC</h3>
+              <p class="text-slate/80">
+                The cancer has spread to lymph nodes or distant organs such as the lungs or bone. This is one of the rarest events in oncology, occurring in well under 1% of all BCCs, but it is treated with the same systemic medications used for locally advanced disease.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Key Topics</h2>
+          <p class="text-slate/80 mb-6">
+            Explore these topics to understand what advanced basal cell carcinoma means, how it is evaluated, and the treatment options available:
+          </p>
+          <div class="space-y-3">
+            <a href="/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What does "advanced" basal cell carcinoma mean?</div>
+              <div class="text-sm text-slate/70">Locally advanced vs. metastatic disease, and how uncommon each one is</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/multidisciplinary-workup" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How is advanced BCC evaluated before treatment?</div>
+              <div class="text-sm text-slate/70">Imaging, pathology, and the multidisciplinary care team</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">When are surgery and radiation no longer enough?</div>
+              <div class="text-sm text-slate/70">What "inoperable" and "locally advanced" mean in practice</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How do hedgehog pathway inhibitors treat advanced BCC?</div>
+              <div class="text-sm text-slate/70">How this class of oral targeted therapy works and what to expect</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How are the side effects of hedgehog inhibitors managed?</div>
+              <div class="text-sm text-slate/70">Muscle cramps, taste changes, hair thinning, and treatment breaks</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">When is immunotherapy used for advanced BCC?</div>
+              <div class="text-sm text-slate/70">PD-1 inhibitors after hedgehog inhibitors stop working or aren't tolerated</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Can medication shrink a BCC before surgery?</div>
+              <div class="text-sm text-slate/70">Neoadjuvant therapy to reduce tumor size and preserve tissue</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/clinical-trials-for-advanced-bcc" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How do I find a clinical trial for advanced BCC?</div>
+              <div class="text-sm text-slate/70">Where to look, what the phases mean, and questions to ask</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/gorlin-syndrome" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What is Gorlin syndrome (basal cell nevus syndrome)?</div>
+              <div class="text-sm text-slate/70">The inherited condition behind many multiple and recurrent BCCs</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/questions-to-ask-your-care-team" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What should I ask my care team about advanced BCC?</div>
+              <div class="text-sm text-slate/70">Questions for your dermatologist, surgeon, and oncologist</div>
+            </a>
+            <a href="/basal-cell-carcinoma/advanced-bcc/living-with-advanced-bcc" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What is the outlook, and what support is available?</div>
+              <div class="text-sm text-slate/70">Prognosis, follow-up, and supportive care for advanced disease</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Signs a BCC May Be Advanced</h2>
+              <p class="text-slate/80 mb-4">Most BCCs are small and slow-growing. Features that prompt a doctor to consider advanced disease include:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A tumor that has come back one or more times after surgery or radiation</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A large growth (several centimeters) or one that is enlarging quickly</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A lesion fixed to deeper tissue, or that has destroyed cartilage or bone</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Numbness, tingling, weakness, or persistent pain near the tumor (possible nerve involvement)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A tumor around the eye, nose, or ear where removal would threaten function or appearance</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A firm or swollen lymph node near a known skin cancer</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:users" class="text-teal" size={28} />
+              <h2 class="text-2xl font-serif text-navy">Who Develops Advanced BCC</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People whose tumor went untreated or unnoticed for years</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Tumors with an aggressive subtype (morpheaform, infiltrative, basosquamous)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>BCCs that keep recurring in the same area despite treatment</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Weakened immune systems, including organ transplant recipients</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Gorlin syndrome (basal cell nevus syndrome), which causes many BCCs over a lifetime</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Prior radiation to the affected area</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:clock" class="text-teal" size={28} />
+              <h2 class="text-2xl font-serif text-navy">Why Timely Treatment Matters</h2>
+            </div>
+            <p class="text-slate/80 mb-4">
+              Advanced BCC is largely preventable. Most cases follow years of an untreated tumor or one that recurred repeatedly without a change in approach.
+            </p>
+            <p class="text-slate/80">
+              A BCC caught and treated early is almost always cured with a single procedure. The same tumor left to grow can eventually require systemic medication, reconstruction, or a multidisciplinary team. If you have a BCC that has recurred or is changing, ask your dermatologist whether a referral is warranted.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} />
+            <h2 class="text-2xl font-serif text-navy">Systemic Treatment Overview</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            When surgery and radiation are no longer options, advanced BCC is treated with medication that works throughout the body. Treatment is individualized, and every option below carries meaningful side effects that are weighed against its benefits.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Hedgehog pathway inhibitors:</strong> Oral targeted drugs (vismodegib, sonidegib) that block the signaling pathway driving the growth of most BCCs. Usually the first systemic option for locally advanced or metastatic disease.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy (PD-1 inhibitors):</strong> Cemiplimab helps the immune system attack the cancer and is an option when a hedgehog inhibitor stops working or cannot be tolerated.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Radiation therapy:</strong> Can be the primary treatment for some inoperable tumors, or given after surgery to reduce the chance of recurrence.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials:</strong> New agents and drug combinations for advanced BCC are under active study and may be an option at any stage of treatment.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Bichakjian C, Armstrong A, Baum C, et al. Guidelines of care for the management of basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):540-559. <a href="https://pubmed.ncbi.nlm.nih.gov/29331385/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Krakowski AC, Hafeez F, Westheim A, Pan EY, Wilson M. Advanced basal cell carcinoma: What dermatologists need to know about diagnosis. <em>J Am Acad Dermatol.</em> 2022;86(6S):S1-S13. <a href="https://pubmed.ncbi.nlm.nih.gov/35577405/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/basal-cell-carcinoma/treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Basal Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

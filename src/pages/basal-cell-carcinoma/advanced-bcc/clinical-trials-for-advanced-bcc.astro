@@ -1,0 +1,388 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/clinical-trials-for-advanced-bcc";
+const lastReviewed = "2026-08-31";
+const title = "Clinical Trials for Advanced BCC | Beating Skin Cancer";
+const description =
+  "How to find a clinical trial for advanced basal cell carcinoma: searching ClinicalTrials.gov and NCI, what trial phases mean, eligibility, and what to ask.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do I Find a Clinical Trial for Advanced BCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "Clinical Trials for Advanced BCC", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I have to run out of standard treatments before joining a clinical trial for advanced BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Some trials do enroll people whose basal cell carcinoma has stopped responding to a hedgehog pathway inhibitor, but others are open to patients who have not yet started systemic therapy, or who are looking at medication before surgery. Asking about trials early keeps the most options open."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I be given a placebo instead of treatment in an advanced BCC trial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is unlikely. Placebo-only arms are considered unethical when an effective standard treatment exists. Most advanced BCC trials compare a new drug against an approved therapy such as vismodegib or cemiplimab, or add the new drug on top of standard care, so participants still receive active treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I search for advanced BCC clinical trials myself?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ClinicalTrials.gov is the federal registry of nearly every U.S. trial and can be filtered by basal cell carcinoma, location, and recruitment status. The National Cancer Institute runs a more patient-friendly search tool and a step-by-step guide. NCI-Designated Cancer Centers also list the trials they have open."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Do I Find a Clinical Trial for Advanced BCC?
+          </h1>
+          <p class="text-xl text-white/80">Where to look, what the phases mean, and questions to ask</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most basal cell carcinomas (BCCs) are cured with a single procedure and never need anything more. Advanced BCC is different: when a tumor is too large or deep for surgery, keeps coming back, or has spread, treatment relies on a small number of systemic medications, and each of them can eventually stop working or become hard to tolerate. Clinical trials are how the current options — hedgehog pathway inhibitors and, more recently, immunotherapy — became available in the first place, and they remain one of the main ways to reach newer drugs and combinations.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide explains what a trial actually involves, what the phase numbers mean, who might qualify, and the specific places to search for a study that fits advanced BCC. For background on the disease itself, see <a href="/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means" class="text-teal hover:text-teal/80 underline">what "advanced" basal cell carcinoma means</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:lightbulb" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why a Trial Is Worth Considering in Advanced BCC</h2>
+              <p class="text-slate/80 mb-4">
+                A few features of advanced BCC make trials especially relevant:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>The approved menu is short.</strong> Two <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">hedgehog pathway inhibitors</a> (vismodegib, sonidegib) and one <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">immunotherapy</a> (cemiplimab) carry most of the weight. Trials are testing additional drug classes and smarter sequencing.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Resistance is common.</strong> Many locally advanced and metastatic BCCs develop acquired resistance to hedgehog inhibitors after a year or two, so second-line and combination strategies are an active research question.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Timing options are being studied.</strong> Trials are looking at medication <em>before</em> surgery (neoadjuvant) to shrink a tumor and spare tissue, and at combining systemic drugs with radiation.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Rare disease, concentrated expertise.</strong> Because advanced BCC is uncommon, the physicians running trials are usually the same specialists with the most experience managing it.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                A trial is not a last resort or a sign your team has run out of ideas. It is often a way to access tomorrow's treatment under close supervision, and it is worth raising early — during your <a href="/basal-cell-carcinoma/advanced-bcc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">initial multidisciplinary workup</a>, not only after a drug fails.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:flask-conical" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What the Trial Phases Mean</h2>
+              <p class="text-slate/80 mb-4">
+                A clinical trial is a research study that follows a written protocol spelling out who can enroll, what treatment participants receive, and what will be measured. Cancer treatment trials move through four phases, each answering a different question:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase I</strong> — Is it safe, and what is the right dose? Small studies (often a few dozen people), frequently open to patients whose BCC has progressed on standard therapy. Some Phase I trials for advanced BCC are "basket" studies that enroll several cancer types sharing a genetic feature.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase II</strong> — Does it work? Researchers look for early evidence of tumor shrinkage in a specific setting (for example, hedgehog-inhibitor-resistant locally advanced BCC) while continuing to track safety.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase III</strong> — Is it better than, or as good as, the current standard? Larger, often randomized trials comparing the new approach directly against an approved drug. Fewer of these exist in advanced BCC because the disease is rare.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase IV</strong> — What happens over the long run? Conducted after approval, to follow long-term safety and effectiveness in a broader group of patients.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Earlier-phase trials generally carry more unknowns about benefit and side effects; later-phase trials test drugs whose safety is already better understood. Neither is automatically "better" — the right fit depends on your situation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:search" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Where to Look</h2>
+              <ul class="space-y-4 text-slate/80 text-lg">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1.5">•</span>
+                  <span>
+                    <strong><a href="https://clinicaltrials.gov/search?cond=Basal%20Cell%20Carcinoma&aggFilters=status:rec" target="_blank" rel="noopener noreferrer" class="text-teal underline hover:text-teal/80">ClinicalTrials.gov</a></strong>
+                    — the federal registry of essentially every U.S. trial and many international sites. Filter by basal cell carcinoma, recruitment status, and distance from your ZIP code. Read the "Eligibility" section of any study that looks relevant; it lists the exact requirements. The language is technical, so bring promising study numbers (they start with "NCT") to your oncologist.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1.5">•</span>
+                  <span>
+                    <strong><a href="https://www.cancer.gov/research/participate/clinical-trials-search" target="_blank" rel="noopener noreferrer" class="text-teal underline hover:text-teal/80">National Cancer Institute (NCI) trial search</a></strong>
+                    — pulls from the same underlying data with a more patient-friendly interface, and NCI's <a href="https://www.cancer.gov/about-cancer/treatment/clinical-trials/search/trial-guide" target="_blank" rel="noopener noreferrer" class="text-teal underline hover:text-teal/80">Steps to Find a Clinical Trial</a> walks through the process one step at a time. NCI's Cancer Information Service (1-800-4-CANCER) will also run a search for you by phone.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1.5">•</span>
+                  <span>
+                    <strong>NCI-Designated Cancer Centers and academic dermatology / head-and-neck programs</strong>
+                    — these institutions run their own advanced-BCC trial portfolios and often have studies that never fully populate the public registries. They are usually the fastest route to learning what is enrolling near you. Ask your dermatologist or oncologist for a referral if your community practice has nothing open.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1.5">•</span>
+                  <span>
+                    <strong>Your own care team</strong>
+                    — the multidisciplinary tumor board reviewing your case may already know of a suitable study, including trials at partner hospitals. If you have <a href="/basal-cell-carcinoma/advanced-bcc/gorlin-syndrome" class="text-teal hover:text-teal/80 underline">Gorlin syndrome</a>, ask specifically about trials for people who develop many BCCs, which sometimes test prevention or topical approaches rather than treatment of a single tumor.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:user-check" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Who Might Be Eligible</h2>
+              <p class="text-slate/80 mb-4">
+                Every trial sets its own criteria, but eligibility for an advanced BCC study commonly turns on:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Disease category</strong> — most trials specify locally advanced BCC not suitable for surgery or radiation, or metastatic BCC. A pathology report and recent imaging are used to confirm which applies.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Prior treatment</strong> — some studies require that you have already received a hedgehog pathway inhibitor (and had it stop working or cause intolerable side effects); others enroll only patients who have not yet had systemic therapy.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Measurable disease</strong> — there usually has to be a tumor that can be measured on exam or a scan, so response to the study drug can be tracked.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Overall health and organ function</strong> — adequate blood counts, kidney and liver function, and a performance status showing you can manage daily activities. Autoimmune conditions or certain medications can exclude some immunotherapy trials.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>A washout period</strong> — a set gap since your last treatment, radiation, or major surgery.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                There is no single profile of who qualifies. The only reliable way to know is to compare a specific study's eligibility list against your records with your oncologist's help.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:help-circle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Clearing Up Common Worries</h2>
+
+              <h3 class="text-xl font-semibold text-navy mb-3 mt-6">"A trial means my doctors have given up."</h3>
+              <p class="text-slate/80 mb-4">
+                Research on cancer trial enrollment consistently finds that patients are far more likely than physicians and research staff to see trials as an option only when a case is "hopeless." Many advanced BCC trials are for people earlier in their care, including as a first systemic treatment or before surgery.
+              </p>
+
+              <h3 class="text-xl font-semibold text-navy mb-3 mt-6">"I might get a placebo instead of real treatment."</h3>
+              <p class="text-slate/80 mb-4">
+                Placebo-only arms are rare in cancer research and considered unethical when an effective standard treatment exists. Advanced BCC trials typically compare a new drug against an approved one, or add it on top of standard care.
+              </p>
+
+              <h3 class="text-xl font-semibold text-navy mb-3 mt-6">"Once I enroll, I am locked in."</h3>
+              <p class="text-slate/80 mb-4">
+                Participation is voluntary. You can withdraw at any time, for any reason, and still receive standard care. Every U.S. trial is reviewed by an independent Institutional Review Board before it opens, and you go through an informed-consent process that you can take home to discuss with family.
+              </p>
+
+              <h3 class="text-xl font-semibold text-navy mb-3 mt-6">"I cannot afford it."</h3>
+              <p class="text-slate/80">
+                The study sponsor generally covers the investigational drug and trial-specific tests. Routine care costs are usually billed to insurance, and many trials help with travel and lodging. Ask the study coordinator for a written breakdown of what you would owe.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Care Team</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Is there a clinical trial that fits my specific type of advanced BCC and my treatment history?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What phase is it, and how much is already known about the study drug's safety and benefit?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Would the trial replace my standard treatment, add to it, or be a next step if my current drug stops working?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What extra visits, scans, biopsies, or travel would it involve compared with standard care?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What are the known and possible side effects, and how would they be monitored?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What happens if the trial treatment does not work for me, or if I decide to stop?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Which costs are covered by the sponsor, and what would my insurance still be billed for?</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Our companion article on <a href="/basal-cell-carcinoma/advanced-bcc/questions-to-ask-your-care-team" class="text-teal hover:text-teal/80 underline">questions to ask your care team</a> has more on organizing these conversations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Because advanced BCC is rare and its approved treatments are few, clinical trials play an outsized role in what care can look like. Searching ClinicalTrials.gov and the NCI tools is a reasonable place to start, but the most efficient path is usually a referral to an NCI-Designated Cancer Center or academic program that manages advanced BCC regularly and runs its own studies.
+          </p>
+          <p class="text-slate/80">
+            Whether or not a trial turns out to be right for you, ask about it early — alongside surgery, radiation, and standard systemic therapy — so you understand the full range of options for your specific tumor.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Niebel D, Sirokay J, Hoffmann F, Fröhlich A, Bieber T, Landsberg J. Clinical management of locally advanced basal-cell carcinomas and future therapeutic directions. <em>Dermatol Ther (Heidelb).</em> 2020;10(4):835-846. <a href="https://pubmed.ncbi.nlm.nih.gov/32383019/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Hillyer GC, Beauchemin M, Hershman DL, et al. Discordant attitudes and beliefs about cancer clinical trial participation between physicians, research staff, and cancer patients. <em>Clin Trials.</em> 2020;17(2):184-194. <a href="https://pubmed.ncbi.nlm.nih.gov/32009456/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://clinicaltrials.gov/search?cond=Basal%20Cell%20Carcinoma&aggFilters=status:rec" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">ClinicalTrials.gov</a> — Basal Cell Carcinoma Study Search (recruiting)
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/research/participate/clinical-trials-search" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Find Cancer Clinical Trials search tool
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/about-cancer/treatment/clinical-trials/search/trial-guide" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Steps to Find a Clinical Trial
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/managing-cancer/making-treatment-decisions/clinical-trials/what-you-need-to-know.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Clinical Trials: What You Need to Know
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your diagnosis, treatment plan, and whether a clinical trial is appropriate for you.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma and clinical trials</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

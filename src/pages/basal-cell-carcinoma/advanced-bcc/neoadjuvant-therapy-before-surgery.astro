@@ -1,0 +1,335 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery";
+const lastReviewed = "2026-08-31";
+const title = "Shrinking a BCC Before Surgery | Beating Skin Cancer";
+const description = "Neoadjuvant therapy with the hedgehog inhibitor vismodegib can shrink a large basal cell carcinoma before surgery, reducing the wound and sparing tissue.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Can Medication Shrink a BCC Before Surgery?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "Shrinking a BCC Before Surgery", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can medication shrink a basal cell carcinoma before surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Giving the hedgehog pathway inhibitor vismodegib for a few months before an operation — called neoadjuvant therapy — can shrink a large or awkwardly placed BCC. In the VISMONEO trial, 80% of patients with locally advanced facial BCC had a smaller, less complex operation after treatment than was planned beforehand. This use is supported by guidelines but is not separately FDA-approved."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which drug is used to shrink a BCC before surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vismodegib (Erivedge), an oral hedgehog pathway inhibitor, is the drug with the most evidence in the neoadjuvant setting. Sonidegib is a related option. Neoadjuvant immunotherapy with cemiplimab is being studied in clinical trials but is still investigational for BCC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is neoadjuvant treatment before BCC surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most reported courses run about three to six months, long enough to see meaningful shrinkage while limiting the muscle cramps, taste changes, and hair thinning that make long-term hedgehog inhibitor use hard to tolerate. The surgeon then removes the residual tumor and checks the margins under a microscope."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Can Medication Shrink a BCC Before Surgery?
+          </h1>
+          <p class="text-xl text-white/80">Neoadjuvant therapy to reduce tumor size and preserve tissue</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            For most basal cell carcinomas (BCCs), surgery comes first and is often the only treatment needed. But when a tumor is very large, sits next to the eye or nose, or has wrapped around important structures, removing it outright could mean losing an eyelid, part of the nose, or another feature that is hard to rebuild.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            In these situations, doctors sometimes give medication <em>before</em> surgery to shrink the tumor first. This is called <strong>neoadjuvant therapy</strong>. This article explains when it is used for BCC, which drugs are involved, what the research shows, and the trade-offs to weigh.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:git-branch" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What "Neoadjuvant" Means</h2>
+              <p class="text-slate/80 mb-4">
+                <strong>Neoadjuvant</strong> therapy is treatment given before the main treatment — here, medication before surgery. The goal is not to replace the operation but to make it smaller and safer:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Reduce the size of the tumor so the surgeon removes less tissue</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Preserve function and appearance, especially around the eye, nose, ear, and lip</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Turn an operation that would need a major reconstruction into a simpler closure</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Occasionally, make an <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">inoperable</a> tumor operable again</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                After the medication course, the surgeon removes what remains of the tumor and a pathologist checks the edges of the sample to confirm the cancer is fully out.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Which Medication Is Used</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Vismodegib (the main option)</h3>
+              <p class="text-slate/80">
+                Vismodegib (brand name Erivedge) is an oral
+                <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">hedgehog pathway inhibitor</a>.
+                It blocks the signaling pathway that drives the growth of almost all BCCs, and it is the drug with the most published experience as neoadjuvant treatment. Sonidegib, a closely related hedgehog inhibitor, is sometimes used the same way.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Neoadjuvant immunotherapy (investigational)</h3>
+              <p class="text-slate/80">
+                The PD-1 inhibitor
+                <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">cemiplimab</a>
+                is approved for advanced BCC after hedgehog inhibitors, and giving it before surgery is an active area of study. For BCC this remains <strong>investigational</strong> and is generally available only through a
+                <a href="/basal-cell-carcinoma/advanced-bcc/clinical-trials-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">clinical trial</a>.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Neoadjuvant use of vismodegib is recognized in national treatment guidelines, but it is not a separate FDA-approved indication. Insurance coverage varies, and your team may need to document why it is the best choice for your tumor.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">When Doctors Consider It</h2>
+          <p class="text-slate/80 mb-6">
+            Neoadjuvant therapy is not for routine BCC. It is weighed when up-front surgery would be disfiguring or dangerous:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Around the eye</h3>
+              <p class="text-slate/80">Periocular tumors where removing enough tissue could threaten the eyelid, tear drainage, or the eye itself.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">On the nose</h3>
+              <p class="text-slate/80">Large nasal tumors where excision would remove cartilage or a substantial part of the nose.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Very large or deep tumors</h3>
+              <p class="text-slate/80">Growths several centimeters across, or fixed to deeper tissue, where the planned defect is extensive.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Recurrent disease</h3>
+              <p class="text-slate/80">Tumors that have already come back after one or more operations in the same area.</p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            The plan is made together by the
+            <a href="/basal-cell-carcinoma/treatment-options" class="text-teal hover:text-teal/80 underline">surgeon (often a Mohs or oculoplastic surgeon)</a>,
+            a medical oncologist, and sometimes a radiation oncologist, so everyone agrees on the goal before the drug starts.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What the Evidence Shows</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">VISMONEO trial (facial BCC)</h3>
+              <p class="text-slate/80">
+                In this phase 2 study of 55 patients with locally advanced BCC of the face, about <strong>80%</strong> had their planned operation downstaged to a smaller procedure after roughly six months of vismodegib, and about a quarter had a complete response with no tumor left on biopsy.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Neoadjuvant vismodegib before Mohs</h3>
+              <p class="text-slate/80">
+                A U.S. open-label trial found that three to six months of vismodegib before surgery reduced the final surgical defect area by roughly a third compared with the pre-treatment tumor size in high-risk BCC.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Periocular tumors</h3>
+              <p class="text-slate/80">
+                Case series of vismodegib before surgery for advanced BCC around the eye report that many patients kept the eye and avoided the more extensive removal that would otherwise have been required.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Overall, the evidence is from small trials and series rather than large randomized studies, but it consistently shows meaningful shrinkage and less extensive surgery for carefully selected tumors.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Trade-offs and Limitations</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Months of side effects.</strong> Even a few months of a hedgehog inhibitor commonly cause muscle cramps, loss of taste, hair thinning, and fatigue. Some patients stop early. See <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">managing these side effects</a>.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Not every tumor shrinks.</strong> A minority respond little or not at all, which delays definitive surgery.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Surgery is still needed.</strong> Even after a complete response on scans, viable tumor cells can remain, so the area is still removed and the margins checked.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Mapping the original border.</strong> Once a tumor shrinks, the surgeon must still cover the area it originally occupied; photos and measurements before treatment help guide this.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Birth-defect risk.</strong> Hedgehog inhibitors cause severe fetal harm. Strict pregnancy prevention is required during treatment and for a period afterward.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>What would surgery look like now, and how might it change if the tumor shrinks first?</li>
+                <li>How many months of medication are you planning, and how will we measure the response?</li>
+                <li>What side effects are most likely, and at what point would we stop early?</li>
+                <li>How will you find and remove the original tumor border after it shrinks?</li>
+                <li>Is a clinical trial of neoadjuvant treatment an option for me?</li>
+                <li>Will my insurance cover this use of the drug?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            For a select group of large or delicately located basal cell carcinomas, a few months of the hedgehog inhibitor vismodegib before surgery can meaningfully shrink the tumor, leading to a smaller operation and better preservation of the eye, nose, or other structures.
+          </p>
+          <p class="text-slate/80">
+            It is not a way to avoid surgery, and it carries real side effects. Whether it makes sense depends on your specific tumor and goals — a decision best made with a surgical and medical oncology team experienced in advanced BCC.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Bertrand N, Guerreschi P, Basset-Seguin N, et al. Vismodegib in neoadjuvant treatment of locally advanced basal cell carcinoma: first results of a multicentre, open-label, phase 2 trial (VISMONEO study). <em>EClinicalMedicine.</em> 2021;35:100844. <a href="https://pubmed.ncbi.nlm.nih.gov/33997740/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ally MS, Aasi S, Wysong A, et al. An investigator-initiated open-label clinical trial of vismodegib as a neoadjuvant to surgery for high-risk basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2014;71(5):904-911. <a href="https://pubmed.ncbi.nlm.nih.gov/24929884/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  González AR, Etchichury D, Gil ME, Del Aguila R. Neoadjuvant vismodegib and Mohs micrographic surgery for locally advanced periocular basal cell carcinoma. <em>Ophthalmic Plast Reconstr Surg.</em> 2019;35(1):56-61. <a href="https://pubmed.ncbi.nlm.nih.gov/30444747/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/about-cancer/treatment/drugs/vismodegib" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Vismodegib drug information
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/basal-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Basal Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

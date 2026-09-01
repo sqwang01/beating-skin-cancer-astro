@@ -35,6 +35,85 @@ Re-check this file at the start of every disease-article-writer run; update it a
 | self-exam-when-to-see-doctor | How do I check my skin for basal cell carcinoma — and when should I see a doctor? | published — 2026-08-24 |
 | lifestyle-prevention | What lifestyle or skin-care habits help reduce the chance of another basal cell carcinoma? | published — 2026-08-24 |
 
+## basal-cell-carcinoma / advanced-bcc (new sub-hub — pharma-sponsorship target)
+
+Sub-hub at `/basal-cell-carcinoma/advanced-bcc/` covering locally advanced + metastatic BCC.
+The sub-hub `index.astro` is a pattern-1 hub page. It was reviewed and approved by Dr. Wang on
+2026-08-31: byline (`<MedicalReviewer date={lastReviewed} />`, default Editor-in-Chief) +
+`lastReviewed = "2026-08-31"` + `medicalReviewJsonLd(canonical, lastReviewed)` added, and the
+main BCC hub's placeholder `<div>` card converted to a real `<a href="/basal-cell-carcinoma/advanced-bcc">`
+link. Its own Key Topics cards remain unlinked `<div>` placeholders until each spoke is drafted + reviewed.
+
+| Slug / working title | Question the card promises to answer | Status |
+|---|---|---|
+| (sub-hub) index.astro | Advanced Basal Cell Carcinoma overview + laBCC vs mBCC | published — 2026-08-31 |
+| what-advanced-bcc-means | What does "advanced" basal cell carcinoma mean? | published — 2026-08-31 |
+| multidisciplinary-workup | How is advanced BCC evaluated before treatment? | published — 2026-08-31 |
+| when-surgery-radiation-not-enough | When are surgery and radiation no longer enough? | published — 2026-08-31 |
+| hedgehog-pathway-inhibitors | How do hedgehog pathway inhibitors treat advanced BCC? | published — 2026-08-31 |
+| managing-hedgehog-inhibitor-side-effects | How are the side effects of hedgehog inhibitors managed? | published — 2026-08-31 |
+| immunotherapy-for-advanced-bcc | When is immunotherapy used for advanced BCC? | published — 2026-08-31 |
+| neoadjuvant-therapy-before-surgery | Can medication shrink a BCC before surgery? | published — 2026-08-31 |
+| clinical-trials-for-advanced-bcc | How do I find a clinical trial for advanced BCC? | published — 2026-08-31 |
+| gorlin-syndrome | What is Gorlin syndrome (basal cell nevus syndrome)? | published — 2026-08-31 |
+| questions-to-ask-your-care-team | What should I ask my care team about advanced BCC? | published — 2026-08-31 |
+| living-with-advanced-bcc | What is the outlook, and what support is available? | published — 2026-08-31 |
+
+All 11 advanced-bcc spokes drafted 2026-08-31 (6 parallel writers, ~2 articles each), reviewed
+and approved by Dr. Wang the same day, and published 2026-08-31: each gained
+`import MedicalReviewer` + `import { medicalReviewJsonLd }`, `const lastReviewed = "2026-08-31"`,
+`<MedicalReviewer date={lastReviewed} />` under the hero subtitle, and
+`medicalReviewJsonLd(canonical, lastReviewed)` appended to the `jsonLd` array; the sub-hub
+`index.astro`'s 11 placeholder `<div>` Key Topics cards were all converted to real
+`<a href="/basal-cell-carcinoma/advanced-bcc/<slug>">` links. Full `astro build` passes; every
+page renders the byline and MedicalWebPage JSON-LD.
+
+## squamous-cell-carcinoma / advanced-scc (new sub-hub — built to imitate advanced-bcc)
+
+Sub-hub at `/squamous-cell-carcinoma/advanced-scc/` covering locally advanced + metastatic cutaneous
+SCC. Same shape as the advanced-bcc sub-hub: pattern-1 hub page, nested folder, intro splits
+**locally advanced SCC** vs **metastatic SCC**, Key Topics card lists 14 planned spoke deep-dives.
+The sub-hub `index.astro` was drafted 2026-08-31 in DRAFT phase, then reviewed and approved by
+Dr. Wang the same day and published 2026-08-31: byline + `lastReviewed = "2026-08-31"` +
+`medicalReviewJsonLd(canonical, lastReviewed)` added, a new linked Key Topics card added to the
+main SCC hub (`src/pages/squamous-cell-carcinoma.astro`) pointing here (mirrors the
+`basal-cell-carcinoma/index.astro` diff for advanced-bcc), and the 8 reviewed spokes' placeholder
+`<div>` cards on the sub-hub converted to real `<a href>` links. The 6 remaining sub-hub cards
+(neoadjuvant, transplant/immunosuppressed, chemo/EGFR, clinical trials, questions-to-ask,
+living-with) stay unlinked `<div>` placeholders — those spokes are still `not-started`.
+
+| Slug / working title | Question the card promises to answer | Status |
+|---|---|---|
+| (sub-hub) index.astro | Advanced Squamous Cell Carcinoma overview + laSCC vs mSCC | published — 2026-08-31 |
+| what-advanced-scc-means | What does "advanced" squamous cell carcinoma mean? | published — 2026-08-31 |
+| high-risk-features | What makes a squamous cell carcinoma "high-risk"? | published — 2026-08-31 |
+| perineural-invasion | What does perineural invasion mean for my SCC? | published — 2026-08-31 |
+| nodal-metastasis-and-sentinel-node | When does SCC spread to lymph nodes, and what is a sentinel node biopsy? | published — 2026-08-31 |
+| multidisciplinary-workup | How is advanced SCC evaluated before treatment? | published — 2026-08-31 |
+| when-surgery-radiation-not-enough | When are surgery and radiation no longer enough? | published — 2026-08-31 |
+| immunotherapy-for-advanced-scc | How does immunotherapy treat advanced SCC? | published — 2026-08-31 |
+| managing-immunotherapy-side-effects | How are the side effects of immunotherapy managed? | published — 2026-08-31 |
+| neoadjuvant-immunotherapy-before-surgery | Can immunotherapy shrink an SCC before surgery? | not-started |
+| scc-in-transplant-and-immunosuppressed-patients | Advanced SCC in transplant recipients and immunosuppressed patients | not-started |
+| chemotherapy-and-egfr-targeted-therapy | Where do chemotherapy and EGFR-targeted therapy fit? | not-started |
+| clinical-trials-for-advanced-scc | How do I find a clinical trial for advanced SCC? | not-started |
+| questions-to-ask-your-care-team | What should I ask my care team about advanced SCC? | not-started |
+| living-with-advanced-scc | What is the outlook, and what support is available? | not-started |
+
+Remaining spoke slots (rows still `not-started`) are proposals pending Dr. Wang's sign-off on the
+topic list. Each spoke, when drafted: deep-dive pattern-2 shape, `../../../` imports, 4-level
+breadcrumb, "← Back to Advanced Squamous Cell Carcinoma" hero link, `[articleJsonLd,
+breadcrumbsJsonLd, faqJsonLd]` (no medicalReviewJsonLd), verified PubMed citations + patient
+resources.
+
+First 8 spokes drafted 2026-08-31 (4 parallel writers, 2 articles each) — `what-advanced-scc-means`,
+`high-risk-features`, `perineural-invasion`, `nodal-metastasis-and-sentinel-node`,
+`multidisciplinary-workup`, `when-surgery-radiation-not-enough`, `immunotherapy-for-advanced-scc`,
+`managing-immunotherapy-side-effects` — then reviewed, approved, and published the same day
+(byline + `medicalReviewJsonLd` added, sub-hub cards linked, main SCC hub card added). Slug
+note: the `high-risk-features` page ships `title` "What Makes an SCC Tumor High-Risk? | Beating
+Skin Cancer" (the verbatim question is 68 chars, over the 60 limit) — full question kept as the H1.
+
 ## squamous-cell-carcinoma (8/8 slots real articles, all published and linked)
 
 | Working title | Question the card promises to answer | Status |
@@ -78,6 +157,11 @@ Re-check this file at the start of every disease-article-writer run; update it a
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
+- The 5 original disease hubs are fully published (8/8 slots each, live and linked). The
+  advanced-bcc sub-hub is fully published as of 2026-08-31 — index + all 11 spokes reviewed,
+  bylined, and linked. The advanced-scc sub-hub is partly published as of 2026-08-31 — index +
+  first 8 spokes reviewed, bylined, and linked (main SCC hub card added); 6 further spoke topics
+  remain `not-started` pending Dr. Wang's sign-off on the topic list.
 - 0 pages remain not-started. Every hub is now fully published (8/8 slots live and linked).
   Atypical-nevi hub: all 8/8 drafted 2026-08-27, reviewed and approved by Dr. Wang the same day,
   and published 2026-08-27 — byline (`<MedicalReviewer date={lastReviewed} />`, default

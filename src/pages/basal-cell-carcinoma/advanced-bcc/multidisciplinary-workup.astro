@@ -1,0 +1,352 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/multidisciplinary-workup";
+const lastReviewed = "2026-08-31";
+const title = "Advanced BCC Workup Before Treatment | Beating Skin Cancer";
+const description = "How doctors evaluate advanced basal cell carcinoma before treatment: skin exam, biopsy and pathology, MRI or CT imaging, and the multidisciplinary care team.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Is Advanced Basal Cell Carcinoma Evaluated Before Treatment?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "How Advanced BCC Is Evaluated Before Treatment", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does advanced basal cell carcinoma always need a scan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Most basal cell carcinomas never need imaging. A scan such as MRI or CT is ordered when the tumor is large, fixed to deeper tissue, has come back after treatment, sits near the eye, nose, or ear, or when there are symptoms of nerve involvement like numbness, tingling, or weakness. MRI is usually preferred when perineural (nerve) spread is suspected; CT is better for showing bone involvement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why would I see an oncologist for basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A referral to a radiation or medical oncologist does not mean your cancer has spread. For advanced BCC that cannot be fully removed with surgery, these specialists offer other options such as radiation therapy or oral targeted drugs. Seeing them early means every possible approach is on the table before a treatment plan is finalized."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a tumor board?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A tumor board is a scheduled meeting where dermatologists, surgeons, radiation and medical oncologists, pathologists, and radiologists review a complex case together and agree on a recommended plan. Your case can be discussed at a tumor board without you being present; you then hear the combined recommendation from your main doctor."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Is Advanced Basal Cell Carcinoma Evaluated Before Treatment?
+          </h1>
+          <p class="text-xl text-white/80">Imaging, pathology, and the multidisciplinary care team</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most basal cell carcinomas (BCCs) are diagnosed with a single skin biopsy and treated with one office procedure. No scans, no specialists, no waiting. When a BCC is <a href="/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means" class="text-teal hover:text-teal/80 underline">advanced</a> — large, deep, recurring after treatment, pressing on nerves, or in a spot where surgery would threaten your sight or your face — the evaluation becomes more involved.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            The goal of this workup is to answer three questions before anyone picks a treatment: exactly how far has the tumor grown, what is it doing to the structures around it, and which combination of specialists should be involved. This guide walks through each part of that evaluation so you know what to expect and why each step matters.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:search" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why Advanced BCC Needs a Fuller Evaluation</h2>
+              <p class="text-slate/80 mb-4">
+                A small, new BCC on the cheek can be measured with a ruler and seen in its entirety by the naked eye. An advanced tumor often cannot. It may extend under normal-looking skin, track along a nerve, wrap around cartilage, or sit against bone. Treatment decisions — how wide a surgical margin to take, whether radiation is needed, whether to start medication first — all depend on knowing the true extent of the disease.
+              </p>
+              <p class="text-slate/80">
+                A thorough workup also prevents surprises. Discovering mid-surgery that a tumor reaches the eye socket or the skull base is far worse than knowing it beforehand and planning accordingly. The evaluation below is designed to map the tumor completely and bring the right specialists in from the start.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Clinical Examination</h2>
+          <p class="text-slate/80 mb-6">
+            Everything starts with a careful in-person exam, usually by a dermatologist or a Mohs surgeon:
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Mapping the tumor</h3>
+              <p class="text-slate/80">
+                The doctor measures the visible lesion, checks whether it moves freely or feels tethered to deeper tissue, and looks for satellite spots nearby. A tumor that is fixed in place suggests invasion into muscle, cartilage, or bone.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Checking the nerves</h3>
+              <p class="text-slate/80">
+                Numbness, tingling, burning pain, a drooping eyelid or lip, double vision, or facial weakness can all signal that the cancer is growing along a nerve (perineural invasion). The doctor tests sensation and muscle movement in the area, because these findings change both the imaging plan and the treatment.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Feeling the lymph nodes</h3>
+              <p class="text-slate/80">
+                The doctor examines the lymph nodes that drain the area — in the neck, in front of and behind the ear, or under the jaw. A firm or enlarged node near a known BCC is uncommon but is checked at every visit because it would point toward the rare possibility of spread.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:microscope" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Biopsy and Pathology Review</h2>
+          </div>
+          <p class="text-slate/80 mb-6">
+            The tissue diagnosis drives much of what follows. For advanced disease, the pathology report is read closely for several features:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Subtype.</strong> Aggressive growth patterns — infiltrative, morpheaform (sclerosing), and basosquamous — are more likely to extend beyond what is visible and to invade nerves. Nodular and superficial patterns behave less aggressively. See <a href="/basal-cell-carcinoma/types" class="text-teal hover:text-teal/80 underline">types of basal cell carcinoma</a> for how these differ.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Depth and structures involved.</strong> Whether the tumor reaches fat, muscle, cartilage, or bone.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Perineural invasion.</strong> Cancer cells tracking along nerves. It is found in roughly 1 in 20 to 1 in 100 BCCs depending on how they are selected, and is more common with larger, deeper, infiltrative tumors. Its presence often prompts an MRI and consideration of radiation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Margin status.</strong> If the BCC was already partly removed, whether cancer reaches the edge of what was taken.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-6">
+            When the diagnosis is unusual or the slides come from another lab, a second dermatopathologist may re-review them. If a repeat or deeper biopsy is needed to see the full growth pattern, that is done before planning.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:scan" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Imaging: When Scans Are Used</h2>
+              <p class="text-slate/80 mb-4">
+                Imaging is <em>not</em> routine for BCC. It is added when the clinical exam or pathology raises specific concerns — a tumor whose edges cannot be judged by looking and feeling, suspected involvement of bone or deep tissue, symptoms of nerve involvement, recurrent disease, or a tumor near the eye, nose, or ear.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>MRI</strong> shows soft tissue and nerves in the most detail and is generally preferred when perineural spread is suspected or needs to be traced back toward the skull base.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>CT</strong> is better at showing bone erosion and is often used for tumors overlying the jaw, orbit rim, or nasal bones. It also surveys the neck for enlarged lymph nodes.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>PET/CT or chest imaging</strong> is reserved for the rare situation where metastatic (spread) disease is suspected, usually because of an abnormal lymph node.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Scans have limits: very small nerve involvement or thin sheets of tumor can be invisible on imaging, so a normal scan does not always mean the tumor is small. Doctors combine imaging with the exam and pathology rather than relying on any one piece.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:users" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">The Multidisciplinary Care Team</h2>
+          </div>
+          <p class="text-slate/80 mb-6">
+            Advanced BCC is managed by a group rather than a single doctor. You may not meet everyone on this list, but each has a defined role:
+          </p>
+          <div class="space-y-4">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Dermatologist / Mohs surgeon</h3>
+              <p class="text-slate/80">Often the doctor who makes the diagnosis and coordinates the workup. Performs margin-controlled surgery when the tumor is still resectable.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Surgical oncologist or head and neck surgeon</h3>
+              <p class="text-slate/80">Handles large resections involving cartilage, bone, the parotid gland, or the orbit, and performs lymph node surgery if needed.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Radiation oncologist</h3>
+              <p class="text-slate/80">Delivers radiation as a primary treatment for inoperable tumors or after surgery when the risk of recurrence is high, such as with perineural invasion.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Medical oncologist</h3>
+              <p class="text-slate/80">Prescribes and monitors systemic therapy — <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">hedgehog pathway inhibitors</a> or <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">immunotherapy</a> — when surgery and radiation are not enough.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Dermatopathologist and radiologist</h3>
+              <p class="text-slate/80">Interpret the tissue and the scans, and re-review outside material so everyone is working from the same information.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Reconstructive (plastic) surgeon</h3>
+              <p class="text-slate/80">Plans how a large defect will be closed or rebuilt, which sometimes influences the surgical approach itself.</p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Oncology nurses, social workers, and genetic counselors</h3>
+              <p class="text-slate/80">Support side-effect management, transportation and cost concerns, and evaluation for <a href="/basal-cell-carcinoma/advanced-bcc/gorlin-syndrome" class="text-teal hover:text-teal/80 underline">Gorlin syndrome</a> when someone has many BCCs at a young age.</p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Many centers bring these specialists together at a <strong>tumor board</strong> — a meeting where a complex case is presented and the group agrees on a recommendation. Your case can be reviewed there without you attending; you then hear the combined plan from your primary doctor.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:clipboard-list" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Turning the Workup Into a Plan</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Once the exam, pathology, and any imaging are complete, the team classifies the tumor as resectable (removable with acceptable function and appearance) or <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">locally advanced and not suitable for surgery or radiation</a>. That classification points toward one of a few paths: surgery alone, surgery followed by radiation, radiation alone, medication before surgery to shrink the tumor, or systemic therapy as the main treatment.
+          </p>
+          <p class="text-slate/80">
+            The workup is also the moment to raise clinical trials, fertility or dental care before radiation, and a baseline of your other health conditions. A complete evaluation up front means fewer detours later.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Based on the exam and pathology, how far do you think this tumor extends — and do we need a scan to be sure?</li>
+                <li>Is there any sign the cancer is involving a nerve?</li>
+                <li>Which subtype is on my pathology report, and does it change the plan?</li>
+                <li>Which specialists will be involved in my care, and who is coordinating it?</li>
+                <li>Will my case be presented at a tumor board? When will I hear the recommendation?</li>
+                <li>Is my tumor still removable with surgery, or are we considering other treatments first?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            The evaluation for advanced BCC is more thorough than for an ordinary skin cancer because the stakes and the anatomy are more complex. A careful exam, a close read of the pathology, targeted imaging when it is warranted, and input from several specialties together produce a treatment plan built on a complete picture of the tumor.
+          </p>
+          <p class="text-slate/80">
+            If any part of your workup feels rushed or unclear, it is reasonable to ask for the tumor to be mapped fully before a treatment decision is made — and to <a href="/basal-cell-carcinoma/advanced-bcc/questions-to-ask-your-care-team" class="text-teal hover:text-teal/80 underline">bring a written list of questions</a> to each visit.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Bichakjian C, Armstrong A, Baum C, et al. Guidelines of care for the management of basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):540-559. <a href="https://pubmed.ncbi.nlm.nih.gov/29331385/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Krakowski AC, Hafeez F, Westheim A, Pan EY, Wilson M. Advanced basal cell carcinoma: what dermatologists need to know about diagnosis. <em>J Am Acad Dermatol.</em> 2022;86(6S):S1-S13. <a href="https://pubmed.ncbi.nlm.nih.gov/35577405/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Yu J, Aldabagh B, Wang J, et al. Multidisciplinary management of advanced basal cell carcinoma: report of four cases. <em>J Drugs Dermatol.</em> 2014;13(5):601-606. <a href="https://pubmed.ncbi.nlm.nih.gov/24809887/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Pyne JH, Myint E, Hou R, et al. Basal cell carcinoma with perineural invasion: a prospective study examining subtype, tumor surface diameter, invasion depth, and anatomic site in 3005 consecutive cases. <em>J Cutan Pathol.</em> 2020;47(11):1033-1038. <a href="https://pubmed.ncbi.nlm.nih.gov/32654265/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/detection-diagnosis-staging/how-diagnosed.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Basal and Squamous Cell Skin Cancer: Tests and Diagnosis
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/basal-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Basal Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about how advanced basal cell carcinoma is evaluated</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

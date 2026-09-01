@@ -1,0 +1,334 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc";
+const lastReviewed = "2026-08-31";
+const title = "Immunotherapy for Advanced BCC | Beating Skin Cancer";
+const description = "Immunotherapy with the PD-1 inhibitor cemiplimab treats advanced basal cell carcinoma after hedgehog inhibitors stop working or cause side effects.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "When Is Immunotherapy Used for Advanced Basal Cell Carcinoma?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "Immunotherapy for Advanced BCC", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is immunotherapy used for advanced basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Immunotherapy with the PD-1 inhibitor cemiplimab (Libtayo) is generally a second-line option. It is used for locally advanced or metastatic BCC that cannot be treated with surgery or radiation after a hedgehog pathway inhibitor (vismodegib or sonidegib) has stopped controlling the tumor, was never effective, or caused side effects the patient could not tolerate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How well does cemiplimab work for advanced BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the phase 2 trial that led to approval, about 31% of patients with locally advanced BCC and roughly 22% of patients with metastatic BCC had their tumors shrink significantly after prior hedgehog inhibitor therapy. Responses that occur tend to last a long time, often more than a year, but most patients do not have a major response."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the side effects of PD-1 immunotherapy for BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common effects include fatigue, diarrhea, rash, and itching. Because the drug removes a brake from the immune system, it can also cause immune-related inflammation of the colon, liver, lungs, skin, or hormone-producing glands. These reactions can be serious but are usually manageable when caught early, sometimes with corticosteroids and a pause or stop of treatment."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            When Is Immunotherapy Used for Advanced Basal Cell Carcinoma?
+          </h1>
+          <p class="text-xl text-white/80">PD-1 inhibitors after hedgehog inhibitors stop working or aren't tolerated</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most basal cell carcinomas (BCCs) never need anything more than a single office procedure. A small number grow deep, come back after surgery or radiation, or spread — and these
+            <a href="/basal-cell-carcinoma/advanced-bcc" class="text-teal hover:text-teal/80 underline"> advanced </a>
+            tumors are treated with medication that works throughout the body. The usual first choice is a
+            <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline"> hedgehog pathway inhibitor </a>
+            (vismodegib or sonidegib).
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Immunotherapy is the next step when a hedgehog inhibitor is no longer an option. This article explains what immunotherapy for BCC is, exactly when doctors turn to it, how well it works, and what living with it involves.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:shield" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What "Immunotherapy" Means for BCC</h2>
+              <p class="text-slate/80 mb-4">
+                The immune system normally keeps its T cells from attacking the body's own tissue by using "checkpoint" switches. One of these switches is a protein called PD-1. Some cancers exploit it to hide from the immune system.
+              </p>
+              <p class="text-slate/80 mb-4">
+                The immunotherapy approved for advanced BCC is <strong>cemiplimab</strong> (brand name Libtayo), a <strong>PD-1 inhibitor</strong>, also called a checkpoint inhibitor. It blocks the PD-1 switch so that T cells can recognize and attack the tumor. It is given as an intravenous (IV) infusion, usually every three weeks.
+              </p>
+              <p class="text-slate/80">
+                BCCs carry a very high number of DNA mutations from years of ultraviolet damage, which makes them look "foreign" to the immune system once the brakes are released. That biology is the rationale for trying checkpoint immunotherapy in this disease.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">When Immunotherapy Is Considered</h2>
+          <p class="text-slate/80 mb-6">
+            Immunotherapy is a <strong>second-line</strong> treatment for advanced BCC. It is considered when the disease is locally advanced or metastatic, surgery and radiation are no longer reasonable options, and one of the following is true:
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">1. A hedgehog inhibitor stopped working</h3>
+              <p class="text-slate/80">
+                The tumor grew or spread again while the patient was taking vismodegib or sonidegib. Over time many BCCs become resistant to hedgehog blockade, and switching to a drug with a completely different mechanism can regain control.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">2. A hedgehog inhibitor was never effective</h3>
+              <p class="text-slate/80">
+                Some tumors do not shrink at all on a hedgehog inhibitor. If there is no meaningful response after roughly nine months, doctors generally consider that treatment a failure and move on.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">3. The side effects were intolerable</h3>
+              <p class="text-slate/80">
+                Muscle cramps, taste loss, hair thinning, and fatigue lead a large share of patients to stop hedgehog inhibitors even when the drug is helping. If
+                <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline"> dose adjustments and treatment breaks </a>
+                are not enough, immunotherapy becomes the alternative.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Immunotherapy can also be an option for people who cannot safely start a hedgehog inhibitor in the first place. The decision is made by a
+            <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline"> team </a>
+            that typically includes a dermatologist, a medical oncologist, and a surgeon.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Well It Works</h2>
+          <p class="text-slate/80 mb-6">
+            Cemiplimab was tested in a phase 2 trial (Study 1620) in patients whose advanced BCC had already progressed on or could not tolerate a hedgehog inhibitor:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Locally advanced BCC</h3>
+              <p class="text-slate/80">
+                About <strong>31%</strong> of 84 patients had their tumor shrink significantly (an "objective response"), including 6% whose tumor disappeared on scans and exam.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic BCC</h3>
+              <p class="text-slate/80">
+                In the metastatic group, roughly <strong>22%</strong> of patients responded. Median overall survival in long-term follow-up was about 50 months.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Two points matter when reading these numbers. First, <strong>most patients do not have a major response</strong> — the majority see stable disease or continued growth. Second, when a response does happen it tends to be <strong>durable</strong>, often lasting well over a year, which is the main appeal of this approach compared with later lines of hedgehog therapy.
+          </p>
+          <p class="text-slate/80">
+            Responses can also be slow to appear, sometimes taking several months, so doctors usually continue treatment and repeat imaging before concluding it is not working.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Side Effects to Understand</h2>
+              <p class="text-slate/80 mb-4">
+                Checkpoint immunotherapy has a different side-effect profile from hedgehog inhibitors. Many people tolerate it well, but the risks are real and are watched for closely.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Common, usually mild:</strong> fatigue, diarrhea, rash, itching, nausea, joint aches.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Immune-related reactions:</strong> because the drug releases a brake on the immune system, it can cause inflammation of the colon (colitis), liver (hepatitis), lungs (pneumonitis), skin, kidneys, or hormone glands such as the thyroid, adrenal, or pituitary. Hormone problems can be permanent and may need lifelong replacement.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Infusion reactions:</strong> fever, chills, or flushing during or shortly after the IV.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>In the trials, serious (grade 3–4) side effects occurred in roughly a third to a half of patients, but there were no treatment-related deaths.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Report new or worsening symptoms promptly. Most immune-related reactions are reversible when treated early, often with corticosteroids and by holding or stopping the drug. People with autoimmune disease or a prior organ transplant need an especially careful risk discussion.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar-clock" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Treatment Involves</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>An IV infusion in an oncology clinic, typically every three weeks, taking under an hour.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Blood tests before each cycle to check the liver, kidneys, thyroid, and other hormone levels.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Periodic imaging (CT or MRI) and skin exams to measure the tumor's response.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Treatment continues as long as it helps and side effects stay manageable — in trials, up to about two years.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                If immunotherapy does not control the disease, options include returning to a hedgehog inhibitor, radiation to a specific problem area, or a
+                <a href="/basal-cell-carcinoma/advanced-bcc/clinical-trials-for-advanced-bcc" class="text-teal hover:text-teal/80 underline"> clinical trial </a>
+                of a new drug or combination. Occasionally, medication shrinks a tumor enough that
+                <a href="/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery" class="text-teal hover:text-teal/80 underline"> surgery becomes possible again</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is immunotherapy the right next step for me, or are other options still on the table?</li>
+                <li>Given my tumor, what is a realistic chance that it will shrink on cemiplimab?</li>
+                <li>What immune-related side effects should prompt me to call you right away?</li>
+                <li>How will we know if it is working, and how long before we can tell?</li>
+                <li>Do my other medical conditions or medications raise my risk with this drug?</li>
+                <li>Is there a clinical trial I should consider instead of or alongside this?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Immunotherapy gives advanced BCC a genuine second line of systemic treatment. It is used when a hedgehog pathway inhibitor has failed, was never effective, or could not be tolerated, and the cancer still cannot be removed by surgery or radiation.
+          </p>
+          <p class="text-slate/80">
+            Only a minority of patients have a major response, but those responses can last a long time. Weighing that potential benefit against the risk of immune-related side effects is a conversation to have with a medical oncologist who treats skin cancer.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Stratigos AJ, Sekulic A, Peris K, et al. Cemiplimab in locally advanced basal cell carcinoma after hedgehog inhibitor therapy: an open-label, multi-centre, single-arm, phase 2 trial. <em>Lancet Oncol.</em> 2021;22(6):848-857. <a href="https://pubmed.ncbi.nlm.nih.gov/34000246/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Lewis KD, Peris K, Sekulic A, et al. Final analysis of phase II results with cemiplimab in metastatic basal cell carcinoma after hedgehog pathway inhibitors. <em>Ann Oncol.</em> 2024;35(2):221-228. <a href="https://pubmed.ncbi.nlm.nih.gov/38072158/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/treating/immunotherapy.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Immunotherapy for Advanced Basal Cell Carcinoma of the Skin
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

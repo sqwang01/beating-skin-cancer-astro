@@ -1,0 +1,314 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means";
+const lastReviewed = "2026-08-31";
+const title = "What Advanced BCC Means for Patients | Beating Skin Cancer";
+const description = "\"Advanced\" basal cell carcinoma covers locally advanced tumors that surgery and radiation can't clear and rare metastatic spread. Here's what each means.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Does \"Advanced\" Basal Cell Carcinoma Mean?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "What Advanced BCC Means", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is advanced basal cell carcinoma the same as metastatic basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. \"Advanced\" is an umbrella term that includes two situations. Locally advanced BCC has grown large or deep, or keeps coming back, so that surgery and radiation can no longer remove it safely — but it has not spread. Metastatic BCC, which is far rarer, has spread to lymph nodes or distant organs. Most advanced cases are locally advanced, not metastatic."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How common is advanced basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uncommon. The large majority of basal cell carcinomas are cured with a single office procedure. Only a small fraction ever become locally advanced, and metastasis is estimated to occur in well under 1% of all BCCs — most published estimates fall between roughly 0.003% and 0.5%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can locally advanced basal cell carcinoma still be treated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When surgery and radiation are no longer options, locally advanced BCC is treated with medication that works throughout the body — most often an oral hedgehog pathway inhibitor, with immunotherapy as a later option. Some tumors shrink enough on medication that surgery becomes possible again."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Does "Advanced" Basal Cell Carcinoma Mean?
+          </h1>
+          <p class="text-xl text-white/80">Locally advanced vs. metastatic disease, and how uncommon each one is</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Basal cell carcinoma (BCC) is the most common cancer in the world, and for almost everyone who has one, the story ends quickly: a dermatologist removes it in a single office visit and it never returns. So it can be alarming to hear a doctor describe a BCC as "advanced."
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            "Advanced BCC" is not a formal stage number the way it is for some other cancers. It is a practical label doctors use for the small minority of basal cell carcinomas that can no longer be handled with routine surgery. It covers two different situations — one much more common than the other — and understanding which one applies to you shapes the entire conversation about treatment.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains what each term means, how doctors decide a tumor has crossed that line, and why the label matters. For the flip side — the specific point at which surgeons and radiation oncologists step back — see <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">when surgery and radiation are no longer enough</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">"Advanced" Is an Umbrella Term</h2>
+          <p class="text-slate/80 mb-6">
+            When clinicians and treatment guidelines say "advanced BCC," they are grouping together two distinct problems that happen to be treated with the same systemic medications:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Locally advanced BCC</h3>
+              <p class="text-slate/80">
+                The tumor has grown large or deep, invaded cartilage, bone, muscle, or nerves, or come back after previous treatment — to the point where surgery or radiation can no longer remove it without unacceptable loss of function or disfigurement. It has <em>not</em> spread elsewhere. This accounts for the large majority of advanced cases.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic BCC</h3>
+              <p class="text-slate/80">
+                The cancer has traveled beyond the skin to lymph nodes or distant organs such as the lungs, bone, or liver. This is one of the rarest events in all of oncology. It is treated with the same drugs used for locally advanced disease.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Locally Advanced BCC in More Detail</h2>
+          <p class="text-slate/80 mb-4">
+            Locally advanced BCC is defined less by a single measurement and more by a judgment: could this tumor be removed with surgery, or treated with radiation, and still leave the patient with a reasonable outcome? When the honest answer is no, the tumor is considered locally advanced. Features that push a BCC into this category include:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A large tumor — often several centimeters across — or one that is enlarging steadily</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Deep invasion into cartilage or bone, or a lesion fixed to the tissue beneath it</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Growth along nerves (perineural spread), sometimes causing numbness, tingling, or weakness</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Repeated recurrences in the same area despite one or more rounds of surgery or radiation</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A location — around the eye, nose, or ear — where clearing the tumor would sacrifice a critical structure</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>An aggressive tissue subtype (morpheaform, infiltrative, or basosquamous) with roots that extend well past the visible edge</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Most people who reach this point got there over years — a tumor that was ignored, dismissed as a sore that would not heal, or treated repeatedly without changing the approach. It is uncommon, but it is also, in hindsight, usually preventable. Learn more about how BCC subtypes behave on the <a href="/basal-cell-carcinoma/types" class="text-teal hover:text-teal/80 underline">types of basal cell carcinoma</a> page.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Metastatic BCC: How Rare Is Rare?</h2>
+              <p class="text-slate/80 mb-4">
+                Basal cell carcinoma almost never spreads. Published estimates of how often it metastasizes vary with how the studies were done, but they cluster well below 1% of all BCCs — most figures fall between roughly 0.003% and 0.5%. For perspective, a dermatologist may treat thousands of BCCs in a career and never see one metastasize.
+              </p>
+              <p class="text-slate/80 mb-4">
+                When it does happen, it is usually after a large, long-neglected, or repeatedly recurrent tumor on the head or neck. The most common first stop is the nearby lymph nodes; less often it reaches the lungs, bone, or liver. In the largest analysis of metastatic BCC, outcomes were meaningfully better when spread was limited to lymph nodes rather than distant organs.
+              </p>
+              <p class="text-slate/80">
+                Historically, metastatic BCC carried a poor prognosis. That picture has changed with the arrival of <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">hedgehog pathway inhibitors</a> and, more recently, <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">immunotherapy</a>, both of which can control the disease for extended periods.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Doctors Decide a BCC Is "Advanced"</h2>
+          <p class="text-slate/80 mb-4">
+            There is no single blood test or scan that returns an "advanced" result. The determination is made by a team looking at the whole picture:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Pathology</strong> from the biopsy or prior excisions — subtype, depth, and whether nerves were involved</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Imaging</strong> (CT or MRI) to map how far the tumor extends into deeper tissue, and to check lymph nodes</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A surgeon's assessment</strong> of whether the tumor can be removed with clear margins and reconstructed</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A radiation oncologist's assessment</strong> of whether radiation is feasible and has not already been used to its limit</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Guidelines recommend that these hard cases be reviewed by a multidisciplinary tumor board rather than decided by one clinician alone. The details of that evaluation are covered in <a href="/basal-cell-carcinoma/advanced-bcc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">how advanced BCC is evaluated before treatment</a>.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Why the Label Matters for Treatment</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            The reason "locally advanced" and "metastatic" are grouped together is that once a BCC cannot be cured by cutting it out or irradiating it, the treatment strategy is the same for both: medication that circulates through the whole body.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Hedgehog pathway inhibitors</strong> (vismodegib, sonidegib) are oral targeted drugs that block the signaling pathway driving nearly all BCCs. They are usually the first systemic option.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy</strong> with the PD-1 inhibitor cemiplimab is an option when a hedgehog inhibitor stops working or cannot be tolerated.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Sometimes the goal is not lifelong medication.</strong> A tumor may shrink enough on a hedgehog inhibitor that surgery becomes possible again — an approach explored in <a href="/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery" class="text-teal hover:text-teal/80 underline">neoadjuvant therapy before surgery</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my BCC locally advanced, or has it actually spread? What did the imaging show?</li>
+                <li>Why can't this be treated with surgery or radiation — is that permanent, or could it change?</li>
+                <li>Will my case be reviewed by a multidisciplinary team?</li>
+                <li>What systemic treatment would you start with, and what is the goal — cure, control, or shrinking it before surgery?</li>
+                <li>How will we know whether the treatment is working?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            "Advanced" basal cell carcinoma is a small corner of a very common disease. It means one of two things: a tumor that has grown or recurred beyond what surgery and radiation can fix, or — far more rarely — one that has spread beyond the skin. The first is uncommon; the second is exceptionally rare.
+          </p>
+          <p class="text-slate/80">
+            Either way, the diagnosis is not the dead end it once was. Systemic medications now give people with advanced BCC real, durable options, and the right next step usually begins with a team that treats these tumors regularly.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Peris K, Fargnoli MC, Kaufmann R, et al. European consensus-based interdisciplinary guideline for diagnosis and treatment of basal cell carcinoma&mdash;update 2023. <em>Eur J Cancer.</em> 2023;192:113254. <a href="https://pubmed.ncbi.nlm.nih.gov/37604067/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Krakowski AC, Hafeez F, Westheim A, Pan EY, Wilson M. Advanced basal cell carcinoma: What dermatologists need to know about diagnosis. <em>J Am Acad Dermatol.</em> 2022;86(6S):S1-S13. <a href="https://pubmed.ncbi.nlm.nih.gov/35577405/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  McCusker M, Basset-Seguin N, Dummer R, et al. Metastatic basal cell carcinoma: prognosis dependent on anatomic site and spread of disease. <em>Eur J Cancer.</em> 2014;50(4):774-783. <a href="https://pubmed.ncbi.nlm.nih.gov/24412051/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Skin Cancer Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/blog/when-a-common-skin-cancer-advances/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> &mdash; When a Common Skin Cancer Advances
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

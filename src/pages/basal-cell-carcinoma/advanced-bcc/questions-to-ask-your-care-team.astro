@@ -1,0 +1,306 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/questions-to-ask-your-care-team";
+const lastReviewed = "2026-08-31";
+const title = "Questions to Ask About Advanced BCC | Beating Skin Cancer";
+const description = "Questions to bring to your dermatologist, surgeon, radiation oncologist, and medical oncologist about advanced basal cell carcinoma and its treatment.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Should I Ask My Care Team About Advanced BCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Basal Cell Carcinoma", "item": "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc" },
+    { "@type": "ListItem", "position": 4, "name": "Questions to Ask Your Care Team About Advanced BCC", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What should I ask before starting treatment for advanced basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask what the goal of treatment is (cure versus control), whether the tumor can still be removed with surgery, what each option would involve day to day, what the main side effects are, and whether your case has been or will be reviewed by a multidisciplinary team. Also ask who is coordinating your care and how to reach them between visits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I get a second opinion for advanced basal cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, a second opinion is reasonable and common for advanced BCC, especially before major surgery or starting long-term medication. Seeking one does not offend most doctors and does not usually delay care in a harmful way. A center that treats many advanced skin cancers may have access to clinical trials and reconstructive expertise that a smaller practice does not."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What questions help me choose between treatment options for advanced BCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask how each option compares on the chance of controlling the tumor, the effect on your appearance and function, the length and burden of treatment, the side effects and how reversible they are, and what happens if that option does not work. Ask which option the team recommends and why, and whether a treatment could be given before surgery to shrink the tumor."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/basal-cell-carcinoma/advanced-bcc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Basal Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Should I Ask My Care Team About Advanced BCC?
+          </h1>
+          <p class="text-xl text-white/80">Questions for your dermatologist, surgeon, and oncologist</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Advanced basal cell carcinoma is usually managed by <a href="/basal-cell-carcinoma/advanced-bcc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">several specialists working together</a> — a dermatologist or Mohs surgeon, sometimes a head and neck or surgical oncologist, a radiation oncologist, and a medical oncologist. Each visit covers a different piece of the plan, and it is easy to leave an appointment realizing you forgot to ask something important.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page is a working list of questions, grouped by who you are seeing and by topic. You will not need all of them. Print the sections that apply to you, add your own, and bring the list to each appointment. Writing down the answers — or asking a family member to — makes it far easier to compare options later.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:microscope" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions About Your Diagnosis and Testing</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What does "advanced" mean in my case — is this <a href="/basal-cell-carcinoma/advanced-bcc/what-advanced-bcc-means" class="text-teal hover:text-teal/80 underline">locally advanced or metastatic</a> disease?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Which subtype of BCC is on my pathology report, and is it an aggressive one?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there any sign the tumor is growing along a nerve (perineural invasion)?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Do I need an MRI, CT, or other scan before we decide on treatment? Why or why not?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Has my tissue been reviewed by a dermatopathologist here, or should the slides be re-reviewed?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Should I be checked for <a href="/basal-cell-carcinoma/advanced-bcc/gorlin-syndrome" class="text-teal hover:text-teal/80 underline">Gorlin syndrome</a> or another reason I am getting these tumors?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will my case be presented at a tumor board, and when will I hear the recommendation?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:stethoscope" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions for Your Dermatologist or Mohs Surgeon</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is my tumor still removable with surgery, or has it reached the point where <a href="/basal-cell-carcinoma/advanced-bcc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">surgery and radiation are no longer enough</a>?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If it is removable, what technique would you use, and what is the expected cure rate?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How large would the wound be, and who would handle the reconstruction?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What structures are near the tumor that could be affected — nerves, the eye, cartilage, bone?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Would treatment <a href="/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery" class="text-teal hover:text-teal/80 underline">before surgery to shrink the tumor</a> make the operation smaller or safer?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who is coordinating my overall care, and how do I reach that office between visits?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Would you recommend a second opinion at a center that treats many advanced skin cancers?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions for Your Surgeon</h2>
+          </div>
+          <p class="text-slate/80 mb-4">For a head and neck or surgical oncologist planning a larger operation:</p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What exactly would be removed, and how would that affect how I look, speak, chew, or see?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How likely is it that you will get clear margins in one operation? What if you do not?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will lymph nodes be removed or sampled?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the recovery like — hospital stay, time off, drains, wound care?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is radiation or medication likely to be recommended after surgery?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How many operations like this do you and this center do each year?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:target" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions for Your Radiation Oncologist</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is radiation the main treatment here, or is it being added after surgery?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How many sessions, over how many weeks, and what does a session involve?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What are the short-term effects (skin irritation, fatigue) and the long-term ones for my treatment area?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Do I need a dental evaluation or other preparation before starting?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the chance radiation controls the tumor long term, given its size and location?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can this area be treated again later if the cancer comes back?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:pill" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions for Your Medical Oncologist</h2>
+              <p class="text-slate/80 mb-4">When systemic (whole-body) medication is on the table:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Are we starting with a <a href="/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors" class="text-teal hover:text-teal/80 underline">hedgehog pathway inhibitor</a>, <a href="/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">immunotherapy</a>, or a clinical trial — and why that one first?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Is the goal to shrink the tumor before surgery, or to control it long term?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>What side effects are most common, and <a href="/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects" class="text-teal hover:text-teal/80 underline">how are they managed</a>? Which ones should prompt me to call?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>How and when will we know if the medication is working? What scans or exams, how often?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Are treatment breaks an option if side effects build up?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>What is the plan if this drug stops working or I cannot tolerate it?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Is there a <a href="/basal-cell-carcinoma/advanced-bcc/clinical-trials-for-advanced-bcc" class="text-teal hover:text-teal/80 underline">clinical trial</a> I should consider, here or elsewhere?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Do I need to avoid pregnancy or fathering a child during and after this treatment?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:users" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions About Daily Life, Support, and Cost</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How will treatment affect my ability to work, drive, and care for my family?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there a nurse navigator or social worker who can help with scheduling, transportation, and paperwork?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What will this cost me, and is there financial assistance or a copay program for the medication?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What support is available for the emotional side — counseling, support groups, palliative care for symptom relief?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who do I call after hours if I have a problem related to treatment?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What does follow-up look like once active treatment ends?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions to Prioritize If Your Time Is Short</h2>
+              <p class="text-slate/80 mb-4">If you can only ask a handful, start here:</p>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is the goal of treatment to cure this or to control it?</li>
+                <li>Can the tumor still be removed with surgery?</li>
+                <li>What are my treatment options, and which do you recommend and why?</li>
+                <li>What are the main side effects, and how reversible are they?</li>
+                <li>Has a multidisciplinary team reviewed my case?</li>
+                <li>Who is my main point of contact, and how do I reach them?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:clipboard-list" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Making the Most of Each Visit</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Bring someone with you to listen and take notes, or ask to record the conversation.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Put your top three questions at the top of the page so they get asked first.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Ask for the pathology report, operative notes, and scan reports for your own file.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If an answer is unclear, ask the doctor to say it a different way or draw it.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Confirm the next step and who is responsible for it before you leave.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Advanced BCC involves more decisions and more doctors than an ordinary skin cancer, and good questions are how you stay at the center of the plan. You are entitled to understand why a treatment is being recommended, what it will do to your daily life, and what the alternatives are.
+          </p>
+          <p class="text-slate/80">
+            No question is too small, and asking for a second opinion or more time to decide is a normal part of the process. Keep your list, update it as you learn more, and bring it to every appointment.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Bichakjian C, Armstrong A, Baum C, et al. Guidelines of care for the management of basal cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):540-559. <a href="https://pubmed.ncbi.nlm.nih.gov/29331385/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. Basal Cell Skin Cancer, Version 2.2024, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2023;21(11):1181-1203. <a href="https://pubmed.ncbi.nlm.nih.gov/37935106/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Krakowski AC, Hafeez F, Westheim A, Pan EY, Wilson M. Advanced basal cell carcinoma: what dermatologists need to know about diagnosis. <em>J Am Acad Dermatol.</em> 2022;86(6S):S1-S13. <a href="https://pubmed.ncbi.nlm.nih.gov/35577405/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wilson M, Johnson RP, Senft SC, Pan EY, Krakowski AC. Advanced basal cell carcinoma: what dermatologists need to know about treatment. <em>J Am Acad Dermatol.</em> 2022;86(6S):S14-S24. <a href="https://pubmed.ncbi.nlm.nih.gov/35577406/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/detection-diagnosis-staging/talking-with-doctor.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Non-melanoma Skin Cancer: Questions to Ask Your Doctor
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/basal-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Basal Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced basal cell carcinoma and its care team</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
