@@ -1,0 +1,307 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/chemotherapy-and-egfr-targeted-therapy";
+const lastReviewed = "2026-09-01";
+const title = "Chemotherapy and EGFR Therapy for SCC | Beating Skin Cancer";
+const description = "Cetuximab and platinum chemotherapy for advanced cutaneous squamous cell carcinoma when immunotherapy isn't an option — how they work and what to expect.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Where Do Chemotherapy and EGFR-Targeted Therapy Fit in Advanced SCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Chemotherapy and EGFR-Targeted Therapy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why isn't chemotherapy the first choice for advanced SCC anymore?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PD-1 immunotherapy (cemiplimab or pembrolizumab) produces higher response rates and, when it works, much more durable responses than platinum-based chemotherapy, with a different and often more manageable side-effect profile. Because of this, immunotherapy has replaced chemotherapy as the standard first-line systemic treatment. Chemotherapy and EGFR-targeted drugs are now mainly reserved for people who cannot receive or have already tried immunotherapy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is cetuximab and how is it different from chemotherapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cetuximab is a monoclonal antibody that blocks the epidermal growth factor receptor (EGFR), a protein that is overactive on the surface of most squamous cell carcinoma cells and drives their growth. Unlike chemotherapy, which kills any rapidly dividing cell, cetuximab targets this specific growth signal, which generally makes it gentler on the bone marrow and gut but can cause a distinctive acne-like rash."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who typically receives chemotherapy or cetuximab instead of immunotherapy for SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The main groups are organ transplant recipients and other significantly immunosuppressed patients, for whom checkpoint inhibitors carry a meaningful risk of triggering organ rejection or flaring autoimmune disease, and people whose SCC has already progressed after immunotherapy. Some are also combined with radiation for locally advanced tumors when a medical oncologist wants to add a radiosensitizing effect."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Where Do Chemotherapy and EGFR-Targeted Therapy Fit?
+          </h1>
+          <p class="text-xl text-white/80">Cetuximab and platinum chemotherapy when immunotherapy isn't an option</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            For most people with locally advanced or metastatic cutaneous squamous cell carcinoma (SCC), the first medication offered today is
+            <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">PD-1 immunotherapy</a>
+            — cemiplimab or pembrolizumab. But immunotherapy isn't right for everyone, and it doesn't work for everyone it's given to. Before checkpoint inhibitors existed, and still today for a meaningful subset of patients, two older classes of drugs do the work instead: <strong>EGFR-targeted therapy</strong> (mainly cetuximab) and <strong>platinum-based chemotherapy</strong>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains how each of these approaches works, how well they perform compared with immunotherapy, and — most importantly — who actually ends up needing them: largely organ transplant recipients, other immunosuppressed patients, and people whose disease has already progressed through immunotherapy.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:target" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">EGFR-Targeted Therapy: Cetuximab</h2>
+              <p class="text-slate/80 mb-4">
+                The epidermal growth factor receptor (EGFR) is a protein on the cell surface that tells a cell to grow and divide. Most cutaneous SCCs overexpress EGFR, which is part of why the tumor grows aggressively. <strong>Cetuximab</strong> is a monoclonal antibody, given by intravenous infusion, that attaches to EGFR and blocks that growth signal.
+              </p>
+              <p class="text-slate/80 mb-4">
+                In a phase II study of 36 patients with unresectable cutaneous SCC treated with cetuximab as a single first-line drug, the disease control rate — the tumor shrinking or at least not growing — was 69%, with an objective response (measurable shrinkage) in 28% of patients. Responses were seen even in tumors that had already grown despite prior treatment.
+              </p>
+              <p class="text-slate/80">
+                A related oral EGFR-blocking drug, <strong>gefitinib</strong>, has also been studied in incurable cutaneous SCC; a phase II trial of 40 patients found an objective response in about 16% and disease stabilization in a larger share, with more modest results than cetuximab. Cetuximab remains the more established EGFR-targeted option and is sometimes combined with radiation for locally advanced disease, since it can also make tumor cells more sensitive to radiation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Platinum-Based Chemotherapy</h2>
+          <p class="text-slate/80 mb-4">
+            Traditional chemotherapy — most often <strong>cisplatin</strong> or <strong>carboplatin</strong>, sometimes combined with a second drug such as doxorubicin, 5-fluorouracil, or a taxane — was for decades the main systemic option for advanced cutaneous SCC. It works by damaging the DNA of rapidly dividing cells throughout the body, which includes cancer cells but also normal tissues like bone marrow, hair follicles, and the lining of the gut.
+          </p>
+          <p class="text-slate/80 mb-4">
+            One of the foundational studies, evaluating cisplatin-based chemotherapy in 28 patients with advanced basal cell and squamous cell skin cancers (used alone or before surgery or radiation), reported an overall response rate of 68%, including complete remission in 28% of patients. More recent single-arm and retrospective series in cutaneous SCC specifically have shown similarly meaningful, though not universal, response rates.
+          </p>
+          <p class="text-slate/80">
+            Chemotherapy's side effects — nausea, fatigue, low blood counts with infection risk, hair loss, and nerve or kidney effects depending on the regimen — are generally more burdensome than those of immunotherapy or cetuximab, especially in older patients or those with other health problems. This is one reason it has moved to a later-line or specific-situation role rather than remaining first choice.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:shuffle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How They Compare With Immunotherapy</h2>
+              <p class="text-slate/80 mb-4">
+                Head-to-head randomized trials between immunotherapy and chemotherapy or cetuximab in cutaneous SCC don't exist — the disease is too uncommon to run one — but the available evidence points the same direction:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Response rates are lower.</strong> Cetuximab (about 28%) and chemotherapy (variable, often 30–70% depending on the series and criteria used) generally trail the roughly 40–50% objective response rates seen with cemiplimab and pembrolizumab.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Responses tend to be shorter-lived.</strong> Immunotherapy responses often last years; chemotherapy and cetuximab responses more typically last months before the tumor finds a way around the drug.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Side-effect profiles differ.</strong> Chemotherapy's toxicity is often more immediately debilitating; cetuximab's main issue is an acneiform rash and, less often, infusion reactions or low magnesium; immunotherapy's risks are immune-related and can affect any organ.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                None of this makes chemotherapy or cetuximab obsolete — it explains why national guidelines now position PD-1 immunotherapy as the first-line systemic treatment, with these older options reserved for specific circumstances.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Who Actually Ends Up on These Treatments</h2>
+          <p class="text-slate/80 mb-4">
+            In current practice, cetuximab and chemotherapy are most often used for:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Organ transplant recipients and other immunosuppressed patients.</strong> Because checkpoint inhibitors can trigger transplant rejection or dangerous flares of autoimmune disease, many transplant teams and oncologists start with cetuximab or chemotherapy instead, especially early on — see <a href="/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients" class="text-teal hover:text-teal/80 underline">advanced SCC in transplant and immunosuppressed patients</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Disease that has progressed on immunotherapy.</strong> When a PD-1 inhibitor stops controlling the cancer, cetuximab or chemotherapy is a standard next line of systemic treatment.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>An active autoimmune condition</strong> that makes immunotherapy's risk of a serious flare too high.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Combined with radiation.</strong> Cetuximab is sometimes given alongside radiation for locally advanced, unresectable tumors to try to improve local control, drawing on experience from head and neck squamous cell cancer.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The decision is individualized and made by a medical oncologist experienced in skin cancer, weighing the tumor's behavior, the patient's overall health and organ function, and whichever of these factors apply.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:calendar-clock" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What Treatment Involves</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Cetuximab:</strong> a weekly (or every-2-week, higher-dose) intravenous infusion, usually starting with a larger loading dose. Pre-medication reduces the risk of an infusion reaction. The characteristic acne-like facial rash is common and is often managed with topical or oral antibiotics rather than stopping treatment.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Platinum chemotherapy:</strong> typically given intravenously in cycles every 3 weeks, often alongside a second agent. Bloodwork before each cycle checks blood counts and kidney function; anti-nausea medication is given routinely.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Monitoring:</strong> imaging (CT or MRI) every 2–3 months to assess whether the tumor is responding, alongside regular exams and labs.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Why is cetuximab or chemotherapy being recommended for me instead of immunotherapy?</li>
+                <li>Is this because of a transplant, immunosuppression, an autoimmune condition, or because immunotherapy already stopped working?</li>
+                <li>What response rate is realistic for my specific situation?</li>
+                <li>What side effects should I expect, and how will they be managed — for cetuximab's rash, or chemotherapy's effect on blood counts?</li>
+                <li>Would combining this with radiation be considered?</li>
+                <li>If this doesn't work, is immunotherapy still an option later, or is there a clinical trial to consider?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Cetuximab and platinum-based chemotherapy were the backbone of systemic treatment for advanced cutaneous SCC before immunotherapy arrived, and they still have a real role today — most often for organ transplant recipients and other immunosuppressed patients, for people whose disease has progressed after immunotherapy, or when an active autoimmune condition rules out a checkpoint inhibitor.
+          </p>
+          <p class="text-slate/80">
+            They are generally less effective and less durable than PD-1 immunotherapy, but they remain a genuine, well-studied option, and for some patients they are the safer starting point. The right choice depends on your specific tumor, your immune status, and your overall health — a conversation best had with a medical oncologist experienced in advanced skin cancer.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Maubec E, Petrow P, Scheer-Senyarich I, et al. Phase II study of cetuximab as first-line single-drug therapy in patients with unresectable squamous cell carcinoma of the skin. <em>J Clin Oncol.</em> 2011;29(25):3419-3426. <a href="https://pubmed.ncbi.nlm.nih.gov/21810686/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  William WN Jr, Feng L, Ferrarotto R, et al. Gefitinib for patients with incurable cutaneous squamous cell carcinoma: A single-arm phase II clinical trial. <em>J Am Acad Dermatol.</em> 2017;77(6):1110-1113. <a href="https://pubmed.ncbi.nlm.nih.gov/28964539/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Guthrie TH Jr, Porubsky ES, Luxenberg MN, et al. Cisplatin-based chemotherapy in advanced basal and squamous cell carcinomas of the skin: results in 28 patients including 13 patients receiving multimodality therapy. <em>J Clin Oncol.</em> 1990;8(2):342-346. <a href="https://pubmed.ncbi.nlm.nih.gov/2405109/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Que SKT, Zwald FO, Schmults CD. Cutaneous squamous cell carcinoma: Management of advanced and high-stage tumors. <em>J Am Acad Dermatol.</em> 2018;78(2):249-261. <a href="https://pubmed.ncbi.nlm.nih.gov/29332705/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Fania L, Didona D, Di Pietro FR, et al. Cutaneous squamous cell carcinoma: From pathophysiology to novel therapeutic approaches. <em>Biomedicines.</em> 2021;9(2):171. <a href="https://pubmed.ncbi.nlm.nih.gov/33572373/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/advanced-scc/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Advanced Squamous Cell Carcinoma Treatment
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma/advanced-squamous-cell-carcinoma-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Advanced Squamous Cell Carcinoma: Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

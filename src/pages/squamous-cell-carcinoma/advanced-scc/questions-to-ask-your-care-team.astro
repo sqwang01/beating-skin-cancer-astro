@@ -1,0 +1,305 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/questions-to-ask-your-care-team";
+const lastReviewed = "2026-09-01";
+const title = "Questions to Ask About Advanced SCC | Beating Skin Cancer";
+const description = "Questions to bring to your dermatologist, surgeon, radiation oncologist, and medical oncologist about advanced squamous cell carcinoma and its treatment.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Should I Ask My Care Team About Advanced SCC?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Questions to Ask Your Care Team About Advanced SCC", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What should I ask before starting treatment for advanced squamous cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask what the goal of treatment is (cure versus control), whether the tumor can still be removed with surgery, whether the lymph nodes need to be evaluated or treated, what each option involves day to day, what the main side effects are, and whether your case has been reviewed by a multidisciplinary tumor board. Also ask who is coordinating your care and how to reach that person between visits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I get a second opinion for advanced SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A second opinion is a normal and common step for advanced SCC, especially before major surgery, radiation, or starting immunotherapy. Studies of oncology second opinions find they frequently add guideline-compliant details to the original plan, and most patients follow the resulting recommendations. A center that treats many advanced skin cancers may also offer clinical trials or reconstructive expertise a smaller practice does not."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should transplant recipients or immunosuppressed patients specifically ask?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask whether immunotherapy is even an option given the risk of organ rejection, who will coordinate between the transplant team and the oncology team, whether adjusting anti-rejection medication is being considered, and what non-immunotherapy treatments — such as cetuximab or chemotherapy — are available if immunotherapy is judged too risky."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Should I Ask My Care Team About Advanced SCC?
+          </h1>
+          <p class="text-xl text-white/80">Questions for your dermatologist, surgeon, radiation oncologist, and medical oncologist</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Advanced squamous cell carcinoma (SCC) is usually managed by <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">several specialists working together</a> — a dermatologist or Mohs surgeon, often a head and neck or surgical oncologist, a radiation oncologist, and a medical oncologist. Each visit covers a different piece of the plan, and it is easy to leave an appointment realizing you forgot to ask something important.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page is a working list of questions, grouped by who you are seeing and by topic. You will not need all of them. Print the sections that apply to you, add your own, and bring the list to each appointment. Writing down the answers — or asking a family member to — makes it far easier to compare options later.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:microscope" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions About Your Diagnosis and Testing</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What does "advanced" mean in my case — is this <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="text-teal hover:text-teal/80 underline">locally advanced or metastatic</a> disease?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Does my pathology report show any <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">high-risk features</a>, such as poor differentiation or deep invasion?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there any sign the tumor is growing along a nerve (<a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">perineural invasion</a>)?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Do I need imaging (CT, MRI, or ultrasound) of the lymph nodes, and is a <a href="/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node" class="text-teal hover:text-teal/80 underline">sentinel node biopsy</a> being considered?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Has my tissue been reviewed by a dermatopathologist here, or should the slides be re-reviewed?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Am I on immunosuppressing medication or have I had an organ transplant — does that change the plan?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will my case be presented at a tumor board, and when will I hear the recommendation?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:stethoscope" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions for Your Dermatologist or Mohs Surgeon</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is my tumor still removable with surgery, or has it reached the point where <a href="/squamous-cell-carcinoma/advanced-scc/when-surgery-radiation-not-enough" class="text-teal hover:text-teal/80 underline">surgery and radiation are no longer enough</a>?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If it is removable, what technique would you use, and what is the expected cure rate?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How large would the wound be, and who would handle the reconstruction?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What structures are near the tumor that could be affected — nerves, cartilage, bone, the eye?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Would treatment before surgery to shrink the tumor make the operation smaller or safer?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who is coordinating my overall care, and how do I reach that office between visits?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Would you recommend a second opinion at a center that treats many advanced skin cancers?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions for Your Surgeon</h2>
+          </div>
+          <p class="text-slate/80 mb-4">For a head and neck or surgical oncologist planning a larger operation, including any lymph node surgery:</p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What exactly would be removed, and how would that affect how I look, speak, chew, or see?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How likely is it that you will get clear margins in one operation? What if you do not?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will lymph nodes be removed or sampled, and how will that change my recovery?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the recovery like — hospital stay, time off, drains, wound care?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is radiation or medication likely to be recommended after surgery?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How many operations like this do you and this center do each year?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:target" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions for Your Radiation Oncologist</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is radiation the main treatment here, is it being added after surgery, or is it aimed at the lymph nodes as well as the primary tumor?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How many sessions, over how many weeks, and what does a session involve?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What are the short-term effects (skin irritation, fatigue, difficulty swallowing) and the long-term ones for my treatment area?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Do I need a dental evaluation or other preparation before starting, especially for head and neck radiation?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the chance radiation controls the tumor long term, given its size, location, and nerve involvement?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can this area be treated again later if the cancer comes back?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:pill" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions for Your Medical Oncologist</h2>
+              <p class="text-slate/80 mb-4">When systemic (whole-body) medication is on the table:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Are we starting with <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">immunotherapy</a>, chemotherapy or an EGFR-targeted drug, or a clinical trial — and why that one first?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Is the goal to shrink the tumor before surgery, or to control it long term?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>What side effects are most common, and <a href="/squamous-cell-carcinoma/advanced-scc/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">how are they managed</a>? Which ones should prompt me to call?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>How and when will we know if the medication is working? What scans or exams, how often?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>If I have had a solid-organ transplant or take immune-suppressing medication, is immunotherapy still safe for me, and who is coordinating that decision with my transplant team?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>What is the plan if this drug stops working or I cannot tolerate it?</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Is there a clinical trial I should consider, here or elsewhere?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:users" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Questions About Daily Life, Support, and Cost</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How will treatment affect my ability to work, drive, and care for my family?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there a nurse navigator or social worker who can help with scheduling, transportation, and paperwork?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What will this cost me, and is there financial assistance or a copay program for the medication?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What support is available for the emotional side — counseling, support groups, palliative care for symptom relief?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who do I call after hours if I have a problem related to treatment?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What does follow-up look like once active treatment ends?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions to Prioritize If Your Time Is Short</h2>
+              <p class="text-slate/80 mb-4">If you can only ask a handful, start here:</p>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is the goal of treatment to cure this or to control it?</li>
+                <li>Can the tumor still be removed with surgery?</li>
+                <li>Do the lymph nodes need to be checked or treated?</li>
+                <li>What are my treatment options, and which do you recommend and why?</li>
+                <li>Has a multidisciplinary team reviewed my case?</li>
+                <li>Who is my main point of contact, and how do I reach them?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:clipboard-list" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Making the Most of Each Visit</h2>
+          </div>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Bring someone with you to listen and take notes, or ask to record the conversation.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Put your top three questions at the top of the page so they get asked first.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Ask for the pathology report, operative notes, and scan reports for your own file.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If an answer is unclear, ask the doctor to say it a different way or draw it.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Confirm the next step and who is responsible for it before you leave.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Advanced SCC involves more decisions and more doctors than an ordinary skin cancer, and good questions are how you stay at the center of the plan. You are entitled to understand why a treatment is being recommended, what it will do to your daily life, and what the alternatives are.
+          </p>
+          <p class="text-slate/80">
+            No question is too small, and asking for a second opinion or more time to decide is a normal part of the process. Keep your list, update it as you learn more, and bring it to every appointment.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Work Group; Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines Insights: Squamous Cell Skin Cancer, Version 1.2022. <em>J Natl Compr Canc Netw.</em> 2021;19(12):1382-1394. <a href="https://pubmed.ncbi.nlm.nih.gov/34902824/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ji S, Liu H, Pachella L, et al. Use of immune checkpoint inhibitors in solid organ transplant recipients with advanced cutaneous malignancies. <em>Front Transplant.</em> 2023;2:1284740. <a href="https://pubmed.ncbi.nlm.nih.gov/38993910/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schulmeyer CE, Beckmann MW, Fasching PA, et al. Improving the Quality of Care for Cancer Patients through Oncological Second Opinions in a Comprehensive Cancer Center. <em>Diagnostics (Basel).</em> 2023;13(21):3300. <a href="https://pubmed.ncbi.nlm.nih.gov/37958196/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/detection-diagnosis-staging/talking-with-doctor.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — Non-melanoma Skin Cancer: Questions to Ask Your Doctor
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/squamous-cell-carcinoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Squamous Cell Carcinoma of the Skin: Overview
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma and its care team</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

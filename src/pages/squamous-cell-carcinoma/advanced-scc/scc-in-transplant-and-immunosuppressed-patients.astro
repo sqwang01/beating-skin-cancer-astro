@@ -1,0 +1,287 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients";
+const lastReviewed = "2026-09-01";
+const title = "Advanced SCC in Transplant Patients | Beating Skin Cancer";
+const description = "Immunosuppression makes cutaneous SCC more aggressive in transplant recipients, and PD-1 immunotherapy carries a real risk of organ rejection.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Advanced SCC in Transplant Recipients and Immunosuppressed Patients",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "SCC in Transplant and Immunosuppressed Patients", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do transplant recipients get squamous cell carcinoma so much more often?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The medications that keep the body from rejecting a transplanted organ also weaken the immune system's ability to find and destroy skin cells damaged by ultraviolet light before they turn into cancer. Solid-organ transplant recipients develop squamous cell carcinoma roughly 65 to 100 times more often than the general population, and the risk rises the longer and more intensively they are immunosuppressed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a transplant recipient receive immunotherapy for advanced SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is possible but carries a real risk: PD-1 inhibitors can cause the immune system to reject the transplanted organ, which has occurred in roughly 40 percent of transplant recipients treated with these drugs in published series, sometimes permanently. It requires a joint decision between the transplant and oncology teams, often with adjusted anti-rejection medication, and non-immunotherapy treatments are usually tried first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does reducing immunosuppression help prevent or treat SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For many transplant recipients who develop multiple or aggressive skin cancers, the transplant team will consider carefully lowering the dose of anti-rejection medication or switching to a class called mTOR inhibitors, which are associated with a lower skin cancer risk than some other immunosuppressants. This is always balanced against the risk of organ rejection and is managed by the transplant team, not adjusted independently."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Advanced SCC in Transplant Recipients and Immunosuppressed Patients
+          </h1>
+          <p class="text-xl text-white/80">Why SCC is more aggressive with immunosuppression, and the immunotherapy dilemma</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Anyone can develop cutaneous squamous cell carcinoma, but people who take medication to suppress their immune system — most often <strong>solid-organ transplant recipients</strong> (kidney, liver, heart, lung), and also people on long-term immunosuppression for autoimmune disease, or with chronic lymphocytic leukemia or HIV — develop it far more often, and it behaves more aggressively once it appears.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article explains why immunosuppression changes SCC's behavior, how surveillance and prevention are adapted for this group, and the central dilemma when advanced disease does occur: the immunotherapy drugs that work best for SCC can also trigger rejection of a transplanted organ.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:shield-alert" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why Immunosuppression Changes SCC's Behavior</h2>
+              <p class="text-slate/80 mb-4">
+                Cutaneous SCC is caused by ultraviolet damage to skin cell DNA. In a healthy immune system, T cells regularly find and destroy cells that have started to turn cancerous before they grow into a tumor — a process called <strong>immune surveillance</strong>. The medications that prevent transplant rejection, and drugs used to control severe autoimmune disease, work by dampening exactly this part of the immune system.
+              </p>
+              <p class="text-slate/80 mb-4">
+                The result, confirmed across large transplant registries, is that solid-organ transplant recipients develop SCC at roughly <strong>65 to 100 times</strong> the rate of the general population — a bigger increase than for any other common cancer — and the excess risk climbs with the <strong>intensity and duration</strong> of immunosuppression. Thoracic organ recipients (heart, lung), who typically need stronger immunosuppression than kidney recipients, tend to have the highest risk.
+              </p>
+              <p class="text-slate/80">
+                Once SCC develops in this setting it also behaves differently: patients are more likely to develop <strong>multiple tumors at once or over time</strong> (sometimes dozens), tumors more often show <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">high-risk features</a> such as poor differentiation and <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">perineural invasion</a>, and rates of local recurrence, <a href="/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node" class="text-teal hover:text-teal/80 underline">nodal metastasis</a>, and disease-specific death are all meaningfully higher than in immunocompetent patients with an SCC of similar size.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Prevention and Surveillance</h2>
+          <p class="text-slate/80 mb-4">
+            Because the stakes are higher, care for transplant recipients and other chronically immunosuppressed patients is proactive rather than reactive:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Full-body skin exams by a dermatologist</strong> starting soon after transplant and continuing every 6 to 12 months (or more often for those with a prior skin cancer), rather than only when something looks concerning.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Rigorous sun protection</strong> — broad-spectrum SPF 30+ sunscreen, protective clothing, and shade — since ultraviolet exposure is the underlying driver of the excess risk.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Early, aggressive treatment of precancerous spots</strong> (actinic keratoses) before they can progress, using cryotherapy, topical medications, or field treatments.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Oral chemoprevention</strong> (most often low-dose acitretin) for patients developing frequent new SCCs, to reduce how many new tumors form.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Adjusting immunosuppression itself.</strong> For patients with multiple or aggressive skin cancers, the transplant team may cautiously reduce the immunosuppression dose or switch part of the regimen to an mTOR inhibitor (such as sirolimus), a class associated with a lower skin cancer rate than calcineurin inhibitors — always weighed against the risk of rejecting the organ.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            This surveillance and prevention plan is coordinated between the transplant team and a dermatologist familiar with post-transplant skin cancer, ideally starting before symptoms of any tumor appear.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Immunotherapy Dilemma</h2>
+              <p class="text-slate/80 mb-4">
+                When SCC becomes <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="text-teal hover:text-teal/80 underline">locally advanced or metastatic</a>, <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">PD-1 immunotherapy</a> is the standard first-line treatment for most patients — but not straightforwardly for transplant recipients. The very same PD-1/PD-L1 checkpoint that a tumor exploits to hide from the immune system is also part of what keeps a transplant recipient's immune system from attacking the donated organ.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Releasing that checkpoint to fight the cancer can also release it against the transplant. In published case series of solid-organ transplant recipients treated with checkpoint inhibitors, roughly <strong>40%</strong> experienced acute rejection, and a substantial share of those lost the organ permanently — a return to dialysis for a kidney recipient, or a life-threatening event for a heart, lung, or liver recipient.
+              </p>
+              <p class="text-slate/80">
+                Because of this risk, PD-1 immunotherapy has historically been reserved for transplant recipients only when other options have been exhausted, and only after an explicit conversation about trading cancer control against the possibility of losing the transplant.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">A More Careful Path Forward</h2>
+          <p class="text-slate/80 mb-4">
+            More recent, small prospective studies suggest immunotherapy does not have to be entirely off the table for kidney transplant recipients when it is approached carefully. In one such trial, 12 kidney transplant recipients with advanced SCC were treated with cemiplimab under a protocol that included preventive (prophylactic) corticosteroids and close coordination with the transplant nephrology team. Roughly <strong>46%</strong> had a tumor response, and no case of kidney rejection or graft loss was reported during follow-up.
+          </p>
+          <p class="text-slate/80 mb-4">
+            This kind of protocol — steroid prophylaxis, tightly monitored kidney function, and a transplant physician involved throughout — is still investigational and not yet standard care outside specialized centers, but it points toward a future where select transplant recipients with few other options can receive immunotherapy more safely. It underscores why this decision should never be made by the oncology team alone.
+          </p>
+          <p class="text-slate/80">
+            For most transplant recipients today, non-immunotherapy systemic options are tried first, most often <strong>cetuximab</strong> (an EGFR-targeted antibody) or platinum-based chemotherapy — covered in <a href="/squamous-cell-carcinoma/advanced-scc/chemotherapy-and-egfr-targeted-therapy" class="text-teal hover:text-teal/80 underline">where chemotherapy and EGFR-targeted therapy fit</a> — alongside surgery and radiation used as aggressively as the individual case allows.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:users" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Beyond Transplant: Other Immunosuppressed Patients</h2>
+              <p class="text-slate/80">
+                The same elevated risk and the same immunotherapy caution apply, to varying degrees, to people on long-term immunosuppressive therapy for severe rheumatoid arthritis, lupus, inflammatory bowel disease, or other autoimmune conditions, and to people with chronic lymphocytic leukemia or other blood cancers that impair immune function, and to people with HIV whose disease is not well controlled. The details differ by condition and by which specific medications are involved, but the same principle holds: a <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">multidisciplinary evaluation</a> that includes whoever manages the underlying condition is essential before starting PD-1 immunotherapy.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>How often should I have full-body skin exams given my transplant or immunosuppression?</li>
+                <li>Is my current immunosuppression regimen something we should reconsider given my skin cancer history?</li>
+                <li>If my SCC becomes advanced, is immunotherapy an option for me, or too risky because of my transplant?</li>
+                <li>Who would be involved in that decision — my transplant team, oncologist, or both together?</li>
+                <li>What non-immunotherapy treatments would we try first, and how effective are they typically?</li>
+                <li>Is there a specialized center or clinical trial studying safer immunotherapy protocols for transplant recipients like me?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Immunosuppression — whether from a transplant, an autoimmune condition, or another chronic illness — turns SCC from a cancer that is usually cured easily into one that occurs far more often and behaves more aggressively. Prevention and frequent skin surveillance matter more in this group than almost any other.
+          </p>
+          <p class="text-slate/80">
+            When advanced SCC does occur in a transplant recipient, the treatment that works best for most patients — PD-1 immunotherapy — carries a real risk of triggering organ rejection, which is why it is approached cautiously, in partnership with the transplant team, with non-immunotherapy options often tried first and newer, carefully monitored immunotherapy protocols reserved for select cases.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Garrett GL, Blanc PD, Boscardin J, et al. Incidence of and risk factors for skin cancer in organ transplant recipients in the United States. <em>JAMA Dermatol.</em> 2017;153(3):296-303. <a href="https://pubmed.ncbi.nlm.nih.gov/28097368/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Euvrard S, Kanitakis J, Claudy A. Skin cancers after organ transplantation. <em>N Engl J Med.</em> 2003;348(17):1681-1691. <a href="https://pubmed.ncbi.nlm.nih.gov/12711744/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Hanna GJ, Dharanesswaran H, Giobbie-Hurder A, et al. Cemiplimab for kidney transplant recipients with advanced cutaneous squamous cell carcinoma. <em>J Clin Oncol.</em> 2024;42(9):1021-1030. <a href="https://pubmed.ncbi.nlm.nih.gov/38252908/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ji S, Liu H, Pachella L, et al. Use of immune checkpoint inhibitors in solid organ transplant recipients with advanced cutaneous malignancies. <em>Front Transplant.</em> 2023;2:1284740. <a href="https://pubmed.ncbi.nlm.nih.gov/38993910/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.skincancer.org/blog/after-a-transplant-new-dangers/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — After a Transplant: New Dangers
+                </li>
+                <li>
+                  <a href="https://www.kidney.org/protect-skin-you-re" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Kidney Foundation</a> — Protect the Skin You're In
+                </li>
+                <li>
+                  <a href="https://www.itscc.org/patients/skin-cancer-treatments" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">International Immunosuppression &amp; Transplant Skin Cancer Collaborative (ITSCC)</a> — Skin Cancer Treatments for Transplant Patients
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

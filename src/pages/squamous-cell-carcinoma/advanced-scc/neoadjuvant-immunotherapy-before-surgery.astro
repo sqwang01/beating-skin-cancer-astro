@@ -1,0 +1,349 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/neoadjuvant-immunotherapy-before-surgery";
+const lastReviewed = "2026-09-01";
+const title = "Neoadjuvant Immunotherapy for SCC | Beating Skin Cancer";
+const description = "Neoadjuvant cemiplimab before surgery can shrink or eliminate an advanced SCC tumor, sometimes allowing a smaller, less disfiguring operation.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Can Immunotherapy Shrink an SCC Before Surgery?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Neoadjuvant Immunotherapy Before Surgery", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does neoadjuvant immunotherapy mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neoadjuvant means \"before the main treatment.\" For a resectable but locally advanced SCC, a few doses of a PD-1 inhibitor are given first, before the planned surgery, to shrink the tumor. This is different from adjuvant therapy, which is given after surgery to lower the chance the cancer comes back."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How well does neoadjuvant cemiplimab work for SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the pivotal phase 2 trial, about 51 percent of patients who completed neoadjuvant cemiplimab and went to surgery had a pathologic complete response, meaning no viable cancer cells were found in the removed tissue, and another 13 percent had a major pathologic response, so roughly two-thirds had a complete or major pathologic response. About 68 percent had measurable tumor shrinkage on imaging. Long-term follow-up of a related head-and-neck cohort found that patients who responded had no cancer recurrences after three years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I still need surgery if immunotherapy shrinks my SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Outside of a clinical trial, surgery is still performed after neoadjuvant immunotherapy even when the tumor appears to have disappeared on imaging or exam, because some residual microscopic cancer can remain undetected. The benefit of a strong response is usually a smaller, less disfiguring, or more function-preserving operation than would have been needed before treatment."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Can Immunotherapy Shrink an SCC Before Surgery?
+          </h1>
+          <p class="text-xl text-white/80">Neoadjuvant therapy to reduce tumor size and preserve tissue</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">PD-1 immunotherapy</a> is best known as a treatment for SCC that surgery and radiation can no longer control. But the same drugs are also being used earlier — <em>before</em> an operation that is still possible, in order to make that operation smaller, safer, or less disfiguring.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This is called <strong>neoadjuvant therapy</strong>, from a Latin prefix meaning "new" combined with "adjuvant" (helping): a new, earlier use of a helping treatment. This article explains why it is used, what the clinical trials found, who is a candidate, what the treatment course looks like, and what happens whether or not the tumor shrinks.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:scissors" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why Treat Before Surgery Instead of After?</h2>
+              <p class="text-slate/80 mb-4">
+                Most SCC surgery happens without any systemic treatment first or after. Neoadjuvant immunotherapy is considered specifically when a tumor is <strong>technically resectable but the operation needed to remove it would be extensive</strong> — for example, a large tumor on the ear, nose, eyelid, or scalp where clearing it might mean removing an eye, a large piece of ear or nose cartilage, or a wide area of scalp and skull.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Giving a PD-1 inhibitor first, on the same drugs and biology described in <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">immunotherapy for advanced SCC</a>, can shrink the visible tumor and its microscopic edges before the surgeon operates. There are several potential advantages:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>A smaller, more function- and appearance-preserving operation</strong> — sometimes turning a disfiguring or organ-sacrificing procedure into a more limited one.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Treating disease the surgeon cannot see.</strong> SCC that has already spread microscopically to lymph nodes may respond to the drug throughout the body, not just at the primary site.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>A working, well-supplied immune system at the time of treatment.</strong> Some researchers believe an intact tumor and its blood supply may help the immune system "see" and respond to cancer antigens more effectively before surgery removes them.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What the Trials Found</h2>
+          <p class="text-slate/80 mb-6">
+            Neoadjuvant immunotherapy for cutaneous SCC has been studied in two notable trials, both using cemiplimab.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">The pivotal phase 2 trial (Group 1)</h3>
+              <p class="text-slate/80 mb-3">
+                In a multicenter phase 2 trial, patients with stage II to IV, resectable cutaneous SCC received up to four doses of cemiplimab (about 12 weeks) before their planned surgery. Roughly <strong>51%</strong> had a <strong>pathologic complete response</strong> — no viable cancer cells found anywhere in the tissue removed — and another <strong>13%</strong> had a major pathologic response (only minimal residual disease), so about two-thirds had a complete or major pathologic response. On imaging, an objective response (meaningful shrinkage) was seen in about <strong>68%</strong> of patients treated.
+              </p>
+              <p class="text-slate/80">
+                A later analysis of long-term outcomes in the head-and-neck patients from this trial found that those who had a pathologic complete or major response had <strong>no cancer recurrences</strong> at a median follow-up of over three years, with an overall 3-year survival around 90% for the full group.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">The pilot trial in head and neck SCC</h3>
+              <p class="text-slate/80">
+                A separate pilot phase 2 trial gave two doses of neoadjuvant PD-1/PD-L1 immunotherapy to patients with locoregionally advanced, resectable SCC of the head and neck before surgery. It found the approach was safe, did not meaningfully delay planned surgery, and produced a high rate of significant pathologic response — tumors that showed a strong immune response tended to have more immune cells already present before treatment started.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            Both trials point the same direction: giving immunotherapy first, in patients whose tumors are still operable, produces a high rate of major tumor response without making surgery riskier or significantly delayed.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What "Pathologic Response" Means</h2>
+          <p class="text-slate/80 mb-4">
+            After surgery, a pathologist examines the entire removed specimen under the microscope and grades how much, if any, live tumor remains compared with dead or scarred tissue:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Pathologic complete response (pCR):</strong> no viable cancer cells found anywhere in the specimen — the treatment appears to have eliminated the tumor, even though it was still removed surgically.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Major pathologic response (MPR):</strong> a small amount of viable tumor remains (typically less than 10%), with the rest replaced by scar and immune cells.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Partial or no pathologic response:</strong> a substantial amount of viable tumor is still present, even if the tumor looked smaller on imaging.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            A pCR or MPR is a strong, reassuring sign; imaging response before surgery is a helpful preview but does not always match what the pathologist finds afterward, which is one reason surgery is not skipped.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:user-check" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Who Is a Candidate</h2>
+              <p class="text-slate/80 mb-4">
+                Neoadjuvant immunotherapy is considered for a specific situation, decided by a <a href="/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup" class="text-teal hover:text-teal/80 underline">multidisciplinary tumor board</a> of dermatology, surgical oncology or head and neck surgery, medical oncology, and radiation oncology:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>The tumor is <strong>locally advanced but still considered resectable</strong> — not so extensive that surgery is already ruled out.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Removing it as-is would require a <strong>large, function-altering, or disfiguring operation</strong> — near the eye, ear, nose, lip, or over a wide area of scalp or face.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>There is no medical reason to avoid immunotherapy, most importantly <strong>no organ transplant</strong> and no active autoimmune disease requiring strong immune suppression — see <a href="/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients" class="text-teal hover:text-teal/80 underline">SCC in transplant recipients and immunosuppressed patients</a>.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>The person is well enough to tolerate a several-month course that still ends in the originally planned surgery.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What Treatment Involves</h2>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Baseline imaging and biopsy confirmation</strong> before starting, to document the tumor's exact size and extent.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Up to four cemiplimab infusions</strong>, roughly every three weeks, over about 12 weeks — the same drug and dosing used for advanced SCC, just given earlier and for a fixed, short course.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Reimaging near the end of that course</strong> to check the response and confirm surgery can proceed as planned, or occasionally to reconsider the surgical approach if the tumor has shrunk substantially.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Surgery</strong>, typically within a few weeks of the last dose, removing the tumor bed (and any residual tumor) with pathology review of the full specimen.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Radiation or continued systemic therapy afterward</strong> if the pathology shows high-risk features or residual disease at the margins.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Side effects during the neoadjuvant course are the same immune-related reactions seen with immunotherapy generally — see <a href="/squamous-cell-carcinoma/advanced-scc/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">how the side effects of immunotherapy are managed</a> — and are monitored closely since surgery is still scheduled ahead.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">If the Tumor Doesn't Shrink — and Why Surgery Still Happens</h2>
+              <p class="text-slate/80 mb-4">
+                Not every tumor responds. If imaging during the neoadjuvant course shows the cancer is growing rather than shrinking, the plan shifts to surgery (or the originally planned treatment) without delay, and the case is reviewed for other systemic options.
+              </p>
+              <p class="text-slate/80">
+                Even when the response is excellent — including cases where the tumor is no longer visible on imaging or exam — <strong>surgery is still performed</strong> outside of a clinical trial. A pCR on imaging does not guarantee a pCR under the microscope, and leaving even a small amount of residual cancer in place would risk recurrence. Some trials are now studying whether truly exceptional responders can safely avoid surgery, but that is investigational and not yet standard practice.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How This Differs From Adjuvant Therapy</h2>
+          <p class="text-slate/80">
+            Immunotherapy can also be given <em>after</em> surgery — called adjuvant therapy — for tumors that were successfully removed but carry a high risk of coming back, based on features covered in <a href="/squamous-cell-carcinoma/advanced-scc/high-risk-features" class="text-teal hover:text-teal/80 underline">what makes an SCC "high-risk"</a> or evidence of <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">perineural invasion</a>. Neoadjuvant and adjuvant immunotherapy answer different questions — shrinking a tumor before an operation versus lowering the odds of recurrence after one — and a person is generally offered one or the other, not both, depending on how their case unfolds at the tumor board.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my tumor a candidate for immunotherapy before surgery, and what would that change about my operation?</li>
+                <li>How many doses would I get, and how long before we know whether it's working?</li>
+                <li>Will I still need surgery even if the tumor seems to disappear?</li>
+                <li>What happens to the surgical plan if the tumor doesn't shrink, or grows, during treatment?</li>
+                <li>Is a transplant, autoimmune condition, or other health issue a reason to avoid this approach for me?</li>
+                <li>Who is on my team for this — dermatology, surgery, and medical oncology together?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Giving a PD-1 inhibitor before surgery, rather than only after surgery and radiation have failed, is one of the newer strategies for locally advanced SCC that is still operable but would otherwise require an extensive procedure. In the trials so far, roughly half of treated patients had no detectable cancer left in the tissue removed, and responders have gone years without recurrence.
+          </p>
+          <p class="text-slate/80">
+            The tradeoff is time — a several-month course before the operation everyone already expected to happen — and, for some patients, a health condition such as an organ transplant that makes immunotherapy of any kind a more complicated decision, discussed in <a href="/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients" class="text-teal hover:text-teal/80 underline">SCC in transplant recipients and immunosuppressed patients</a>.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Gross ND, Miller DM, Khushalani NI, et al. Neoadjuvant cemiplimab for stage II to IV cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2022;387(17):1557-1568. <a href="https://pubmed.ncbi.nlm.nih.gov/36094839/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ferrarotto R, Amit M, Nagarajan P, et al. Pilot phase II trial of neoadjuvant immunotherapy in locoregionally advanced, resectable cutaneous squamous cell carcinoma of the head and neck. <em>Clin Cancer Res.</em> 2021;27(16):4557-4565. <a href="https://pubmed.ncbi.nlm.nih.gov/34187851/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Ferrarotto R, Nagarajan P, Maronge JM, et al. Outcomes of treatment with neoadjuvant cemiplimab for patients with advanced, resectable cutaneous squamous cell carcinoma of the head and neck: secondary analysis of a phase 2 clinical trial. <em>JAMA Otolaryngol Head Neck Surg.</em> 2023;149(9):847-849. <a href="https://pubmed.ncbi.nlm.nih.gov/37535378/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Kim JYS, Kozlow JH, Mittal B, et al. Guidelines of care for the management of cutaneous squamous cell carcinoma. <em>J Am Acad Dermatol.</em> 2018;78(3):560-578. <a href="https://pubmed.ncbi.nlm.nih.gov/29331386/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/skin-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Skin Cancer Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/squamous-cell-carcinoma/scc-treatment-options/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Squamous Cell Carcinoma Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced squamous cell carcinoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,406 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/living-with-advanced-scc";
+const lastReviewed = "2026-09-01";
+const title = "Advanced SCC: Outlook and Support | Beating Skin Cancer";
+const description = "Understand the outlook for locally advanced and metastatic squamous cell carcinoma, plus follow-up care, managing side effects, and emotional support.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Advanced Squamous Cell Carcinoma: What Is the Outlook, and What Support Is Available?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Squamous Cell Carcinoma", "item": "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc" },
+    { "@type": "ListItem", "position": 4, "name": "Outlook and Support", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the outlook for advanced squamous cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most advanced cutaneous squamous cell carcinoma is locally advanced rather than metastatic, and the outlook has improved substantially with immunotherapy. PD-1 inhibitors produce major responses in roughly 35 to 50 percent of people, and many responses last for years. Metastatic SCC, especially spread beyond the lymph nodes, is harder to control, but the same drugs and other systemic options can still extend and improve life for many patients. Individual outlook depends on tumor features, nodal involvement, immune status, and how the cancer responds to treatment, so ask your own care team what to expect in your situation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often will I need follow-up after treatment for advanced SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Follow-up is usually frequent at first, often every few months, with skin exams, a physical check of the treated area and nearby lymph nodes, and imaging when the tumor was deep, had high-risk features, or had spread to nodes. Visits are typically spaced out over time if the cancer stays controlled. Because anyone who has had one SCC is at higher risk for more skin cancers, lifelong skin checks continue even after the advanced tumor is treated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What support is available for people living with advanced SCC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Support includes reconstructive and prosthetic care for wounds and appearance changes, palliative (supportive) care teams that manage symptoms and side effects alongside cancer treatment, oncology social workers and counselors, peer support groups, financial-assistance programs, and dedicated resources for caregivers. Organizations such as the National Cancer Institute, the American Cancer Society, and CancerCare offer free information and services."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/squamous-cell-carcinoma/advanced-scc"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Squamous Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Advanced Squamous Cell Carcinoma: What Is the Outlook, and What Support Is Available?
+          </h1>
+          <p class="text-xl text-white/80">Prognosis, follow-up, and supportive care for advanced disease</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            A diagnosis of advanced squamous cell carcinoma (SCC) raises two questions almost immediately: <em>What does this mean for me?</em> and <em>Where do I turn for help?</em> Both deserve honest answers. Advanced SCC is uncommon — the great majority of the roughly 700,000 cutaneous SCCs diagnosed each year in the United States are cured with a single procedure — and most advanced cases are <a href="/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means" class="text-teal hover:text-teal/80 underline">locally advanced</a> rather than spread to distant organs. It is a serious diagnosis, but immunotherapy has made it a far more treatable one than it was a decade ago.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through how doctors think about prognosis for locally advanced versus metastatic disease, what follow-up looks like after treatment with surgery, radiation, or immunotherapy, how long-term side effects and wound or appearance concerns are managed, and the emotional, practical, and caregiver support that exists alongside medical care.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Understanding the Outlook</h2>
+          <p class="text-slate/80 mb-4">
+            "Prognosis" is a doctor's best estimate of how a cancer is likely to behave. For advanced SCC it depends on several things: whether the disease is locally advanced or metastatic, whether it has reached the lymph nodes or spread further (the two behave very differently), the tumor's high-risk features such as depth, differentiation, and <a href="/squamous-cell-carcinoma/advanced-scc/perineural-invasion" class="text-teal hover:text-teal/80 underline">perineural invasion</a>, your immune status, and how the cancer responds once treatment starts. National estimates suggest that of the hundreds of thousands of cutaneous SCCs diagnosed in the U.S. each year, a small fraction develop nodal metastasis and a smaller fraction still are ultimately fatal — but no single number captures what any one person can expect. Use the framing below for orientation, and ask your own oncology team what it means in your case.
+          </p>
+
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Locally advanced SCC</h3>
+              <p class="text-slate/80 mb-3">
+                This is a tumor that has grown large or deep, invaded a nerve, or come back repeatedly, so that surgery or radiation can no longer clear it without unacceptable harm. It has <em>not</em> spread to lymph nodes or distant organs.
+              </p>
+              <p class="text-slate/80">
+                The outlook here is generally encouraging. In the pivotal trial of <a href="/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc" class="text-teal hover:text-teal/80 underline">cemiplimab</a>, about half of patients with locally advanced disease had significant tumor shrinkage, and pembrolizumab produced a similar response rate. When a response occurs, it frequently lasts more than a year, and extended follow-up of the cemiplimab trial found that the typical duration of response had not even been reached — meaning many people were still responding years later. Some tumors shrink enough that surgery becomes possible again.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Nodal and metastatic SCC</h3>
+              <p class="text-slate/80 mb-3">
+                Once SCC reaches the lymph nodes, the risk of the cancer spreading further or becoming fatal rises. National estimates put the number of Americans who develop nodal metastasis from cutaneous SCC each year at roughly 6,000 to 13,000, out of hundreds of thousands of new SCC diagnoses — a small share of all cases, but a much higher-risk group than SCC overall. Spread to distant organs (lungs, liver, bone, or distant nodes) is less common still and is harder to control.
+              </p>
+              <p class="text-slate/80">
+                Even so, the same PD-1 immunotherapy drugs used for locally advanced disease produce responses in roughly a third to half of patients with recurrent or metastatic SCC, and non-immunotherapy options — chemotherapy, EGFR-targeted therapy, or a clinical trial — remain available afterward. Many people live for extended periods with the disease managed as a chronic condition, adjusting treatment as circumstances change.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-slate/70 text-sm mt-6">
+            A note on statistics: because cutaneous SCC has historically been excluded from national cancer registries, published outcome figures come from estimates and individual institution studies rather than a single national database, and most predate widespread use of immunotherapy. They rarely reflect what a person facing advanced SCC today can expect. Your care team's individualized estimate, informed by your specific pathology and response to treatment, is more meaningful than any general number.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:calendar-check" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Follow-Up and Surveillance After Treatment</h2>
+              <p class="text-slate/80 mb-4">
+                After surgery, radiation, or systemic therapy for advanced SCC, follow-up is close at first and then spaced out if the cancer stays controlled. A typical schedule looks something like this, tailored to your situation:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Clinic visits every 1 to 3 months</strong> in the first year or two, then gradually less often. Each visit usually includes a full skin exam and a hands-on check of the treated area and nearby lymph nodes.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Imaging</strong> (CT, MRI, or ultrasound) when the original tumor was deep, involved nerves, or had spread to <a href="/squamous-cell-carcinoma/advanced-scc/nodal-metastasis-and-sentinel-node" class="text-teal hover:text-teal/80 underline">lymph nodes</a> — to confirm the response is holding and to catch any regrowth early.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Ongoing medication monitoring</strong> if you remain on immunotherapy or another systemic drug: blood tests, symptom reviews, and decisions about continuing, pausing, or switching treatment. See <a href="/squamous-cell-carcinoma/advanced-scc/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing immunotherapy side effects</a>.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Lifelong skin checks.</strong> Anyone who has had one SCC is at higher risk of developing more skin cancers. Regular dermatology exams and sun protection continue indefinitely — see the main <a href="/squamous-cell-carcinoma/follow-up-care" class="text-teal hover:text-teal/80 underline">SCC follow-up care</a> page for the routine schedule.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Tell your team promptly about any new lump, non-healing sore, numbness or weakness near the old tumor site or along a treated nerve, or a swollen lymph node. Between visits, keep a simple written record of symptoms and questions to bring with you.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Living With Long-Term Treatment Side Effects</h2>
+          <p class="text-slate/80 mb-4">
+            Some people stay on immunotherapy for up to two years, and its immune-related side effects — fatigue, skin rash, joint aches, and inflammation of the thyroid, gut, liver, or lungs — can appear at any point during treatment or even after it ends. These are usually manageable when caught early, and managing them well is part of staying on effective treatment.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Prompt reporting.</strong> New or worsening symptoms — diarrhea, cough, rash, unusual fatigue, or hormone-related changes — should be reported right away so they can be treated, often with steroids, before they become serious.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Routine lab checks.</strong> Thyroid and other hormone panels, liver tests, and blood counts are checked regularly, sometimes for months after immunotherapy ends, because some effects appear late.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Radiation-related effects.</strong> Skin changes, dry mouth, or difficulty swallowing from head and neck radiation can persist and benefit from dental care, speech and swallow therapy, or skin care referrals.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The companion article on <a href="/squamous-cell-carcinoma/advanced-scc/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing immunotherapy side effects</a> covers these in more detail.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:bandage" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Wounds, Reconstruction, and Appearance</h2>
+              <p class="text-slate/80 mb-4">
+                Advanced SCC often affects the face, ears, scalp, or hands — areas that are hard to hide — and surgery or radiation can leave a wound, a surgical defect, or a visible change. This is one of the most difficult parts of the experience, and there is real help for it:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Reconstructive surgery.</strong> A facial plastic, head and neck, or hand surgeon can rebuild tissue in stages, often after the cancer is controlled. Timing is planned around your other treatment.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Prosthetics.</strong> A specialist (an anaplastologist or maxillofacial prosthodontist) can custom-make a lifelike ear, nasal, or orbital prosthesis when reconstruction isn't possible or preferred.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Wound and lymphedema care.</strong> A wound-care nurse can teach dressing routines, and if lymph nodes were removed, a lymphedema therapist can help manage swelling in the arm, neck, or leg.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Camouflage and support.</strong> Medical tattooing, corrective cosmetics, and appearance-focused programs help many people feel more like themselves in public.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Research on facial skin cancer surgery finds that appearance-related distress is often highest right after treatment and tends to ease over the following months, and that people with a history of anxiety or depression benefit most from proactive support. If the change is weighing on you, say so — it is a medical concern, not vanity.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Emotional and Social Support</h2>
+          <p class="text-slate/80 mb-4">
+            Living with an advanced skin cancer can feel isolating, especially when friends assume "skin cancer" always means something minor. Anxiety about scans, low mood, and strain on relationships are common and treatable.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Oncology social workers and counselors</strong> at your cancer center help with coping, communication, and connecting to services — usually at no cost.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Support groups</strong>, in person or online, let you talk with others who understand advanced or facial skin cancer. Organizations like CancerCare run free phone and online groups.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Mental health care.</strong> A therapist or psychiatrist experienced with serious illness can treat scan-related anxiety, depression, or trauma. Ask for a referral.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Financial navigation.</strong> Social workers and nonprofit programs help with the cost of medication, travel, and time off work.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Transplant recipients</strong> managing SCC alongside anti-rejection medication often benefit from a support group or counselor familiar with that added layer of decision-making — ask your transplant team for a referral.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:heart-handshake" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Palliative and Supportive Care</h2>
+              <p class="text-slate/80 mb-4">
+                Palliative care — also called supportive care — is specialized care focused on relief from symptoms, side effects, and stress at any stage of a serious illness. It is <em>not</em> the same as hospice, and it does not mean giving up on treatment. It is delivered alongside cancer treatment, and studies show it can improve quality of life and mood.
+              </p>
+              <p class="text-slate/80 mb-4">A palliative care team can help with:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Pain, fatigue, poor appetite, and other physical symptoms</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Odor, bleeding, or discomfort from an open tumor or wound</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Coordinating care across your dermatologist, surgeon, radiation oncologist, and medical oncologist</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Talking through goals of care and planning ahead</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                You can ask for a palliative care referral at any point — earlier is often better. If the cancer is advanced and treatment is no longer helping, hospice care provides comfort-focused support at home or in a facility.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Support for Caregivers</h2>
+          <p class="text-slate/80 mb-4">
+            The partner, adult child, or friend helping with dressings, appointments, and daily life carries a real load. Caregivers do better — and can give better care — when they are supported too.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Ask the team to teach you.</strong> A nurse can show wound-care and medication routines so they feel manageable at home.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Use respite and practical help.</strong> Home health aides, meal programs, and transportation services exist so one person isn't doing everything.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Caregiver counseling and groups.</strong> Cancer centers and nonprofits offer support specifically for caregivers, including short-term counseling.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Protect your own health.</strong> Keep your own checkups, sleep, and breaks. Burnout helps no one.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my SCC locally advanced or has it spread to lymph nodes or elsewhere, and what does that mean for my outlook?</li>
+                <li>What is the goal of my treatment right now — to cure, to shrink the tumor, or to control it long term?</li>
+                <li>What will my follow-up schedule and imaging look like over the next year?</li>
+                <li>If long-term side effects become hard to live with, what are my options — dose changes, treatment breaks, or switching therapy?</li>
+                <li>Can you refer me for reconstruction, lymphedema care, or a prosthesis, and when would that happen?</li>
+                <li>Can I meet with a palliative (supportive) care team, and how do I connect with a social worker?</li>
+                <li>What support is available for my caregiver?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Advanced squamous cell carcinoma is serious, but for most people it is locally advanced, treatable, and increasingly controllable for the long term. Immunotherapy has changed the outlook substantially, and even nodal or metastatic disease — though harder to cure — can often be managed as a chronic condition with the tools now available.
+          </p>
+          <p class="text-slate/80">
+            Just as important as the medical treatment is the web of support around it: close follow-up, thoughtful management of long-term side effects, reconstruction and appearance care, mental health and peer support, palliative care, and help for the people caring for you. Ask for these things early. You do not have to navigate advanced SCC alone.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Karia PS, Han J, Schmults CD. Cutaneous squamous cell carcinoma: estimated incidence of disease, nodal metastasis, and deaths from disease in the United States, 2012. <em>J Am Acad Dermatol.</em> 2013;68(6):957-966. <a href="https://pubmed.ncbi.nlm.nih.gov/23375456/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Migden MR, Rischin D, Schmults CD, et al. PD-1 blockade with cemiplimab in advanced cutaneous squamous-cell carcinoma. <em>N Engl J Med.</em> 2018;379(4):341-351. <a href="https://pubmed.ncbi.nlm.nih.gov/29863979/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Rischin D, Khushalani NI, Schmults CD, et al. Integrated analysis of a phase 2 study of cemiplimab in advanced cutaneous squamous cell carcinoma: extended follow-up of outcomes and quality of life analysis. <em>J Immunother Cancer.</em> 2021;9(8):e002757. <a href="https://pubmed.ncbi.nlm.nih.gov/34413166/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines Insights: Squamous Cell Skin Cancer, Version 1.2022. <em>J Natl Compr Canc Netw.</em> 2021;19(12):1382-1394. <a href="https://pubmed.ncbi.nlm.nih.gov/34902824/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Vaidya TS, Mori S, Dusza SW, et al. Appearance-related psychosocial distress following facial skin cancer surgery using the FACE-Q Skin Cancer. <em>Arch Dermatol Res.</em> 2019;311(9):691-696. <a href="https://pubmed.ncbi.nlm.nih.gov/31338583/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/about-cancer/advanced-cancer/care-choices/palliative-care-fact-sheet" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Palliative Care in Cancer
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/basal-and-squamous-cell-skin-cancer/after-treatment/follow-up.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> — After Treatment for Basal and Squamous Cell Skin Cancer: Follow-Up Care
+                </li>
+                <li>
+                  <a href="https://www.cancercare.org/diagnosis/skin_cancer" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">CancerCare</a> — Skin Cancer: Free counseling, support groups, and financial assistance
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis, prognosis, and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about living with advanced squamous cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
