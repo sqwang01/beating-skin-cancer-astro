@@ -1,0 +1,347 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/staging-workup-and-imaging";
+const lastReviewed = "2026-09-01";
+const title = "Advanced Melanoma Staging and Workup | Beating Skin Cancer";
+const description = "How advanced melanoma is staged with the AJCC 8th edition TNM system, LDH, PET/CT, brain MRI, and BRAF testing, plus the multidisciplinary tumor board.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Advanced Melanoma Is Staged and Worked Up",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Staging and Workup", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do T, N, and M mean in melanoma staging?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "T describes the primary tumor — its Breslow thickness and whether the surface is ulcerated. N describes spread to regional lymph nodes and to the skin and lymphatic channels nearby, including in-transit, satellite, and microsatellite deposits. M describes distant spread and also incorporates the blood LDH level. Combined, T, N, and M set the overall stage from I to IV under the AJCC 8th edition system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is a brain MRI done for melanoma when there are no symptoms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Melanoma has a particular tendency to spread to the brain, and small brain metastases often cause no symptoms at first. Finding them early, while they are small, widens the treatment options — including stereotactic radiosurgery — and can change which systemic therapy is chosen. For that reason, guidelines recommend a brain MRI with contrast when staging stage III and stage IV melanoma, not only when there are neurological symptoms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is BRAF testing and when is it done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "BRAF testing looks for a mutation, most often BRAF V600, in the melanoma tissue itself, using PCR, immunohistochemistry, or next-generation sequencing. About 40 to 50 percent of cutaneous melanomas carry it, and a positive result makes targeted therapy an option. It is standard for stage III and stage IV melanoma. For acral or mucosal melanoma, the tissue is also checked for NRAS and KIT changes."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Advanced Melanoma Is Staged and Worked Up
+          </h1>
+          <p class="text-xl text-white/80">LDH, PET/CT, brain MRI, BRAF testing, and the multidisciplinary team</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            When melanoma may have spread, the next few weeks are usually spent on a workup: a set of tests that answer two questions — exactly how far has the melanoma traveled, and what are its molecular features? The answers set the stage, and the stage points to the treatment.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The workup for advanced melanoma has several parts: a careful staging system that combines the primary tumor, the lymph nodes, and any distant spread; cross-sectional imaging and a brain scan; blood work; testing of the tumor tissue for treatable mutations; a second look at the pathology; and a team discussion that pulls it all together.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page walks through each step in plain language. For what the resulting labels mean, see <a href="/melanoma/advanced-melanoma/what-advanced-melanoma-means" class="text-teal hover:text-teal/80 underline">what "advanced" melanoma means</a>. For how the primary tumor itself is measured and described, see <a href="/melanoma/breslow-depth-explained" class="text-teal hover:text-teal/80 underline">Breslow depth explained</a> and <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 underline">how to read your melanoma pathology report</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">The AJCC 8th Edition TNM System in Plain Terms</h2>
+          <p class="text-slate/80 mb-4">
+            Melanoma is staged with the American Joint Committee on Cancer (AJCC) system, now in its 8th edition. It rests on three measurements, abbreviated TNM:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>T — the primary tumor.</strong> Chiefly its <a href="/melanoma/breslow-depth-explained" class="text-teal hover:text-teal/80 underline">Breslow thickness</a> in millimeters, and whether the surface is ulcerated (broken) under the microscope. Thickness is grouped as T1 (≤1 mm) through T4 (&gt;4 mm).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>N — the regional lymph nodes.</strong> How many nodes contain melanoma, whether the spread was microscopic (found on biopsy) or clinically detected, and whether there are in-transit, satellite, or microsatellite deposits in the skin and lymphatic channels near the primary.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>M — distant spread.</strong> Whether melanoma has reached distant skin or nodes (M1a), lung (M1b), other organs (M1c), or the central nervous system (M1d) — and, layered onto each, whether the blood <strong>LDH</strong> level is normal or elevated.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The three letters combine into a stage from I to IV. You may also hear "clinical stage" (based on exam and imaging before surgery) and "pathologic stage" (revised after the nodes and tumor are examined under the microscope). For a stage-by-stage tour, see <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">what your melanoma stage means</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Sentinel Lymph Node Biopsy and How a Positive Node Changes the Stage</h2>
+          <p class="text-slate/80 mb-4">
+            For a primary melanoma that is thick enough to carry a meaningful risk of spread but shows no obvious nodal involvement, surgeons often perform a <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">sentinel lymph node biopsy</a> at the same time as the wide local excision. A tracer identifies the first one or two nodes the melanoma would drain to, and those nodes are removed and examined closely.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A negative sentinel node</strong> keeps the melanoma at stage I or II and usually means no further nodal surgery.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A positive sentinel node</strong> moves the melanoma to stage III, even when nothing could be felt or seen on a scan. This is the microscopic (clinically occult) form of nodal spread.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>The findings guide what comes next</strong> — most often ultrasound surveillance of the node basin rather than removing all the remaining nodes, plus a discussion of adjuvant medication.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            When a node is large enough to feel or shows up on imaging, a needle biopsy is done instead, and a positive result places the melanoma at clinically detected (macroscopic) stage III.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Imaging: CT, PET/CT, and Brain MRI</h2>
+              <p class="text-slate/80 mb-4">
+                Once melanoma reaches the nodes or beyond, imaging maps how far it has gone and gives a baseline to compare future scans against. Which tests are ordered depends on the stage, but the usual set includes:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>CT of the chest, abdomen, and pelvis</strong> with contrast, to look at the lungs, liver, and other organs and to check nodes deeper than the exam can reach.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Whole-body PET/CT</strong>, which highlights areas using more sugar than normal tissue. It is the most sensitive single test for distant spread in stage III and IV melanoma and often finds or rules out disease that a plain CT misses. It adds little in early-stage melanoma, which is why it is reserved for higher stages.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>MRI of the brain</strong> with contrast. Melanoma is one of the cancers most likely to travel to the brain, and early brain metastases usually cause no symptoms. Finding them while they are small opens up focused radiation (stereotactic radiosurgery) and can change the choice of systemic therapy, so a brain MRI is recommended for advanced melanoma even without headaches or other neurological symptoms.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80">
+                Not every finding on a scan is melanoma — inflammation, infection, and old injuries can light up too — so suspicious spots are sometimes biopsied or watched with a short-interval repeat scan before conclusions are drawn.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Blood Work, Including LDH</h2>
+          <p class="text-slate/80 mb-4">
+            Blood tests for advanced melanoma are modest in scope. There is no blood test that diagnoses melanoma or replaces imaging, but a few results matter:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>LDH (lactate dehydrogenase)</strong> is part of the stage IV definition itself. An elevated LDH points to a larger amount of melanoma in the body and a less favorable outlook, and it is tracked over time as a rough marker of response.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Baseline organ-function tests</strong> — blood counts, liver and kidney panels, and thyroid and other hormone levels — are drawn before immunotherapy or targeted therapy so that side effects can be detected against a known starting point.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Circulating tumor DNA (ctDNA)</strong> blood assays are being studied as a way to monitor melanoma between scans, but they are not yet a standard part of staging.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            An LDH level can rise for reasons unrelated to cancer, such as recent vigorous exercise or muscle injury, so it is interpreted alongside the imaging rather than on its own.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Molecular and Biomarker Testing on the Tumor</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Alongside staging, a sample of the melanoma — from the primary tumor, a node, or a metastasis — is tested for mutations that have matching drugs. This is done on the tissue, not on blood.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>BRAF V600.</strong> Present in roughly 40–50% of cutaneous melanomas. It can be detected by PCR, by immunohistochemistry (a stain for the mutated protein), or by next-generation sequencing (NGS). A positive result makes <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">BRAF/MEK targeted therapy</a> an option. Testing for BRAF is standard for stage III and stage IV melanoma.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>NRAS and KIT.</strong> Especially important for acral melanoma (palms, soles, under the nails) and mucosal melanoma, where BRAF mutations are less common and KIT changes are relatively more common. These results mainly guide clinical-trial options and, for KIT, occasionally an approved targeted drug from another cancer.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Broader NGS panels</strong> may be run to look for less common alterations and to check eligibility for trials, particularly if first-line treatment stops working.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Mutation testing does not change the stage. It runs in parallel so that, by the time staging is complete, the team already knows whether targeted therapy is on the table.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Pathology Re-Review and the Multidisciplinary Tumor Board</h2>
+          <p class="text-slate/80 mb-4">
+            Two final steps tie the workup together:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Pathology re-review.</strong> When care moves to a melanoma center, a specialized dermatopathologist re-examines the original slides. Thickness, ulceration, mitotic rate, margins, and the diagnosis itself are all reconfirmed, because these details drive staging and treatment. Re-review occasionally revises the reading in ways that matter. See <a href="/melanoma/pathology-report" class="text-teal hover:text-teal/80 underline">how to read your melanoma pathology report</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Multidisciplinary tumor board.</strong> A medical oncologist, surgical oncologist, radiation oncologist, dermatopathologist, and radiologist review the case together. They agree on the stage, decide what — if anything — should be removed surgically, and choose the systemic plan. Guidelines recommend that advanced melanoma be managed this way rather than by one clinician alone.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            By the end of the workup you should have a clear stage, a map of where the melanoma is, a BRAF (and, where relevant, NRAS/KIT) result, and a written plan agreed on by the team.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>What is my full TNM stage, and is it a clinical or a pathologic stage?</li>
+                <li>Which scans will I have, and will they include a brain MRI even though I feel well?</li>
+                <li>Has my tumor been tested for BRAF — and, if it is acral or mucosal, for NRAS and KIT?</li>
+                <li>Will my original pathology slides be re-reviewed here, and could that change my stage?</li>
+                <li>Will my case be presented at a multidisciplinary tumor board before we decide on treatment?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Staging advanced melanoma is a coordinated process, not a single test. The AJCC TNM system organizes what is known about the primary tumor, the lymph nodes, and any distant spread; imaging and a brain MRI show where the melanoma is; LDH and baseline blood work add context and a starting point for monitoring; and molecular testing of the tumor tissue reveals whether targeted therapy is possible.
+          </p>
+          <p class="text-slate/80">
+            Pulling those threads together is the job of a multidisciplinary team. The workup can feel like a lot of appointments in a short time, but each piece narrows the options to the treatment most likely to help — and gives everyone a shared baseline to measure progress against.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Gershenwald JE, Scolyer RA, Hess KR, et al. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. <em>CA Cancer J Clin.</em> 2017;67(6):472-492. <a href="https://pubmed.ncbi.nlm.nih.gov/29028110/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schröer-Günther MA, Wolff RF, Westwood ME, et al. F-18-fluoro-2-deoxyglucose positron emission tomography (PET) and PET/computed tomography imaging in primary staging of patients with malignant melanoma: a systematic review. <em>Syst Rev.</em> 2012;1:62. <a href="https://pubmed.ncbi.nlm.nih.gov/23237499/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Cheng L, Lopez-Beltran A, Massari F, et al. Molecular testing for BRAF mutations to inform melanoma treatment decisions: a move toward precision medicine. <em>Mod Pathol.</em> 2018;31(1):24-38. <a href="https://pubmed.ncbi.nlm.nih.gov/29148538/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Johnson D, Albertini MR, et al. NCCN Guidelines&reg; Insights: Melanoma: Cutaneous, Version 2.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(5):290-298. <a href="https://pubmed.ncbi.nlm.nih.gov/39019054/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version: how melanoma is staged, including TNM and stage groupings
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/melanoma/diagnose-treat" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> &mdash; Melanoma: Diagnosis and Treatment, covering biopsy, staging, and tests
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/patient-eng/diagnosing-melanoma/biomarkers-and-prognostic-testing" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> &mdash; Biomarkers &amp; Prognostic Testing: BRAF, NRAS, and KIT testing explained
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

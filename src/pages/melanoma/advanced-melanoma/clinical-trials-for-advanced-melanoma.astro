@@ -1,0 +1,337 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma";
+const lastReviewed = "2026-09-01";
+const title = "Clinical Trials for Advanced Melanoma | Beating Skin Cancer";
+const description = "How to find a clinical trial for advanced melanoma: what the phases mean, how eligibility works, where to search, and the questions to ask before enrolling.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Finding a Clinical Trial for Advanced Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Clinical Trials for Advanced Melanoma", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are clinical trials only for people who have run out of options?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Trials exist at every point in melanoma care — before surgery, after surgery, and as first, second, or later treatment for metastatic disease. Many of today's standard melanoma drugs, including checkpoint inhibitors and BRAF/MEK inhibitors, reached patients through trials. Asking about a trial early, rather than only after other treatments fail, keeps the most options open."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will I get a placebo in a melanoma clinical trial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In advanced melanoma, a placebo-only arm is uncommon. Most randomized trials compare a new treatment against the current standard of care, or add the new treatment to standard care versus standard care alone. When a placebo is used, it is usually on top of an active treatment. The consent form must state exactly what each group receives, and you can ask the study team to walk you through it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can I search for melanoma clinical trials?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ClinicalTrials.gov lists nearly all trials worldwide. The National Cancer Institute has a curated, patient-friendly search and a contact center at 1-800-4-CANCER. The Melanoma Research Alliance and AIM at Melanoma both run melanoma-specific trial finders that match your profile to open studies. Large academic melanoma centers also keep their own trial lists and can screen you for eligibility."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Finding a Clinical Trial for Advanced Melanoma
+          </h1>
+          <p class="text-xl text-white/80">Where to look, what the phases mean, and questions to ask</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Melanoma has been one of the most active areas of cancer research for the past 15 years. Immunotherapy and targeted therapy — the treatments that transformed the outlook for advanced disease — both reached patients through clinical trials, and the next generation of treatments is being tested now. For someone with advanced melanoma, a trial is not a last resort; it can be a reasonable option at almost any point.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            This page explains what trial phases mean, how eligibility works, where to search, and what to ask before enrolling. For a general introduction to trials across all stages, see <a href="/melanoma/melanoma-clinical-trials" class="text-teal hover:text-teal/80 underline">melanoma clinical trials</a>. For newer treatments that are often accessed through trials, see <a href="/melanoma/advanced-melanoma/til-therapy-and-newer-options" class="text-teal hover:text-teal/80 underline">TIL therapy and newer options</a>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Getting to a center that runs melanoma trials is often the practical first step — see <a href="/melanoma/finding-a-melanoma-specialist" class="text-teal hover:text-teal/80 underline">how to find a melanoma specialist</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Why a Trial Can Make Sense at Any Point</h2>
+          <p class="text-slate/80 mb-4">
+            There is a common assumption that clinical trials are only for people who have exhausted every standard treatment. That is not how melanoma trials are designed:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Before and after surgery.</strong> Trials are testing new drugs and combinations given before surgery (neoadjuvant) and after it (adjuvant) for stage III melanoma.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>As first treatment for metastatic disease.</strong> Some trials compare a promising new combination against the current standard as the very first systemic therapy.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>After other treatments.</strong> Many trials enroll people whose melanoma has progressed on checkpoint inhibitors or targeted therapy, testing new mechanisms.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Asking early has a practical advantage: some trials require that you have <em>not</em> already received certain treatments, so waiting until standard options are used up can close doors. Bringing up trials at each decision point keeps the most options open.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What the Phases Mean</h2>
+              <p class="text-slate/80 mb-4">
+                Trials are grouped into phases that reflect what question is being asked:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase 1:</strong> Is it safe, and what is the right dose? These are usually small and open to people with several cancer types or with melanoma that has progressed on standard treatment. Some modern phase 1 trials of targeted or immune drugs do show meaningful responses.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase 2:</strong> Does it work against melanoma specifically? These enroll larger groups with defined melanoma situations and measure response rate and how long benefit lasts.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Phase 3:</strong> Is it better than the current standard? These randomly assign people to the new approach or to standard care (often with everyone receiving at least an active treatment), usually in hundreds to thousands of participants.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                "Expanded access" (also called compassionate use) is a separate pathway that can sometimes provide an unapproved drug outside a trial when no trial is available — your oncologist can tell you whether it applies.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Eligibility Works</h2>
+          <p class="text-slate/80 mb-4">
+            Every trial has detailed inclusion and exclusion criteria. For advanced melanoma, the factors that most often decide eligibility are:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Tumor mutations.</strong> Some trials require a <em>BRAF</em> V600 mutation; others require its absence, or a less common change such as <em>NRAS</em> or <em>KIT</em>. Testing from the <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="text-teal hover:text-teal/80 underline">staging workup</a> matters here.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Prior treatment.</strong> Many trials specify how many previous lines of therapy you can have had, and whether you have already received a checkpoint inhibitor.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Brain metastases.</strong> Some trials exclude active brain metastases; others are designed specifically for them. Treated, stable brain disease is often allowed.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Organ function and overall health,</strong> measured with blood tests and a performance-status score, and <strong>autoimmune history,</strong> which can affect eligibility for immune-based trials.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Measurable disease</strong> — at least one tumor that can be tracked on scans — and, for cell-therapy trials, a lesion that can be surgically removed to manufacture the product.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Not meeting the criteria for one trial says nothing about another. A trial coordinator can screen you quickly against several at once.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Where to Search</h2>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>ClinicalTrials.gov</strong> — the comprehensive registry of trials worldwide. Search "melanoma" plus your situation; the listings can be technical, so use them alongside one of the guided tools below.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>National Cancer Institute (NCI)</strong> — a curated, plain-language trial search, plus a contact center (1-800-4-CANCER) whose staff will help match you to trials.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Melanoma Research Alliance and AIM at Melanoma</strong> — melanoma-specific trial finders that ask a series of questions and return trials you may fit, with contact details.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Academic melanoma centers</strong> — comprehensive cancer centers and university melanoma programs keep their own lists and can screen you for both their trials and multicenter ones.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Bring the results to your oncologist. They can tell you which trials are realistic given your history and help arrange a referral or a screening visit.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Questions to Ask Before Enrolling</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What is being tested, and what is the comparison?</strong> Is there randomization? If so, what does each group receive — does everyone get at least standard treatment?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What is the goal for me</strong> — shrinking the melanoma, keeping it stable, lowering recurrence risk — and how will that be measured?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What are the known and possible risks,</strong> and how do they compare with standard treatment?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What extra visits, scans, biopsies, and travel</strong> are required, and over how long? What costs are covered by the trial, and what falls to me or my insurance?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What happens if the treatment does not work</strong> or I need to stop? Can I still get standard therapy afterward, and can I leave the trial at any time?</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                You will be asked to sign an informed-consent document. It should answer these questions in writing; take it home, read it, and ask the study team about anything that is unclear. Enrolling is voluntary, and you can withdraw at any point without affecting your regular care.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is a clinical trial a reasonable option for me right now, or at a specific point ahead?</li>
+                <li>Are there trials at this center I might qualify for, and are there multicenter trials worth traveling for?</li>
+                <li>Given my mutation status and prior treatment, what kinds of trials am I eligible for?</li>
+                <li>If I join a trial, would I keep seeing you, and how would my care be coordinated?</li>
+                <li>Could a referral to a larger melanoma center open up trial options I do not have here?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Clinical trials are woven through modern melanoma care, not tacked on at the end. They test new treatments before surgery, after surgery, and at every line of therapy for metastatic disease, and they are how the current standards became standard. A trial may or may not be right for you at a given moment, but it is always worth asking about — early, and again at each decision point.
+          </p>
+          <p class="text-slate/80">
+            Use ClinicalTrials.gov and the melanoma-specific finders to see what exists, then work through the list with an oncologist who can judge fit and arrange referrals. The consent process exists to make sure you understand exactly what you are agreeing to before you decide.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Johnson D, Albertini MR, et al. Melanoma: Cutaneous, Version 2.2026, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2026;24(6):272-277. <a href="https://pubmed.ncbi.nlm.nih.gov/42297031/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Patel SP, Othus M, Chen Y, et al. Neoadjuvant-adjuvant or adjuvant-only pembrolizumab in advanced melanoma. <em>N Engl J Med.</em> 2023;388(9):813-823. <a href="https://pubmed.ncbi.nlm.nih.gov/36856617/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/research/participate/clinical-trials-search" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Find Cancer Clinical Trials (search tool and 1-800-4-CANCER)
+                </li>
+                <li>
+                  <a href="https://clinicaltrials.gov/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">ClinicalTrials.gov</a> &mdash; U.S. National Library of Medicine registry of clinical studies
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/patient-eng/clinical-trial-locator" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> &mdash; Clinical Trial Navigator for melanoma
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/how-melanoma-is-treated/clinical-trials/clinicaltrialfinder/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; Clinical Trial Finder
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

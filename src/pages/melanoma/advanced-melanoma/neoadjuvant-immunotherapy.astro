@@ -1,0 +1,330 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/neoadjuvant-immunotherapy";
+const lastReviewed = "2026-09-01";
+const title = "Neoadjuvant Immunotherapy for Melanoma | Beating Skin Cancer";
+const description = "Neoadjuvant immunotherapy means checkpoint inhibitors before surgery for resectable stage III melanoma. Why the order matters and what the trials show.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Neoadjuvant Immunotherapy for Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Neoadjuvant Immunotherapy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is neoadjuvant immunotherapy for melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neoadjuvant immunotherapy is checkpoint inhibitor treatment given before surgery rather than only after it. It is used for resectable macroscopic stage III melanoma — palpable lymph nodes or in-transit deposits that a surgeon could remove. Treating while the tumor is still in place lets the immune system see the full range of melanoma targets, which appears to produce a stronger and longer-lasting response than the same drugs given only after the melanoma is removed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is neoadjuvant immunotherapy better than adjuvant treatment alone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In two randomized trials it was. SWOG S1801 found that pembrolizumab given before and after surgery lengthened event-free survival compared with pembrolizumab given only after surgery. NADINA found that two cycles of ipilimumab plus nivolumab before surgery, with response-adapted treatment afterward, beat a year of adjuvant nivolumab. On the strength of these results, neoadjuvant immunotherapy is becoming the preferred approach for macroscopic stage III melanoma at many centers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a pathologic complete response in melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "After neoadjuvant treatment, the surgeon removes the tumor and a pathologist examines it for living cancer cells. A pathologic complete response means none are found; a major pathologic response means only a small fraction remain. People who achieve a major or complete pathologic response have a very low risk of the melanoma returning over the next few years, and some may need less treatment afterward."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Neoadjuvant Immunotherapy for Melanoma
+          </h1>
+          <p class="text-xl text-white/80">Immunotherapy before surgery for resectable stage III melanoma, and why timing matters</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            For decades, the order of treatment for melanoma that had spread to lymph nodes was fixed: surgery first, then — more recently — a year of medication afterward to lower the chance it came back. That afterward-only medication is called <a href="/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery" class="text-teal hover:text-teal/80 underline">adjuvant therapy</a>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            <strong>Neoadjuvant</strong> therapy flips part of that sequence. It gives a short course of immunotherapy <em>before</em> the operation, while the melanoma is still in the body. Over the past few years, two randomized trials have shown this is not just a rearrangement — it produces better outcomes than adjuvant treatment alone for the right patients. As a result, neoadjuvant immunotherapy is quickly becoming a preferred approach for macroscopic (clinically detected) stage III melanoma.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article explains who it is for, why treating before surgery seems to work better, what the trials found, what a pathologic response means, and what the schedule looks like in practice. For how these drugs work and their side effects, see <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced melanoma</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Who Neoadjuvant Immunotherapy Is For</h2>
+          <p class="text-slate/80 mb-4">
+            Neoadjuvant immunotherapy is used for <strong>resectable, macroscopic stage III melanoma</strong> — disease that can be felt or seen on a scan and that a surgeon judges removable. Typical situations include:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>One or more enlarged lymph nodes containing melanoma, confirmed by needle biopsy</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>In-transit or satellite deposits — melanoma in the skin and lymphatic channels between the original site and the draining nodes</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A nodal recurrence after an earlier melanoma, where the disease is again localized and operable</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mb-4">
+            It is generally <em>not</em> used for melanoma found only under the microscope in a sentinel node (microscopic stage III), which is usually managed with adjuvant therapy after surgery, or for stage IV melanoma, which is treated primarily with systemic therapy. Whether disease is macroscopic and resectable is decided during the <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="text-teal hover:text-teal/80 underline">staging workup</a>, ideally at a multidisciplinary tumor board.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why the Order Matters</h2>
+              <p class="text-slate/80 mb-4">
+                Checkpoint inhibitors work by helping T cells recognize and attack melanoma. The leading explanation for why giving them before surgery works better is that the tumor itself is the teaching material:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>A bigger, more varied target.</strong> An intact tumor and its involved nodes contain the full range of melanoma proteins. With the drug on board, the immune system can build a response against many of them at once — a broader army than it can raise from the microscopic traces left after surgery.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Immune memory that travels.</strong> The T cells activated against the tumor circulate throughout the body and can find and destroy melanoma cells that had already escaped to other sites before the operation — the cells that cause later recurrence.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>A read on what is working.</strong> Because the tumor is removed a few weeks into treatment, the pathologist can see exactly how much melanoma the immunotherapy killed — information that is not available when the melanoma is taken out first.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What the Trials Show</h2>
+          <p class="text-slate/80 mb-6">
+            Two randomized trials moved neoadjuvant immunotherapy from a promising idea to a standard option.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">SWOG S1801</h3>
+              <p class="text-slate/80">
+                People with resectable stage IIIB–IV melanoma were assigned to receive pembrolizumab either entirely after surgery (about 18 doses) or split — three doses before surgery and the rest after. Splitting the treatment lengthened event-free survival: at two years, about 72% of the neoadjuvant group were alive and free of recurrence, versus about 49% of the adjuvant-only group. The total amount of drug and the surgery were essentially the same; only the timing of the first three doses changed.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">NADINA</h3>
+              <p class="text-slate/80">
+                People with macroscopic stage III melanoma received either two cycles of ipilimumab plus nivolumab before surgery, followed by treatment tailored to the pathology result, or surgery followed by a year of adjuvant nivolumab. The neoadjuvant approach substantially improved event-free survival — roughly 84% versus 57% free of an event at one year. People with a major pathologic response received little or no further drug therapy; those with less response went on to adjuvant treatment.
+              </p>
+            </div>
+          </div>
+          <p class="text-slate/80 mt-6">
+            A pooled analysis from the International Neoadjuvant Melanoma Consortium, gathering results across earlier trials, reached the same conclusion: the depth of pathologic response after neoadjuvant treatment is a powerful predictor of whether the melanoma stays away.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Pathologic Response: The Key Result</h2>
+              <p class="text-slate/80 mb-4">
+                After the pre-surgery drug course, the tumor and nodes are removed on schedule and a pathologist examines them closely for living melanoma cells. The findings are grouped:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Pathologic complete response (pCR):</strong> no living melanoma cells remain.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Near-complete (major) response:</strong> only a very small fraction — usually defined as 10% or less — of living tumor remains.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Partial or no response:</strong> more living melanoma remains.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mb-4">
+                This matters because response predicts the future. In pooled data, people with a pathologic complete or major response had roughly a 90% or higher chance of remaining recurrence-free at two years, compared with about half of those without one. Around 40% of people achieve a pathologic complete response with neoadjuvant immunotherapy, and the figure is higher with the ipilimumab-plus-nivolumab combination than with single-agent anti–PD-1.
+              </p>
+              <p class="text-slate/80">
+                A strong pathologic response can also <em>reduce</em> later treatment: in NADINA, people with a major response were spared a year of adjuvant drugs and simply followed with scans.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What the Schedule Looks Like</h2>
+          <p class="text-slate/80 mb-4">
+            The details vary by center and regimen, but a common pattern is:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>About 6 weeks of immunotherapy</strong> — for example, two cycles of ipilimumab plus nivolumab, or a few doses of pembrolizumab — with a baseline scan and blood work first.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Surgery</strong> to remove the tumor and involved nodes, usually within a week or two of finishing the drug course. Neoadjuvant treatment does not appear to make the operation harder or delay healing in most people.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Response-adapted follow-on treatment.</strong> A major or complete pathologic response may mean observation alone or a short course of adjuvant therapy; a lesser response usually means completing adjuvant immunotherapy, and sometimes switching to <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">targeted therapy</a> or radiation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Ongoing surveillance</strong> with exams and imaging, as for any resected stage III melanoma.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The side effects are those of the checkpoint inhibitors themselves — see <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing immunotherapy side effects</a>. A small number of people have a reaction severe enough to delay surgery, which is one reason these regimens are given at centers experienced with them.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my melanoma macroscopic, resectable stage III — the situation where neoadjuvant treatment is used?</li>
+                <li>Would you recommend neoadjuvant immunotherapy over surgery-first with adjuvant treatment, and why?</li>
+                <li>Which regimen would I get before surgery, and how long until the operation?</li>
+                <li>How will the pathologic response be measured, and how would it change what happens afterward?</li>
+                <li>What happens if the melanoma grows during the pre-surgery treatment, or if I have a serious side effect?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Neoadjuvant immunotherapy — a short course of checkpoint inhibitors before surgery — has become one of the most important recent advances for stage III melanoma. Two randomized trials, S1801 and NADINA, showed it lengthens the time people stay free of recurrence compared with the older surgery-first approach, using the same drugs. The pathology result after surgery gives an early, personalized read on how well the treatment worked, and a strong response can mean less treatment afterward.
+          </p>
+          <p class="text-slate/80">
+            It applies to a specific group: melanoma that has spread to nodes or nearby skin, is large enough to see or feel, and can be removed. If that describes your situation, it is worth asking a melanoma specialist team whether starting with immunotherapy before surgery is the right plan for you.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Patel SP, Othus M, Chen Y, et al. Neoadjuvant-adjuvant or adjuvant-only pembrolizumab in advanced melanoma. <em>N Engl J Med.</em> 2023;388(9):813-823. <a href="https://pubmed.ncbi.nlm.nih.gov/36856617/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Blank CU, Lucas MW, Scolyer RA, et al. Neoadjuvant nivolumab and ipilimumab in resectable stage III melanoma. <em>N Engl J Med.</em> 2024;391(18):1696-1708. <a href="https://pubmed.ncbi.nlm.nih.gov/38828984/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Menzies AM, Amaria RN, Rozeman EA, et al. Pathological response and survival with neoadjuvant therapy in melanoma: a pooled analysis from the International Neoadjuvant Melanoma Consortium (INMC). <em>Nat Med.</em> 2021;27(2):301-309. <a href="https://pubmed.ncbi.nlm.nih.gov/33558722/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; How Melanoma Is Treated
+                </li>
+                <li>
+                  <a href="https://melanoma.org/patients-caregivers/newly-diagnosed/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Foundation</a> &mdash; Newly Diagnosed: Understanding Your Treatment Options
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

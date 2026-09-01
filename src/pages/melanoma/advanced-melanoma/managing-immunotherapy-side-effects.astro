@@ -1,0 +1,405 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/managing-immunotherapy-side-effects";
+const lastReviewed = "2026-09-01";
+const title = "Melanoma Immunotherapy Side Effects | Beating Skin Cancer";
+const description = "How the immune-related side effects of melanoma immunotherapy are monitored and managed, when treatment is paused, and which symptoms need urgent care.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Managing the Side Effects of Melanoma Immunotherapy",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Managing Immunotherapy Side Effects", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does a side effect mean I have to stop melanoma immunotherapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always. Mild reactions are often managed while treatment continues. Moderate ones usually mean pausing the drug and taking corticosteroids until things settle, after which anti-PD-1 treatment can frequently resume. Severe or life-threatening reactions, and most cases involving the heart, lungs, or nervous system, generally mean stopping the drug for good. Hormone-gland problems are the main exception: they are treated with hormone replacement and treatment usually continues."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which melanoma immunotherapy side effects need urgent medical attention?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contact your care team the same day for new or worsening diarrhea or blood in the stool, belly pain, shortness of breath or a new cough, yellowing of the skin or eyes, severe fatigue or dizziness, a widespread or blistering rash, severe headache or vision changes, extreme thirst and urination, chest pain or a racing heartbeat, or new muscle weakness or trouble swallowing. Early treatment is what keeps these reactions reversible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the hormone side effects of immunotherapy permanent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Often yes. When checkpoint inhibitors damage the thyroid, pituitary, or adrenal glands, or trigger type 1 diabetes, the gland usually does not fully recover and the missing hormone must be replaced for life with a daily tablet, hydrocortisone, or insulin. Even so, these problems are manageable, and the immunotherapy itself can usually be continued once the hormone level is stable."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Managing the Side Effects of Melanoma Immunotherapy
+          </h1>
+          <p class="text-xl text-white/80">Immune-related side effects, monitoring, steroids, and when treatment is paused</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The checkpoint inhibitors used for advanced melanoma — anti&ndash;PD-1 drugs such as pembrolizumab and nivolumab, the nivolumab-plus-ipilimumab combination, and nivolumab plus relatlimab — work by releasing brakes on the immune system. The same released brakes can let the immune system inflame healthy organs. Those reactions are called <strong>immune-related adverse events</strong>, or irAEs. How they work and what they achieve is covered in <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced melanoma</a>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Their side effects are different from those of chemotherapy: there is usually no hair loss, and nausea and low blood counts are uncommon. Instead, almost any organ can become inflamed, most often the skin, gut, liver, and hormone glands. Many people get through treatment with only mild problems, but a minority develop serious ones, and the combination of ipilimumab and nivolumab carries a much higher risk than anti&ndash;PD-1 alone.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article explains the reactions organ by organ, the routine monitoring used to catch them early, the general management ladder, why some effects need lifelong hormone replacement, and the red-flag symptoms that mean you should call your team or go to the emergency room the same day. For where side effects fit into the wider path after diagnosis, see <a href="/melanoma/what-to-expect-after-diagnosis" class="text-teal hover:text-teal/80 underline">what to expect after a melanoma diagnosis</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What "Immune-Related" Means, and Why the Regimen Matters</h2>
+              <p class="text-slate/80 mb-4">
+                An irAE behaves more like a temporary autoimmune disease than like a drug allergy. Reactions can appear after a single dose, during treatment, or weeks to months after the last one. Because the immune system has a long memory, some irAEs need weeks of treatment to settle.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Each reaction is graded on a standard 1-to-4 scale: grade 1 is mild, grade 2 moderate, grade 3 severe, grade 4 life-threatening. That grade, together with which organ is involved, drives every decision about steroids and about holding or stopping the drug.
+              </p>
+              <p class="text-slate/80">
+                The regimen makes a large difference to the odds. With single-agent anti&ndash;PD-1, serious (grade 3 or 4) side effects occur in roughly 10&ndash;20% of people. With nivolumab plus relatlimab the figure is under one in five. With nivolumab plus ipilimumab it rises to a little over half, and those reactions tend to come sooner and hit more than one organ at once.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Reactions, Organ by Organ</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Skin</h3>
+              <p class="text-slate/80">
+                The most common irAE. Usually an itchy rash or dry skin; sometimes patches of lost pigment (vitiligo), which is harmless. Managed with moisturizers, topical steroid creams, and antihistamines. A rare blistering rash, or one covering much of the body, is treated urgently and can mean stopping the drug.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Gut (colitis) and diarrhea</h3>
+              <p class="text-slate/80">
+                Looser or more frequent stools, cramping, or blood or mucus in the stool. This is one of the more common serious reactions with ipilimumab-containing regimens. Mild cases are managed with fluids and anti-diarrheal medicine; more than a few extra stools a day, or any blood, prompts holding the drug and starting corticosteroids. Colitis that does not respond to steroids is treated with a second drug such as infliximab or vedolizumab.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Liver (hepatitis)</h3>
+              <p class="text-slate/80">
+                Usually silent and picked up as rising liver enzymes on routine bloodwork; sometimes yellowing of the skin or eyes, dark urine, or right-sided abdominal pain. Managed by holding the drug and, if significant, corticosteroids, with mycophenolate added if steroids alone are not enough.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Hormone glands (endocrinopathies)</h3>
+              <p class="text-slate/80">
+                The thyroid is affected most often — frequently a brief overactive phase followed by an underactive one that needs thyroid hormone tablets. Less commonly the pituitary gland (hypophysitis) or the adrenal glands are involved, causing severe fatigue, low blood pressure, headache, or low sodium; rarely, the pancreas is attacked, causing sudden type 1 diabetes. These are discussed in more detail below.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Lungs (pneumonitis)</h3>
+              <p class="text-slate/80">
+                Inflammation of lung tissue causing a new or worsening cough, breathlessness, or chest tightness. It is uncommon but potentially serious, so any new breathing symptom is checked promptly with a scan. It usually means holding the drug and starting corticosteroids, and moderate-to-severe cases often mean stopping it permanently.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Kidneys (nephritis)</h3>
+              <p class="text-slate/80">
+                Usually detected as a rising creatinine level on blood tests, with few symptoms. Managed by holding the drug and, when needed, corticosteroids; kidney function usually recovers.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Rare but serious: heart and nervous system</h3>
+              <p class="text-slate/80">
+                Inflammation of the heart muscle (myocarditis), and neurologic reactions affecting nerves or muscles (spreading numbness, weakness, drooping eyelids, trouble swallowing or breathing), are uncommon but can be dangerous. They are treated as emergencies with high-dose steroids and, in nearly all cases, permanent discontinuation of the drug.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Routine Monitoring</h2>
+          <p class="text-slate/80 mb-4">
+            Because several irAEs cause no symptoms until they are advanced, monitoring is built into every treatment cycle:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Bloodwork before each infusion:</strong> blood counts; liver enzymes and bilirubin; kidney function; blood sugar; and thyroid tests (TSH and free T4).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A symptom review at every visit:</strong> a checklist covering bowels, breathing, energy, skin, headache, vision, and muscle strength.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Extra tests when something is off:</strong> a morning cortisol and ACTH level if fatigue or low blood pressure suggests an adrenal or pituitary problem; a chest scan for breathing symptoms; heart tests (troponin, ECG) if myocarditis is a concern.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Keeping a simple daily note of new symptoms between visits helps the team catch a reaction while it is still mild and easy to reverse.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Management Ladder: Hold, Steroids, and Beyond</h2>
+              <p class="text-slate/80 mb-4">
+                National guidelines from the American Society of Clinical Oncology and others tie management to the grade of the reaction:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Grade 1 (mild):</strong> usually continue immunotherapy with closer monitoring and local treatment, such as a steroid cream for a mild rash. Early heart or neurologic signs are the exception and are always taken seriously.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Grade 2 (moderate):</strong> hold the drug and start oral corticosteroids (often prednisone around 0.5&ndash;1 mg per kg per day). When symptoms improve to grade 1 or less, the steroid is tapered slowly over at least 4 weeks and anti&ndash;PD-1 treatment is often restarted.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Grade 3 (severe):</strong> hold or permanently stop the drug depending on the organ; higher-dose corticosteroids (1&ndash;2 mg per kg per day), sometimes intravenously. If there is no improvement in 2&ndash;3 days, a second immune-suppressing drug is added — for example infliximab for colitis, mycophenolate for hepatitis.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Grade 4 (life-threatening):</strong> permanently discontinue (with rare exceptions such as some hormone problems), admit to hospital, and give high-dose intravenous steroids.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                A steroid course lasting more than a few weeks comes with its own supportive care — stomach protection, sometimes an antibiotic to prevent a specific pneumonia, and monitoring of blood sugar and bone health. Taking steroids for an irAE does <strong>not</strong> appear to cancel out immunotherapy's benefit against the melanoma.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Hormone Effects That Need Lifelong Replacement</h2>
+          <p class="text-slate/80 mb-4">
+            Endocrine irAEs are the main exception to the "hold and treat with steroids" pattern. When the immune system damages a hormone gland, the missing hormone often does not come back — but it can be replaced, and immunotherapy can usually continue.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Underactive thyroid:</strong> a daily thyroid hormone tablet (levothyroxine), often for life. Immunotherapy continues.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Pituitary or adrenal insufficiency:</strong> daily hydrocortisone at a physiologic replacement dose (not a high anti-inflammatory dose), sometimes permanently, with a plan to increase the dose during illness.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy-induced type 1 diabetes:</strong> insulin, usually for life, started urgently because it can appear suddenly.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Once the hormone is replaced and the person is stable, the checkpoint inhibitor is generally resumed. An endocrinologist typically co-manages these situations.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Red-Flag Symptoms: When to Call or Go to the ER</h2>
+              <p class="text-slate/80 mb-4">
+                Do not wait for your next appointment if you have any of the following. Call your care team the same day, and if it is severe, go to the emergency room:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>New or worsening diarrhea, blood or mucus in the stool, or persistent abdominal pain</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Shortness of breath, a new cough, or chest tightness</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Yellowing of the skin or eyes, or dark urine</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Severe fatigue, dizziness or fainting, confusion, or a severe headache</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Extreme thirst, frequent urination, or unexplained weight loss</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Chest pain, a racing or irregular heartbeat, or new swelling in the legs</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>New muscle weakness, drooping eyelids, double vision, or trouble swallowing or breathing</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A rash that is spreading quickly, blistering, or peeling, or sores in the mouth</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Tell any clinician you see — including in an emergency room — that you are on immunotherapy, because the treatment for these reactions (steroids and other immune suppressants) is different from the usual approach and needs to start quickly.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Do Side Effects Mean the Treatment Is Working?</h2>
+          <p class="text-slate/80 mb-4">
+            Several studies have found that people who develop irAEs — vitiligo and thyroid problems in particular — are somewhat more likely to have their melanoma respond. It is a tendency across groups of patients, not a rule for any one person: plenty of people respond well with no side effects at all, and having a side effect is not a goal to aim for.
+          </p>
+          <p class="text-slate/80">
+            Whatever the possible link, a severe reaction is still treated as a severe reaction. When an irAE reaches grade 3 or 4, or involves the heart, lungs, or nervous system, the drug is held or stopped and the inflammation is brought under control first. Immune memory means the melanoma benefit often continues even after treatment is paused.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given my regimen, which side effects are most likely for me, and which are the dangerous ones to watch for?</li>
+                <li>What blood tests will you run before each infusion, and what are you looking for?</li>
+                <li>At what point would we pause treatment, and at what point would we stop it for good?</li>
+                <li>If I need steroids, how long would that last, and what else do I need while taking them?</li>
+                <li>Who do I call after hours, and which symptoms should send me straight to the emergency room?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            The side effects of melanoma immunotherapy come from an over-active immune system rather than a toxic drug, so the response is to calm that inflammation — usually with corticosteroids — and to decide, based on how severe the reaction is and which organ is involved, whether to continue, pause, or stop. Routine bloodwork and a low threshold for reporting symptoms are what keep most reactions mild and reversible.
+          </p>
+          <p class="text-slate/80">
+            Some effects, especially on the hormone glands, are permanent and need lifelong replacement — but even then, treatment against the melanoma can usually continue. For how these drugs work and what they achieve, see <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced melanoma</a>, and for the questions worth bringing to each specialist, see <a href="/melanoma/advanced-melanoma/questions-to-ask-your-care-team" class="text-teal hover:text-teal/80 underline">what to ask your care team about advanced melanoma</a>.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Schneider BJ, Naidoo J, Santomasso BD, et al. Management of immune-related adverse events in patients treated with immune checkpoint inhibitor therapy: ASCO guideline update. <em>J Clin Oncol.</em> 2021;39(36):4073-4126. <a href="https://pubmed.ncbi.nlm.nih.gov/34724392/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Brahmer JR, Lacchetti C, Schneider BJ, et al. Management of immune-related adverse events in patients treated with immune checkpoint inhibitor therapy: American Society of Clinical Oncology clinical practice guideline. <em>J Clin Oncol.</em> 2018;36(17):1714-1768. <a href="https://pubmed.ncbi.nlm.nih.gov/29442540/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Postow MA, Sidlow R, Hellmann MD. Immune-related adverse events associated with immune checkpoint blockade. <em>N Engl J Med.</em> 2018;378(2):158-168. <a href="https://pubmed.ncbi.nlm.nih.gov/29320654/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Larkin J, Chiarion-Sileni V, Gonzalez R, et al. Five-year survival with combined nivolumab and ipilimumab in advanced melanoma. <em>N Engl J Med.</em> 2019;381(16):1535-1546. <a href="https://pubmed.ncbi.nlm.nih.gov/31562797/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tawbi HA, Schadendorf D, Lipson EJ, et al. Relatlimab and nivolumab versus nivolumab in untreated advanced melanoma. <em>N Engl J Med.</em> 2022;386(1):24-34. <a href="https://pubmed.ncbi.nlm.nih.gov/34986285/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/about-cancer/treatment/types/immunotherapy/side-effects" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Side Effects of Immunotherapy
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/managing-cancer/treatment-types/immunotherapy/immune-checkpoint-inhibitors.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> &mdash; Immune Checkpoint Inhibitors and Their Side Effects
+                </li>
+                <li>
+                  <a href="https://www.oncolink.org/cancer-treatment/gene-immunotherapy/side-effects-of-immunotherapy/side-effects-of-immunotherapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">OncoLink (University of Pennsylvania)</a> &mdash; Side Effects of Immunotherapy
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; How Melanoma Is Treated
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

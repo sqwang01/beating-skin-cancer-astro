@@ -1,0 +1,302 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma";
+const lastReviewed = "2026-09-01";
+const title = "Advanced Melanoma | Beating Skin Cancer";
+const description = "Advanced melanoma includes regionally advanced (stage III) and metastatic (stage IV) disease. Learn how it's staged, when surgery isn't enough, and treatment options.";
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": canonical }
+  ],
+};
+
+const jsonLd = [breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Advanced Melanoma</h1>
+          <p class="text-xl text-white/80">When melanoma has spread to lymph nodes or beyond</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What Is Advanced Melanoma?</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Most melanomas are found early, removed with surgery, and never come back. A minority behave differently — reaching the lymph nodes, appearing in the skin between the original spot and the nearest nodes, or spreading to distant organs such as the lung, liver, bone, or brain. Doctors call this "advanced" melanoma, and it is managed with a different set of tools — usually systemic medication and a team of specialists rather than a single surgeon.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            "Advanced melanoma" is an umbrella term for two broad situations:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Regionally advanced melanoma (stage III)</h3>
+              <p class="text-slate/80">
+                The melanoma has spread to nearby lymph nodes, or has formed satellite or in-transit deposits in the skin and lymphatic channels between the original tumor and those nodes. It has not reached distant organs. Many stage III melanomas can still be removed with surgery, and treatment increasingly includes medication given before and/or after that surgery.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic melanoma (stage IV)</h3>
+              <p class="text-slate/80">
+                The melanoma has spread beyond the regional lymph nodes to distant sites — most often distant skin and lymph nodes, the lungs, liver, bone, or brain. It is treated primarily with systemic therapy. When distant spread is limited to one or a few spots (oligometastatic disease), surgery or focused radiation may still play a role alongside medication.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Key Topics</h2>
+          <p class="text-slate/80 mb-6">
+            Explore these topics to understand what advanced melanoma means, how it is staged and evaluated, and the treatment options available:
+          </p>
+          <div class="space-y-3">
+            <a href="/melanoma/advanced-melanoma/what-advanced-melanoma-means" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What does "advanced" melanoma mean?</div>
+              <div class="text-sm text-slate/70">Regionally advanced (stage III) vs. metastatic (stage IV) disease, and what each one means</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How is advanced melanoma staged and worked up?</div>
+              <div class="text-sm text-slate/70">LDH, PET/CT, brain MRI, BRAF testing, and the multidisciplinary team</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How does immunotherapy treat advanced melanoma?</div>
+              <div class="text-sm text-slate/70">Checkpoint inhibitors — anti–PD-1, ipilimumab plus nivolumab, and nivolumab plus relatlimab</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">When is BRAF/MEK targeted therapy used?</div>
+              <div class="text-sm text-slate/70">Testing for a BRAF V600 mutation and the oral drug combinations that target it</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What is adjuvant therapy, and do I need it after surgery?</div>
+              <div class="text-sm text-slate/70">Medication after complete removal of stage III (or high-risk stage II) melanoma to lower the chance of recurrence</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/neoadjuvant-immunotherapy" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Can immunotherapy be given before surgery?</div>
+              <div class="text-sm text-slate/70">Neoadjuvant therapy for resectable stage III melanoma, and why timing matters</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How are the side effects of immunotherapy managed?</div>
+              <div class="text-sm text-slate/70">Immune-related side effects, monitoring, steroids, and when treatment is paused</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/melanoma-brain-metastases" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What if melanoma has spread to the brain?</div>
+              <div class="text-sm text-slate/70">How brain metastases are found and treated with systemic therapy, radiosurgery, and surgery</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/til-therapy-and-newer-options" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">TIL therapy and other newer options</div>
+              <div class="text-sm text-slate/70">Tumor-infiltrating lymphocyte (TIL) cell therapy, oncolytic virus therapy, and what comes after first-line treatment</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How do I find a clinical trial for advanced melanoma?</div>
+              <div class="text-sm text-slate/70">Where to look, what the phases mean, and questions to ask</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/questions-to-ask-your-care-team" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What should I ask my care team about advanced melanoma?</div>
+              <div class="text-sm text-slate/70">Questions for your surgical oncologist, medical oncologist, and radiation oncologist</div>
+            </a>
+            <a href="/melanoma/advanced-melanoma/living-with-advanced-melanoma" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What is the outlook, and what support is available?</div>
+              <div class="text-sm text-slate/70">Prognosis, follow-up, survivorship, and supportive care for advanced disease</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Signs Melanoma May Be Advanced</h2>
+              <p class="text-slate/80 mb-4">Most melanomas are caught while still confined to the skin. Findings that prompt a doctor to look for advanced disease include:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A firm or enlarging lymph node near a known or previously treated melanoma (in the neck, armpit, or groin)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>New pigmented or pink bumps in the skin between the original melanoma and the nearest lymph nodes (satellite or in-transit lesions)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A positive sentinel lymph node biopsy at the time the primary melanoma was removed</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A thick primary melanoma, or one that was ulcerated or had a high mitotic rate on pathology</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Persistent cough, bone pain, headaches, unexplained weight loss, or fatigue in someone with a melanoma history</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A rising blood LDH level or new spots on a CT, PET/CT, or brain MRI</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:users" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">Who Develops Advanced Melanoma</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People whose primary melanoma was thick, ulcerated, or had spread to a sentinel lymph node</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People whose melanoma was found late, or in a hard-to-see spot such as the scalp, back, or sole of the foot</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People with a melanoma that has recurred at or near the original site despite treatment</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>People on long-term immunosuppression, including organ transplant recipients</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Less commonly, people with acral, mucosal, or uveal (eye) melanoma, which behave differently from sun-related skin melanoma</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:clock" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">Why Early Detection Still Matters</h2>
+            </div>
+            <p class="text-slate/80 mb-4">
+              Melanoma found while it is thin and confined to the skin is cured with surgery alone the large majority of the time. The same melanoma left to grow can reach the lymph nodes or distant organs, at which point treatment means months to years of systemic medication and closer monitoring.
+            </p>
+            <p class="text-slate/80">
+              Advanced melanoma is also far more treatable than it was a decade ago. Immunotherapy and targeted therapy have turned stage IV melanoma from a disease measured in months into one where many people live for years, and some appear to be cured. If you have a melanoma history and notice a new lump, a changing scar, or symptoms that will not settle, tell your oncology team promptly.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Systemic Treatment Overview</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            When surgery alone cannot control the disease, advanced melanoma is treated with medication that works throughout the body, sometimes alongside surgery or radiation. Every option below is individualized and carries meaningful side effects that are weighed against its benefits.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy (checkpoint inhibitors):</strong> Drugs such as pembrolizumab, nivolumab, the ipilimumab-plus-nivolumab combination, and nivolumab plus relatlimab release the brakes on the immune system so it can attack the melanoma. This is the backbone of treatment for most people with advanced melanoma.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Targeted therapy (BRAF/MEK inhibitors):</strong> For the roughly 40–50% of melanomas with a BRAF V600 mutation, oral drug pairs such as dabrafenib plus trametinib, encorafenib plus binimetinib, or vemurafenib plus cobimetinib block the signal driving tumor growth, often working quickly.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Adjuvant and neoadjuvant therapy:</strong> For stage III (and some high-risk stage II) melanoma, immunotherapy or targeted therapy given after surgery — and, increasingly, immunotherapy given before surgery — lowers the chance the melanoma returns.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Cellular therapy, oncolytic virus therapy, and clinical trials:</strong> Tumor-infiltrating lymphocyte (TIL) therapy, injectable oncolytic virus therapy, and trial drugs offer additional options, particularly when first-line treatment stops working.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Gershenwald JE, Scolyer RA, Hess KR, et al. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. <em>CA Cancer J Clin.</em> 2017;67(6):472-492. <a href="https://pubmed.ncbi.nlm.nih.gov/29028110/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Larkin J, Chiarion-Sileni V, Gonzalez R, et al. Five-year survival with combined nivolumab and ipilimumab in advanced melanoma. <em>N Engl J Med.</em> 2019;381(16):1535-1546. <a href="https://pubmed.ncbi.nlm.nih.gov/31562797/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Robert C, Grob JJ, Stroyakovskiy D, et al. Five-year outcomes with dabrafenib plus trametinib in metastatic melanoma. <em>N Engl J Med.</em> 2019;381(7):626-636. <a href="https://pubmed.ncbi.nlm.nih.gov/31166680/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Melanoma Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/melanoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Melanoma: Overview
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> — How Melanoma Is Treated
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

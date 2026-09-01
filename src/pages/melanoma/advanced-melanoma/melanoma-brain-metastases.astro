@@ -1,0 +1,374 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/melanoma-brain-metastases";
+const lastReviewed = "2026-09-01";
+const title = "When Melanoma Spreads to the Brain | Beating Skin Cancer";
+const description = "How melanoma brain metastases are found on MRI and treated with immunotherapy, BRAF/MEK targeted therapy, stereotactic radiosurgery, and surgery.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "When Melanoma Spreads to the Brain",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Melanoma Brain Metastases", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do I need a brain MRI if I have no symptoms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Melanoma is one of the cancers most likely to travel to the brain, and small brain metastases often cause no symptoms at all. Because finding them early expands the treatment options — focused radiation and immunotherapy work best on small, symptom-free lesions — a contrast-enhanced brain MRI is a routine part of staging for stage IV melanoma and of follow-up afterward, even when you feel well."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can immunotherapy work inside the brain?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In the CheckMate 204 trial, roughly half of people with small, asymptomatic brain metastases who were not taking steroids had their brain disease shrink or disappear on the combination of ipilimumab plus nivolumab, and many of those responses lasted. Results were weaker in people who had symptoms or needed steroids, which is one reason doctors keep steroid doses as low as possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is whole-brain radiation still used for melanoma brain metastases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Much less than it used to be. Stereotactic radiosurgery delivers a high, precise dose to a limited number of lesions while sparing healthy brain tissue, so it has largely replaced whole-brain radiation for people with a countable number of metastases. Whole-brain radiation is now reserved mainly for very numerous lesions or leptomeningeal disease, because it carries a higher risk of memory and thinking problems."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            When Melanoma Spreads to the Brain
+          </h1>
+          <p class="text-xl text-white/80">How brain metastases are found and treated with systemic therapy, radiosurgery, and surgery</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Melanoma is one of the cancers most likely to spread to the brain. A large share of people with stage IV melanoma develop one or more brain metastases at some point during their illness, and many are found before they cause any symptoms. That is why a brain MRI is part of the standard <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="text-teal hover:text-teal/80 underline">staging workup and imaging</a> for advanced melanoma, and part of follow-up afterward, even when a person feels completely well.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Hearing that melanoma has reached the brain is frightening, and for many years it carried a grim outlook. That has changed substantially. Modern immunotherapy and targeted therapy can work inside the brain, focused radiation can treat individual spots precisely, and surgery still has a role for certain lesions. Used together by an experienced team, these tools have turned brain metastases from a near-term crisis into something many people live with, and past, for years.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains how brain metastases are found and followed, the local treatments (radiosurgery and surgery), and the systemic drugs that reach the brain. For the bigger picture of how advanced melanoma is treated, see the <a href="/melanoma/advanced-melanoma" class="text-teal hover:text-teal/80 underline">Advanced Melanoma hub</a> and our overview of <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 underline">melanoma treatment options</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Why Melanoma Reaches the Brain So Often</h2>
+          <p class="text-slate/80 mb-4">
+            Every cancer that spreads through the bloodstream can potentially reach the brain, but melanoma does so more readily than most. Among people whose melanoma has spread to distant sites, a large proportion — by many estimates roughly a third to a half, and more in autopsy studies — are found to have brain involvement at some point. The brain and its lining are simply a common destination for melanoma cells.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Brain metastases are more likely when the primary melanoma was thick or ulcerated, when disease has already spread to the lungs or liver, when the blood LDH level is elevated, and in melanomas carrying a <em>BRAF</em> or <em>NRAS</em> mutation.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Small brain metastases frequently cause no symptoms. Left undetected, they can grow to a point where they are harder to treat, so guidelines recommend looking for them proactively rather than waiting for a problem.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Finding them early genuinely changes the options: focused radiation and immunotherapy both work best on small, asymptomatic lesions in someone who is not on steroids.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            This is the reasoning behind adding a contrast-enhanced brain MRI to staging for stage IV melanoma, and often for higher-risk stage III disease, even in the absence of any neurological complaint.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Symptoms That Prompt a Scan</h2>
+              <p class="text-slate/80 mb-4">
+                Many brain metastases are silent and found only on imaging. When they do cause symptoms, it is usually because a lesion, or the swelling around it, presses on nearby brain tissue. Possible signs include:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A new or changing headache, sometimes worse in the morning or with coughing or bending over</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A seizure — which can be a convulsion, but also brief staring, twitching, or unusual sensations</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Weakness, numbness, or clumsiness on one side of the body, or trouble with balance and walking</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Changes in vision or speech, or difficulty finding words</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Persistent nausea or vomiting, or changes in memory, concentration, or personality that others notice</span>
+                </li>
+              </ul>
+              <p class="text-slate/80">
+                These symptoms have many causes other than metastasis, but in a person with a melanoma history any of them warrants prompt evaluation and usually a brain MRI. Tell your oncology team rather than waiting for a routine appointment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Brain Metastases Are Found and Followed</h2>
+          <p class="text-slate/80 mb-4">
+            The key test is a <strong>contrast-enhanced MRI of the brain</strong>. MRI is far more sensitive than CT for small lesions and for disease along the brain's lining, and the intravenous contrast (gadolinium) makes metastases stand out. A CT scan is used mainly when MRI cannot be done — for example, with certain implanted devices.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>At staging:</strong> a baseline brain MRI is obtained when stage IV disease is diagnosed, and often when stage III disease is high risk, regardless of symptoms.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>During treatment and follow-up:</strong> the brain is re-imaged on a schedule — commonly every 2 to 4 months at first — because the brain can be a site of progression even when disease elsewhere is controlled.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>After radiosurgery:</strong> close MRI follow-up helps distinguish a lesion that is regrowing from <em>radiation change</em> (treatment-related inflammation), which can look similar and sometimes needs specialized imaging to sort out.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            PET/CT scans, which are used to survey the rest of the body, do not reliably show brain metastases because normal brain tissue takes up the tracer — another reason a dedicated brain MRI is needed.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Local Treatments: Radiosurgery and Surgery</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            "Local" treatments target the brain lesions directly, as opposed to systemic drugs that circulate through the whole body. The two main local tools are stereotactic radiosurgery and neurosurgery, and they are often combined with systemic therapy rather than used instead of it.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Stereotactic radiosurgery (SRS)</strong> delivers a single high dose, or a few doses, of tightly focused radiation to each metastasis while largely sparing the surrounding brain. It is the preferred radiation approach for a limited number of lesions — historically up to about four, though many centers now treat more when each is small — and can often be repeated if new spots appear later.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Neurosurgery</strong> is considered for a lesion that is large, causing significant symptoms or dangerous swelling, or solitary and in an operable location. Removing it can relieve pressure quickly and confirm the diagnosis; radiosurgery is usually given afterward to the surgical cavity to lower the chance of regrowth.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Whole-brain radiation therapy</strong> treats the entire brain at once. It is now used much less often, because it carries a higher risk of memory and thinking problems and SRS gives better local control for a countable number of lesions. It is reserved mainly for very numerous metastases or leptomeningeal disease.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Systemic Treatment That Reaches the Brain</h2>
+          <p class="text-slate/80 mb-4">
+            A major shift over the past decade is that melanoma drugs given by infusion or by mouth can shrink metastases inside the brain, not just elsewhere in the body.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Combination immunotherapy (ipilimumab plus nivolumab)</strong> has meaningful activity inside the brain. In the CheckMate 204 trial, roughly half of people with small, asymptomatic brain metastases who were not taking corticosteroids had an intracranial response, and many of those responses were durable. People with symptoms or on steroids did less well. See <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">immunotherapy for advanced melanoma</a> for how these drugs work and their side effects.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>BRAF/MEK inhibitors</strong> (for melanomas with a <em>BRAF</em> V600 mutation) also reach the brain. In the COMBI-MB study, dabrafenib plus trametinib shrank brain metastases in a majority of patients and tended to work quickly, but the responses were generally less durable than outside the brain — often lasting a matter of months. This makes targeted therapy useful for rapid control or as a bridge. See <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">targeted therapy with BRAF/MEK inhibitors</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Corticosteroids (such as dexamethasone)</strong> reduce brain swelling and can quickly ease symptoms, but they also dampen the immune system and appear to blunt the benefit of immunotherapy. Teams therefore use the lowest dose for the shortest time that controls symptoms, and lean on radiosurgery or surgery to reduce the need for them.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            For many people the plan combines approaches — for example, radiosurgery to the lesions causing concern plus combination immunotherapy for long-term control — decided case by case.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Leptomeningeal Disease</h2>
+              <p class="text-slate/80 mb-4">
+                Sometimes melanoma cells spread not as discrete tumors but into the cerebrospinal fluid and the thin membranes (leptomeninges) that wrap the brain and spinal cord. This is called leptomeningeal disease or leptomeningeal carcinomatosis.
+              </p>
+              <p class="text-slate/80 mb-4">
+                It is diagnosed with MRI of the brain and whole spine and, often, a sample of spinal fluid taken by lumbar puncture. It is harder to treat than a few solid metastases: options include systemic therapy, radiation aimed at symptomatic areas, and in some cases medication delivered directly into the spinal fluid. Outcomes are more guarded, and clinical trials are an especially important option here.
+              </p>
+              <p class="text-slate/80">
+                Even so, some people with leptomeningeal melanoma respond to modern systemic therapy, and the goal of treatment is both to control the disease and to protect quality of life and neurological function.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">A Combined Team, and Improving Outcomes</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Brain metastases are best managed by a team that meets together: a <strong>neurosurgeon</strong>, a <strong>radiation oncologist</strong> experienced with radiosurgery, and a <strong>medical oncologist</strong> who treats melanoma, often with input from neuro-oncology and neurology. The sequence and combination of surgery, radiosurgery, and drugs — and the timing of steroids — are decisions that benefit from all of those perspectives at once.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Historically, melanoma that reached the brain was measured in months. With stereotactic radiosurgery and effective systemic therapy, outcomes have improved substantially, and a meaningful subset of people are now long-term survivors.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Being asymptomatic, having a small number of small lesions, normal LDH, good overall performance status, and not requiring steroids are all associated with better results.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Ask whether your case has been, or can be, reviewed at a multidisciplinary tumor board, and whether a clinical trial for brain metastases is open to you — see <a href="/melanoma/advanced-melanoma/questions-to-ask-your-care-team" class="text-teal hover:text-teal/80 underline">questions to ask your care team</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>How many brain lesions are there, how large are they, and are any causing symptoms or swelling?</li>
+                <li>Would you recommend stereotactic radiosurgery, surgery, or both — and in what order relative to systemic therapy?</li>
+                <li>Is my melanoma <em>BRAF</em>-mutated, and does that change whether we start with immunotherapy or targeted therapy?</li>
+                <li>Am I on steroids, and if so, what is the plan to get the dose as low as possible?</li>
+                <li>Is there a clinical trial for melanoma brain metastases that I might be eligible for, and has my case been reviewed by a multidisciplinary team?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Melanoma spreads to the brain more often than most cancers, which is why a brain MRI is part of staging even when there are no symptoms. When metastases are found, treatment usually combines a local approach — stereotactic radiosurgery for a limited number of lesions, or surgery for a large, symptomatic, or solitary one — with systemic therapy that can act inside the brain.
+          </p>
+          <p class="text-slate/80">
+            Combination immunotherapy produces durable responses in a substantial share of people with small, steroid-free brain metastases, and BRAF/MEK inhibitors add a fast option for <em>BRAF</em>-mutant disease. Leptomeningeal disease remains harder to treat. Managed by a combined neurosurgery, radiation oncology, and medical oncology team, brain metastases from melanoma carry a far better outlook than they did a decade ago.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Tawbi HA, Forsyth PA, Algazi A, et al. Combined nivolumab and ipilimumab in melanoma metastatic to the brain. <em>N Engl J Med.</em> 2018;379(8):722-730. <a href="https://pubmed.ncbi.nlm.nih.gov/30134131/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Davies MA, Saiag P, Robert C, et al. Dabrafenib plus trametinib in patients with BRAFV600-mutant melanoma brain metastases (COMBI-MB): a multicentre, multicohort, open-label, phase 2 trial. <em>Lancet Oncol.</em> 2017;18(7):863-873. <a href="https://pubmed.ncbi.nlm.nih.gov/28592387/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tawbi HA, Boutros C, Kok D, Robert C, McArthur G. New era in the management of melanoma brain metastases. <em>Am Soc Clin Oncol Educ Book.</em> 2018;38:741-750. <a href="https://pubmed.ncbi.nlm.nih.gov/30231345/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Le Rhun E, Guckenberger M, Smits M, et al. EANO-ESMO Clinical Practice Guidelines for diagnosis, treatment and follow-up of patients with brain metastasis from solid tumours. <em>Ann Oncol.</em> 2021;32(11):1332-1347. <a href="https://pubmed.ncbi.nlm.nih.gov/34364998/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Johnson D, Albertini MR, et al. Melanoma: Cutaneous, Version 2.2026, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2026;24(6):272-277. <a href="https://pubmed.ncbi.nlm.nih.gov/42297031/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/stages-of-melanoma/brain-metastases/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; Brain Metastases
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/melanoma-skin-cancer/treating/by-stage.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society (ACS)</a> &mdash; Treatment of Melanoma Skin Cancer, by Stage
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma and brain metastases</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

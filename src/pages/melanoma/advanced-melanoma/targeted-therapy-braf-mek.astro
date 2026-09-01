@@ -1,0 +1,378 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/targeted-therapy-braf-mek";
+const lastReviewed = "2026-09-01";
+const title = "BRAF/MEK Targeted Therapy for Melanoma | Beating Skin Cancer";
+const description = "About 40 to 50 percent of melanomas carry a BRAF V600 mutation. Learn how oral BRAF and MEK inhibitor pairs work, their side effects, and when they are used.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "BRAF and MEK Targeted Therapy for Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "BRAF and MEK Targeted Therapy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I know if my melanoma has a BRAF mutation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A laboratory tests a sample of the tumor itself — usually tissue from an earlier biopsy or surgery — for a change in the BRAF gene. About 40 to 50 percent of cutaneous melanomas carry a BRAF V600 mutation, most often V600E and less often V600K. The result decides whether BRAF and MEK targeted therapy is an option for you, so testing is done early, at the same time as staging scans."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I start with immunotherapy or targeted therapy for BRAF-mutant melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most people with BRAF-mutant advanced melanoma, starting with immunotherapy leads to better long-term survival. In the randomized DREAMseq trial, beginning with the nivolumab-plus-ipilimumab immunotherapy combination and switching to dabrafenib plus trametinib only if needed produced a two-year survival of about 72 percent, compared with about 52 percent when targeted therapy was given first. Targeted therapy is usually held in reserve for rapidly progressing or highly symptomatic disease, or for later use if immunotherapy stops working."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do BRAF and MEK inhibitors work for melanoma without a BRAF mutation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. These drugs only help tumors with a BRAF V600 mutation. In melanoma that is BRAF wild-type (no V600 mutation), a BRAF inhibitor provides no benefit and can actually speed growth by switching on the same pathway it is meant to block. This is why tumor testing is required before targeted therapy is considered."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            BRAF and MEK Targeted Therapy for Melanoma
+          </h1>
+          <p class="text-xl text-white/80">Testing for a BRAF V600 mutation and the oral drug combinations that target it</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Roughly 40 to 50 percent of melanomas that start in the skin carry a specific change in a gene called <em>BRAF</em>. The change — almost always in a spot known as V600, and most often the version called V600E (V600K is the next most common) — leaves a growth switch inside the melanoma cells stuck in the "on" position. Targeted therapy is a set of pills designed to flip that switch back off.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Two drugs are always used together: a <strong>BRAF inhibitor</strong> and a <strong>MEK inhibitor</strong>. The BRAF inhibitor blocks the faulty BRAF protein directly; the MEK inhibitor blocks the next relay in the same chain. Together they control the melanoma more deeply and for longer than a BRAF inhibitor alone, with fewer skin side effects.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article explains how a BRAF mutation is found, which drug pairs are approved, how well they work, and — importantly — why most people with BRAF-mutant melanoma are still advised to start with <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">immunotherapy</a> rather than targeted therapy. For the bigger picture of how melanoma is treated at every stage, see <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 underline">melanoma treatment options</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What a BRAF V600 Mutation Is and How It Is Found</h2>
+          <p class="text-slate/80 mb-4">
+            <em>BRAF</em> is a gene that helps make a protein in the MAPK pathway — a molecular chain that tells a cell when to grow and divide. A V600 mutation changes one building block of that protein so it signals constantly, without waiting for the normal "go" message. The result is uncontrolled growth, and in a large share of melanomas this is the main engine of the cancer.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>The test is done on the tumor, not the blood.</strong> A pathology lab checks tissue from a previous biopsy or surgery. If no stored tissue is usable, a small additional biopsy may be needed.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Several methods are used</strong> — a rapid stain that flags the V600E protein, targeted DNA tests, or a broader panel (next-generation sequencing) that reads many cancer genes at once.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Guidelines recommend BRAF testing for everyone with stage III or stage IV melanoma</strong>, and for some earlier tumors when the result could change the plan. It is usually ordered alongside the first staging scans — see <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="text-teal hover:text-teal/80 underline">staging, workup, and imaging</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A "wild-type" result means no V600 mutation.</strong> Targeted therapy of this kind is not an option, and treatment centers on immunotherapy and, where relevant, clinical trials.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Melanomas that arise on the palms, soles, or nail beds (acral) or on mucous membranes carry BRAF V600 mutations less often than sun-related skin melanomas do, and uveal (eye) melanoma essentially never does.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Why the Two Drugs Are Given Together</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Early on, BRAF inhibitors were tried on their own. They worked, but melanoma cells found a way around the block within months by reactivating the same pathway one step further down, at a protein called MEK. Adding a MEK inhibitor closes that escape route.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Responses last longer</strong> and overall survival is better with the pair than with a BRAF inhibitor alone.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Fewer skin growths.</strong> A BRAF inhibitor by itself can paradoxically switch on the pathway in normal skin cells, causing wart-like growths and a type of squamous cell skin cancer. Adding the MEK inhibitor sharply reduces these.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>The combination is the standard.</strong> A BRAF inhibitor is used alone only in unusual circumstances, such as when the MEK inhibitor cannot be tolerated.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Approved Drug Combinations</h2>
+          <p class="text-slate/80 mb-6">
+            Three BRAF-plus-MEK pairs are approved for BRAF V600-mutant advanced melanoma. All are taken by mouth at home, with regular clinic visits for blood tests, skin checks, heart scans, and eye checks. They have never been compared directly against one another, and their benefits are broadly similar; the choice comes down to the side-effect profile, other medical conditions, and physician experience.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Dabrafenib + trametinib</h3>
+              <p class="text-slate/80">
+                The most widely used pair and the one with the longest follow-up. Its distinctive side effect is a fever-and-chills reaction (see below). It is also the combination approved to be given after surgery for certain stage III melanomas.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Encorafenib + binimetinib</h3>
+              <p class="text-slate/80">
+                Often the best tolerated of the three, with less fever and less sun sensitivity for many people. In the COLUMBUS trial it produced a median overall survival of roughly 33 months.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-2">Vemurafenib + cobimetinib</h3>
+              <p class="text-slate/80">
+                The oldest pair. Marked sun sensitivity is common, so strict sun protection is essential. It is used less often now that the other two are available.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How Well It Works — and Why Resistance Develops</h2>
+              <p class="text-slate/80 mb-4">
+                Targeted therapy often works <strong>fast</strong>. Many people feel better within days to a couple of weeks, tumors shrink on the first scan, and a high lactate dehydrogenase (LDH) level frequently falls. That speed makes it valuable when melanoma is causing symptoms — pain, breathing trouble, pressure on an organ — or when there is a large amount of disease that needs to be brought under control quickly.
+              </p>
+              <p class="text-slate/80 mb-4">
+                The limitation is durability. In most people the melanoma eventually adapts and finds a new way to send the growth signal, and the disease starts to grow again — usually within about one to two years. A minority do considerably better: in long-term follow-up of dabrafenib plus trametinib, roughly one third of patients were alive at five years, and a smaller group remained free of progression.
+              </p>
+              <p class="text-slate/80">
+                Because response tends to be quick but time-limited, targeted therapy is often thought of as a way to gain control — either as a bridge, or held in reserve — rather than the treatment most likely to produce a lasting remission.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Immunotherapy First for Most People: The Sequencing Question</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            If a melanoma is BRAF-mutant, both immunotherapy and targeted therapy are available — which raises the question of what to use first. The randomized DREAMseq trial (also called ECOG-ACRIN EA6134) was designed to answer it. Patients received either the nivolumab-plus-ipilimumab immunotherapy combination first, or dabrafenib plus trametinib first, and switched to the other approach if the melanoma progressed.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Starting with immunotherapy won.</strong> Two-year survival was about 72 percent for the immunotherapy-first group versus about 52 percent for the targeted-therapy-first group.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>The likely reason</strong> is that responses to immunotherapy, when they happen, tend to last for years, and starting with it seems to give the immune system the best chance to establish that lasting control.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Targeted therapy still has clear roles:</strong> when the melanoma is growing rapidly or causing serious symptoms and there is no time to wait for immunotherapy to work; when immunotherapy is not safe (for example, an active autoimmune condition); and as the next option after immunotherapy has stopped working.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            This is a general guide, not a rule for every case. The right order depends on how fast the disease is moving, the tumor burden and LDH, other health conditions, and your own priorities — a conversation for a melanoma specialist team.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Side Effects</h2>
+              <p class="text-slate/80 mb-4">
+                Targeted therapy is not chemotherapy, and its side effects differ from those of immunotherapy. Most are manageable with dose adjustments, short breaks, and supportive medicines, and many settle once the body adjusts. Common and important ones include:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Fever and chills</strong> — especially with dabrafenib plus trametinib. It can come in recurring episodes and, if not managed, lead to dehydration and low blood pressure. It is treated with fever reducers, fluids, brief drug holds, and sometimes a short course of steroids.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Sun sensitivity</strong> — most pronounced with vemurafenib; severe sunburn can occur after brief exposure, so daily sun protection is essential.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Joint aches, muscle aches, and fatigue.</strong></span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Heart:</strong> a drop in the heart's pumping strength (ejection fraction), usually reversible and picked up on scheduled echocardiograms.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Eyes:</strong> blurred vision or, less often, inflammation or fluid under the retina; report new visual symptoms promptly.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Liver:</strong> elevated liver blood tests, monitored regularly.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Skin growths:</strong> new wart-like spots, a type of squamous cell skin cancer, or new separate melanomas. These are far less frequent on the two-drug combination than on a BRAF inhibitor alone, but they are why regular skin checks continue during treatment.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Targeted Therapy After Surgery for Stage III</h2>
+          <p class="text-slate/80 mb-4">
+            Targeted therapy is not only for melanoma that cannot be removed. For melanoma that has spread to lymph nodes and been completely taken out with surgery (resected stage III) and is BRAF V600E or V600K positive, one year of <strong>dabrafenib plus trametinib</strong> given afterward lowers the chance the melanoma comes back. In the COMBI-AD trial this adjuvant course roughly halved the risk of relapse in the first few years, and the benefit has held up with long follow-up.
+          </p>
+          <p class="text-slate/80">
+            For resected stage III BRAF-mutant melanoma, then, there is a choice between adjuvant targeted therapy and adjuvant immunotherapy. Both reduce recurrence; they differ in their side effects and in how they are given. This decision is covered in <a href="/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery" class="text-teal hover:text-teal/80 underline">adjuvant therapy after surgery</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Has my tumor been tested for a BRAF mutation, and what exactly did it show?</li>
+                <li>Given my situation, should I start with immunotherapy or targeted therapy — and why?</li>
+                <li>If we use targeted therapy, which drug pair do you recommend for me, and what side effects are most likely?</li>
+                <li>How and how often will we check that it is working, and what happens if it stops?</li>
+                <li>If my stage III melanoma was fully removed, is adjuvant targeted therapy or adjuvant immunotherapy the better fit for me?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            BRAF and MEK targeted therapy gives people whose melanoma carries a BRAF V600 mutation a fast, effective way to shrink the cancer and relieve symptoms. Used as a pair, the drugs control the disease more deeply and for longer than a single BRAF inhibitor, with fewer skin side effects. For most people, though, the melanoma eventually learns to grow around the block within one to two years.
+          </p>
+          <p class="text-slate/80">
+            That is why, for most BRAF-mutant advanced melanoma, the current advice is to start with immunotherapy and keep targeted therapy in reserve — for disease that is moving too fast to wait, for situations where immunotherapy is unsafe, and for use after immunotherapy. After surgery for BRAF-mutant stage III disease, targeted therapy is one of two good options for lowering the risk of recurrence. A melanoma specialist team can help you weigh the order that fits your case.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Atkins MB, Lee SJ, Chmielowski B, et al. Combination dabrafenib and trametinib versus combination nivolumab and ipilimumab for patients with advanced BRAF-mutant melanoma: the DREAMseq trial — ECOG-ACRIN EA6134. <em>J Clin Oncol.</em> 2023;41(2):186-197. <a href="https://pubmed.ncbi.nlm.nih.gov/36166727/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Robert C, Grob JJ, Stroyakovskiy D, et al. Five-year outcomes with dabrafenib plus trametinib in metastatic melanoma. <em>N Engl J Med.</em> 2019;381(7):626-636. <a href="https://pubmed.ncbi.nlm.nih.gov/31166680/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Dummer R, Ascierto PA, Gogas HJ, et al. Overall survival in patients with BRAF-mutant melanoma receiving encorafenib plus binimetinib versus vemurafenib or encorafenib (COLUMBUS): a multicentre, open-label, randomised, phase 3 trial. <em>Lancet Oncol.</em> 2018;19(10):1315-1327. <a href="https://pubmed.ncbi.nlm.nih.gov/30219628/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Long GV, Hauschild A, Santinami M, et al. Adjuvant dabrafenib plus trametinib in stage III BRAF-mutated melanoma. <em>N Engl J Med.</em> 2017;377(19):1813-1823. <a href="https://pubmed.ncbi.nlm.nih.gov/28891408/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Melanoma Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/melanoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Skin Cancer Types: Melanoma
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/patient-eng/melanoma-treatment/targeted-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> — Targeted Therapy
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> — How Melanoma Is Treated
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

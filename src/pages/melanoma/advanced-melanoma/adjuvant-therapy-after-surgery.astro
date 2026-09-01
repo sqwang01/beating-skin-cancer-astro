@@ -1,0 +1,345 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery";
+const lastReviewed = "2026-09-01";
+const title = "Adjuvant Therapy for Resected Melanoma | Beating Skin Cancer";
+const description = "Adjuvant immunotherapy or BRAF/MEK targeted therapy after surgery for stage III or high-risk stage II melanoma lowers the chance the cancer comes back.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Adjuvant Therapy After Melanoma Surgery",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Adjuvant Therapy After Surgery", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is adjuvant therapy for melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Adjuvant therapy is medication given after surgery has removed all visible melanoma. Its purpose is to destroy microscopic cancer cells that may have escaped before the operation, lowering the chance the melanoma comes back. The main options are anti-PD-1 immunotherapy (nivolumab or pembrolizumab) and, for tumors with a BRAF V600 mutation, the targeted-therapy pair dabrafenib plus trametinib. Treatment usually lasts about one year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is offered adjuvant therapy after melanoma surgery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is offered after complete removal of stage III melanoma (substages IIIA through IIID), after removal of the uncommon stage IV melanoma when scans show no remaining disease, and now after complete removal of high-risk stage IIB and IIC melanoma. The higher the recurrence risk for a given substage, the more the potential benefit tends to outweigh the side effects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the risks of adjuvant immunotherapy for melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most side effects are mild, but immunotherapy can cause the immune system to attack healthy organs. The most common lasting problem is damage to a hormone-producing gland such as the thyroid, pituitary, or adrenal glands; roughly one in seven people treated needs to take a hormone-replacement pill permanently. Serious reactions are less common and usually improve when treatment is paused and steroids are given."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Adjuvant Therapy After Melanoma Surgery
+          </h1>
+          <p class="text-xl text-white/80">Medication after complete removal of stage III (or high-risk stage II) melanoma to lower the chance of recurrence</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            When a melanoma has reached the lymph nodes, the surgeon can usually remove all of it that can be seen or felt. The concern afterward is not what was taken out but what might have been left behind: a small number of melanoma cells too few to show up on any scan. <strong>Adjuvant therapy</strong> is medication given after that surgery to find and destroy those cells before they can grow into a new tumor.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            A decade ago there was no treatment after melanoma surgery that reliably lowered the risk of recurrence. Today there are several, and for many people with <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">stage III melanoma</a> a year of adjuvant immunotherapy or targeted therapy is now a standard offer. This page explains who it is for, what the choices are, what the trials found, and how to weigh the benefit against the side effects.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Adjuvant therapy is given <em>after</em> surgery. Giving the same kind of medication <em>before</em> surgery is a newer strategy covered separately in <a href="/melanoma/advanced-melanoma/neoadjuvant-immunotherapy" class="text-teal hover:text-teal/80 underline">neoadjuvant immunotherapy for melanoma</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What "Adjuvant" Means</h2>
+          <p class="text-slate/80 mb-4">
+            <strong>Adjuvant</strong> comes from a Latin word meaning "to help." An adjuvant treatment is not the main treatment — surgery is — but an add-on meant to make surgery more likely to succeed in the long run. The logic is straightforward:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Once melanoma has spread to a lymph node, cells may also have traveled elsewhere in numbers too small to detect.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>These micrometastases are easiest to eliminate when there are very few of them, before they form a visible mass.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Treating for a defined period after surgery — typically about a year — aims to clear that hidden disease and leave the person free of melanoma for good.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Adjuvant therapy does not help everyone who receives it. Some people were already cured by surgery alone and take the medication without needing it; others recur despite it. Because there is no test that shows in advance which group a person is in, the decision rests on the <em>average</em> benefit seen in large trials, weighed against the side effects an individual would face.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Who Is Offered Adjuvant Therapy</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Eligibility is defined by stage after all known melanoma has been surgically removed:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Resected stage III (IIIA through IIID).</strong> This is the core group. It includes melanoma found in a sentinel node, in clinically enlarged nodes, or as satellite and in-transit deposits in the skin. The recurrence risk ranges widely across these substages, which is why the conversation looks different for stage IIIA than for stage IIIC or IIID.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Resected stage IV with no evidence of disease.</strong> When a limited number of distant spots have been removed by surgery and follow-up scans are clear, adjuvant immunotherapy is an option to lower the chance of further spread.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Resected high-risk stage IIB and IIC.</strong> These melanomas are still confined to the skin but are thick or ulcerated, and their recurrence risk overlaps with stage IIIA. Adjuvant anti-PD-1 immunotherapy is now approved for this group as well.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            Which substage applies to you depends on the primary tumor and on what the nodes showed — see <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">sentinel lymph node biopsy</a> and <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">what your melanoma stage means</a>.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Options</h2>
+          <p class="text-slate/80 mb-6">
+            There are two families of adjuvant medication for melanoma. Both are usually given for about one year.
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Anti-PD-1 immunotherapy</h3>
+              <p class="text-slate/80 mb-3">
+                These drugs release a brake on the immune system so it can recognize and kill melanoma cells. They are given as an intravenous infusion every few weeks.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Nivolumab</strong> was tested in resected stage III and IV melanoma in the CheckMate 238 trial.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Pembrolizumab</strong> was tested in resected stage III melanoma in KEYNOTE-054, and in resected stage IIB and IIC melanoma in KEYNOTE-716.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-3">
+                The two anti-PD-1 drugs have not been compared head to head in the adjuvant setting and are considered interchangeable in practice.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">BRAF/MEK targeted therapy</h3>
+              <p class="text-slate/80">
+                For the roughly 40 to 50 percent of melanomas that carry a <strong>BRAF V600</strong> mutation, the oral pair <strong>dabrafenib plus trametinib</strong> is an adjuvant option for resected stage III disease, studied in the COMBI-AD trial. It is taken as pills every day for a year. Your melanoma tissue has to be tested for the BRAF mutation first; this option does not apply if the mutation is absent. Targeted therapy is covered in more depth in <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">BRAF/MEK targeted therapy for melanoma</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What the Trials Show</h2>
+              <p class="text-slate/80 mb-4">
+                Across CheckMate 238, KEYNOTE-054, KEYNOTE-716, and COMBI-AD, the consistent finding is an improvement in <strong>recurrence-free survival</strong> — the length of time people stay free of any return of melanoma. In each trial, fewer people had recurred at the two- to three-year mark in the treatment group than in the comparison group, and the separation between the groups has held up with longer follow-up.
+              </p>
+              <p class="text-slate/80 mb-4">
+                The picture for <strong>overall survival</strong> — whether adjuvant therapy helps people live longer, not just longer without recurrence — is less settled. Some trials were designed in a way that makes this hard to measure, because people whose melanoma came back could then receive effective treatment, including the same class of drug. As of the latest reports, a clear overall-survival advantage has not been demonstrated for adjuvant anti-PD-1 immunotherapy, and results are still maturing.
+              </p>
+              <p class="text-slate/80">
+                A reasonable summary: adjuvant therapy reliably delays or prevents recurrence for a meaningful share of people, and recurrence is easier to treat when it is caught as a small-volume problem — but the treatment is not a guarantee, and its effect on lifespan is still being worked out.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How to Weigh It</h2>
+          <p class="text-slate/80 mb-4">
+            The decision comes down to comparing two things: how likely your melanoma is to return, and how much of a burden the treatment would be for you.
+          </p>
+          <h3 class="text-xl font-serif text-navy mb-2 mt-6">Recurrence risk by substage</h3>
+          <p class="text-slate/80 mb-4">
+            Stage III is not one risk. A person with stage IIIA melanoma (a tiny deposit in one sentinel node) has a much lower chance of recurrence than someone with stage IIIC or IIID (bulky or multiple involved nodes, or in-transit disease). The higher the baseline risk, the more absolute benefit a fixed percentage improvement translates into — and the easier the decision to treat. For lower-risk substages, the benefit is smaller and the side-effect trade-off weighs more heavily.
+          </p>
+          <h3 class="text-xl font-serif text-navy mb-2 mt-6">The side effects of immunotherapy</h3>
+          <p class="text-slate/80 mb-4">
+            Anti-PD-1 drugs are generally better tolerated than older melanoma treatments, but because they work by loosening restraints on the immune system, they can cause it to attack healthy tissue — the thyroid, the skin, the bowel, the liver, the joints, the lungs. Most of these <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">immune-related side effects</a> are manageable, and serious ones usually settle when the drug is paused and steroids are started.
+          </p>
+          <p class="text-slate/80 mb-4">
+            One matters especially in the adjuvant setting because it is <strong>permanent</strong>: damage to a hormone-producing gland. Roughly <strong>one in seven</strong> people treated with adjuvant anti-PD-1 develops an underactive thyroid, pituitary, or adrenal gland that does not recover, meaning a daily hormone-replacement pill for life. That is a modest inconvenience for many people and a significant one for others, and it is worth thinking through before starting — particularly for someone whose recurrence risk is on the lower side.
+          </p>
+          <p class="text-slate/80">
+            Targeted therapy has a different profile: fevers, chills, fatigue, joint aches, and rash are common while on the pills but generally resolve after the year is done. It is only an option if the melanoma carries a BRAF mutation.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Surgery Has Changed Too</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Alongside the rise of adjuvant medication, the surgery for node-positive melanoma has become less extensive. It used to be standard that a positive sentinel node was followed by <strong>completion lymph node dissection</strong> — removing all the remaining nodes in that basin, an operation with a meaningful risk of long-term arm or leg swelling (lymphedema).
+          </p>
+          <p class="text-slate/80 mb-4">
+            The MSLT-II trial changed that. It found that going straight to completion dissection after a positive sentinel node did <em>not</em> help people live longer than carefully watching those nodes with regular <strong>ultrasound</strong> and operating only if disease reappeared there. Dissection did control disease in the nodes slightly better, but at the cost of more lymphedema.
+          </p>
+          <p class="text-slate/80">
+            As a result, most people with a positive sentinel node today are offered <strong>nodal ultrasound surveillance</strong> rather than immediate full dissection — and adjuvant therapy is layered on top of that surveillance approach.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>What is my exact substage, and what is my estimated chance of recurrence with and without adjuvant therapy?</li>
+                <li>Given my substage, do you recommend immunotherapy, targeted therapy, or observation — and why?</li>
+                <li>Has my melanoma been tested for a BRAF mutation, and what did that show?</li>
+                <li>What is my personal risk of a permanent hormone problem or another lasting side effect?</li>
+                <li>Would neoadjuvant treatment before surgery, or a clinical trial, be a better fit for my situation?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Adjuvant therapy after melanoma surgery is one of the clearest advances in skin cancer care of the past decade. For resected stage III melanoma, and now for high-risk resected stage II and selected resected stage IV disease, about a year of anti-PD-1 immunotherapy — or, for BRAF-mutant tumors, dabrafenib plus trametinib — measurably lowers the chance the melanoma returns.
+          </p>
+          <p class="text-slate/80">
+            It is not the right choice for everyone. The benefit is largest for the higher-risk substages, the overall-survival data are still maturing, and immunotherapy carries a roughly one-in-seven risk of a permanent hormone problem. This is a shared decision, best made with a melanoma oncologist who can put real numbers to your particular situation.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Weber J, Mandala M, Del Vecchio M, et al. Adjuvant nivolumab versus ipilimumab in resected stage III or IV melanoma. <em>N Engl J Med.</em> 2017;377(19):1824-1835. <a href="https://pubmed.ncbi.nlm.nih.gov/28891423/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Eggermont AMM, Blank CU, Mandala M, et al. Adjuvant pembrolizumab versus placebo in resected stage III melanoma. <em>N Engl J Med.</em> 2018;378(19):1789-1801. <a href="https://pubmed.ncbi.nlm.nih.gov/29658430/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Luke JJ, Rutkowski P, Queirolo P, et al. Pembrolizumab versus placebo as adjuvant therapy in completely resected stage IIB or IIC melanoma (KEYNOTE-716): a randomised, double-blind, phase 3 trial. <em>Lancet.</em> 2022;399(10336):1718-1729. <a href="https://pubmed.ncbi.nlm.nih.gov/35367007/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Long GV, Hauschild A, Santinami M, et al. Adjuvant dabrafenib plus trametinib in stage III BRAF-mutated melanoma. <em>N Engl J Med.</em> 2017;377(19):1813-1823. <a href="https://pubmed.ncbi.nlm.nih.gov/28891408/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Faries MB, Thompson JF, Cochran AJ, et al. Completion dissection or observation for sentinel-node metastasis in melanoma. <em>N Engl J Med.</em> 2017;376(23):2211-2222. <a href="https://pubmed.ncbi.nlm.nih.gov/28591523/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Melanoma Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/melanoma" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Melanoma: Overview
+                </li>
+                <li>
+                  <a href="https://www.nccn.org/patients/guidelines/content/PDF/melanoma-patient.pdf" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">NCCN Guidelines for Patients</a> — Melanoma
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/patient-eng/melanoma-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> — Different Treatment Options for Melanoma Skin Cancer
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,342 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/what-advanced-melanoma-means";
+const lastReviewed = "2026-09-01";
+const title = "What Does \"Advanced\" Melanoma Mean? | Beating Skin Cancer";
+const description = "\"Advanced\" melanoma covers regionally advanced stage III disease and distant metastatic stage IV disease, and why the label shifts care to systemic therapy.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Does \"Advanced\" Melanoma Mean?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "What Advanced Melanoma Means", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is \"advanced\" melanoma the same as stage IV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. \"Advanced\" is an umbrella term for two situations. Regionally advanced (stage III) melanoma has reached nearby lymph nodes, or the skin and lymphatic channels between the original tumor and those nodes, but not distant organs. Metastatic (stage IV) melanoma has spread to distant sites such as distant skin, lung, liver, bone, or brain. Most advanced melanoma is stage III, and much of it can still be removed with surgery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What do M1a, M1b, M1c, and M1d mean in stage IV melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They describe where distant melanoma has landed. M1a is distant skin, soft tissue, or lymph nodes; M1b is the lung; M1c is other internal organs such as the liver; and M1d is the brain or the rest of the central nervous system. Each category is also labeled by whether the blood LDH (lactate dehydrogenase) level is normal or elevated, because a raised LDH points to a heavier disease burden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does advanced melanoma mean surgery is no longer an option?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not necessarily. Many stage III melanomas are removed surgically, often with medication given before or after the operation. In stage IV, surgery or focused radiation can still help when distant spread is limited to one or a few spots, which doctors call oligometastatic disease. The label mainly signals that medication working throughout the body becomes the backbone of treatment, guided by a multidisciplinary team."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Does "Advanced" Melanoma Mean?
+          </h1>
+          <p class="text-xl text-white/80">Regionally advanced (stage III) vs. metastatic (stage IV) disease, and what each one means</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Most melanomas are found early, removed with surgery, and never come back. So it can be jarring to hear a doctor describe a melanoma as "advanced." The word sounds final, but in melanoma care it is simply a category — a shorthand for disease that has moved beyond the original spot on the skin and now needs more than an operation.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            "Advanced melanoma" is not a single stage number. It is an umbrella label that covers two different situations: melanoma that has spread to nearby (regional) lymph nodes or the skin around the primary tumor, and melanoma that has spread to distant parts of the body. Knowing which one applies to you shapes the entire treatment conversation.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This page explains what each term means, the smaller labels you may hear inside them, and why the "advanced" label moves treatment toward medication that works throughout the body. For how doctors actually pin down the stage, see <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="text-teal hover:text-teal/80 underline">how advanced melanoma is staged and worked up</a>. For a walk through every stage from 0 to IV, see <a href="/melanoma/melanoma-stage-meaning" class="text-teal hover:text-teal/80 underline">what your melanoma stage means</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">"Advanced" Is an Umbrella Label, Not One Stage</h2>
+          <p class="text-slate/80 mb-6">
+            When oncologists and treatment guidelines say "advanced melanoma," they are grouping together two distinct problems that are managed with an overlapping set of medications:
+          </p>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Regionally advanced melanoma (stage III)</h3>
+              <p class="text-slate/80">
+                The melanoma has spread to nearby lymph nodes, or has formed deposits in the skin and lymphatic channels between the original tumor and those nodes (satellite and in-transit metastases). It has <em>not</em> reached distant organs. Many stage III melanomas can still be removed with surgery, and treatment increasingly includes medication given before or after that surgery. This accounts for most advanced melanoma.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Metastatic melanoma (stage IV)</h3>
+              <p class="text-slate/80">
+                The melanoma has traveled beyond the regional lymph nodes to distant sites — most often distant skin and lymph nodes, the lungs, the liver, bone, or the brain. It is treated primarily with systemic therapy. When distant spread is limited to one or a few spots (oligometastatic disease), surgery or focused radiation may still play a role alongside medication.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Regionally Advanced Melanoma (Stage III) in More Detail</h2>
+          <p class="text-slate/80 mb-4">
+            Stage III means the melanoma has reached the regional lymph nodes or the tissue on the way to them, without any sign of distant spread. Within stage III, a few distinctions change the outlook and the plan:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Microscopic (clinically occult) nodal spread</strong> is found only under the microscope, usually because a <a href="/melanoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">sentinel lymph node biopsy</a> came back positive. There was nothing to feel or see on a scan.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinically detected (macroscopic) nodal spread</strong> is a node large enough to feel on exam or show up on imaging, then confirmed with a needle or surgical biopsy. This generally carries a higher risk than microscopic spread.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Satellite and in-transit metastases</strong> are melanoma deposits in the skin or lymphatic vessels near the original tumor — satellites sit close to the primary scar, while in-transit lesions appear farther along the path toward the draining nodes. Their presence puts a melanoma into stage III even if the nodes themselves are clear.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Stage III is divided into IIIA through IIID</strong> based on the thickness and ulceration of the primary tumor and the number and type of involved nodes. IIIA has the most favorable outlook of the four; IIID the least.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Most people with stage III melanoma have surgery to remove the involved nodes and the primary site, followed by a discussion of adjuvant (after-surgery) medication to lower the chance of recurrence.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Metastatic Melanoma (Stage IV) and the M Categories</h2>
+              <p class="text-slate/80 mb-4">
+                Stage IV means melanoma has been found at a distant site. To describe where, doctors use "M" categories from the AJCC staging system:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>M1a</strong> — distant skin, soft tissue (including muscle), or lymph nodes away from the original drainage area</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>M1b</strong> — the lung, with or without M1a sites</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>M1c</strong> — other internal organs, such as the liver, adrenal gland, or bowel (any non-brain visceral site)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>M1d</strong> — the brain or elsewhere in the central nervous system</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mb-4">
+                Each M category also carries a "(0)" or "(1)" for a normal or elevated blood level of <strong>LDH</strong> (lactate dehydrogenase), an enzyme that tends to rise when there is more melanoma in the body. A high LDH signals a heavier disease burden and is factored into the stage.
+              </p>
+              <p class="text-slate/80">
+                The site of spread matters for planning — brain metastases, for example, are watched and treated closely — but it no longer defines the outcome the way it once did. Modern systemic therapy works across all of these sites.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">"Unresectable Stage III or Stage IV": Words You'll Hear</h2>
+          <p class="text-slate/80 mb-4">
+            Clinical trials and drug approvals for advanced melanoma are often written for "unresectable stage III or stage IV" disease. A few plain-language definitions help:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Resectable</strong> means a surgeon believes all visible melanoma can be removed with an acceptable operation. Much of stage III is resectable.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Unresectable</strong> means surgery cannot clear all the disease — because there is too much of it, it sits in a place that cannot be operated on safely, or it keeps returning. Most stage IV melanoma is unresectable.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Oligometastatic disease</strong> is stage IV melanoma limited to a small number of distant spots. Here a team may combine systemic therapy with surgery or stereotactic (focused) radiation aimed at the individual lesions.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Whether a melanoma is resectable is not always a permanent verdict. Tumors sometimes shrink enough on medication that an operation that was off the table becomes possible.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How This Differs From a Thick but Localized Melanoma</h2>
+          <p class="text-slate/80 mb-4">
+            A stage II melanoma can be thick — more than 4 mm deep — and ulcerated, and it still is not "advanced." That is because stage II melanoma, however high-risk it looks under the microscope, has not been shown to spread anywhere: the lymph nodes are clear and imaging shows no distant disease. It is still treated with surgery as the main step, sometimes with a sentinel node biopsy and a conversation about adjuvant therapy for the highest-risk cases.
+          </p>
+          <p class="text-slate/80">
+            The line into "advanced" is crossed by evidence of spread — a positive node, an in-transit deposit, or a distant metastasis — not by the size or depth of the original tumor alone. A thick primary raises the <em>risk</em> that spread will be found, which is exactly why thicker melanomas are worked up more thoroughly.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Why the Label Changes Your Treatment</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Once melanoma has spread, removing what can be seen is no longer enough on its own, because cells may have traveled elsewhere. That is why the "advanced" label shifts the focus to medication that circulates through the whole body, coordinated by a team rather than a single surgeon.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Systemic therapy becomes central.</strong> Immunotherapy with checkpoint inhibitors is the backbone for most people; targeted therapy is an option when the tumor carries a BRAF V600 mutation. See <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">how immunotherapy treats advanced melanoma</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Care becomes multidisciplinary.</strong> A medical oncologist, surgical oncologist, radiation oncologist, dermatopathologist, and radiologist review the case together, often at a tumor board.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Monitoring intensifies.</strong> Scans and blood work on a regular schedule track whether the treatment is working and catch new spots early.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            It is also worth holding on to some perspective: advanced melanoma is far more treatable than it was a decade ago. Immunotherapy and targeted therapy have turned stage IV melanoma from a disease once measured in months into one where many people live for years, and some show no evidence of disease long after treatment.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my melanoma regionally advanced (stage III) or metastatic (stage IV), and what is the exact stage grouping?</li>
+                <li>If it is stage III, was the nodal spread microscopic or clinically detected, and are there in-transit or satellite lesions?</li>
+                <li>If it is stage IV, which sites are involved, and what did my LDH level show?</li>
+                <li>Can any of the melanoma be removed with surgery, now or after medication?</li>
+                <li>Will my case be reviewed by a multidisciplinary team, and what systemic treatment would you start with?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            "Advanced" melanoma is a category, not a verdict. It means one of two things: melanoma that has reached the regional lymph nodes or the skin around the primary tumor (stage III), or melanoma that has spread to distant sites such as the lung, liver, or brain (stage IV). The smaller labels — microscopic versus clinically detected nodes, the M1a–M1d categories, LDH level, resectable versus unresectable — all help the team match the treatment to the situation.
+          </p>
+          <p class="text-slate/80">
+            The common thread is that treatment moves from a single operation toward medication that works throughout the body, chosen and monitored by a team that treats melanoma regularly. That shift is also the reason outcomes have improved so much: the tools available for advanced melanoma today are far better than they were even a few years ago.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Gershenwald JE, Scolyer RA, Hess KR, et al. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. <em>CA Cancer J Clin.</em> 2017;67(6):472-492. <a href="https://pubmed.ncbi.nlm.nih.gov/29028110/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Johnson D, Albertini MR, et al. NCCN Guidelines&reg; Insights: Melanoma: Cutaneous, Version 2.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(5):290-298. <a href="https://pubmed.ncbi.nlm.nih.gov/39019054/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Larkin J, Chiarion-Sileni V, Gonzalez R, et al. Five-year survival with combined nivolumab and ipilimumab in advanced melanoma. <em>N Engl J Med.</em> 2019;381(16):1535-1546. <a href="https://pubmed.ncbi.nlm.nih.gov/31562797/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version: stage information and treatment of stage III and stage IV melanoma
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-staging/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; Melanoma Staging: the TNM system and stages 0 through IV explained
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/about-melanoma/melanoma-staging" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> &mdash; Melanoma Skin Cancer Stages and the AJCC Staging System
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

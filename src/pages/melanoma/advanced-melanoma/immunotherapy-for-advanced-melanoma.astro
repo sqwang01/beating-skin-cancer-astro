@@ -1,0 +1,339 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma";
+const lastReviewed = "2026-09-01";
+const title = "Immunotherapy for Advanced Melanoma | Beating Skin Cancer";
+const description = "How checkpoint inhibitors treat advanced melanoma: anti-PD-1 alone, nivolumab plus ipilimumab, and nivolumab plus relatlimab, and how doctors choose.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Immunotherapy Treats Advanced Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Immunotherapy for Advanced Melanoma", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between nivolumab plus ipilimumab and nivolumab plus relatlimab?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both pair a PD-1 blocker (nivolumab) with a second checkpoint blocker, but the partner drug differs. Ipilimumab blocks CTLA-4 and adds the most anti-tumor power of any approved combination, at the cost of grade 3 or 4 side effects in roughly half of people. Relatlimab blocks LAG-3; the nivolumab-plus-relatlimab combination is more effective than nivolumab alone and markedly less toxic than nivolumab plus ipilimumab, with severe side effects in fewer than one in five people."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does immunotherapy for advanced melanoma last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For metastatic (stage IV) disease, checkpoint inhibitors are usually continued until the melanoma clearly progresses or side effects become unacceptable, and many programs cap treatment at about two years in people doing well. After surgery for stage III disease, adjuvant immunotherapy is typically given for one year. Some people who stop after a durable response stay in remission for years without any further treatment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is pseudoprogression in melanoma immunotherapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pseudoprogression is when a scan early in treatment shows tumors that look larger, or a new spot, because immune cells have flooded into the melanoma rather than because the cancer is growing. It is uncommon, affecting well under one in ten people. When a patient feels well and the picture is unclear, the team often continues treatment and repeats imaging in four to eight weeks to see the true trend before changing course."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Immunotherapy Treats Advanced Melanoma
+          </h1>
+          <p class="text-xl text-white/80">Checkpoint inhibitors — anti&ndash;PD-1, ipilimumab plus nivolumab, and nivolumab plus relatlimab</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Immunotherapy is the backbone of treatment for melanoma that has spread to lymph nodes or to distant organs. The drugs involved are called <strong>immune checkpoint inhibitors</strong>. They do not attack the cancer directly. Instead they release natural "brakes" on the immune system, so that a person's own T cells can recognize the melanoma and destroy it. For a broad picture of where these drugs sit among all the options, see <a href="/melanoma/melanoma-treatment-options" class="text-teal hover:text-teal/80 underline">melanoma treatment options</a>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Because the immune system now does the work, responses can be remarkably durable — some people stay free of melanoma for years after stopping treatment, an outcome doctors sometimes call a "functional cure." The same mechanism, though, can turn the immune system against healthy organs. That trade-off is covered in detail in <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing the side effects of melanoma immunotherapy</a>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article explains how checkpoint inhibitors work, the main first-line regimens and how they compare, how doctors choose among them, how long treatment lasts, why an early scan can be misleading, and what happens if a regimen stops working.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How Checkpoint Inhibitors Work</h2>
+          <p class="text-slate/80 mb-6">
+            T cells carry molecules on their surface that act as "off switches," keeping the immune system from attacking healthy tissue. Melanoma exploits those switches to avoid being attacked. Checkpoint inhibitors are antibodies that block a specific switch, freeing T cells to go after the cancer. Three switches are targeted by drugs approved for melanoma:
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">PD-1</h3>
+              <p class="text-slate/80">
+                <strong>Pembrolizumab</strong> and <strong>nivolumab</strong> block PD-1, a brake that melanoma cells press by displaying a matching protein (PD-L1). Anti&ndash;PD-1 drugs are the single most important class in melanoma and form the base of every first-line regimen.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">CTLA-4</h3>
+              <p class="text-slate/80">
+                <strong>Ipilimumab</strong> blocks CTLA-4, a brake that acts earlier, in the lymph nodes, as T cells are first being activated. Ipilimumab is used together with nivolumab rather than on its own in the first-line setting. It adds anti-tumor power but also the most side effects.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">LAG-3</h3>
+              <p class="text-slate/80">
+                <strong>Relatlimab</strong> blocks LAG-3, a third brake that builds up on exhausted T cells inside tumors. It is given as a fixed-dose combination with nivolumab. Adding relatlimab improves on nivolumab alone while adding far less toxicity than ipilimumab does.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The Main First-Line Regimens</h2>
+              <p class="text-slate/80 mb-4">
+                Three checkpoint inhibitor regimens are used first for advanced melanoma. All are given as an intravenous infusion in an outpatient clinic. They differ in how well they shrink and control melanoma and in how hard they are on the body.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Single-agent anti&ndash;PD-1 (pembrolizumab or nivolumab).</strong> The gentlest option. Roughly 40&ndash;45% of people have their melanoma shrink, and in the KEYNOTE-006 trial about 40% were alive five years later. Serious (grade 3 or 4) drug-related side effects occur in around 10&ndash;20%. This is often the right starting point for people who are older or frail, or who have another illness that raises the risk of side effects.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Nivolumab plus ipilimumab.</strong> The most powerful approved combination. In the CheckMate 067 trial about half of patients were alive at five years, and median survival exceeded six years at longer follow-up — the best reported in a phase 3 melanoma trial. The trade-off is that serious side effects affect a little over half of people, and many need corticosteroids and a hospital stay. It is favored when the disease is bulky or fast-moving, when LDH is high, or when melanoma has reached the brain.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Nivolumab plus relatlimab.</strong> In the RELATIVITY-047 trial this combination roughly doubled the time before the melanoma progressed compared with nivolumab alone (a median of about 10 months versus under 5), while serious side effects occurred in fewer than one in five people — far below the rate with nivolumab plus ipilimumab. It offers a middle path: more effective than anti&ndash;PD-1 alone, much easier to tolerate than the ipilimumab combination.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Doctors Choose Among Them</h2>
+          <p class="text-slate/80 mb-4">
+            There is no single best regimen for everyone. A medical oncologist weighs how aggressive the melanoma looks against how much toxicity a person can safely absorb. Common factors:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Melanoma in the brain.</strong> Nivolumab plus ipilimumab has strong activity against brain metastases and is often preferred when they are present, usually alongside the brain-directed treatment described in <a href="/melanoma/advanced-melanoma/melanoma-brain-metastases" class="text-teal hover:text-teal/80 underline">when melanoma spreads to the brain</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>High LDH or rapidly growing, high-volume disease.</strong> These point toward the more powerful ipilimumab combination, since there may be only one chance to get the melanoma under control quickly.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A pre-existing autoimmune disease</strong> (such as inflammatory bowel disease, rheumatoid arthritis, or a prior organ transplant). Checkpoint inhibitors can flare these conditions. Single-agent anti&ndash;PD-1 carries the lowest risk; ipilimumab-containing regimens are usually avoided.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Age, frailty, and other health problems.</strong> For someone less able to withstand a severe immune reaction, single-agent anti&ndash;PD-1 or nivolumab plus relatlimab is often the safer choice.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Whether the melanoma carries a BRAF mutation.</strong> This does not change whether immunotherapy is used first, but it determines whether <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">BRAF/MEK targeted therapy</a> is available as a later option.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            It is reasonable to ask for the expected response rate and the expected serious-side-effect rate for each regimen your team is considering, so the choice reflects your own priorities.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Durable Responses and the Idea of a "Functional Cure"</h2>
+              <p class="text-slate/80 mb-4">
+                What sets immunotherapy apart from older melanoma drugs is that its benefit often lasts. When a person responds well, the immune system appears to "remember" the melanoma, and the response can continue long after treatment ends. In the longest follow-up studies, a meaningful share of people who responded remain free of active melanoma many years later with no ongoing therapy. Doctors sometimes call this a functional cure — not a promise that the cancer can never return, but a state of lasting control.
+              </p>
+              <p class="text-slate/80 mb-4">
+                Responses are not always fast. Some people see tumors shrink within the first 6 to 12 weeks; others improve more slowly over several months. Because the effect can build over time, teams generally give a regimen a fair trial before judging it, unless the melanoma is clearly and rapidly worsening or the person is becoming unwell.
+              </p>
+              <p class="text-slate/80">
+                Not everyone benefits. A portion of melanomas never respond to checkpoint inhibitors, and some respond and then relapse. That is why close follow-up with scans continues throughout treatment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How Long Treatment Lasts, and Why an Early Scan Can Mislead</h2>
+          <p class="text-slate/80 mb-4">
+            For metastatic (stage IV) melanoma, checkpoint inhibitors are usually continued until the melanoma clearly progresses or until side effects become unacceptable. Many programs also stop treatment at around two years in people who are doing well, because the evidence suggests the immune memory persists without indefinite dosing. After surgery for stage III melanoma, adjuvant immunotherapy is typically given for one year.
+          </p>
+          <p class="text-slate/80 mb-4">
+            Early in treatment, a scan can be hard to read. In a minority of people — well under one in ten — tumors briefly look larger, or a new spot appears, not because the cancer is growing but because immune cells have flooded into it. This is called <strong>pseudoprogression</strong>. When someone feels well and the picture is ambiguous, the team often keeps treating and repeats imaging in about 4 to 8 weeks, using response criteria designed for immunotherapy, before deciding whether the melanoma is truly progressing.
+          </p>
+          <p class="text-slate/80">
+            Genuine progression — clear growth confirmed on repeat imaging, new symptoms, or a rising LDH — is the signal to change the plan.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">If Immunotherapy Stops Working</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            A first-line regimen failing is not the end of treatment. Options after progression include:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Switching to another drug class.</strong> If the melanoma carries a BRAF V600 mutation, <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">BRAF/MEK targeted therapy</a> often works quickly. Someone who progressed on single-agent anti&ndash;PD-1 may still benefit from adding ipilimumab.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>TIL cell therapy.</strong> Tumor-infiltrating lymphocyte therapy grows a person's own tumor-fighting immune cells in a lab and returns them in large numbers. It is approved for melanoma that has progressed after checkpoint inhibitors and is covered in <a href="/melanoma/advanced-melanoma/til-therapy-and-newer-options" class="text-teal hover:text-teal/80 underline">TIL therapy and newer options</a>.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials.</strong> New checkpoint targets, combinations, and cell therapies are studied mostly in people whose melanoma has progressed on standard treatment. See <a href="/melanoma/melanoma-clinical-trials" class="text-teal hover:text-teal/80 underline">melanoma clinical trials</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Which regimen are you recommending for me, and what are its expected response rate and serious-side-effect rate?</li>
+                <li>Given my other health conditions, is the ipilimumab combination too risky for me?</li>
+                <li>How and when will we know whether it is working, and what would you do if an early scan is unclear?</li>
+                <li>How long do you expect me to stay on treatment, and what happens when I stop?</li>
+                <li>If this regimen does not work, what are my next options — targeted therapy, TIL therapy, or a trial?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Checkpoint inhibitors have changed advanced melanoma from a disease measured in months into one where many people live for years and some appear to be cured. The choice is usually among single-agent anti&ndash;PD-1, nivolumab plus ipilimumab, and nivolumab plus relatlimab — a spectrum that trades more anti-tumor power for more toxicity. Where a person sits on that spectrum depends on how the melanoma is behaving and on what side-effect risk is acceptable to them.
+          </p>
+          <p class="text-slate/80">
+            Understanding how these drugs work, how responses are judged, and what comes next makes it easier to be an active partner in the decision. The companion article on <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing side effects</a> covers the other half of the picture.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Larkin J, Chiarion-Sileni V, Gonzalez R, et al. Five-year survival with combined nivolumab and ipilimumab in advanced melanoma. <em>N Engl J Med.</em> 2019;381(16):1535-1546. <a href="https://pubmed.ncbi.nlm.nih.gov/31562797/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wolchok JD, Chiarion-Sileni V, Gonzalez R, et al. Long-term outcomes with nivolumab plus ipilimumab or nivolumab alone versus ipilimumab in patients with advanced melanoma. <em>J Clin Oncol.</em> 2022;40(2):127-137. <a href="https://pubmed.ncbi.nlm.nih.gov/34818112/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tawbi HA, Schadendorf D, Lipson EJ, et al. Relatlimab and nivolumab versus nivolumab in untreated advanced melanoma. <em>N Engl J Med.</em> 2022;386(1):24-34. <a href="https://pubmed.ncbi.nlm.nih.gov/34986285/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Robert C, Schachter J, Long GV, et al. Pembrolizumab versus ipilimumab in advanced melanoma. <em>N Engl J Med.</em> 2015;372(26):2521-2532. <a href="https://pubmed.ncbi.nlm.nih.gov/25891173/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Robert C, Ribas A, Schachter J, et al. Pembrolizumab versus ipilimumab in advanced melanoma (KEYNOTE-006): post-hoc 5-year results from an open-label, multicentre, randomised, controlled, phase 3 study. <em>Lancet Oncol.</em> 2019;20(9):1239-1251. <a href="https://pubmed.ncbi.nlm.nih.gov/31345627/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/patient-eng/melanoma-treatment/immunotherapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> &mdash; Immunotherapy Treatment for Melanoma Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; How Melanoma Is Treated
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

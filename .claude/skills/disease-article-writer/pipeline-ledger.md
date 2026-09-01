@@ -80,7 +80,9 @@ main SCC hub (`src/pages/squamous-cell-carcinoma.astro`) pointing here (mirrors 
 `basal-cell-carcinoma/index.astro` diff for advanced-bcc), and the 8 reviewed spokes' placeholder
 `<div>` cards on the sub-hub converted to real `<a href>` links. The 6 remaining sub-hub cards
 (neoadjuvant, transplant/immunosuppressed, chemo/EGFR, clinical trials, questions-to-ask,
-living-with) stay unlinked `<div>` placeholders — those spokes are still `not-started`.
+living-with) were drafted 2026-09-01, then reviewed, approved, and published 2026-09-01: byline +
+`lastReviewed = "2026-09-01"` + `medicalReviewJsonLd` added and their sub-hub cards linked. The
+sub-hub is now 15/15 pages published (index + 14 spokes).
 
 | Slug / working title | Question the card promises to answer | Status |
 |---|---|---|
@@ -93,18 +95,16 @@ living-with) stay unlinked `<div>` placeholders — those spokes are still `not-
 | when-surgery-radiation-not-enough | When are surgery and radiation no longer enough? | published — 2026-08-31 |
 | immunotherapy-for-advanced-scc | How does immunotherapy treat advanced SCC? | published — 2026-08-31 |
 | managing-immunotherapy-side-effects | How are the side effects of immunotherapy managed? | published — 2026-08-31 |
-| neoadjuvant-immunotherapy-before-surgery | Can immunotherapy shrink an SCC before surgery? | not-started |
-| scc-in-transplant-and-immunosuppressed-patients | Advanced SCC in transplant recipients and immunosuppressed patients | not-started |
-| chemotherapy-and-egfr-targeted-therapy | Where do chemotherapy and EGFR-targeted therapy fit? | not-started |
-| clinical-trials-for-advanced-scc | How do I find a clinical trial for advanced SCC? | not-started |
-| questions-to-ask-your-care-team | What should I ask my care team about advanced SCC? | not-started |
-| living-with-advanced-scc | What is the outlook, and what support is available? | not-started |
+| neoadjuvant-immunotherapy-before-surgery | Can immunotherapy shrink an SCC before surgery? | published — 2026-09-01 |
+| scc-in-transplant-and-immunosuppressed-patients | Advanced SCC in transplant recipients and immunosuppressed patients | published — 2026-09-01 |
+| chemotherapy-and-egfr-targeted-therapy | Where do chemotherapy and EGFR-targeted therapy fit? | published — 2026-09-01 |
+| clinical-trials-for-advanced-scc | How do I find a clinical trial for advanced SCC? | published — 2026-09-01 |
+| questions-to-ask-your-care-team | What should I ask my care team about advanced SCC? | published — 2026-09-01 |
+| living-with-advanced-scc | What is the outlook, and what support is available? | published — 2026-09-01 |
 
-Remaining spoke slots (rows still `not-started`) are proposals pending Dr. Wang's sign-off on the
-topic list. Each spoke, when drafted: deep-dive pattern-2 shape, `../../../` imports, 4-level
-breadcrumb, "← Back to Advanced Squamous Cell Carcinoma" hero link, `[articleJsonLd,
-breadcrumbsJsonLd, faqJsonLd]` (no medicalReviewJsonLd), verified PubMed citations + patient
-resources.
+Every spoke: deep-dive pattern-2 shape, `../../../` imports, 4-level breadcrumb, "← Back to
+Advanced Squamous Cell Carcinoma" hero link, `[articleJsonLd, breadcrumbsJsonLd, faqJsonLd]`
+(no medicalReviewJsonLd), verified PubMed citations + patient resources.
 
 First 8 spokes drafted 2026-08-31 (4 parallel writers, 2 articles each) — `what-advanced-scc-means`,
 `high-risk-features`, `perineural-invasion`, `nodal-metastasis-and-sentinel-node`,
@@ -113,6 +113,90 @@ First 8 spokes drafted 2026-08-31 (4 parallel writers, 2 articles each) — `wha
 (byline + `medicalReviewJsonLd` added, sub-hub cards linked, main SCC hub card added). Slug
 note: the `high-risk-features` page ships `title` "What Makes an SCC Tumor High-Risk? | Beating
 Skin Cancer" (the verbatim question is 68 chars, over the 60 limit) — full question kept as the H1.
+
+Final 6 spokes drafted 2026-09-01 (3 parallel writers, 2 articles each) — `neoadjuvant-immunotherapy-before-surgery`,
+`scc-in-transplant-and-immunosuppressed-patients`, `chemotherapy-and-egfr-targeted-therapy`,
+`clinical-trials-for-advanced-scc`, `questions-to-ask-your-care-team`, `living-with-advanced-scc` —
+then reviewed and approved by Dr. Wang and published 2026-09-01: each gained the two imports,
+`const lastReviewed = "2026-09-01"`, `<MedicalReviewer date={lastReviewed} />` under the hero
+subtitle, and `medicalReviewJsonLd(canonical, lastReviewed)` appended to `jsonLd`; the 6 matching
+Key Topics cards on the sub-hub `index.astro` were converted to real `<a href>` links. The
+advanced-scc sub-hub is now 15/15 pages published (index + 14 spokes). Citations verified via
+NCBI efetch; patient-resource URLs curl-verified. `questions-to-ask-your-care-team` and
+`living-with-advanced-scc` used the published `advanced-bcc` siblings as structural templates.
+Slug/title notes: `neoadjuvant-immunotherapy-before-surgery` → title "Neoadjuvant Immunotherapy
+for SCC | Beating Skin Cancer", H1 "Can Immunotherapy Shrink an SCC Before Surgery?";
+`scc-in-transplant-and-immunosuppressed-patients` → title "Advanced SCC in Transplant Patients |
+Beating Skin Cancer". `neoadjuvant-immunotherapy-before-surgery` and
+`scc-in-transplant-and-immunosuppressed-patients` forward-link to `chemotherapy-and-egfr-targeted-therapy`
+(sibling-page precedent for cross-linking not-yet-published sub-hub slugs).
+
+PUBLISH phase for these 6 (when Dr. Wang signs off): to each page add
+`import MedicalReviewer from '../../../components/MedicalReviewer.astro'`,
+`import { medicalReviewJsonLd } from '../../../lib/seo'`, `const lastReviewed = "YYYY-MM-DD"`,
+`<MedicalReviewer date={lastReviewed} />` under the hero subtitle `<p>`, and
+`medicalReviewJsonLd(canonical, lastReviewed)` appended to the `jsonLd` array; then convert the 6
+matching placeholder `<div class="block p-4 bg-sky/5 ...">` cards on the sub-hub `index.astro` to
+real `<a href="/squamous-cell-carcinoma/advanced-scc/<slug>" class="block p-4 bg-sky/5 rounded-lg
+border border-teal/10 hover:bg-sky/10 transition-colors">` links (keep inner markup). Done
+2026-09-01 — the advanced-scc sub-hub is now 15/15 pages published (index + 14 spokes).
+
+## melanoma / advanced-melanoma (new sub-hub — built to match advanced-bcc / advanced-scc)
+
+Sub-hub at `/melanoma/advanced-melanoma/` covering regionally advanced (stage III) + metastatic
+(stage IV) melanoma. Same shape as the advanced-bcc / advanced-scc sub-hubs: pattern-1 hub page,
+nested folder, intro splits **regionally advanced melanoma (stage III)** vs **metastatic melanoma
+(stage IV)**, Key Topics card lists 12 spoke deep-dives. All drafted 2026-08-31 in DRAFT phase,
+then reviewed and approved by Dr. Wang and published 2026-09-01 (byline + `lastReviewed` +
+`medicalReviewJsonLd` added to all 13 pages, all 12 sub-hub cards linked, and the
+`src/pages/melanoma/index.astro` placeholder card converted to a real
+`<a href="/melanoma/advanced-melanoma">` link). Spokes ship
+`[articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)]`,
+`../../../` imports, 4-level breadcrumb, "← Back to Advanced Melanoma" hero link, verified PubMed
+citations + verified patient resources. Full `astro build` passes (93 pages); every page renders
+the byline and MedicalWebPage JSON-LD with exactly one `<h1>` and no `bg-sky/*` in the article body.
+
+| Slug / working title | Question the card promises to answer | Status |
+|---|---|---|
+| (sub-hub) index.astro | Advanced Melanoma overview + stage III vs stage IV | published — 2026-09-01 |
+| what-advanced-melanoma-means | What does "advanced" melanoma mean? | published — 2026-09-01 |
+| staging-workup-and-imaging | How is advanced melanoma staged and worked up? | published — 2026-09-01 |
+| immunotherapy-for-advanced-melanoma | How does immunotherapy treat advanced melanoma? | published — 2026-09-01 |
+| targeted-therapy-braf-mek | When is BRAF/MEK targeted therapy used? | published — 2026-09-01 |
+| adjuvant-therapy-after-surgery | What is adjuvant therapy, and do I need it after surgery? | published — 2026-09-01 |
+| neoadjuvant-immunotherapy | Can immunotherapy be given before surgery? | published — 2026-09-01 |
+| managing-immunotherapy-side-effects | How are the side effects of immunotherapy managed? | published — 2026-09-01 |
+| melanoma-brain-metastases | What if melanoma has spread to the brain? | published — 2026-09-01 |
+| til-therapy-and-newer-options | TIL therapy and other newer options | published — 2026-09-01 |
+| clinical-trials-for-advanced-melanoma | How do I find a clinical trial for advanced melanoma? | published — 2026-09-01 |
+| questions-to-ask-your-care-team | What should I ask my care team about advanced melanoma? | published — 2026-09-01 |
+| living-with-advanced-melanoma | What is the outlook, and what support is available? | published — 2026-09-01 |
+
+Drafting note: launched as 6 parallel writers (2 articles each). Writer A returned normally;
+an API outage killed writers B–F mid-run, but 5 of their files had already been written to disk
+(`what-advanced-melanoma-means`, `staging-workup-and-imaging`, `immunotherapy-for-advanced-melanoma`,
+`managing-immunotherapy-side-effects`, `targeted-therapy-braf-mek`, `adjuvant-therapy-after-surgery`,
+`melanoma-brain-metastases` — 7 total incl. Writer A's pair). A stray `</content></invoke>` tail on
+`targeted-therapy-braf-mek.astro` was stripped. The remaining 5 spokes (`neoadjuvant-immunotherapy`,
+`til-therapy-and-newer-options`, `clinical-trials-for-advanced-melanoma`,
+`questions-to-ask-your-care-team`, `living-with-advanced-melanoma`) were written directly in the
+main session. Every citation across all 13 pages was verified via NCBI efetch; every patient-resource
+URL was fetched and confirmed. One agent cross-link was repointed from the hub to the
+`melanoma-brain-metastases` spoke.
+
+Reviewed and approved by Dr. Wang and published 2026-09-01: all 13 pages (index + 12 spokes)
+gained `import MedicalReviewer from '../../../components/MedicalReviewer.astro'`,
+`import { medicalReviewJsonLd } from '../../../lib/seo'` (the sub-hub `index.astro` uses the same
+`../../../` prefix — it lives at `advanced-melanoma/index.astro`, three levels deep, NOT
+`../../` as first assumed), `const lastReviewed = "2026-09-01"`,
+`<MedicalReviewer date={lastReviewed} />` under the hero subtitle `<p>`, and
+`medicalReviewJsonLd(canonical, lastReviewed)` appended to `jsonLd` (sub-hub `jsonLd` is now
+`[breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)]`). The sub-hub `index.astro`'s
+12 `<div>` Key Topics cards were converted to real `<a href="/melanoma/advanced-melanoma/<slug>">`
+links, and the placeholder `<div>` card in `src/pages/melanoma/index.astro` was converted to a real
+`<a href="/melanoma/advanced-melanoma">` link (matching the site's `bg-sky/5 ... hover:border-teal/30`
+hub-card pattern). Full `astro build` passes (93 pages); every page renders the byline and
+MedicalWebPage JSON-LD with exactly one `<h1>`. The advanced-melanoma sub-hub is now 13/13 published.
 
 ## squamous-cell-carcinoma (8/8 slots real articles, all published and linked)
 
@@ -157,11 +241,21 @@ Skin Cancer" (the verbatim question is 68 chars, over the 60 limit) — full que
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
   slug fits once the article is drafted, just keep the ledger row in sync.
-- The 5 original disease hubs are fully published (8/8 slots each, live and linked). The
-  advanced-bcc sub-hub is fully published as of 2026-08-31 — index + all 11 spokes reviewed,
-  bylined, and linked. The advanced-scc sub-hub is partly published as of 2026-08-31 — index +
-  first 8 spokes reviewed, bylined, and linked (main SCC hub card added); 6 further spoke topics
-  remain `not-started` pending Dr. Wang's sign-off on the topic list.
+- The 5 original disease hubs are fully published (8/8 slots each, live and linked). All three
+  advanced sub-hubs are now fully published too:
+  - advanced-bcc — index + all 11 spokes, published 2026-08-31.
+  - advanced-scc — index + all 14 spokes (15/15). First 8 published 2026-08-31; final 6
+    (`neoadjuvant-immunotherapy-before-surgery`, `scc-in-transplant-and-immunosuppressed-patients`,
+    `chemotherapy-and-egfr-targeted-therapy`, `clinical-trials-for-advanced-scc`,
+    `questions-to-ask-your-care-team`, `living-with-advanced-scc`) reviewed, approved, and
+    published 2026-09-01 — byline + `medicalReviewJsonLd` added, sub-hub cards linked.
+  - advanced-melanoma — index + all 12 spokes (13/13), drafted 2026-08-31, reviewed, approved,
+    and published 2026-09-01: byline + `lastReviewed = "2026-09-01"` + `medicalReviewJsonLd`
+    added to every page, all 12 sub-hub Key Topics cards linked, and the
+    `src/pages/melanoma/index.astro` placeholder card converted to a real
+    `<a href="/melanoma/advanced-melanoma">` link.
+- Nothing is `drafted-pending-review` anymore — every article across all hubs and sub-hubs is
+  published, bylined, and linked. Full `astro build` passes at 93 pages.
 - 0 pages remain not-started. Every hub is now fully published (8/8 slots live and linked).
   Atypical-nevi hub: all 8/8 drafted 2026-08-27, reviewed and approved by Dr. Wang the same day,
   and published 2026-08-27 — byline (`<MedicalReviewer date={lastReviewed} />`, default

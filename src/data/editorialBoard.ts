@@ -58,6 +58,18 @@ export const editorialBoard: BoardMember[] = [
     sameAs: ['https://www.hoag.org/physician/steven-q-wang-md'],
   },
   {
+    slug: 'stephen-dusza-drph',
+    name: 'Stephen W. Dusza, Dr.P.H.',
+    role: 'Medical Reviewer',
+    credentials: 'Dr.P.H., Biostatistician and Epidemiologist',
+    affiliation: 'Biostatistician, Department of Dermatology, Memorial Sloan Kettering Cancer Center',
+    specialty: 'Biostatistics, epidemiology, dermoscopy, and melanoma risk research',
+    bio: 'Dr. Stephen Dusza is a biostatistician and epidemiologist in the Department of Dermatology at Memorial Sloan Kettering Cancer Center in New York, where his work centers on skin cancer detection, dermoscopy, and melanoma risk. He has published over 100 scientific articles in the field of skin cancer and dermatology, spanning topics from UV exposure and melanoma epidemiology to artificial intelligence in dermoscopic image analysis and sentinel lymph node risk modeling. His research contributes to the evidence base used to validate emerging diagnostic technologies and improve early detection strategies for skin cancer.',
+    profileUrl: 'https://www.linkedin.com/in/stephen-dusza-8363487/',
+    medicalSpecialty: ['Biostatistics', 'Epidemiology', 'Dermatology'],
+    sameAs: ['https://www.linkedin.com/in/stephen-dusza-8363487/'],
+  },
+  {
     slug: 'laura-ferris-md',
     name: 'Laura K. Ferris, M.D., Ph.D.',
     role: 'Medical Reviewer',

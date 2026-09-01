@@ -1,0 +1,288 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/questions-to-ask-your-care-team";
+const lastReviewed = "2026-09-01";
+const title = "Advanced Melanoma: Questions to Ask | Beating Skin Cancer";
+const description = "Questions to ask your surgical, medical, and radiation oncologists about advanced melanoma — diagnosis, treatment plan, follow-up, and support.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Questions to Ask Your Care Team About Advanced Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "Questions to Ask Your Care Team", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What should I ask first after an advanced melanoma diagnosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with the facts that drive every later decision: Is this stage III or stage IV? Is any of it removable with surgery? What is my LDH level? Is my tumor BRAF-mutant? Has my brain been imaged? Will my case be reviewed by a multidisciplinary team? The answers determine whether treatment begins with surgery, immunotherapy, or targeted therapy, and who leads your care."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I get a second opinion for advanced melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is reasonable and common, especially at a high-volume melanoma center. Melanoma treatment changes quickly, and centers that see many cases are more likely to offer neoadjuvant therapy, cell therapy, and clinical trials. A second opinion does not offend your team, rarely delays treatment meaningfully, and often either confirms the plan or adds an option."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What questions should I ask about follow-up after melanoma treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ask how often you will have exams, blood tests such as LDH, and imaging (CT or PET/CT and brain MRI), and for how many years; what symptoms should prompt a call between visits; who coordinates your skin checks; and what your personal risk is of a new, separate melanoma. Knowing the schedule in advance makes the waiting between scans easier to manage."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Questions to Ask Your Care Team About Advanced Melanoma
+          </h1>
+          <p class="text-xl text-white/80">Questions for your surgical oncologist, medical oncologist, and radiation oncologist</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Advanced melanoma is managed by a team — typically a medical oncologist, a surgical oncologist, a radiation oncologist, a dermatopathologist, and a radiologist, often meeting together at a tumor board. Each specialist answers a different part of the picture, and appointments move fast. Going in with written questions helps you leave with the information you actually need.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The lists below are grouped by topic. You will not need all of them, and your team may have answered some already. Bring a family member or friend to take notes, ask for printed summaries, and do not hesitate to say "can you explain that more simply."
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            For the background behind many of these questions, see <a href="/melanoma/advanced-melanoma/what-advanced-melanoma-means" class="text-teal hover:text-teal/80 underline">what "advanced" melanoma means</a>, <a href="/melanoma/advanced-melanoma/staging-workup-and-imaging" class="text-teal hover:text-teal/80 underline">staging and workup</a>, and <a href="/melanoma/what-to-expect-after-diagnosis" class="text-teal hover:text-teal/80 underline">what to expect after a melanoma diagnosis</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-2xl font-serif text-navy mb-4">Understanding My Diagnosis and Stage</h2>
+          <p class="text-slate/80 mb-4">These answers shape every decision that follows.</p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is my melanoma stage III or stage IV, and what is the exact substage?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Where is the melanoma — lymph nodes only, in-transit skin lesions, or distant organs? Which organs?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can all of it be removed with surgery — now, or possibly after medication?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is my blood LDH level, and is it normal or elevated?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Has my tumor been tested for a <em>BRAF</em> mutation? If it is acral or mucosal melanoma, has it been tested for <em>NRAS</em> and <em>KIT</em>?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Has my brain been imaged with MRI, even though I feel well?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will my original pathology be re-reviewed here, and will my case go to a multidisciplinary tumor board?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-2xl font-serif text-navy mb-4">Choosing a Treatment Plan</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What treatment are you recommending, and what is the goal — cure, long-term control, or shrinking the melanoma before surgery?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Why <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">immunotherapy</a> versus <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">targeted therapy</a> for me? If immunotherapy, single-agent or a combination — and why?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>For each option you are considering, what is the expected response rate and the expected rate of serious side effects?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If my melanoma is resectable stage III, is <a href="/melanoma/advanced-melanoma/neoadjuvant-immunotherapy" class="text-teal hover:text-teal/80 underline">neoadjuvant treatment before surgery</a> an option? What about <a href="/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery" class="text-teal hover:text-teal/80 underline">adjuvant treatment after surgery</a>?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How long would I be on treatment, and what happens when I stop?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If this treatment does not work, what are the next options?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-2xl font-serif text-navy mb-4">During Treatment</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Which side effects are most likely for me, and which ones are urgent? See <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing immunotherapy side effects</a>.</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who do I call after hours, and which symptoms should send me straight to the emergency room?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What blood tests and scans will I have, and how often?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How will we know whether the treatment is working, and what would you do if an early scan is unclear?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can I keep working, exercising, and traveling during treatment? Are any vaccines or medications off-limits?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-2xl font-serif text-navy mb-4">Surgery and Radiation</h2>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is surgery still useful for me — to remove nodes, an in-transit lesion, or a single distant spot (oligometastatic disease)?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If I have a positive sentinel node, are you recommending nodal ultrasound surveillance rather than removing all the nodes, and why?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there a role for radiation — to a lymph node basin, a bone lesion, or a <a href="/melanoma/advanced-melanoma/melanoma-brain-metastases" class="text-teal hover:text-teal/80 underline">brain metastasis</a> — and how does it fit with my systemic treatment?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the recovery from any planned procedure, and how might it delay other treatment?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-2xl font-serif text-navy mb-4">Second Opinions and Clinical Trials</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Would you recommend a second opinion at a high-volume melanoma center? Can you help arrange it without delaying treatment?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Am I eligible for a <a href="/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">clinical trial</a> — here or elsewhere — and is a trial reasonable now rather than later?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Am I a candidate for newer options such as <a href="/melanoma/advanced-melanoma/til-therapy-and-newer-options" class="text-teal hover:text-teal/80 underline">TIL cell therapy</a>?</span></li>
+                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If I join a trial, would I keep seeing you, and how would my care be coordinated?</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-2xl font-serif text-navy mb-4">Follow-Up and Surveillance</h2>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>After treatment, how often will I have exams, blood tests, and imaging — and for how many years?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will follow-up include brain MRI, and how long will that continue?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who does my skin checks, and how often, given my higher risk of a new, separate melanoma?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What symptoms between visits should prompt a call?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What does "no evidence of disease" mean for me, and what is the plan if the melanoma comes back?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-2xl font-serif text-navy mb-4">Support and Practical Concerns</h2>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If I might want children later, should I see a fertility specialist before treatment starts?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there a nurse navigator, social worker, or financial counselor who can help with costs, work, and insurance?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What mental health support and peer support groups do you recommend, for me and for my caregiver?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can I see palliative or supportive care alongside my active treatment to help manage symptoms and stress?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What should my family know about my diagnosis, including whether they should have their own skin checks?</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Five Questions to Start With</h2>
+              <p class="text-slate/80 mb-4">If time is short, these five open up the rest of the conversation:</p>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Is my melanoma stage III or stage IV, and can any of it be removed with surgery?</li>
+                <li>Is my tumor BRAF-mutant, and what is my LDH?</li>
+                <li>What treatment do you recommend first, what is the goal, and what are its main risks?</li>
+                <li>Will my case be reviewed by a multidisciplinary team, and am I eligible for a clinical trial?</li>
+                <li>Should I get a second opinion at a high-volume melanoma center?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            No one remembers everything from an oncology appointment, especially early on. A written list, a second set of ears, and printed summaries turn a rushed visit into a plan you understand. The questions here are a starting point — cross out what does not apply, add what is on your mind, and keep the list going as new questions come up between visits.
+          </p>
+          <p class="text-slate/80">
+            Advanced melanoma care is a partnership. The more clearly you understand the stage, the plan, and the reasoning behind it, the better you can weigh the choices that are genuinely yours to make.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Swetter SM, Johnson D, Albertini MR, et al. Melanoma: Cutaneous, Version 2.2026, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2026;24(6):272-277. <a href="https://pubmed.ncbi.nlm.nih.gov/42297031/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Gershenwald JE, Scolyer RA, Hess KR, et al. Melanoma staging: Evidence-based changes in the American Joint Committee on Cancer eighth edition cancer staging manual. <em>CA Cancer J Clin.</em> 2017;67(6):472-492. <a href="https://pubmed.ncbi.nlm.nih.gov/29028110/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://melanoma.org/patients-caregivers/newly-diagnosed/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Foundation</a> &mdash; Newly Diagnosed: questions and next steps
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; How Melanoma Is Treated
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

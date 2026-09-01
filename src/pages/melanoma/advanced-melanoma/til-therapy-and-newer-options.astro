@@ -1,0 +1,338 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/til-therapy-and-newer-options";
+const lastReviewed = "2026-09-01";
+const title = "TIL Therapy and Newer Melanoma Options | Beating Skin Cancer";
+const description = "TIL cell therapy with lifileucel, oncolytic virus therapy, tebentafusp, and vaccines in trials — options for advanced melanoma after first-line treatment.";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "TIL Therapy and Newer Options for Advanced Melanoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Melanoma", "item": "https://www.beatingskincancer.com/melanoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced Melanoma", "item": "https://www.beatingskincancer.com/melanoma/advanced-melanoma" },
+    { "@type": "ListItem", "position": 4, "name": "TIL Therapy and Newer Options", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is TIL therapy for melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TIL therapy uses a person's own tumor-fighting immune cells. Surgeons remove a piece of melanoma, a lab grows the tumor-infiltrating lymphocytes inside it into the billions over several weeks, the patient receives a short course of chemotherapy to make room for the new cells, and then the expanded cells are infused back in, followed by a few doses of interleukin-2. Lifileucel (Amtagvi) is the first TIL therapy approved for melanoma, for disease that has progressed after a PD-1 inhibitor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How well does lifileucel work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the pooled C-144-01 trial of heavily pretreated patients whose melanoma had progressed on checkpoint inhibitors, about one in three had their melanoma shrink after a single lifileucel infusion, and many of those responses lasted a year or more. It is a demanding treatment: the chemotherapy and interleukin-2 cause several difficult weeks and must be given at an experienced center."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is T-VEC still used for melanoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Talimogene laherparepvec (T-VEC) is an oncolytic virus injected directly into melanoma lesions in the skin or lymph nodes. It is an option for melanoma that keeps recurring locally and cannot be removed with surgery, particularly when systemic immunotherapy is not appropriate or has not controlled skin disease. It works best on accessible lesions and is used less often now that systemic immunotherapy is so effective."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/melanoma/advanced-melanoma"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Advanced Melanoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            TIL Therapy and Newer Options for Advanced Melanoma
+          </h1>
+          <p class="text-xl text-white/80">Cell therapy, oncolytic virus therapy, and what comes after first-line treatment</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            For most people with advanced melanoma, treatment begins with <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">checkpoint inhibitor immunotherapy</a> and, for BRAF-mutant tumors, <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">targeted therapy</a>. Those work well for many, but not everyone, and some melanomas that respond eventually start growing again.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            When that happens, the options have expanded considerably in recent years. This page covers the newer treatments: <strong>TIL cell therapy</strong> (the first cell therapy approved for a solid tumor), <strong>oncolytic virus therapy</strong> injected into tumors, <strong>tebentafusp</strong> for a specific form of eye melanoma, and a look at what is still in trials, such as individualized cancer vaccines.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Most of these are given at specialized melanoma centers. Getting to one — and asking about <a href="/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">clinical trials</a> — is often the practical first step. See also <a href="/melanoma/finding-a-melanoma-specialist" class="text-teal hover:text-teal/80 underline">how to find a melanoma specialist</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">TIL Cell Therapy (Lifileucel)</h2>
+          <p class="text-slate/80 mb-4">
+            <strong>Tumor-infiltrating lymphocytes</strong>, or TILs, are immune cells that have already found their way into a melanoma but are usually too few and too worn down to control it. TIL therapy takes those cells out, multiplies them enormously in a laboratory, and gives them back. <strong>Lifileucel</strong> (brand name Amtagvi) became the first TIL therapy approved for melanoma, and the first cell therapy of any kind approved for a solid tumor, for disease that has progressed after a PD-1 inhibitor (and, if BRAF-mutant, a BRAF inhibitor).
+          </p>
+          <p class="text-slate/80 mb-4">The process takes several weeks and unfolds in steps:</p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Harvest.</strong> A surgeon removes a piece of melanoma — usually a lesion at least 1.5 cm across — which is sent to a central manufacturing facility.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Expansion.</strong> Over about three to four weeks, the lab grows the TILs from that tumor into the billions.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Lymphodepletion.</strong> Just before the cells are returned, the patient receives about a week of chemotherapy to clear out existing immune cells and make room for the new ones. This is done in the hospital.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Infusion and interleukin-2.</strong> The expanded TILs are given back in a single infusion, followed by up to six doses of high-dose interleukin-2 (IL-2) to help the cells survive and multiply in the body.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80 mb-4">
+            In the pooled C-144-01 trial, in patients whose melanoma had already progressed on checkpoint inhibitors, roughly <strong>one in three</strong> responded to a single lifileucel infusion, and a meaningful share of those responses were still going a year or more later. Because it is a one-time treatment, people who respond may have long stretches with no further therapy.
+          </p>
+          <p class="text-slate/80">
+            The trade-off is intensity. The lymphodepleting chemotherapy and IL-2 cause a difficult week or two — low blood counts, infection risk, fevers, fluid retention, low blood pressure — that requires close inpatient monitoring at a center certified to deliver the treatment. Side effects from the chemotherapy and IL-2 generally resolve within a few weeks; the TIL cells themselves are the patient's own and are not rejected.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Oncolytic Virus Therapy (T-VEC)</h2>
+              <p class="text-slate/80 mb-4">
+                <strong>Talimogene laherparepvec</strong> (T-VEC) is a modified herpes simplex virus — the cold-sore virus — engineered so that it multiplies inside melanoma cells and bursts them, while leaving normal cells alone. It also makes an immune-signaling protein (GM-CSF) that draws immune cells to the area. It is injected directly into melanoma lesions in the skin or lymph nodes, every two weeks.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Who it is for:</strong> melanoma that keeps coming back in the skin or nodes and cannot be removed with surgery, especially when systemic immunotherapy is not an option or has not cleared the skin disease.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>What to expect:</strong> in its pivotal trial, injected and nearby lesions often shrank, and some distant lesions responded too. Side effects are usually mild — flu-like symptoms, fatigue, and injection-site pain.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Where it fits now:</strong> it is used less often than it once was, because systemic checkpoint inhibitors control both skin and internal disease. It remains useful for the specific problem of bulky, unresectable, skin-limited recurrence.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Tebentafusp for Uveal (Eye) Melanoma</h2>
+          <p class="text-slate/80 mb-4">
+            <strong>Uveal melanoma</strong> starts in the eye and behaves very differently from melanoma of the skin. It rarely carries a BRAF mutation and responds poorly to standard checkpoint inhibitors. <strong>Tebentafusp</strong> is a different kind of drug — a bispecific protein that grabs a melanoma target with one end and a T cell with the other, physically bringing them together.
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>It is approved <strong>only</strong> for metastatic uveal melanoma in people who carry a specific tissue type, <strong>HLA-A*02:01</strong> — a blood test done before treatment.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>In its phase 3 trial it was the first therapy to lengthen survival in metastatic uveal melanoma, a disease with few options.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>It is given as a weekly infusion; the first few doses can cause a "cytokine release" reaction (fever, low blood pressure, rash) and are given with close monitoring, sometimes overnight.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            Tebentafusp does not have a role in melanoma of the skin. It is mentioned here because "advanced melanoma" is sometimes used loosely, and people with eye melanoma should know their treatment path is separate.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Still Investigational: Individualized Vaccines and More</h2>
+              <p class="text-slate/80 mb-4">
+                Several approaches are promising but <strong>not yet approved or standard</strong>. They are available mainly through clinical trials:
+              </p>
+              <ul class="space-y-3 text-slate/80 mb-4">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Individualized mRNA cancer vaccines.</strong> A vaccine is custom-built from the mutations in a person's own tumor and given with pembrolizumab. In a randomized phase 2b study (mRNA-4157/V940, KEYNOTE-942) in resected high-risk melanoma, adding the vaccine to pembrolizumab lengthened recurrence-free survival compared with pembrolizumab alone. Larger phase 3 trials are underway; it is not yet FDA approved.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Next-generation cell therapies</strong> — engineered T-cell receptor (TCR) therapies aimed at specific melanoma antigens, and TIL products modified to work better — are in trials.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>New checkpoint targets and combinations</strong> beyond PD-1, CTLA-4, and LAG-3 are being tested, often in people whose melanoma has progressed on standard treatment.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80">
+                If you are told a treatment is "investigational," it means the evidence is still being gathered. That is not a reason to dismiss it — many of today's standard melanoma drugs were investigational a decade ago — but it is a reason to understand the specific trial, its goals, and its risks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">How These Fit After First-Line Treatment</h2>
+          <p class="text-slate/80 mb-4">
+            When a first-line regimen stops working, the usual sequence of considerations is:
+          </p>
+          <ul class="space-y-3 text-slate/80 mb-4">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Switch class first if possible.</strong> Someone who progressed on anti–PD-1 alone may respond to adding ipilimumab; someone with a BRAF mutation who has not yet had targeted therapy can switch to it.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Consider TIL therapy</strong> for melanoma that has progressed after a PD-1 inhibitor, if there is a resectable lesion to harvest and the person is fit enough for lymphodepleting chemotherapy and IL-2.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Use T-VEC</strong> for the particular problem of unresectable, skin- and node-limited recurrence.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Look for a clinical trial at every step</strong>, not only at the end — see <a href="/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">finding a clinical trial for advanced melanoma</a>.</span>
+            </li>
+          </ul>
+          <p class="text-slate/80">
+            The right choice depends on the melanoma's mutation status, where it has spread, prior treatments, and overall health — decisions best made with a melanoma medical oncologist at a center that offers the full range.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Now that my first-line treatment has stopped working, what are all my options — another drug class, TIL therapy, or a trial?</li>
+                <li>Am I a candidate for lifileucel — is there a lesion large enough to harvest, and am I fit enough for the chemotherapy and IL-2?</li>
+                <li>Which center near me is certified to deliver TIL therapy, and what would referral involve?</li>
+                <li>Is there a role for T-VEC for my skin or lymph node disease?</li>
+                <li>Are there clinical trials — including vaccine or cell-therapy trials — that I should be evaluated for now?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            The options after first-line treatment for advanced melanoma are broader than they have ever been. TIL therapy with lifileucel offers a one-time treatment that produces lasting responses in about a third of people whose melanoma has progressed on checkpoint inhibitors, at the cost of a demanding few weeks. T-VEC addresses unresectable skin and node disease. Tebentafusp serves a separate group — people with HLA-A*02:01–positive uveal melanoma. And individualized vaccines and new cell therapies are advancing through trials.
+          </p>
+          <p class="text-slate/80">
+            Nearly all of these are delivered at specialized centers. If your current treatment is no longer holding the melanoma back, ask for a referral and a clear map of what comes next.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Chesney J, Lewis KD, Kluger H, et al. Efficacy and safety of lifileucel, a one-time autologous tumor-infiltrating lymphocyte (TIL) cell therapy, in patients with advanced melanoma after progression on immune checkpoint inhibitors and targeted therapies: pooled analysis of consecutive cohorts of the C-144-01 study. <em>J Immunother Cancer.</em> 2022;10(12):e005755. <a href="https://pubmed.ncbi.nlm.nih.gov/36600653/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Andtbacka RH, Kaufman HL, Collichio F, et al. Talimogene laherparepvec improves durable response rate in patients with advanced melanoma. <em>J Clin Oncol.</em> 2015;33(25):2780-2788. <a href="https://pubmed.ncbi.nlm.nih.gov/26014293/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Nathan P, Hassel JC, Rutkowski P, et al. Overall survival benefit with tebentafusp in metastatic uveal melanoma. <em>N Engl J Med.</em> 2021;385(13):1196-1206. <a href="https://pubmed.ncbi.nlm.nih.gov/34551229/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Weber JS, Carlino MS, Khattak A, et al. Individualised neoantigen therapy mRNA-4157 (V940) plus pembrolizumab versus pembrolizumab monotherapy in resected melanoma (KEYNOTE-942): a randomised, phase 2b study. <em>Lancet.</em> 2024;403(10427):632-644. <a href="https://pubmed.ncbi.nlm.nih.gov/38246194/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Amaral T, Ottaviano M, Arance A, et al. Cutaneous melanoma: ESMO Clinical Practice Guideline for diagnosis, treatment and follow-up. <em>Ann Oncol.</em> 2025;36(1):10-30. <a href="https://pubmed.ncbi.nlm.nih.gov/39550033/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/melanoma-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> &mdash; Melanoma Treatment (PDQ&reg;), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aimatmelanoma.org/melanoma-treatment/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">AIM at Melanoma Foundation</a> &mdash; How Melanoma Is Treated
+                </li>
+                <li>
+                  <a href="https://www.curemelanoma.org/about-melanoma/melanoma-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Melanoma Research Alliance</a> &mdash; Treatment Options for Melanoma
+                </li>
+                <li>
+                  Wang SQ. <em>Beating Melanoma: The Ultimate Patient Resource.</em> 2nd ed. Johns Hopkins University Press; 2024. ISBN 1421449876.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about advanced melanoma treatment</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
