@@ -16,13 +16,16 @@ Re-check this file at the start of every run; update it at the end.
 | # | Section id | Questions | Status |
 |---|---|---|---|
 | 1 | `melanoma-diagnosed` | 25 | published — 2026-08-30 |
-| 2 | `melanoma-living` | 25 | drafted-pending-review — 2026-08-30 |
+| 2 | `melanoma-living` | 25 | published — 2026-08-31 |
 | 3 | `bcc-diagnosed` | 25 | published — 2026-08-31 |
-| 4 | `bcc-living` | 25 | drafted-pending-review — 2026-08-30 |
-| 5 | `scc-diagnosed` | 25 | drafted-pending-review — 2026-08-30 |
-| 6 | `scc-living` | 25 | drafted-pending-review — 2026-08-30 |
-| 7 | `actinic-keratosis` | 25 | drafted-pending-review — 2026-08-30 |
-| 8 | `prevention` | 25 | drafted-pending-review — 2026-08-30 |
+| 4 | `bcc-living` | 25 | published — 2026-08-31 |
+| 5 | `scc-diagnosed` | 25 | published — 2026-08-31 |
+| 6 | `scc-living` | 25 | published — 2026-08-31 |
+| 7 | `actinic-keratosis` | 25 | published — 2026-08-31 |
+| 8 | `prevention` | 25 | published — 2026-08-31 |
+
+All 8 sections now published — full page carries 200 Q&As of `FAQPage` structured data
+(one block per section) and a per-section `<MedicalReviewer tone="light" />` byline.
 
 ## Notes
 
@@ -112,3 +115,14 @@ Re-check this file at the start of every run; update it at the end.
   14, 15, 21, 24 have no internal link (sunscreen-mechanics / diet / kids questions with
   no on-topic page). No `<MedicalReviewer />` byline and no `FAQPage` JSON-LD yet —
   awaiting Dr. Wang's review. All 8 sections now drafted.
+- 2026-08-31: PUBLISH phase for the 6 remaining sections — `melanoma-living`,
+  `bcc-living`, `scc-diagnosed`, `scc-living`, `actinic-keratosis`, `prevention` —
+  reviewed and approved by Dr. Wang (EIC) in one batch. For each: added
+  `const <camelCase>Reviewed = "2026-08-31"`, a `<MedicalReviewer date={…}
+  tone="light" class="mb-6" />` byline directly under the section intro `<p>` (intro
+  `<p>` changed from `text-slate mb-6` to `text-slate` so the byline carries `mb-6`,
+  matching sections 1 and 3), a frontmatter plain-text FAQ mirror const
+  (`<camelCase>Faq`, 25 Q&As, HTML/links stripped), and a
+  `faqPageJsonLd(`${canonical}#<section-id>`, <camelCase>Faq)` entry appended to the
+  page `jsonLd` array. No new helpers. `astro build` passes; the live page now renders
+  8 `FAQPage` blocks (200 Q&As) and 8 per-section bylines. All 8 sections published.

@@ -12,6 +12,12 @@ const description = "Explore physician-created questions to ask your doctor abou
 // schema only once a board dermatologist has reviewed its on-page answers.
 const melanomaDiagnosedReviewed = "2026-08-30";
 const bccDiagnosedReviewed = "2026-08-31";
+const melanomaLivingReviewed = "2026-08-31";
+const bccLivingReviewed = "2026-08-31";
+const sccDiagnosedReviewed = "2026-08-31";
+const sccLivingReviewed = "2026-08-31";
+const actinicKeratosisReviewed = "2026-08-31";
+const preventionReviewed = "2026-08-31";
 
 // Plain-text mirror of the answers in the "Melanoma – If You've Just Been Diagnosed"
 // section, for FAQPage structured data. Keep in sync with the section's <details> copy.
@@ -224,9 +230,645 @@ const bccDiagnosedFaq = [
   },
 ];
 
+// Plain-text mirror of the answers in the "melanoma-living" section, for FAQPage
+// structured data. Keep in sync with the section's <details> copy.
+const melanomaLivingFaq = [
+  {
+    question: "What is a typical follow-up schedule after melanoma treatment?",
+    answer: "Follow-up depends on stage. After an early, thin melanoma, many people see a dermatologist every 6–12 months for a full skin check. Higher-stage melanoma often means visits every 3–6 months for the first few years, sometimes with imaging, then spacing out over time. Most doctors continue skin exams for life. Our guide on what to expect after diagnosis covers the rhythm.",
+  },
+  {
+    question: "How does the risk of recurrence change over time?",
+    answer: "Recurrence risk is highest in the first two to three years after treatment, which is why check-ups are most frequent then. The risk gradually falls the longer you stay clear, though it never reaches zero, and late recurrences can occur years later, especially with thicker melanomas. Thinner, earlier-stage melanomas carry a much lower risk overall. Your Breslow depth and stage shape your personal numbers.",
+  },
+  {
+    question: "What kinds of checkups or imaging are done for different stages?",
+    answer: "For early-stage melanoma, follow-up is usually just a physical skin and lymph-node exam, no routine scans. For stage 2B and higher, doctors may add imaging such as CT, PET-CT, or brain MRI every 6–12 months for a few years to catch spread early. Blood tests aren't reliable for tracking melanoma. Our stage-meaning guide explains how stage drives these choices.",
+  },
+  {
+    question: "What are common signs of melanoma coming back in the skin or lymph nodes?",
+    answer: "Watch for a new lump or firm nodule under or near the surgical scar, a change in scar color, or a new pigmented spot beside it. Swollen, firm lymph nodes in the neck, armpit, or groin that don't settle are another sign. Fatigue, weight loss, or a lasting cough or headache matter too. Our melanoma overview explains how it spreads.",
+  },
+  {
+    question: "What's the difference between a new melanoma and a recurrence of the old one?",
+    answer: "A recurrence is the original melanoma regrowing, near the scar, in nearby lymph nodes, or at a distant site, and it carries the same stage history. A new primary melanoma is a completely separate cancer that starts fresh somewhere else on the skin. People who've had one melanoma have a higher chance of a second, which is why long-term follow-up stays lifelong.",
+  },
+  {
+    question: "How can I perform a useful self-skin exam each month?",
+    answer: "Once a month, in good light and using a full-length and a hand mirror, check every area, including your scalp, ears, back, buttocks, soles, and between toes. Look for anything new, changing, or different from your other spots, and feel your scar and nearby lymph nodes for lumps. A partner can check hard-to-see places. Our guide to warning signs of change lists what to flag.",
+  },
+  {
+    question: "What should I look for around my surgical scar or lymph-node area?",
+    answer: "Run your fingertips over and around the scar every month. You're feeling for a new bump, thickening, or firm nodule in or under the skin, and looking for new pigment, redness, or a sore that won't heal. In the nearby lymph-node basin, feel for swollen or hard nodes. Most changes are harmless scar tissue, but anything new that grows or persists over a few weeks deserves a call.",
+  },
+  {
+    question: "Are mole-mapping apps or total-body photos worth using?",
+    answer: "Professional total-body photography, taken in a clinic and reviewed by your dermatologist, is genuinely useful for anyone with many moles or a melanoma history; it gives a baseline to compare against. Smartphone mole-mapping apps can help you organize your own photos, but consumer \"AI\" risk scores aren't accurate enough to rule cancer in or out. Use them as a tracking tool, not a diagnosis — see tracking changes over time.",
+  },
+  {
+    question: "How can I tell when a mole looks \"different enough\" to get checked?",
+    answer: "Two rules help. The ABCDEs: Asymmetry, an irregular Border, uneven Color, Diameter over about 6 mm, and any Evolving change in size, shape, or color. The \"ugly duckling\" sign: a spot that stands out because it doesn't match your other moles. Change over weeks to months matters more than a single feature. When in doubt, have it looked at. Our guide on what makes a mole atypical goes deeper.",
+  },
+  {
+    question: "When should I call the doctor versus wait for my next visit?",
+    answer: "Call promptly for a new lump near your scar or in a lymph-node area, a mole that changes quickly, a spot that bleeds or won't heal, or new symptoms like a persistent cough, headache, bone pain, or unexplained weight loss. Routine things, one slightly dry patch or a stable freckle, can wait for your scheduled visit. When unsure, a quick call is always reasonable.",
+  },
+  {
+    question: "What daily habits lower the chance of getting another melanoma?",
+    answer: "The biggest levers are sun habits: seek shade at midday, wear a broad-brimmed hat and UPF clothing, apply SPF 30+ to exposed skin daily, and never use tanning beds. Do a monthly self-exam, keep every dermatology appointment, don't smoke, and treat any suspicious spot early. None of this guarantees prevention, but together it meaningfully cuts risk. Our prevention guide has the details.",
+  },
+  {
+    question: "How do SPF, shade, and clothing work together to protect me?",
+    answer: "Think in layers. Shade and tightly woven or UPF-rated clothing block most UV before it reaches skin and don't wear off. Sunscreen covers what clothing can't, the face, ears, neck, and hands, but only if you use enough and reapply every two hours. A wide-brimmed hat and UV-blocking sunglasses finish the job. No single method is complete; combined, they add up.",
+  },
+  {
+    question: "Is it safe to get some sun for vitamin D if I've had melanoma?",
+    answer: "Most dermatologists advise getting vitamin D from food and supplements rather than deliberate sun exposure, especially after a melanoma. The amount of UV that raises vitamin D also damages skin, and there's no \"safe\" tanning dose for someone at higher risk. A daily vitamin D supplement, with a blood test to guide the dose, achieves the same goal without the UV. Discuss the dose with your doctor.",
+  },
+  {
+    question: "What is nicotinamide, and how does it help prevent future skin cancers?",
+    answer: "Nicotinamide is a form of vitamin B3, sold over the counter as a supplement (not the same as niacin, which causes flushing). In studies of people with a history of non-melanoma skin cancers, 500 mg twice daily reduced new basal and squamous cell cancers by about a fifth. Evidence for melanoma prevention is weaker. Many dermatologists suggest it for high-risk patients; ask whether it fits your situation.",
+  },
+  {
+    question: "How do medications or immune conditions change my skin-cancer risk?",
+    answer: "A weakened immune system, from organ-transplant drugs, long-term immune-suppressing medicines, HIV, or blood cancers like leukemia, raises the risk of new skin cancers and can make them behave more aggressively. Some blood-pressure and antibiotic drugs increase sun sensitivity. Tell your dermatologist about every medication and condition; it changes how often you should be screened and how quickly spots are treated.",
+  },
+  {
+    question: "How do people cope with the fear of recurrence over the years?",
+    answer: "Fear of recurrence is one of the most common lasting effects of a cancer diagnosis, and it tends to spike before check-ups and scans. People manage it by keeping to a clear follow-up plan so vigilance has boundaries, learning which symptoms actually warrant a call, staying connected to others who understand, and using counseling or structured techniques when the worry disrupts daily life. It usually eases with time.",
+  },
+  {
+    question: "What are healthy ways to balance vigilance with peace of mind?",
+    answer: "A workable balance is doing the few things that matter and then letting go: one monthly self-exam on a set date, keeping scheduled dermatology visits, and protecting your skin from the sun daily. Outside those, try not to re-check spots every day, which tends to raise anxiety without adding safety. Write down real changes to discuss at your next visit rather than researching them at midnight.",
+  },
+  {
+    question: "Are there support groups or online communities for melanoma survivors?",
+    answer: "Yes. The Melanoma Research Foundation and AIM at Melanoma both run peer forums, virtual meet-ups, and patient-to-patient matching programs. The American Cancer Society offers a general survivor community and a helpline. Many cancer centers host in-person or online groups led by a social worker. Ask your care team for a local referral, and choose a group whose tone, informational or emotional, fits what you need.",
+  },
+  {
+    question: "How can I talk about my experience without feeling defined by it?",
+    answer: "Many survivors find it helps to decide in advance how much to share, and with whom, so each conversation is a choice rather than a reaction. A short, prepared line — \"I had melanoma, it was treated, and I get regular checks\" — answers most questions and closes the topic if you want. You can be a person who had melanoma without it being your headline.",
+  },
+  {
+    question: "What small milestones should I celebrate after treatment ends?",
+    answer: "People often mark the day treatment ended, the first clear skin check, each cancer-free scan, and the one- and five-year anniversaries of surgery. Smaller wins count too: finishing a course of a topical medicine, a healed scar, getting through a check-up with less dread than last time. Naming these moments helps shift the story from \"waiting for bad news\" to steady progress.",
+  },
+  {
+    question: "What new treatments or clinical trials are changing melanoma care?",
+    answer: "Immunotherapy that unleashes the immune system, and targeted drugs for melanomas with a BRAF mutation, have transformed outcomes for advanced disease over the past decade. Newer directions include giving these drugs before surgery, an mRNA vaccine tailored to a person's tumor, and cell therapies. Trials also test whether earlier-stage patients benefit. Ask your oncologist what's open to you, or see melanoma clinical trials.",
+  },
+  {
+    question: "How does genetic testing for melanoma risk work, and who benefits from it?",
+    answer: "Testing looks for inherited gene changes, most often CDKN2A, that run in families with several melanoma cases, melanoma plus pancreatic cancer, or a person who's had multiple primary melanomas. A blood or saliva sample is analyzed, and a genetic counselor explains what a result means for you and relatives. Most melanoma isn't hereditary, so testing isn't routine, but it can guide screening for high-risk families.",
+  },
+  {
+    question: "What can my family do to get screened or reduce their risk?",
+    answer: "First-degree relatives — parents, siblings, children — of someone with melanoma have roughly double the average risk, so a baseline full-skin exam with a dermatologist is worthwhile, repeated yearly if they have many or atypical moles. Everyday steps are the same for them as for you: daily sun protection, no tanning beds, and a monthly self-check. Our atypical moles guide helps them know what to watch.",
+  },
+  {
+    question: "How does technology (AI skin scans, teledermatology) fit into follow-up care?",
+    answer: "Teledermatology — sending photos or doing a video visit — works well for checking a single spot quickly, reviewing a healing scar, or triaging whether you need to come in. It doesn't replace a periodic in-person full-body exam, where a dermatologist uses a dermatoscope and feels lymph nodes. AI tools that flag suspicious images are emerging but still assist the doctor rather than decide. Total-body photography remains the most proven aid.",
+  },
+  {
+    question: "How can I stay educated about melanoma without feeling overwhelmed?",
+    answer: "Pick two or three trustworthy sources — a major cancer organization, your cancer center's materials, and this site — and check them on a schedule rather than searching whenever anxiety strikes. Bring questions to your appointments; your team can tell you which headlines actually apply to your stage. Skip forums when you're feeling fragile. Our melanoma overview is a steady place to start.",
+  },
+];
+
+// Plain-text mirror of the answers in the "bcc-living" section, for FAQPage
+// structured data. Keep in sync with the section's <details> copy.
+const bccLivingFaq = [
+  {
+    question: "How often should I see my dermatologist now that I've had basal cell cancer?",
+    answer: "After one basal cell carcinoma, most dermatologists schedule a full skin exam every 6 to 12 months, since roughly 4 in 10 people develop another within five years. People with several past skin cancers, large or aggressive tumors, or a weakened immune system are usually seen more often. Your dermatologist sets the interval and stretches it out as your skin stays clear. Our recurrence-prevention guide has more.",
+  },
+  {
+    question: "What does \"recurrence\" mean, and how can I tell if one is coming back?",
+    answer: "Recurrence means basal cell carcinoma regrows at or near a spot that was already treated, usually because a few tumor cells were left behind. Warning signs include a new bump, a shiny or scaly patch, or a sore that bleeds, crusts, and won't heal within the old treatment site or scar. Anything changing there deserves a prompt look. Our recurrence-prevention guide covers what to watch for.",
+  },
+  {
+    question: "Where on the body are recurrences most likely to appear?",
+    answer: "Recurrences tend to show up on the head and neck — the nose, ears, eyelids, lips, and scalp — where sun exposure is heaviest and the original tumor borders are hardest to clear. Aggressive growth patterns and larger tumors also raise the odds. New, separate basal cells most often appear on chronically sun-exposed skin. Our guide to how BCC spreads explains why location matters.",
+  },
+  {
+    question: "Why do some people develop many basal cell cancers over time?",
+    answer: "The main reason is cumulative lifetime ultraviolet exposure, which damages DNA in skin cells year after year. Fair skin that burns easily, older age, outdoor work or hobbies, past tanning-bed use, earlier radiation therapy, and a weakened immune system all add up. A minority have an inherited condition. Once you've had one BCC, your skin has shown it's prone to more. See lifestyle and prevention.",
+  },
+  {
+    question: "How do doctors decide if follow-up imaging or biopsy is needed again?",
+    answer: "For most basal cell carcinomas, follow-up is a visual and hands-on skin exam — imaging is rarely needed because BCC almost never spreads internally. Your dermatologist biopsies any new or changing spot that looks suspicious to the eye or under a dermatoscope. Scans like CT or MRI are reserved for the uncommon large, deep, or nerve-involving tumor. Our biopsy guide explains what a biopsy shows.",
+  },
+  {
+    question: "What's the best way to check my skin at home after treatment?",
+    answer: "Once a month, in good light with a full-length and a hand mirror, scan your whole body head to toe — including the scalp, ears, behind the ears, back, buttocks, and soles. Pay closest attention to past treatment sites and sun-exposed areas. Look for new bumps, shiny or scaly patches, and sores that won't heal. Our self-exam guide walks through each step.",
+  },
+  {
+    question: "How can I tell the difference between a new basal cell and a healing scar?",
+    answer: "A normal surgical scar is flat or slightly firm, pale or pink, and stable or fading month by month. A new or recurrent basal cell tends to do the opposite: it grows, develops a pearly or translucent rim, shows tiny visible blood vessels, or forms a crusting sore that reopens. Anything raised, changing, or bleeding at a scar should be checked. See recovery after surgery.",
+  },
+  {
+    question: "Should I take photos of my skin or use an app to track changes?",
+    answer: "Dated photos help, especially for spots you're watching and for past treatment sites. Take them in consistent light with a ruler or coin for scale, and compare monthly. Phone apps can organize images, but no app reliably diagnoses skin cancer, so treat their risk scores with caution. Bring anything new or changing to your dermatologist. Our self-exam guide has more tips.",
+  },
+  {
+    question: "What should I look for around surgical scars or graft sites?",
+    answer: "Watch the scar and the skin just beyond its edges. Concerning changes include a new pearly bump, a spreading pink or scaly patch, a raised firm nodule, visible tiny blood vessels, or a sore that crusts and bleeds without healing. Persistent color change or itching also warrants a look. Graft edges are a common spot for regrowth. See recovery after surgery for what normal healing looks like.",
+  },
+  {
+    question: "How do I know when to schedule an earlier appointment?",
+    answer: "Call before your next routine visit if you notice a spot that bleeds easily, a sore that hasn't healed in about a month, a growing or newly raised bump, a pearly or scaly patch, or any change at a past treatment site. It's always reasonable to have one spot checked rather than wait months. Our self-exam guide lists what should prompt a call.",
+  },
+  {
+    question: "What daily habits reduce my risk of another basal cell cancer?",
+    answer: "The core habits: broad-spectrum SPF 30 or higher on exposed skin every day, shade between 10 a.m. and 4 p.m., a wide-brimmed hat and sun-protective clothing, and no tanning beds. Reapply sunscreen every two hours outdoors, and don't skip the ears, lips, and back of the neck. Keeping up monthly skin checks catches anything new early. Our lifestyle and prevention guide goes deeper.",
+  },
+  {
+    question: "How much does sunscreen really help, and what kind should I use?",
+    answer: "Regular sunscreen use has been shown in trials to lower the number of new skin cancers and precancers over time. Choose a broad-spectrum product with SPF 30 or higher; mineral formulas with zinc oxide or titanium dioxide suit sensitive skin. Apply roughly a shot-glass amount for the body, reapply every two hours outdoors, and pair it with shade and clothing. Our prevention hub compares options.",
+  },
+  {
+    question: "Does taking nicotinamide actually lower the risk of new skin cancers?",
+    answer: "In people with a history of basal or squamous cell carcinoma, a form of vitamin B3 called nicotinamide, taken as 500 mg twice daily, reduced new non-melanoma skin cancers by about 20 percent in a clinical trial. It's inexpensive and generally well tolerated, but it isn't the same as niacin, and the benefit fades once you stop. Ask your dermatologist whether it fits your situation. See recurrence prevention.",
+  },
+  {
+    question: "How important is wearing hats or sun-protective clothing every day?",
+    answer: "Very — fabric and a hat brim block UV consistently, with no reapplication, and cover the areas where basal cells cluster: the scalp, ears, nose, and neck. A wide brim of about three inches shades the face far better than a baseball cap. Clothing labeled UPF 50 blocks most UV. For someone with a skin-cancer history, daily coverage is one of the simplest protections. Our prevention hub has details.",
+  },
+  {
+    question: "Are there any lifestyle or diet changes that can make my skin healthier?",
+    answer: "No diet prevents skin cancer, but a few things help overall skin health: not smoking, limiting alcohol, staying hydrated, eating plenty of fruits and vegetables, and managing conditions that weaken immunity. Far more important, protecting skin from UV and keeping up dermatology visits do more than any supplement. Be cautious with unproven \"immune-boosting\" products. Our lifestyle and prevention guide separates evidence from hype.",
+  },
+  {
+    question: "How do people cope with feeling self-conscious about facial scars?",
+    answer: "Many people find scars fade and flatten substantially over 6 to 12 months, becoming far less noticeable than they first feared. In the meantime, options include silicone gels or sheets, gentle massage once fully healed, camouflage makeup, and later laser or minor revision if a scar stays prominent. Talking with others who've had facial surgery helps too. See recovery after surgery for scar-care basics.",
+  },
+  {
+    question: "How do I explain repeated skin cancer treatments to family or coworkers?",
+    answer: "A short, factual line usually works: basal cell carcinoma is a common, highly curable skin cancer from past sun exposure, it's removed in the office, and it doesn't spread internally like other cancers. Explaining that you need frequent skin checks and minor procedures — not chemotherapy — often eases people's worry. Share as much detail as you're comfortable with. Our BCC overview is a useful page to point people to.",
+  },
+  {
+    question: "What's a healthy way to manage fear about \"what if it comes back\"?",
+    answer: "Some worry is normal, especially near appointments. It often helps to channel it into things you control: monthly skin checks, sun protection, and keeping every follow-up visit. Remember that most recurrences and new BCCs are caught early and treated simply. If fear disrupts sleep, focus, or mood, a counselor experienced with cancer survivors can help. Our recurrence-prevention guide can make the actual risks feel more concrete.",
+  },
+  {
+    question: "How can I rebuild confidence after having visible surgeries?",
+    answer: "Give healing time — scars usually soften and blend over the first year. Practical steps help: consistent scar care, sun protection so scars don't darken, clothing or makeup you feel comfortable in, and gradually returning to normal activities and social settings. Some people benefit from talking with a therapist or a survivor support group. See recovery after surgery for what to expect week by week.",
+  },
+  {
+    question: "What do other survivors say helped them feel normal again?",
+    answer: "Common themes: settling into a predictable skin-check routine so it feels like maintenance rather than crisis, making sun protection an automatic habit, connecting with others who've had similar procedures, and holding on to the fact that basal cell carcinoma is rarely life-threatening. Many say the first year is the hardest and it eases after that. Other questions in this BCC section cover the practical side.",
+  },
+  {
+    question: "What new treatments or prevention methods are being researched for BCC?",
+    answer: "Active areas include hedgehog-pathway drugs for advanced or multiple tumors, immunotherapy such as cemiplimab for cases that can't have surgery or radiation, improved topical and light-based therapies for superficial tumors, and better chemoprevention like nicotinamide. Researchers are also refining Mohs and imaging techniques to clear tumors with less tissue loss. Our treatment options guide covers what's standard now.",
+  },
+  {
+    question: "How does genetics play a role in people who keep getting basal cells?",
+    answer: "Most people with many BCCs simply inherited fair, sun-sensitive skin and have had heavy lifetime UV exposure — not a single \"cancer gene.\" A small number have an inherited syndrome, most notably Gorlin (basal cell nevus) syndrome, that causes numerous BCCs from a young age. Tell your dermatologist if you developed BCCs before age 30 or have a strong family pattern. Our BCC types guide touches on this.",
+  },
+  {
+    question: "What is Gorlin syndrome, and how do doctors recognize it?",
+    answer: "Gorlin syndrome, also called basal cell nevus syndrome, is a rare inherited condition that causes many basal cell carcinomas, often starting in the teens or twenties. Other clues include jaw cysts, small pits on the palms and soles, a larger-than-average head, and certain skeletal findings. Doctors suspect it from this pattern and confirm it with genetic testing. Affected people need frequent skin checks. See BCC types.",
+  },
+  {
+    question: "Are there studies or clinical trials for people with multiple basal cell cancers?",
+    answer: "Yes. Trials study chemoprevention agents, topical and hedgehog-pathway drugs, immunotherapy, and new surgical or light-based approaches, and some specifically enroll people with frequent BCCs or Gorlin syndrome. Your dermatologist or a nearby academic center can point you to options, and ClinicalTrials.gov lists open studies by location. Our overview of how clinical trials work explains what taking part involves.",
+  },
+  {
+    question: "How can I keep learning about skin cancer safely without getting overwhelmed?",
+    answer: "Stick to a few trustworthy sources — your dermatology team, major cancer organizations, and physician-reviewed sites — rather than open searches that surface worst-case stories. Set a time limit, write down questions as they come up, and bring them to appointments instead of chasing answers at midnight. Our BCC overview and the rest of this question library are good starting points.",
+  },
+];
+
+// Plain-text mirror of the answers in the "scc-diagnosed" section, for FAQPage
+// structured data. Keep in sync with the section's <details> copy.
+const sccDiagnosedFaq = [
+  {
+    question: "What is squamous cell carcinoma, and how is it different from basal cell and melanoma?",
+    answer: "Squamous cell carcinoma is the second most common skin cancer. It begins in the flat squamous cells that form the outer skin surface, most often on the face, ears, lips, scalp, and hands. It grows faster than basal cell carcinoma and, unlike it, can spread to lymph nodes if neglected, though far less readily than melanoma. Our squamous cell carcinoma overview and a comparison of early signs explain the differences.",
+  },
+  {
+    question: "Why do doctors sometimes call SCC \"more aggressive\"?",
+    answer: "Compared with basal cell carcinoma, SCC tends to grow more quickly, extends deeper into tissue, and carries a real if modest chance of spreading to nearby lymph nodes. Certain features raise that risk further: large size, location on the ear or lip, poorly differentiated cells, nerve involvement, and a weakened immune system. Most SCCs caught early are still very curable. Our page on recurrence and metastasis risk covers what drives it.",
+  },
+  {
+    question: "Does squamous cell always come from sun damage?",
+    answer: "No, though cumulative sun exposure is by far the most common cause, which is why SCC clusters on the head, neck, arms, and hands. Other triggers include indoor tanning, a suppressed immune system (especially after an organ transplant), certain HPV infections, chronic wounds or burn scars, radiation, and arsenic exposure. Many SCCs arise from precancerous actinic keratoses. The prevention guide explains how to lower your risk.",
+  },
+  {
+    question: "What are common warning signs that a spot might be SCC?",
+    answer: "Typical signs include a rough, scaly patch that won't heal, a firm red bump, a sore that crusts, bleeds, or reopens, or a wart-like growth. Some develop within a pre-existing rough spot. They often feel tender and may grow over weeks to months. Any lesion that changes, bleeds easily, or persists beyond a month deserves a look. Compare SCC with other skin cancers in our early-signs guide.",
+  },
+  {
+    question: "What does it mean if the pathology report says \"well-differentiated\" or \"poorly differentiated\"?",
+    answer: "Differentiation describes how closely the tumor cells still resemble normal squamous cells under the microscope. Well-differentiated SCC looks close to normal and usually behaves less aggressively. Poorly differentiated SCC looks disorganized, tends to grow and recur more readily, and is more likely to spread. Moderately differentiated falls in between. This grade is one factor doctors weigh alongside size, depth, and location. Our staging and grading page explains how it's used.",
+  },
+  {
+    question: "After a biopsy confirms SCC, what are the next steps?",
+    answer: "The dermatologist reviews the pathology report and classifies the tumor as low- or high-risk based on size, depth, location, grade, and your immune status. Most low-risk SCCs are removed in the office with surgical excision or Mohs surgery. High-risk tumors may prompt imaging, a lymph node exam, or referral to a Mohs surgeon or multidisciplinary team. Our treatment options page walks through each path.",
+  },
+  {
+    question: "Who are the specialists usually involved in SCC care?",
+    answer: "A general or Mohs-trained dermatologist handles most cases. Larger or facial tumors may involve a Mohs surgeon, a reconstructive or plastic surgeon, or an oculoplastic or ENT surgeon for delicate areas. High-risk or advanced disease can bring in a radiation oncologist, a medical oncologist for immunotherapy, and a pathologist reading the tissue. A primary care doctor often coordinates follow-up. Our follow-up care page describes who does what.",
+  },
+  {
+    question: "How do doctors decide whether the tumor is \"low-risk\" or \"high-risk\"?",
+    answer: "They use criteria from groups like the NCCN. Features that push a tumor into the high-risk category include diameter over about 2 centimeters, invasion into deeper layers, poorly differentiated cells, growth around nerves, location on the ear, lip, or a scar, rapid growth, recurrence, and a suppressed immune system. Everything else is generally low-risk. The category guides how widely the tumor is removed and whether extra staging and testing follows.",
+  },
+  {
+    question: "Why might a doctor order an MRI or CT scan for skin cancer?",
+    answer: "Imaging isn't routine for skin cancer, but doctors order it when a tumor is large, deep, fixed to underlying tissue, growing near nerves, or recurrent, or when lymph nodes feel enlarged. A CT or MRI shows how far the cancer extends, whether it involves bone or nerves, and whether nodes or distant sites are affected. The results help plan surgery and decide if radiation or drug therapy is needed.",
+  },
+  {
+    question: "When do doctors recommend Mohs surgery for SCC?",
+    answer: "Mohs is favored when tissue preservation and the highest cure rate matter most: tumors on the face, ears, lips, nose, hands, feet, or genitals; large or poorly defined lesions; aggressive growth patterns; perineural invasion; recurrent SCC; and tumors in people with weakened immunity. The surgeon removes tissue in thin layers, checking each one under the microscope until margins are clear. See which spots count as high-risk locations.",
+  },
+  {
+    question: "What are the main treatment options for SCC, and how do they differ?",
+    answer: "Options depend on risk. Surgical excision cuts out the tumor with a margin of normal skin and stitches the wound. Mohs surgery maps margins layer by layer for high-risk or cosmetically sensitive sites. Curettage and electrodesiccation scrapes and burns small, superficial low-risk lesions. Radiation treats tumors that can't be operated on or adds control afterward. Advanced disease may use immunotherapy. See our treatment options page for details.",
+  },
+  {
+    question: "How does Mohs surgery work, and why is it often used for high-risk areas like the ear or lip?",
+    answer: "During Mohs, the surgeon removes the visible tumor plus a thin surrounding layer, then examines the entire edge under a microscope while you wait. If cancer remains, only the involved area is taken again, sparing healthy tissue. On the ear, lip, or nose there's little skin to spare and tumors can send out roots, so this precise, same-day margin check gives the highest cure rate with the smallest defect.",
+  },
+  {
+    question: "What is the difference between standard excision and radiation therapy?",
+    answer: "Standard excision is a one-time surgery: the doctor numbs the area, cuts out the tumor with a measured margin, and closes it, with pathology confirming clear edges days later. Radiation therapy uses focused X-ray beams over several sessions across weeks, with no cutting. Surgery is faster, gives immediate margin information, and is usually first choice. Radiation suits people who can't have surgery or need extra treatment for high-risk features. Our treatment options page compares them.",
+  },
+  {
+    question: "When would a lymph-node evaluation or biopsy be needed?",
+    answer: "Doctors examine the lymph nodes near a high-risk SCC — those that are large, deep, poorly differentiated, recurrent, on the ear or lip, or growing around nerves, and any SCC in someone immunosuppressed. If a node feels firm or enlarged, an ultrasound or needle biopsy checks it. Sentinel node biopsy is sometimes considered for very high-risk tumors, though it's less established than in melanoma.",
+  },
+  {
+    question: "What does \"perineural invasion\" mean, and how does it change treatment?",
+    answer: "Perineural invasion means cancer cells are tracking along or around a nerve, seen on the pathology slide. It signals a higher chance of local recurrence and spread because tumor can travel unseen along the nerve. Treatment often becomes more aggressive: Mohs or wider excision, imaging such as MRI to trace the nerve, and radiation after surgery when larger nerves are involved. It's one of the standard high-risk features.",
+  },
+  {
+    question: "How can I stay calm while waiting for my surgery or results?",
+    answer: "Many people find it helps to remember that most SCC is caught early and cured with a single office procedure. Keeping busy, exercising, limiting how often you search online, and setting a specific time to call the office with questions all reduce the spin. Writing down your questions for the next visit gives the worry somewhere to go. If anxiety disrupts sleep or daily life, tell your care team.",
+  },
+  {
+    question: "What should I expect during recovery after surgery on the face or scalp?",
+    answer: "Expect some swelling, bruising, and tightness for one to two weeks, more around the eyes if the wound is on the forehead or cheek. Scalp wounds ooze a little and feel tender against a pillow. You'll keep the site clean and covered, use petrolatum ointment, avoid heavy lifting and bending for about two weeks, and return for suture removal. Full scar maturation takes months. Our follow-up care page covers aftercare.",
+  },
+  {
+    question: "How do people handle concerns about scarring or appearance?",
+    answer: "Talking with the surgeon before the procedure about how the wound will be closed, where the scar line will fall, and whether a reconstruction specialist should be involved sets realistic expectations. Fresh scars look their worst early and keep improving for a year. Sun protection, gentle massage once healed, and silicone gel or sheets can help. Laser treatment or scar revision is an option later if a scar stays noticeable.",
+  },
+  {
+    question: "Is it normal to feel afraid that it might spread?",
+    answer: "Yes. A cancer diagnosis of any kind stirs that fear, and it usually eases once you understand your specific tumor. For most SCC the odds of spread are low — only a few percent overall, and lower still for small, low-risk tumors removed with clear margins. Ask your doctor which risk category yours falls in. Our page on recurrence and metastasis risk explains the numbers in plain terms.",
+  },
+  {
+    question: "How can I talk to my family about this without causing alarm?",
+    answer: "It often helps to lead with the reassuring facts: this is a common skin cancer, it was caught on the skin, and the plan is a minor procedure to remove it. Share what you know about the risk category and the timeline, and let them ask questions. Being matter-of-fact models calm. If children are involved, simple, concrete language about a spot the doctor is taking off usually lands best.",
+  },
+  {
+    question: "What questions should I ask about the size, depth, and grade of my SCC?",
+    answer: "Useful questions: How wide is the tumor, and how deep did it go? Is it well, moderately, or poorly differentiated? Did it reach the fat, muscle, cartilage, or bone? Is there invasion around nerves or blood vessels? Does this make it low-risk or high-risk, and why? Knowing these answers helps you understand the plan and follow-up. Our staging and grading page defines each term.",
+  },
+  {
+    question: "What should I know about margin status in my pathology report?",
+    answer: "Margin status tells you whether normal tissue surrounded the tumor on every side of the removed specimen. A clear or negative margin means no cancer was seen at the edge and the excision is likely complete. A positive or involved margin means tumor reached the cut edge, so more surgery or radiation is usually recommended. Mohs surgery checks 100 percent of the margin, versus a sampling in standard excision.",
+  },
+  {
+    question: "How can I prepare for my post-operative appointment?",
+    answer: "Bring a written list of questions, the name and dose of any blood thinners or supplements you take, and a note of any fever, spreading redness, drainage, or pain since surgery. Ask what the final pathology showed, whether margins were clear, when stitches come out, how to care for the scar, and what the follow-up schedule looks like. Our follow-up care page outlines the routine.",
+  },
+  {
+    question: "When is it reasonable to seek a second opinion for SCC?",
+    answer: "A second opinion is reasonable any time and never offends a good doctor. People commonly seek one for a high-risk or recurrent tumor, when surgery would be extensive or affect the face, when treatment options seem unclear or in conflict, when the diagnosis is uncertain, or simply for peace of mind before proceeding. Academic dermatology and cancer centers offer them routinely, and most tumors allow time to arrange it.",
+  },
+  {
+    question: "What can I do to make sure I understand all of my options clearly?",
+    answer: "Ask the doctor to explain each option's goal, cure rate, number of visits, recovery, scar, and risks, and to say which they recommend and why. Repeat it back in your own words to check. Request written materials, take notes or record the visit with permission, and bring a family member. If anything stays fuzzy, a follow-up call or second opinion can fill the gaps. Browse the rest of this SCC question library for more.",
+  },
+];
+
+// Plain-text mirror of the answers in the "scc-living" section, for FAQPage
+// structured data. Keep in sync with the section's <details> copy.
+const sccLivingFaq = [
+  {
+    question: "How often should I see my dermatologist now that I've had SCC?",
+    answer: "After one squamous cell carcinoma, most dermatologists do a full skin exam every 6 to 12 months for the first few years, because the risk of a second skin cancer is highest early on. People with several past SCCs, large or aggressive tumors, or a suppressed immune system are often seen every 3 to 6 months. As your skin stays clear, visits usually spread out. Our follow-up care guide explains typical schedules.",
+  },
+  {
+    question: "What does \"recurrence\" mean for SCC, and where does it usually show up first?",
+    answer: "Recurrence means squamous cell carcinoma regrows at or beside a spot that was already treated, usually because a few tumor cells escaped removal. It most often appears in or around the original scar as a new lump, a scaly or crusted patch, or a sore that won't heal. Recurrences are most common in the first two years and on the head and neck. Our recurrence and metastasis guide has details.",
+  },
+  {
+    question: "How does having multiple SCCs change my follow-up schedule?",
+    answer: "Once you've had several squamous cell carcinomas, dermatologists usually shorten the gap between skin exams — often to every 3 to 4 months — because each new SCC raises the odds of the next. They may also add lymph node checks, photograph high-risk areas, and treat sun-damaged \"field\" skin more aggressively. As clear intervals add up, visits can gradually lengthen again. Our follow-up care guide outlines how schedules are set.",
+  },
+  {
+    question: "What are the warning signs that SCC may have spread to a lymph node?",
+    answer: "The most common sign is a firm, painless lump under the skin near the original tumor — often in the neck, in front of or behind the ear, in the armpit, or in the groin. A node that keeps enlarging over weeks, feels fixed in place, or comes with numbness or tingling deserves prompt evaluation. Most SCCs never spread. Our recurrence and metastasis guide explains who is at higher risk.",
+  },
+  {
+    question: "Why is SCC near the ear, lip, or scalp considered higher risk?",
+    answer: "Tumors on the ear, lip, temple, and scalp behave more aggressively because the skin there is thin, sits close to nerves and cartilage, and drains quickly to nearby lymph nodes. These sites also see heavy lifelong sun and can hide tumors under hair or in folds, so they're often found later and larger. Doctors watch them closely and may treat more thoroughly. Our high-risk locations guide explains more.",
+  },
+  {
+    question: "How do I check for new or recurring SCCs on my skin?",
+    answer: "Once a month, in good light with a hand mirror, look over your whole body — including the scalp, ears, lips, backs of the hands, and any old treatment scars. You're watching for rough or scaly patches, new firm bumps, and sores that bleed or won't heal within a few weeks. Photos help you compare over time. Our self skin check guide walks through the routine.",
+  },
+  {
+    question: "What does \"field cancerization\" mean, and how does it affect my care?",
+    answer: "\"Field cancerization\" means a broad area of skin — not just one spot — has been damaged by years of sun and carries many cells on the path toward cancer. That's why people with one SCC often keep getting actinic keratoses and new SCCs nearby. Care shifts from treating single lesions to treating the whole zone with creams, light therapy, or peels. Our actinic keratosis overview covers field treatment.",
+  },
+  {
+    question: "Are there apps or photo methods to help me track new spots?",
+    answer: "Yes. Many people take dated smartphone photos of their skin every month or two, using a consistent distance and lighting, plus close-ups of scars and problem areas. Some clinics offer total-body photography for people with lots of sun damage. Phone apps that \"grade\" moles can miss cancers, so use photos as a memory aid, not a diagnosis. Our self skin check guide has tips.",
+  },
+  {
+    question: "How do I know when a rough patch or scar should be checked again?",
+    answer: "A good rule is the \"won't heal in a month\" test: any scaly patch, sore, or scab that keeps coming back, grows, thickens, bleeds, or becomes tender over about four weeks should be seen. Old scars that suddenly develop a firm nodule, raised edge, or new ulcer also warrant a look. When in doubt, ask sooner. Our early signs guide shows what these look like.",
+  },
+  {
+    question: "What should I look for if I had SCC in a radiation field or old scar?",
+    answer: "Skin that was treated with radiation years ago, or a long-standing burn scar, ulcer, or wound, can develop SCC slowly. Watch that area for a new firm bump, a thickened or raised rim, an ulcer that won't close, or bleeding and pain that weren't there before. Changes may be subtle, so photograph the site and mention any history of radiation or chronic wounds to your dermatologist. Our high-risk locations guide covers this.",
+  },
+  {
+    question: "How can I reduce my risk of getting another SCC?",
+    answer: "Daily sun protection is the biggest lever: broad-spectrum SPF 30+ sunscreen, shade at midday, wide-brimmed hats, and UPF clothing, plus no tanning beds. Treating actinic keratoses early, keeping any prescribed field creams going, and having regular skin exams all help. If you take immune-suppressing medicine, ask whether the dose can be adjusted. Our SCC prevention guide covers each step in detail.",
+  },
+  {
+    question: "What kind of sunscreen routine is most important for SCC prevention?",
+    answer: "Most dermatologists suggest a broad-spectrum sunscreen of SPF 30 or higher applied every morning to the face, ears, neck, scalp part line, and hands, then reapplied every two hours outdoors or after swimming or sweating. Use about a teaspoon for the face and neck alone. Sunscreen works best alongside shade and clothing, not instead of them. Our prevention hub has a full sun-safety routine.",
+  },
+  {
+    question: "Does taking nicotinamide help lower SCC risk?",
+    answer: "Nicotinamide is a form of vitamin B3 (not niacin) sold over the counter. In studies of people with many past skin cancers, taking 500 mg twice daily modestly lowered the rate of new SCCs, basal cell cancers, and actinic keratoses. The benefit fades if you stop, and it isn't right for everyone, so ask your dermatologist before starting or changing any supplement.",
+  },
+  {
+    question: "How does immunosuppression (from transplants or medications) increase SCC risk?",
+    answer: "A healthy immune system spots and clears many damaged, precancerous skin cells before they grow. Drugs that dampen immunity — anti-rejection medicine after an organ transplant, or treatments for autoimmune disease — remove some of that surveillance, so SCC can appear more often, at younger ages, in greater numbers, and behave more aggressively. Close skin monitoring and, where possible, adjusting the regimen help. Our metastasis risk guide covers high-risk groups.",
+  },
+  {
+    question: "Are there specific vitamins or lifestyle changes that might help my skin heal better?",
+    answer: "For everyday wound healing, the basics matter most: eat enough protein, fruits, and vegetables, stay hydrated, don't smoke, limit alcohol, and manage conditions like diabetes. Keep treated sites clean and moist as instructed. Beyond correcting a true deficiency, high-dose vitamin supplements haven't been shown to speed healing. Nicotinamide is studied for preventing new SCCs, not for healing wounds. Our treatment options guide covers aftercare.",
+  },
+  {
+    question: "How can I cope with the stress of frequent skin checks and procedures?",
+    answer: "Many people find it helps to keep a simple calendar so appointments feel routine rather than alarming, to bring a friend to visits, and to schedule something pleasant afterward. Ask your dermatologist to explain what each biopsy or excision involves so there are fewer surprises. If worry lingers between visits, a counselor or a skin-cancer support group can help. Our follow-up care guide explains what to expect.",
+  },
+  {
+    question: "How do people stay positive when new SCCs keep appearing?",
+    answer: "It helps to remember that most squamous cell carcinomas found early are cured with a single office procedure, and that regular checks are what keep them small. Many people reframe surveillance as maintenance, like dental cleanings. Focusing on what you can control — sun habits, field treatments, keeping appointments — restores a sense of agency. Support groups and honest talks with your dermatologist ease the load. Our SCC overview puts the outlook in context.",
+  },
+  {
+    question: "What are good ways to explain to family that SCC is treatable but requires attention?",
+    answer: "You might say that squamous cell carcinoma is a common skin cancer that is almost always cured when caught early, usually with a minor procedure — but that because sun damage is widespread, new spots can keep forming, so regular dermatologist visits and monthly skin checks are part of life now. Framing it as manageable, ongoing care rather than a crisis tends to reassure people.",
+  },
+  {
+    question: "How can I take care of my skin without feeling anxious about every spot?",
+    answer: "A monthly routine, not daily inspection, is usually enough. Learn the few changes that matter — a scaly patch, sore, or bump that grows or won't heal in about a month — and let smaller day-to-day variations go. Dated photos let you compare objectively instead of relying on memory. Between checks, trust the schedule your dermatologist set. Our self skin check guide keeps the routine simple.",
+  },
+  {
+    question: "What resources exist for patients who have many SCCs each year?",
+    answer: "Beyond your dermatologist, high-volume patients often benefit from a \"high-risk skin cancer\" or transplant-dermatology clinic, where field therapies, oral options like nicotinamide or acitretin, and closer surveillance are coordinated. Nonprofit groups such as the Skin Cancer Foundation and AIM at Melanoma offer education and peer support. A medical oncologist joins the team if a tumor becomes advanced. Our follow-up care guide describes coordinated monitoring.",
+  },
+  {
+    question: "What new therapies are available for advanced or recurrent SCC?",
+    answer: "For SCC that keeps coming back or has spread, options have grown well beyond surgery and radiation. Immunotherapy drugs that release the immune system's brakes (checkpoint inhibitors) can shrink many advanced tumors. Targeted approaches, combined chemoradiation, and clinical-trial agents are used in select cases, often guided by a multidisciplinary tumor board. Most early SCCs never need these. Our treatment options guide reviews the full range.",
+  },
+  {
+    question: "How does immunotherapy like cemiplimab work, and who might receive it?",
+    answer: "Cemiplimab is a checkpoint inhibitor — an antibody given by IV that blocks a switch (PD-1) tumors use to hide from immune cells, letting the body attack the cancer. It's generally considered for SCC that is metastatic or locally advanced and can't be fully removed by surgery or treated with radiation. Response rates are meaningful but not universal, and immune side effects need monitoring.",
+  },
+  {
+    question: "What do doctors mean by \"locally advanced\" vs \"metastatic\" SCC?",
+    answer: "\"Locally advanced\" means the tumor has grown large or deep into nearby tissue — muscle, cartilage, bone, or nerve — so it can't be removed cleanly or treated with straightforward radiation, but it hasn't traveled elsewhere. \"Metastatic\" means SCC cells have spread through lymph or blood to lymph nodes or distant organs such as the lungs. Both are uncommon and change the treatment plan. Our staging and grading guide explains the terms.",
+  },
+  {
+    question: "Are there clinical trials studying better treatments for high-risk SCC?",
+    answer: "Yes. Active trials are testing immunotherapy before or after surgery, drug combinations for advanced disease, new targeted agents, and prevention strategies for people with many SCCs or transplants. Your dermatologist or a medical oncologist can check whether you qualify, and ClinicalTrials.gov lists open studies by location. Joining is voluntary and includes close monitoring. Our guide to clinical trials explains how they generally work.",
+  },
+  {
+    question: "How can I stay educated about SCC without becoming overwhelmed?",
+    answer: "Pick a few trustworthy sources and check them occasionally rather than searching daily. Reputable options include the American Academy of Dermatology, the Skin Cancer Foundation, and the patient sections of major cancer centers. Bring specific questions to your appointments and ask your dermatologist what's worth reading for your situation. Set limits on late-night searching. Our SCC overview and its linked guides are a calm starting point.",
+  },
+];
+
+// Plain-text mirror of the answers in the "actinic-keratosis" section, for FAQPage
+// structured data. Keep in sync with the section's <details> copy.
+const actinicKeratosisFaq = [
+  {
+    question: "What is an actinic keratosis, and why do doctors call it a \"precancer\"?",
+    answer: "An actinic keratosis (AK) is a rough, scaly patch on skin damaged by years of sun or tanning beds. Doctors call it a \"precancer\" because some of its cells carry early changes that can, over time, progress into squamous cell carcinoma. Most AKs never become cancer, but there's no reliable way to tell which will, so they're watched or treated. See our AK vs. skin cancer guide.",
+  },
+  {
+    question: "How does it form — and what does years of sun exposure actually do to the skin?",
+    answer: "Ultraviolet light damages the DNA inside skin cells called keratinocytes. Most damage is repaired, but decades of exposure let mutations build up in a patch of skin. Those cells start growing abnormally, producing the dry, scaly surface of an AK. The surrounding area, often called \"sun-damaged\" or \"field\" skin, carries similar hidden changes even where it looks normal. This is why AKs tend to appear in clusters on the face, scalp, ears, and hands.",
+  },
+  {
+    question: "How common is it to have more than one AK at the same time?",
+    answer: "Very common. Because ultraviolet damage affects a whole region of skin, not a single point, most people with one AK have several. It's typical to find a handful to dozens scattered across the scalp, forehead, ears, forearms, and backs of the hands. When many lesions cluster in one sun-damaged area, dermatologists often treat the entire region rather than each spot. Our field therapy guide explains that approach.",
+  },
+  {
+    question: "What does an AK usually look or feel like on the skin?",
+    answer: "A typical AK is a small patch, often less than a quarter-inch, with a rough, dry, or sandpapery texture — sometimes easier to feel than to see. Colors range from skin-toned to pink, red, or brownish, and the surface may be scaly or crusty. Some feel tender, itchy, or prickly. They favor sun-exposed areas. A thick, hard, or rapidly growing bump should be shown to a dermatologist. Compare features in our actinic keratosis overview.",
+  },
+  {
+    question: "Can an actinic keratosis go away on its own, or do they always need treatment?",
+    answer: "Some AKs do fade on their own, especially if sun exposure drops, and studies show a fair number clear over a year. But many of those return, and a small share progress toward squamous cell carcinoma. Because no one can predict which lesions will regress and which will advance, dermatologists usually treat AKs or keep them under close watch rather than ignoring them. Our treat now vs. watch guide weighs the options.",
+  },
+  {
+    question: "What does it mean when doctors say an AK can \"turn into\" squamous cell carcinoma?",
+    answer: "It means the abnormal cells in an AK sit on a spectrum. In an AK, the changes stay in the top layer of skin. If more mutations accumulate, those cells can break through into deeper tissue and become an invasive squamous cell carcinoma (SCC), a common skin cancer. Some experts even consider AK the earliest form of SCC. Treating an AK removes those cells before that step can happen.",
+  },
+  {
+    question: "How likely is that to happen, and how long does it take?",
+    answer: "For any single AK, the risk of becoming squamous cell carcinoma in a year is low — commonly estimated at well under 1 percent. But people often carry many AKs for years, so the combined risk adds up, and most SCCs on sun-damaged skin arise from a pre-existing AK. Progression, when it happens, usually takes years. Immune-suppressed people move faster. Our progression risk guide covers the numbers.",
+  },
+  {
+    question: "Why are some people more prone to AKs than others?",
+    answer: "The biggest factor is lifetime ultraviolet exposure, so people who worked or played outdoors for years, or used tanning beds, accumulate more. Fair skin that burns easily, light eyes, blond or red hair, older age, living closer to the equator, and a history of blistering sunburns all raise the odds. A weakened immune system — from an organ transplant or certain medications — sharply increases both AK numbers and their risk of progressing.",
+  },
+  {
+    question: "Does my skin type or history of tanning affect my risk?",
+    answer: "Yes. People with fair skin that freckles or burns rather than tans have less protective pigment, so ultraviolet reaches and damages deeper cells more easily. Years of deliberate tanning — outdoors or in a bed — deliver a large ultraviolet dose and strongly raise AK risk. Darker skin can still develop AKs but far less often. Past tanning can't be undone, but consistent sun protection from now on slows new damage.",
+  },
+  {
+    question: "If I've had AKs treated, does that mean I'm more likely to get others later?",
+    answer: "Usually yes. Treatment clears the visible lesions, but the surrounding skin still carries the sun damage that produced them, so new AKs commonly appear over months and years. This is expected, not a sign that treatment failed. It's the main reason dermatologists schedule regular skin checks and often recommend field treatment plus daily sun protection. Our monitoring schedule guide explains typical follow-up.",
+  },
+  {
+    question: "What are the main treatments for actinic keratosis — freezing, creams, or light therapy — and how do they work?",
+    answer: "Freezing (cryotherapy) with liquid nitrogen destroys a lesion by frosting it; the spot blisters, scabs, and falls off. Prescription creams — such as 5-fluorouracil or imiquimod — are rubbed over an area for days to weeks and make damaged cells inflame and shed. Photodynamic therapy applies a light-activated solution, then a special lamp to clear a whole region. Chemical peels and scraping are also used. Our treatment options guide compares them.",
+  },
+  {
+    question: "What's the difference between treating one spot at a time and \"field therapy\" for a whole area?",
+    answer: "Spot treatment, like freezing a single lesion, targets only what the doctor can see and feel. Field therapy treats an entire sun-damaged region — say the whole scalp or both forearms — with a cream, gel, or photodynamic light. Because it also hits early lesions too small to notice, field therapy tends to lower the number of AKs that appear later. Our field therapy guide covers when it's chosen.",
+  },
+  {
+    question: "How effective are creams like 5-fluorouracil, imiquimod, or diclofenac?",
+    answer: "All three can clear a large share of AKs in a treated area, but they differ. 5-fluorouracil is generally the most effective, often clearing well over half of lesions, followed by imiquimod; diclofenac gel is the gentlest and the least powerful. Stronger creams cause more redness, crusting, and soreness during the weeks of use. Results vary, and more than one course is often needed. Your dermatologist can set expectations for your skin.",
+  },
+  {
+    question: "What is photodynamic therapy (PDT), and what should I expect during it?",
+    answer: "PDT treats a whole sun-damaged area at once. A dermatologist applies a solution that damaged cells absorb, waits while it builds up, then shines a specific light that activates it and destroys those cells. During the light exposure many people feel stinging or burning. Afterward the area looks sunburned — red, swollen, and peeling — for several days to a week, and must be kept out of sunlight. Our treatment options guide explains more.",
+  },
+  {
+    question: "How do doctors decide which treatment is right for me?",
+    answer: "They weigh how many AKs you have and whether they're scattered or clustered, where they sit, how thick they are, your skin type, past treatments, other health conditions, and how much downtime you can manage. A few isolated spots are often frozen in the office; widespread damage points toward a cream or light therapy. Cost, insurance, and your preferences matter too. Our talking to your doctor guide lists questions to raise.",
+  },
+  {
+    question: "What daily habits can lower my chances of developing new AKs?",
+    answer: "The core habit is limiting ultraviolet exposure every day, not just at the beach. Seek shade around midday, wear a broad-brimmed hat and long sleeves, use a broad-spectrum sunscreen on exposed skin, and skip tanning beds entirely. Sunglasses and lip balm with SPF protect commonly missed spots. Keeping up with dermatology visits and treating sun damage early also helps. Our prevention and sun protection guide puts it together.",
+  },
+  {
+    question: "How important is sunscreen in preventing future AKs?",
+    answer: "It matters a lot. Trials in people with sun-damaged skin found that regular daily sunscreen use produced fewer new AKs and even some clearing of existing ones over time, compared with occasional use. Sunscreen works best as one layer of protection alongside shade and clothing, since no product blocks all ultraviolet and most people apply too little. Consistency — every day, reapplied outdoors — is what drives the benefit. See our prevention overview.",
+  },
+  {
+    question: "What SPF and type of sunscreen should I use if I already have sun-damaged skin?",
+    answer: "Dermatologists generally suggest a broad-spectrum sunscreen — meaning it covers both UVA and UVB — with SPF 30 or higher for daily use, and SPF 50 for extended time outdoors. Mineral formulas with zinc oxide or titanium dioxide suit sensitive or reactive skin and skin healing after treatment. The best sunscreen is one you'll apply generously and reapply every two hours outdoors. Ask your dermatologist what fits your routine.",
+  },
+  {
+    question: "How much do hats, clothing, and shade really help compared to sunscreen alone?",
+    answer: "A lot. Tightly woven or UPF-rated clothing and a broad-brimmed hat physically block most ultraviolet across the skin they cover, all day, with no need to reapply — something sunscreen can't match in real-world use. Shade cuts exposure sharply, though scattered sky and reflected light still reach you. The strongest protection layers all of them together, with sunscreen filling the gaps on the face, ears, neck, and hands. Our prevention overview explains the mix.",
+  },
+  {
+    question: "Does taking nicotinamide (vitamin B3) actually help prevent AKs or new skin cancers?",
+    answer: "There's real evidence for it. In people with a strong history of sun damage or prior skin cancers, studies of nicotinamide 500 mg twice daily showed modestly fewer new AKs and fewer new basal and squamous cell cancers. It's inexpensive and generally well tolerated, but the benefit is partial and stops when you stop taking it. Nicotinamide is different from niacin. Ask your dermatologist whether it fits your situation.",
+  },
+  {
+    question: "How often should I check my skin if I've had actinic keratoses before?",
+    answer: "A quick self-check about once a month works well for most people — look over the scalp, face, ears, neck, arms, and hands in good light, using a mirror or a partner for hard-to-see spots. Note anything new, growing, bleeding, or not healing. This is in addition to the professional skin exams your dermatologist schedules, often every 6 to 12 months. Our monitoring schedule guide outlines typical timing.",
+  },
+  {
+    question: "What should I look for when checking areas that have been treated?",
+    answer: "Treated spots normally heal to smooth, slightly pale, or pink skin within a few weeks. Afterward, watch for a patch that turns rough or scaly again, a sore that won't heal, a lump that thickens or grows, or a spot that bleeds or crusts repeatedly. Any of these can mean the AK persisted or a new lesion formed. Compare these against normal healing in our early signs of SCC guide, and report them promptly.",
+  },
+  {
+    question: "When should I see a doctor again if a treated area becomes rough or red again?",
+    answer: "Some redness, flaking, and crusting is normal for days to a few weeks after treatment, then settles. Contact your dermatologist if a treated spot stays rough or scaly beyond the expected healing time, thickens into a bump, forms a sore that won't close, or bleeds without clear cause. Also call sooner if it becomes very painful, swollen, or oozing, which can signal infection. Our talking to your doctor guide can help you describe changes.",
+  },
+  {
+    question: "How do I balance protecting my skin from the sun with getting enough vitamin D?",
+    answer: "Most dermatologists advise getting vitamin D from diet and supplements rather than deliberate sun exposure, because the ultraviolet dose that makes vitamin D also drives AKs and skin cancer. Incidental daily light on the hands and face, plus foods like fatty fish or fortified milk, cover many people; a supplement reliably fills any gap. A simple blood test can check your level. Our sun protection guide discusses this trade-off.",
+  },
+  {
+    question: "What can I do year-round to keep my skin healthier and reduce future sun damage?",
+    answer: "Treat sun protection as a daily routine in every season: sunscreen on exposed skin, a hat and sunglasses, shade at midday, and UV-aware clothing, remembering that snow, water, and altitude all boost exposure. Skip tanning beds. Keep regular dermatology appointments and treat AKs early. Gentle skin care — moisturizer, not scrubbing — and not smoking also support healing. Our actinic keratosis overview pulls the pieces together.",
+  },
+];
+
+// Plain-text mirror of the answers in the "prevention" section, for FAQPage
+// structured data. Keep in sync with the section's <details> copy.
+const preventionFaq = [
+  {
+    question: "Why does sun exposure cause skin cancer — what actually happens inside the skin?",
+    answer: "Ultraviolet light penetrates skin cells and damages their DNA directly. Most damage is repaired, but some errors slip through and accumulate with every sunburn and every hour outdoors. When enough builds up in genes that control cell growth, a cell can begin dividing without limits — the start of a skin cancer. A tan is itself a sign of DNA injury. Our prevention overview explains the process.",
+  },
+  {
+    question: "How much daily sunlight is too much for my skin type?",
+    answer: "There's no single safe number, but the fairer your skin, the faster it burns and the less ultraviolet it takes to cause damage. People who freckle, have red or blond hair, or rarely tan reach their limit within minutes on a strong summer day; darker skin has more built-in protection but still accumulates damage and can develop skin cancer. The practical goal for everyone is avoiding any redness or burning.",
+  },
+  {
+    question: "What's the difference between UVA and UVB rays, and why does that matter?",
+    answer: "Both come from the sun. UVB is the shorter wavelength that causes sunburn and most directly damages DNA in the outer skin. UVA penetrates deeper, drives premature aging and wrinkling, and also contributes to cancer; it passes through clouds and window glass and stays fairly constant through the day. Because they act differently, dermatologists recommend \"broad-spectrum\" products, which are tested to block both. Our prevention overview covers what that label means.",
+  },
+  {
+    question: "How does sunscreen work, and how can I tell if it's still effective?",
+    answer: "Sunscreens either absorb ultraviolet and release it as heat (chemical filters) or sit on the surface and scatter it (mineral filters like zinc oxide). Either way, the film has to be thick and even to deliver its rated SPF. Most products stay stable until the printed expiration date, usually two to three years; toss any that have changed color, texture, or smell, or that were left in a hot car.",
+  },
+  {
+    question: "What are common myths about sun exposure or tanning that I should stop believing?",
+    answer: "A few worth dropping: that a \"base tan\" protects you (it offers about SPF 3 and is already DNA damage), that you can't burn on cloudy or cold days (UV passes through clouds and reflects off snow), that darker skin doesn't need protection, and that tanning beds are a safe way to top up vitamin D. Our prevention overview sorts fact from fiction.",
+  },
+  {
+    question: "What's the easiest way to make sunscreen part of my everyday routine?",
+    answer: "Most people succeed by attaching it to something they already do every morning — brushing teeth, moisturizing, or getting dressed — and keeping the bottle where they'll see it. A moisturizer or tinted product with SPF 30+ built in removes a step for the face. Leaving a second tube in your car, bag, or desk covers reapplication. The habit matters more than the specific product.",
+  },
+  {
+    question: "How much sunscreen should I apply to cover my whole face and body?",
+    answer: "The standard guidance is about one ounce — a full shot glass — for the exposed body in a swimsuit, and roughly a nickel-sized blob for the face alone. Most people apply a quarter to half of that, which cuts the real-world SPF sharply. A useful check for the face and neck is \"two finger-lengths\" of product squeezed onto two fingers. Apply 15 minutes before going outside.",
+  },
+  {
+    question: "How often should I reapply if I'm sweating or swimming?",
+    answer: "About every two hours of continuous sun, and immediately after swimming, heavy sweating, or toweling off — even \"water resistant\" products are only tested to hold up for 40 or 80 minutes in water. If you're mostly indoors with brief outdoor trips, a single morning application usually lasts, though reapplying at midday is reasonable on high-UV days. Sprays and sticks make touch-ups over sunscreen easier.",
+  },
+  {
+    question: "Does SPF 100 protect me much better than SPF 50 in real life?",
+    answer: "Only slightly on paper: SPF 50 blocks about 98% of UVB and SPF 100 about 99%. The bigger issue is that a higher number can create false confidence, leading people to stay out longer or skip reapplication. A well-applied SPF 30 to 50, reapplied on schedule and paired with shade and clothing, protects better than SPF 100 used carelessly. Choose a number you'll actually reapply.",
+  },
+  {
+    question: "How do I choose between mineral and chemical sunscreens?",
+    answer: "Both are considered effective when they're broad-spectrum and applied properly. Mineral (zinc oxide, titanium dioxide) sits on the surface, works immediately, and tends to suit sensitive, rosacea-prone, or post-procedure skin, though it can leave a white cast. Chemical filters are lighter and blend clear, which many people prefer for daily wear under makeup. Our sun protection guide compares them in more detail.",
+  },
+  {
+    question: "What types of hats, shirts, and fabrics give the best UV protection?",
+    answer: "Tightly woven, dark or bright fabrics block more ultraviolet than loose, light-colored, or stretched material, and coverage counts — long sleeves and long pants beat a tank top. A broad-brimmed hat (about three inches all around) shades the ears and neck far better than a baseball cap. Purpose-made clothing carries a UPF rating, with UPF 50 blocking roughly 98%. Our prevention overview has more.",
+  },
+  {
+    question: "How do I check if my clothes have UPF built in, or if they need special wash-in protection?",
+    answer: "Check the label or hang tag for a \"UPF\" number — ordinary clothing isn't rated even though it still blocks some UV. As a rough test, hold a garment up to a bright light: the less light passes through, the more UV it stops. Wash-in products like Rit Sun Guard add UPF to regular clothes for roughly 20 washes. Darker colors and a tighter weave also raise protection.",
+  },
+  {
+    question: "At what times of day is the sun's UV strongest?",
+    answer: "UV peaks roughly from 10 a.m. to 4 p.m., when the sun is highest and its rays pass through the least atmosphere — often 60% or more of the day's total dose falls in that window. A quick rule: if your shadow is shorter than you are tall, UV is intense. It's also stronger at high altitude, near the equator, and around water, sand, and snow. Our prevention overview explains the UV Index.",
+  },
+  {
+    question: "What are smart ways to enjoy outdoor activities safely?",
+    answer: "You don't have to stay inside. Plan strenuous or long outings for early morning or late afternoon, take breaks in shade, and set up an umbrella or canopy at the beach or field. Wear a hat, sunglasses, and a UPF shirt, and put sunscreen on the spots clothing misses. Check the day's UV Index, and keep water handy since heat and sun exposure often go together.",
+  },
+  {
+    question: "How do car windows and indoor light exposure affect UV risk?",
+    answer: "A windshield is laminated and blocks almost all UVA and UVB, but side and rear windows usually stop only UVB, letting UVA through — which is why long-time drivers often show more sun damage and skin cancer on the left side of the face and arm. Ordinary indoor light and computer screens emit negligible UV. If you drive a lot, consider UV-filtering window film or a long sleeve.",
+  },
+  {
+    question: "How can I learn to recognize early warning signs of skin changes?",
+    answer: "Get familiar with your own skin so you notice when something is new or different. The general signals are a mole that changes in size, shape, or color; a spot that looks unlike your others; and any sore that bleeds, crusts, or won't heal within a month. Photos help you compare over time. Our guide to warning signs of melanoma change shows what to watch for.",
+  },
+  {
+    question: "What does the \"ABCDE rule\" for moles stand for, and how can I use it?",
+    answer: "It's a memory aid for melanoma warning signs. A is asymmetry (one half unlike the other); B is an irregular or blurred border; C is more than one color or uneven color; D is diameter larger than a pencil eraser (about 6 mm); E is evolving — any change over weeks or months. E matters most. Show a dermatologist anything that fits. Our melanoma overview has examples.",
+  },
+  {
+    question: "How often should most people do self-skin checks, and how long should it take?",
+    answer: "About once a month is the common recommendation — often enough to catch a change, spaced enough that differences stand out. A thorough check takes 10 to 15 minutes in a well-lit room with a full-length and a hand mirror, going head to toe including the scalp, between toes, soles, and back. A partner helps with hard-to-see areas. Our self-skin check guide walks through the steps.",
+  },
+  {
+    question: "How do I take clear reference photos of my skin to track changes over time?",
+    answer: "Use consistent lighting and distance, a plain background, and the same body positions each time. Take wide shots of each region, then close-ups of specific spots with a ruler or coin beside them for scale. Keep phone flash off if it washes out detail. Label photos by date and location, and repeat every few months. Our guide to tracking changes over time covers this.",
+  },
+  {
+    question: "When should I make a dermatology appointment even if I'm not sure something looks serious?",
+    answer: "Trust the \"new, changing, or not healing\" test. Book a visit for any spot that has appeared or changed over recent weeks, a sore that hasn't healed in a month, a mole that itches or bleeds, or anything that simply looks different from your other spots. It's reasonable to ask for a full skin exam. Our guide on when to see a doctor lists the triggers.",
+  },
+  {
+    question: "Does diet or hydration affect how my skin responds to sun damage?",
+    answer: "The evidence here is modest. A diet rich in fruits, vegetables, and healthy fats supplies antioxidants that may slightly blunt UV-related stress, and staying hydrated supports normal skin repair. But no food, drink, or supplement provides meaningful sun protection or reverses accumulated damage — the effect is small next to sunscreen, shade, and clothing. Beta-carotene and similar pills haven't been shown to prevent skin cancer.",
+  },
+  {
+    question: "What role does vitamin D play, and how can I get enough safely without sunburn?",
+    answer: "Vitamin D supports bone strength and immune function, and skin makes it when exposed to UVB. But the dose that damages skin and the dose that makes vitamin D overlap, so dermatologists generally advise getting it from food (fatty fish, fortified milk and cereal) and a supplement rather than deliberate sun. A blood test can check your level. Our sun protection guide discusses the trade-off.",
+  },
+  {
+    question: "How do smoking or alcohol influence skin cancer risk?",
+    answer: "Smoking is linked most clearly to squamous cell carcinoma, especially on the lips and mouth, and it slows wound healing after skin surgery. Heavy alcohol use is associated with a higher risk of melanoma and other skin cancers, possibly because it generates cell-damaging byproducts and can lead to more sunburns. Neither causes skin cancer the way UV does, but both add to the burden. Our SCC prevention guide has more.",
+  },
+  {
+    question: "How can I help my children or family learn good sun protection habits early?",
+    answer: "Habits set in childhood tend to stick, and early sunburns carry outsized risk. Make protection routine and low-drama: hats and UPF swim shirts as normal gear, sunscreen as part of getting ready, shade and water breaks built into outings, and no tanning beds ever. Kids copy what adults do, so protecting yourself openly teaches more than reminders. Schools and camps often welcome sunscreen if you send it.",
+  },
+  {
+    question: "What are small daily choices that add up to lifelong healthy skin?",
+    answer: "A few seconds each morning for SPF on the face, ears, and neck; sunglasses and a hat by the door; choosing the shady side of the street; keeping sleeves on in the car; skipping the tanning bed; and a quick skin glance in the mirror each month. None is dramatic, but repeated over decades they meaningfully lower skin cancer and aging. Our prevention overview ties them together.",
+  },
+];
+
 const jsonLd = [
   faqPageJsonLd(`${canonical}#melanoma-diagnosed`, melanomaDiagnosedFaq),
   faqPageJsonLd(`${canonical}#bcc-diagnosed`, bccDiagnosedFaq),
+  faqPageJsonLd(`${canonical}#melanoma-living`, melanomaLivingFaq),
+  faqPageJsonLd(`${canonical}#bcc-living`, bccLivingFaq),
+  faqPageJsonLd(`${canonical}#scc-diagnosed`, sccDiagnosedFaq),
+  faqPageJsonLd(`${canonical}#scc-living`, sccLivingFaq),
+  faqPageJsonLd(`${canonical}#actinic-keratosis`, actinicKeratosisFaq),
+  faqPageJsonLd(`${canonical}#prevention`, preventionFaq),
 ];
 ---
 
@@ -863,7 +1505,8 @@ const jsonLd = [
         <section id="melanoma-living" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Melanoma – Living With a History</h2>
-            <p class="text-slate mb-6">Advanced questions for long-term follow-up, prevention, and peace of mind.</p>
+            <p class="text-slate">Advanced questions for long-term follow-up, prevention, and peace of mind.</p>
+            <MedicalReviewer date={melanomaLivingReviewed} tone="light" class="mb-6" />
             <ol class="space-y-4 text-slate leading-relaxed">
               <li>
                 <details class="group border-b border-slate/10 pb-4">
@@ -1962,7 +2605,8 @@ const jsonLd = [
         <section id="bcc-living" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Basal Cell Carcinoma – Living With a History</h2>
-            <p class="text-slate mb-6">Questions for ongoing monitoring and reducing future risk.</p>
+            <p class="text-slate">Questions for ongoing monitoring and reducing future risk.</p>
+            <MedicalReviewer date={bccLivingReviewed} tone="light" class="mb-6" />
             <ol class="space-y-4 text-slate leading-relaxed">
               <li>
                 <details class="group border-b border-slate/10 pb-4">
@@ -2511,7 +3155,8 @@ const jsonLd = [
         <section id="scc-diagnosed" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Squamous Cell Carcinoma – If You've Just Been Diagnosed</h2>
-            <p class="text-slate mb-6">Key questions to understand your SCC diagnosis and treatment plan.</p>
+            <p class="text-slate">Key questions to understand your SCC diagnosis and treatment plan.</p>
+            <MedicalReviewer date={sccDiagnosedReviewed} tone="light" class="mb-6" />
             <ol class="space-y-4 text-slate leading-relaxed">
               <li>
                 <details class="group border-b border-slate/10 pb-4">
@@ -3060,7 +3705,8 @@ const jsonLd = [
         <section id="scc-living" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Squamous Cell Carcinoma – Living With a History</h2>
-            <p class="text-slate mb-6">Questions for surveillance, prevention, and managing ongoing care.</p>
+            <p class="text-slate">Questions for surveillance, prevention, and managing ongoing care.</p>
+            <MedicalReviewer date={sccLivingReviewed} tone="light" class="mb-6" />
             <ol class="space-y-4 text-slate leading-relaxed">
               <li>
                 <details class="group border-b border-slate/10 pb-4">
@@ -3609,7 +4255,8 @@ const jsonLd = [
         <section id="actinic-keratosis" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Actinic Keratosis – Understanding and Managing</h2>
-            <p class="text-slate mb-6">Questions about precancerous lesions and how to manage them effectively.</p>
+            <p class="text-slate">Questions about precancerous lesions and how to manage them effectively.</p>
+            <MedicalReviewer date={actinicKeratosisReviewed} tone="light" class="mb-6" />
             <ol class="space-y-4 text-slate leading-relaxed">
               <li>
                 <details class="group border-b border-slate/10 pb-4">
@@ -4158,7 +4805,8 @@ const jsonLd = [
         <section id="prevention" class="mb-16 scroll-mt-24">
           <div class="bg-white rounded-xl shadow-sm p-8">
             <h2 class="text-3xl font-serif font-bold text-navy mb-4">Skin Cancer Prevention & Healthy Skin Habits</h2>
-            <p class="text-slate mb-6">Essential questions for protecting your skin and reducing your risk.</p>
+            <p class="text-slate">Essential questions for protecting your skin and reducing your risk.</p>
+            <MedicalReviewer date={preventionReviewed} tone="light" class="mb-6" />
             <ol class="space-y-4 text-slate leading-relaxed">
               <li>
                 <details class="group border-b border-slate/10 pb-4">
