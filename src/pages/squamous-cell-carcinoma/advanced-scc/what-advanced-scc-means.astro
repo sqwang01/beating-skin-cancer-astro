@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/what-advanced-scc-means";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "What Advanced SCC Means for Patients | Beating Skin Cancer";
 const description = "\"Advanced\" squamous cell carcinoma covers locally advanced tumors that surgery and radiation cannot clear plus rarer metastatic spread. What each one means.";
 
@@ -240,13 +245,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my SCC locally advanced, or has it actually spread? What did the imaging show?</li>
-                <li>Why can't this be treated with surgery or radiation — is that permanent, or could it change?</li>
-                <li>Will my case be reviewed by a multidisciplinary team?</li>
-                <li>What systemic treatment would you start with, and what is the goal — cure, control, or shrinking the tumor before surgery?</li>
-                <li>How will we know whether the treatment is working, and how often will I be scanned?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

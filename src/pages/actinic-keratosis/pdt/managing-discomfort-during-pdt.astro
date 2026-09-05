@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/managing-discomfort-during-pdt";
 const title = "Managing Discomfort During PDT | Beating Skin Cancer";
 const description = "PDT can cause stinging or burning during light activation. Learn the cooling, anesthetic, and daylight-PDT strategies clinics use to ease discomfort.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -251,28 +256,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What cooling measures will be used during my session, and can I ask for more if I need it?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Is a topical numbing cream, injected local anesthetic, or nerve block available at this practice?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Should I take an over-the-counter pain reliever before my appointment, and if so, which one?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Am I a candidate for daylight PDT instead of a conventional lamp-based session?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What should I do if the discomfort becomes hard to tolerate partway through treatment?</span>
-                </li>
-              </ul>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

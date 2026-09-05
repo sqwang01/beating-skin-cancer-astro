@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/clinical-trials-for-advanced-scc";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Clinical Trials for Advanced SCC | Beating Skin Cancer";
 const description = "How to find a clinical trial for advanced squamous cell carcinoma: searching ClinicalTrials.gov and NCI, what trial phases mean, eligibility, and what to ask.";
 
@@ -281,40 +286,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Care Team</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Is there a clinical trial that fits my specific type of advanced SCC and my treatment history?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What phase is it, and how much is already known about the study drug's safety and benefit?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Would the trial replace my standard treatment, add to it, or be a next step if my current drug stops working?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>If I am a transplant recipient or otherwise immunosuppressed, is this trial designed with that in mind?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What extra visits, scans, biopsies, or travel would it involve compared with standard care?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What are the known and possible side effects, and how would they be monitored?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What happens if the trial treatment does not work for me, or if I decide to stop?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Which costs are covered by the sponsor, and what would my insurance still be billed for?</span>
-                </li>
-              </ul>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

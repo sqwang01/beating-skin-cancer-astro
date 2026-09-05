@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/field-therapy-multiple-aks";
 const title = "Field Therapy for Multiple AKs | Beating Skin Cancer";
 const description = "When you have many actinic keratoses, field therapy treats the whole area, not just visible spots. Learn how it works and how it compares to freezing.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -220,13 +225,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given how many AKs I have and where they are, would you recommend field therapy, spot treatment, or a combination?</li>
-                <li>Which field agent fits my skin type, schedule, and tolerance for irritation best?</li>
-                <li>What should the reaction look like during treatment, and what would be a sign to call you instead of waiting it out?</li>
-                <li>If this course doesn't clear things well enough, what's the next option?</li>
-                <li>How soon after finishing treatment will we know whether it worked, and when should I come back to be re-checked?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

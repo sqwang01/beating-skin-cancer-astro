@@ -1,0 +1,29 @@
+---
+/**
+ * Direct download link to a build-generated checklist PDF. No gating, no form —
+ * just an <a href download> to a static asset under /downloads/.
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  /** e.g. "/downloads/advanced-bcc/what-advanced-bcc-means-checklist.pdf" */
+  href: string;
+  label: string;
+  /** Extra classes for the anchor. */
+  class?: string;
+}
+
+const { href, label, class: className = '' } = Astro.props;
+---
+
+<a
+  href={href}
+  download
+  class:list={[
+    'inline-flex items-center gap-2 bg-teal text-white px-6 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium',
+    className,
+  ]}
+>
+  <Icon name="lucide:download" size={20} aria-hidden="true" />
+  <span>{label}</span>
+</a>

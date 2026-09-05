@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/talking-to-your-doctor";
 const title = "Talking to Your Doctor About AKs | Beating Skin Cancer";
 const description = "Practical guidance for preparing dermatology visits, asking the right questions, and advocating for effective long-term monitoring of actinic keratoses.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -242,14 +247,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor — Quick Reference</h2>
-              <p class="text-slate/80 mb-4">If you only bring five questions to your next visit, make them these:</p>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given my current number and history of AKs, how often should I be seen?</li>
-                <li>Is there a standing, long-term management plan for me, rather than treating each new spot as a separate event?</li>
-                <li>What specific changes in a spot should prompt me to call before my next scheduled visit?</li>
-                <li>Why is this treatment the right choice for this spot, and what are the alternatives?</li>
-                <li>What sun-protection or lifestyle changes would most reduce how many new AKs I develop?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
               <p class="text-slate/80 mt-4">
                 You can also browse the broader <a href="/questions-to-ask#actinic-keratosis" class="text-teal hover:text-teal/80 underline">actinic keratosis question library</a> for additional questions organized for different stages of your care.
               </p>

@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/spread-and-seriousness";
 const title = "Can BCC Spread or Become Serious? | Beating Skin Cancer";
 const description = "How often basal cell carcinoma spreads, what local invasion looks like, the warning features that raise risk, and when this common cancer becomes serious.";
 const lastReviewed = "2026-08-24";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -184,13 +189,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Does my BCC have any of the high-risk features, like size, location, or subtype?</li>
-                <li>Is there any sign of deeper growth into nerve, cartilage, or bone?</li>
-                <li>Based on my risk category, why is this particular treatment being recommended over others?</li>
-                <li>How closely will I need to be monitored given my tumor's risk level?</li>
-                <li>What symptoms — numbness, persistent pain, rapid growth — should prompt me to call sooner than my next scheduled visit?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

@@ -1,0 +1,40 @@
+---
+/**
+ * Renders one `QuestionGroup` from `src/data/careTeamQuestions.ts` with the
+ * exact markup the hand-authored "questions to ask" lists used, so swapping a
+ * page over to this component leaves the rendered DOM unchanged:
+ *
+ *   ordered  → <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+ *   default  → <ul class="space-y-3 text-slate/80"> with a bullet <span>
+ *
+ * The section <h2> stays on the page; `group.heading` is only used by the PDF.
+ * `group.note`, when set, renders as the same lead-in <p> the pages used.
+ */
+import type { QuestionGroup } from '../data/careTeamQuestions';
+
+interface Props {
+  group: QuestionGroup;
+  /** Extra classes for the <ol>/<ul>. */
+  class?: string;
+}
+
+const { group, class: className = '' } = Astro.props;
+const bulletClass = group.bullet === 'coral' ? 'text-coral mt-1' : 'text-teal mt-1';
+---
+
+{group.note && <p class="text-slate/80 mb-4" set:html={group.note} />}
+
+{group.ordered ? (
+  <ol class:list={['space-y-3 text-slate/80 list-decimal list-inside', className]}>
+    {group.questions.map((q) => <li set:html={q} />)}
+  </ol>
+) : (
+  <ul class:list={['space-y-3 text-slate/80', className]}>
+    {group.questions.map((q) => (
+      <li class="flex items-start gap-2">
+        <span class={bulletClass}>•</span>
+        <span set:html={q} />
+      </li>
+    ))}
+  </ul>
+)}

@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/staging-and-grading";
 const title = "SCC Staging and Grading Explained | Beating Skin Cancer";
 const description = "How SCC staging (TNM) and tumor grade determine risk category, guiding margin width, treatment intensity, and whether nodal imaging is needed.";
 const lastReviewed = "2026-08-26";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -204,13 +209,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>What is the T stage of my tumor, and were any high-risk features found on pathology?</li>
-                <li>What is the differentiation grade, and how does that affect my overall risk category?</li>
-                <li>Am I considered low-risk, high-risk, or very-high-risk — and what specifically puts me in that category?</li>
-                <li>Based on my risk category, what margin width or surgical approach are you recommending, and why?</li>
-                <li>Do I need imaging or a sentinel lymph node biopsy to check my lymph nodes, or is that not indicated for my case?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

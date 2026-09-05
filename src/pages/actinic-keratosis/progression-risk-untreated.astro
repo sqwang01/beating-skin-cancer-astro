@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/progression-risk-untreated";
 const title = "AK Left Untreated: Progression Risk | Beating Skin Cancer";
 const description = "What happens as an untreated AK progresses, who carries the highest cumulative risk, and why early treatment beats treating an established skin cancer.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -200,13 +205,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given my overall number of AKs and sun-damage history, am I in a higher-risk category, or is my risk closer to average?</li>
-                <li>Am I on any medication — for a transplant or another condition — that suppresses my immune system and raises my skin cancer risk?</li>
-                <li>Do any of my current AKs sit in a higher-risk location, like my ears, lips, or scalp?</li>
-                <li>Is there a lesion that keeps coming back or has never fully cleared that we should address differently?</li>
-                <li>If I choose not to treat a particular spot now, what would make you recommend revisiting that decision?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

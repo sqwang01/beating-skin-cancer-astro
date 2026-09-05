@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/pdt-safety-and-who-should-avoid-it";
 const title = "PDT Safety: Who Should Avoid It? | Beating Skin Cancer";
 const description = "PDT has decades of safe use, but porphyria, certain medications, allergy, and pregnancy can rule it out. Learn the real contraindications and rare risks.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -241,28 +246,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Do any of my current medications or supplements increase my sensitivity to light?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Should I be screened for porphyria or another photosensitivity disorder before treatment?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Given my lupus (or other photosensitive condition), is PDT still a reasonable option for me?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What should I realistically expect to be able to do — and avoid — in the 24–48 hours after treatment?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What would a severe reaction look like, and when should I call the office instead of waiting it out?</span>
-                </li>
-              </ul>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

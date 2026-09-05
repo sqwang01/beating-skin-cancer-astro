@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/early-signs-vs-other-skin-cancers";
 const title = "SCC Early Signs vs. Other Skin Cancers | Beating Skin Cancer";
 const description = "Learn the early warning signs of squamous cell carcinoma and how to tell it apart from basal cell carcinoma, melanoma, and actinic keratosis.";
 const lastReviewed = "2026-08-26";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -260,13 +265,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Does this spot look more consistent with SCC, BCC, or an actinic keratosis — and how confident are you without a biopsy?</li>
-                <li>Should this be biopsied now, or is it reasonable to monitor it for a defined period first?</li>
-                <li>Is this arising from a scar, chronic wound, or an area of prior radiation, and does that change how it should be evaluated?</li>
-                <li>What specific changes in this spot should prompt me to call you before my next scheduled visit?</li>
-                <li>Given where this is located, are there other spots nearby I should also be watching closely?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

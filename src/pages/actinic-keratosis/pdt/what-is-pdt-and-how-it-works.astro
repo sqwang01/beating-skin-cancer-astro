@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/what-is-pdt-and-how-it-works";
 const title = "What Is Photodynamic Therapy (PDT)? | Beating Skin Cancer";
 const description = "Photodynamic therapy uses a photosensitizer and light to destroy sun-damaged skin cells. Learn the two-step mechanism behind PDT for actinic keratosis.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -156,13 +161,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Which photosensitizer will you use, and how long will it need to incubate before the light exposure?</li>
-                <li>Will you use a lamp-based light source or daylight PDT, and why is that the right choice for my skin?</li>
-                <li>How will you confirm the treated area has absorbed enough of the solution before activating it with light?</li>
-                <li>How much of my sun-damaged skin — beyond the AKs you can see — will be included in the treated field?</li>
-                <li>What should I expect to feel during the light exposure itself?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

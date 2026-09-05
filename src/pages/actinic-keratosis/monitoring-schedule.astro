@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/monitoring-schedule";
 const title = "How Often to Get Skin Exams for AKs | Beating Skin Cancer";
 const description = "How often you should see a dermatologist for skin exams if you have actinic keratosis, including higher-risk schedules and what to watch for between visits.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -227,13 +232,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on my history, how often should I be coming in for a full skin exam?</li>
-                <li>Do any of my risk factors — prior skin cancer, immune status, sun exposure history — push me toward more frequent visits?</li>
-                <li>Is there anything specific about my skin you'd like me to keep an eye on between now and my next visit?</li>
-                <li>What changes should prompt me to call before my scheduled appointment?</li>
-                <li>Would keeping a photo log of my AKs be helpful for you to track at future visits?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

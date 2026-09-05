@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/high-risk-features";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "What Makes an SCC Tumor High-Risk? | Beating Skin Cancer";
 const description = "A \"high-risk\" squamous cell carcinoma has features like large size, deep invasion, poor differentiation, or perineural invasion. How BWH and AJCC8 flag them.";
 
@@ -249,13 +254,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Which specific high-risk features does my tumor have, and what does my pathology report say about depth, differentiation, and perineural invasion?</li>
-                <li>What is my tumor's stage in the AJCC and BWH systems, and my NCCN risk category?</li>
-                <li>Does my risk level call for Mohs surgery, wider margins, or radiation after surgery?</li>
-                <li>Do I need imaging or a sentinel lymph node biopsy to check my lymph nodes?</li>
-                <li>How often should I be seen for follow-up, and what should I watch for between visits?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

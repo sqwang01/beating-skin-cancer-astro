@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/sentinel-lymph-node-biopsy";
@@ -9,6 +12,8 @@ const title = "Sentinel Lymph Node Biopsy: What It Means for Melanoma | Beating 
 const description =
   "Learn when a sentinel lymph node biopsy is recommended for melanoma, what it involves, and how results guide treatment and staging.";
 const lastReviewed = "2026-08-22";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -246,28 +251,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, medicalReviewJsonLd(canonical,
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>Do you recommend a sentinel lymph node biopsy for my melanoma? Why or why not?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>How will the results affect my treatment plan?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>What are the potential risks or side effects of the biopsy?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>How long will it take to get the results?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span>If the biopsy is positive, what are the next steps?</span>
-                </li>
-              </ul>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

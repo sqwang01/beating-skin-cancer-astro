@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/pathology-report";
 const title = "Melanoma Pathology Report Explained | Beating Skin Cancer";
 const description = "Decode your melanoma pathology report—Breslow depth, ulceration, mitotic rate, margins, and more—and learn what each finding means for your care.";
 const lastReviewed = "2026-08-22";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -204,13 +209,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>What is my Breslow depth, and is there ulceration?</li>
-                <li>Are my margins clear, or will I need a re-excision?</li>
-                <li>Do my results suggest I should consider a sentinel lymph node biopsy?</li>
-                <li>Was any molecular testing done, and did it find any actionable mutations?</li>
-                <li>Would a second pathology opinion be worthwhile in my case?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

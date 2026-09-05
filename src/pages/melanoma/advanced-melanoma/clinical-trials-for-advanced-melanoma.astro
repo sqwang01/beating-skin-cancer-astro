@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Clinical Trials for Advanced Melanoma | Beating Skin Cancer";
 const description = "How to find a clinical trial for advanced melanoma: what the phases mean, how eligibility works, where to search, and the questions to ask before enrolling.";
 
@@ -223,28 +228,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">Questions to Ask Before Enrolling</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span><strong>What is being tested, and what is the comparison?</strong> Is there randomization? If so, what does each group receive — does everyone get at least standard treatment?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span><strong>What is the goal for me</strong> — shrinking the melanoma, keeping it stable, lowering recurrence risk — and how will that be measured?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span><strong>What are the known and possible risks,</strong> and how do they compare with standard treatment?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span><strong>What extra visits, scans, biopsies, and travel</strong> are required, and over how long? What costs are covered by the trial, and what falls to me or my insurance?</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-teal mt-1">•</span>
-                  <span><strong>What happens if the treatment does not work</strong> or I need to stop? Can I still get standard therapy afterward, and can I leave the trial at any time?</span>
-                </li>
-              </ul>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
               <p class="text-slate/80 mt-4">
                 You will be asked to sign an informed-consent document. It should answer these questions in writing; take it home, read it, and ask the study team about anything that is unclear. Enrolling is voluntary, and you can withdraw at any point without affecting your regular care.
               </p>
@@ -257,13 +242,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is a clinical trial a reasonable option for me right now, or at a specific point ahead?</li>
-                <li>Are there trials at this center I might qualify for, and are there multicenter trials worth traveling for?</li>
-                <li>Given my mutation status and prior treatment, what kinds of trials am I eligible for?</li>
-                <li>If I join a trial, would I keep seeing you, and how would my care be coordinated?</li>
-                <li>Could a referral to a larger melanoma center open up trial options I do not have here?</li>
-              </ol>
+              <QuestionList group={checklist.groups[1]} />
             </div>
           </div>
         </div>

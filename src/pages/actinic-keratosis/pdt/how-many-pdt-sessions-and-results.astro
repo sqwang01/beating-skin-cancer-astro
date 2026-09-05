@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/how-many-pdt-sessions-and-results";
 const title = "PDT Sessions and Results for AK | Beating Skin Cancer";
 const description = "How many photodynamic therapy sessions actinic keratosis typically requires, realistic clearance rates, how long results last, and follow-up care.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -250,14 +255,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on my lesions, how many PDT sessions do you expect I'll need?</li>
-                <li>When will you check whether the treatment worked, and what will that visit involve?</li>
-                <li>What clearance rate is realistic for someone with my skin and lesion type?</li>
-                <li>If some lesions don't clear, what would be the next step?</li>
-                <li>How long do you expect these results to last for me?</li>
-                <li>How often should I have routine skin checks going forward?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/treatment-options";
 const title = "AK Treatment Options: How to Choose | Beating Skin Cancer";
 const description = "Compare cryotherapy, topical creams, and PDT for actinic keratosis — how each works, what to expect, and how to choose the right option for you.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -283,13 +288,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given the number and location of my AKs, would you recommend lesion-directed or field therapy?</li>
-                <li>What kind of reaction should I expect from this specific treatment, and how long should it last?</li>
-                <li>Are there sun-protection or activity restrictions I need to follow during treatment?</li>
-                <li>How will we know if the treatment worked, and when should I come back to check?</li>
-                <li>If this treatment doesn't fully clear things, what's the next option?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

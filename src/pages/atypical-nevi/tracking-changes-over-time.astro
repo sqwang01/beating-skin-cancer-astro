@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/atypical-nevi/tracking-changes-over-time";
 const title = "How to Track Changes in Your Moles | Beating Skin Cancer";
 const description = "Reliable mole tracking beats memory. Learn how to photograph moles for scale and detail, set a self-exam routine, use mole maps, and what change to report.";
 const lastReviewed = "2026-08-27";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -225,13 +230,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Which specific moles do you want me to photograph and watch closely?</li>
-                <li>How often should I redo my baseline photos?</li>
-                <li>Do you offer total-body photography or digital dermoscopy for my situation?</li>
-                <li>What's the best way to send you a photo if I spot a change between visits?</li>
-                <li>Can you mark my watched moles on a body map I can take home?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

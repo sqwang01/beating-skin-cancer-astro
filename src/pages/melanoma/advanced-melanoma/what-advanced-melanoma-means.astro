@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/what-advanced-melanoma-means";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "What Does \"Advanced\" Melanoma Mean? | Beating Skin Cancer";
 const description = "\"Advanced\" melanoma covers regionally advanced stage III disease and distant metastatic stage IV disease, and why the label shifts care to systemic therapy.";
 
@@ -259,13 +264,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my melanoma regionally advanced (stage III) or metastatic (stage IV), and what is the exact stage grouping?</li>
-                <li>If it is stage III, was the nodal spread microscopic or clinically detected, and are there in-transit or satellite lesions?</li>
-                <li>If it is stage IV, which sites are involved, and what did my LDH level show?</li>
-                <li>Can any of the melanoma be removed with surgery, now or after medication?</li>
-                <li>Will my case be reviewed by a multidisciplinary team, and what systemic treatment would you start with?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

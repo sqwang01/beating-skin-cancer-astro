@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/neoadjuvant-therapy-before-surgery";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Shrinking a BCC Before Surgery | Beating Skin Cancer";
 const description = "Neoadjuvant therapy with the hedgehog inhibitor vismodegib can shrink a large basal cell carcinoma before surgery, reducing the wound and sparing tissue.";
 
@@ -257,14 +262,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>What would surgery look like now, and how might it change if the tumor shrinks first?</li>
-                <li>How many months of medication are you planning, and how will we measure the response?</li>
-                <li>What side effects are most likely, and at what point would we stop early?</li>
-                <li>How will you find and remove the original tumor border after it shrinks?</li>
-                <li>Is a clinical trial of neoadjuvant treatment an option for me?</li>
-                <li>Will my insurance cover this use of the drug?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

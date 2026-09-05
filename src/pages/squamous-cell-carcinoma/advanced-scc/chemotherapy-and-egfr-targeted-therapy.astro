@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/chemotherapy-and-egfr-targeted-therapy";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Chemotherapy and EGFR Therapy for SCC | Beating Skin Cancer";
 const description = "Cetuximab and platinum chemotherapy for advanced cutaneous squamous cell carcinoma when immunotherapy isn't an option — how they work and what to expect.";
 
@@ -223,14 +228,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Why is cetuximab or chemotherapy being recommended for me instead of immunotherapy?</li>
-                <li>Is this because of a transplant, immunosuppression, an autoimmune condition, or because immunotherapy already stopped working?</li>
-                <li>What response rate is realistic for my specific situation?</li>
-                <li>What side effects should I expect, and how will they be managed — for cetuximab's rash, or chemotherapy's effect on blood counts?</li>
-                <li>Would combining this with radiation be considered?</li>
-                <li>If this doesn't work, is immunotherapy still an option later, or is there a clinical trial to consider?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

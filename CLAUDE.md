@@ -33,8 +33,23 @@ Copy the closest matching existing page as your starting point rather than writi
 - `canonical`: omit the prop for ordinary pages — `Layout.astro` auto-generates it from `Astro.site` + the live path. Only pass an explicit `canonical` const for cornerstone articles that also ship JSON-LD (pattern 2 above), and reuse that same string in the canonical tag, `mainEntityOfPage`, and the breadcrumb's last item.
 - Any `<img>` needs a real `alt`. Decorative `astro-icon` icons don't need alt text but should get `aria-hidden="true"` if they're purely decorative next to visible text.
 - Check `/questions-to-ask`'s table of contents if the new page should be cross-linked from the question library.
+- If the page is a hub sub-page with a "What to Ask Your Doctor" list, add/update its entry in the checklist data file so the printable PDFs regenerate — see **Discussion-guide PDFs** below.
 - Every medical/disease page (hub and deep-dive articles — anything giving health guidance, not utility pages like privacy/terms) needs a reviewer byline: define `const canonical = "https://www.beatingskincancer.com/<path>"` and `const lastReviewed = "YYYY-MM-DD"` (today's date, only once a board dermatologist has actually reviewed the content), import `MedicalReviewer` from `src/components/MedicalReviewer.astro` and `medicalReviewJsonLd` from `src/lib/seo.ts`, render `<MedicalReviewer date={lastReviewed} />` directly under the hero's subtitle `<p>`, pass `canonical={canonical} jsonLd={jsonLd}` to `Layout`, and include `medicalReviewJsonLd(canonical, lastReviewed)` in the page's `jsonLd` array (alongside any `Article`/`BreadcrumbList`/`FAQPage` blocks for deep-dive articles). When revising a page's medical content later, bump `lastReviewed` to that date.
   - Reviewer attribution defaults to the Editor-in-Chief (Dr. Steven Q. Wang). To attribute an article to another member of the medical editorial board, pass a matching `slug` from `src/data/editorialBoard.ts` to *both* calls: `<MedicalReviewer date={lastReviewed} reviewer="<slug>" />` and `medicalReviewJsonLd(canonical, lastReviewed, "<slug>")`. The byline links to `/editorial-board#<slug>`. Board members are defined only in `src/data/editorialBoard.ts` — that array feeds the byline, the JSON-LD, and the `/editorial-board` page.
+
+### Discussion-guide PDFs (keep in sync when a hub page changes)
+
+Every hub sub-page's "What to Ask Your Doctor" list is the single source for a build-time PDF: one per-page checklist at `/downloads/<hub>/<slug>-checklist.pdf` and one combined "complete `<hub>` discussion guide" at `/downloads/<hub>/complete-<hub>-discussion-guide.pdf`. `integrations/checklist-pdfs.mjs` regenerates **all** of them from two data files each time the dev server starts (`astro dev`) and on every `astro build` — it never reads the `.astro` pages, so a page change reaches the PDFs **only if you also edit the matching data file**:
+
+- **Non-advanced disease hubs** — BCC, SCC, melanoma, actinic keratosis, the AK/PDT sub-hub, atypical nevi: [src/data/hubChecklists.ts](src/data/hubChecklists.ts).
+- **Advanced hubs** — advanced BCC, advanced SCC, advanced melanoma: [src/data/careTeamQuestions.ts](src/data/careTeamQuestions.ts).
+
+These files are not optional metadata: the page itself renders its "What to Ask Your Doctor" section and its "Download printable checklist (PDF)" button from its data entry (`getHubChecklistByPath(...)` + `QuestionList` / `ChecklistDownloadButton`), and each hub landing page links the combined guide via `hubBundlePdfPath(...)`.
+
+- **Adding a hub sub-page:** add a matching entry — `slug` (= route segment), `hub`, `pageTitle` (= the page's `<h1>`), `pagePath` (= the site-relative route), `order` (position within the hub), `lastReviewed`, and `groups` (the question text, copied verbatim from the page's list). A new hub id also needs a row in `hubChecklistHubs` / `hubs`.
+- **Editing an existing hub sub-page:** mirror any change to its questions, `pageTitle`, or `lastReviewed` into that entry. `lastReviewed` **must equal** the page's `const lastReviewed`; a `reviewer` slug, if set, must resolve in `src/data/reviewerDirectory.ts`. `assertHubChecklistsValid()` / `assertChecklistsValid()` run in the PDF build step and **fail the build** on missing/malformed metadata.
+- **Draft (pre-review) articles:** hold the data-file entry until the PUBLISH phase, when the page gets its real `lastReviewed` — an entry requires a valid review date and would render a live checklist/PDF for unreviewed content.
+- After the edit, restart `astro dev` (or run `astro build`) and confirm the log line `generated N checklist PDFs`, then spot-check the affected `/downloads/...pdf`.
 
 ## Image gallery
 

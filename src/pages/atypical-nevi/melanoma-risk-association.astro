@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/atypical-nevi/melanoma-risk-association";
 const title = "Atypical Moles and Melanoma Risk | Beating Skin Cancer";
 const description = "Yes — atypical moles raise melanoma risk, and more moles mean more risk. Learn what the numbers show, what drives the risk, and what actually lowers it.";
 const lastReviewed = "2026-08-27";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -230,13 +235,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on my moles and history, roughly how elevated is my melanoma risk?</li>
-                <li>Do I have enough atypical moles or family history to consider genetic counseling?</li>
-                <li>How does my risk change what we do — exam frequency, photography, sun advice?</li>
-                <li>Which of my risk factors can I actually influence?</li>
-                <li>What's my plan if a suspicious mole shows up between visits?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

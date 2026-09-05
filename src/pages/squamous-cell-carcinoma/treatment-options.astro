@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/treatment-options";
 const title = "SCC Treatment Options Compared | Beating Skin Cancer";
 const description = "A side-by-side comparison of Mohs surgery, excision, curettage, radiation, and immunotherapy for SCC — cure rates, cosmetic outcomes, and recovery time.";
 const lastReviewed = "2026-08-26";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -195,13 +200,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on my tumor's size, location, and risk features, which treatment do you recommend, and why over the alternatives?</li>
-                <li>What is the expected cure rate for this specific approach with my type of tumor?</li>
-                <li>What will the cosmetic outcome and recovery time realistically look like?</li>
-                <li>Is a Mohs surgeon available for my case, and would that meaningfully change my odds compared to standard excision?</li>
-                <li>If surgery isn't an option for me, what would radiation or systemic therapy involve, and what results should I expect?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

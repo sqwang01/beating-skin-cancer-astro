@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/biopsy-meaning";
 const title = "What Does My Basal Cell Carcinoma Biopsy Mean? Complete Guide 2025";
 const description = "If your skin biopsy shows basal cell carcinoma, here's what that diagnosis means, what to expect next, and how to understand your pathology report.";
 const lastReviewed = "2026-08-22";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -223,14 +228,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <p class="text-slate/80 mb-4">When you review your biopsy results, consider asking:</p>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>What type of basal cell carcinoma do I have?</li>
-                <li>Were the biopsy margins clear or involved?</li>
-                <li>Will I need Mohs surgery or a standard excision?</li>
-                <li>What are my chances of recurrence?</li>
-                <li>How often should I have full-body skin checks going forward?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
               <p class="text-slate/80 mt-4">
                 These questions help you fully understand your diagnosis and next steps.
               </p>

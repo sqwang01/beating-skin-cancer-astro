@@ -17,15 +17,27 @@ and publishing are two separate steps:
 1. **DRAFT phase** (this skill's main output): write the full page, verify citations, update the
    pipeline ledger to `drafted-pending-review`. **Do NOT** add `<MedicalReviewer />`, a `lastReviewed`
    const, or `medicalReviewJsonld()` to the page, and **do NOT** convert the hub's placeholder
-   `<div class="block p-4 bg-sky/5 ...">` card into a real `<a href="...">` link. The page file
-   exists at its URL but stays unlinked from navigation and unreviewed — this is deliberate, so
-   unreviewed medical content isn't surfaced to patients or crawlers.
+   `<div class="block p-4 bg-sky/5 ...">` card into a real `<a href="...">` link. Write the
+   "What to Ask Your Doctor" list as inline markup for now — **do NOT** add an entry to
+   `src/data/hubChecklists.ts` / `src/data/careTeamQuestions.ts` or wire up `QuestionList` /
+   `ChecklistDownloadButton`; that entry needs a real `lastReviewed` and would publish a live
+   checklist PDF for unreviewed content. The page file exists at its URL but stays unlinked from
+   navigation and unreviewed — this is deliberate, so unreviewed medical content isn't surfaced
+   to patients or crawlers.
 2. **PUBLISH phase** (only on explicit instruction, e.g. "I've reviewed X and Y, publish them"):
    for each approved page, add `<MedicalReviewer date={lastReviewed} />` right under the hero's
    subtitle `<p>`, add `const lastReviewed = "YYYY-MM-DD"` (today's actual date), add
    `medicalReviewJsonld(canonical, lastReviewed)` to the page's `jsonLd` array, convert the hub's
    placeholder `<div>` into a real `<a href="/hub/slug" class="block p-4 bg-sky/5 rounded-lg
    border border-teal/10 hover:bg-sky/10 transition-colors">` (keep the existing inner markup),
+   add the matching checklist entry to `src/data/hubChecklists.ts` (or `src/data/careTeamQuestions.ts`
+   for the three advanced hubs) — `slug`, `hub`, `pageTitle` (the H1), `pagePath`, `order`,
+   `lastReviewed` (identical to the page's const), and `groups` with the question text copied
+   verbatim — then swap the page's inline "What to Ask Your Doctor" list to
+   `<QuestionList group={checklist.groups[0]} />` with a `<ChecklistDownloadButton
+   href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" ... />` above
+   it (copy the wiring from a published sibling, e.g. `actinic-keratosis/monitoring-schedule.astro`),
+   so the per-page and combined-guide PDFs regenerate on the next `astro dev` / `astro build`,
    and update the ledger row to `published — YYYY-MM-DD`. If the user gives edits/feedback instead
    of a flat approval, apply them to the draft and leave it at `drafted-pending-review` for the
    next review round.
@@ -64,6 +76,9 @@ this conversation — CLAUDE.md requires `lastReviewed` to reflect an actual rev
      2024, ISBN 1421449876). Ask the user if it's unclear which book fits.
 5. **JSON-LD**: build `articleJsonLd`, `breadcrumbsJsonLd`, and (if the content supports 2-3 genuine
    Q&As) `faqJsonLd`, same as existing deep-dives. Skip `medicalReviewJsonld` — that's PUBLISH phase.
+   Likewise skip the `hubChecklists.ts` / `careTeamQuestions.ts` entry and keep "What to Ask Your
+   Doctor" as inline markup — the checklist entry and its PDF are PUBLISH phase (it needs a real
+   `lastReviewed`).
 6. **SEO checklist**: one `<h1>`; unique `title` 50-60 chars as `"Page Name | Beating Skin Cancer"`;
    unique `description` 120-158 chars (verify with a character count, don't eyeball it); explicit
    `canonical` const `https://www.beatingskincancer.com/hub/slug` reused in the canonical tag,
@@ -85,5 +100,14 @@ this conversation — CLAUDE.md requires `lastReviewed` to reflect an actual rev
 ## Publishing a reviewed batch
 
 When the user says a page (or set of pages) has been reviewed and approved: for each one, do the
-PUBLISH-phase edits described above, then re-verify the render and report back which pages are now
+PUBLISH-phase edits described above (including the `hubChecklists.ts` / `careTeamQuestions.ts`
+entry and the `QuestionList` / `ChecklistDownloadButton` swap), then re-verify the render **and**
+that the PDF build logged `generated N checklist PDFs` with the new `/downloads/<hub>/<slug>-checklist.pdf`
+and refreshed `complete-<hub>-discussion-guide.pdf` present, and report back which pages are now
 live and linked from their hub.
+
+If the user later revises an already-published page's medical content, "What to Ask Your Doctor"
+questions, H1, or `lastReviewed`, mirror that change into its `hubChecklists.ts` /
+`careTeamQuestions.ts` entry in the same pass — `lastReviewed` there must stay identical to the
+page's const, and `assertHubChecklistsValid()` / `assertChecklistsValid()` fail the build if it
+drifts.

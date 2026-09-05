@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/preparing-for-your-pdt-appointment";
 const title = "Preparing for Your PDT Appointment | Beating Skin Cancer";
 const description = "How to prepare for photodynamic therapy for actinic keratosis: medications to flag, sun avoidance, skin prep, and arranging your ride home.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -157,14 +162,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor Before the Appointment</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Are any of my current medications or supplements likely to affect how my skin reacts to PDT?</li>
-                <li>Should I stop using any topical products before treatment, and if so, how many days beforehand?</li>
-                <li>How long will the appointment take, and how strict does my sun avoidance need to be on the trip home?</li>
-                <li>What should I bring to cover the treated area afterward?</li>
-                <li>Will I need someone to drive me, or is that just a precaution?</li>
-                <li>What can I expect to feel during the light-exposure portion of treatment?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

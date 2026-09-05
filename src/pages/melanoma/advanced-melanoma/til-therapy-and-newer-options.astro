@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/til-therapy-and-newer-options";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "TIL Therapy and Newer Melanoma Options | Beating Skin Cancer";
 const description = "TIL cell therapy with lifileucel, oncolytic virus therapy, tebentafusp, and vaccines in trials — options for advanced melanoma after first-line treatment.";
 
@@ -252,13 +257,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Now that my first-line treatment has stopped working, what are all my options — another drug class, TIL therapy, or a trial?</li>
-                <li>Am I a candidate for lifileucel — is there a lesion large enough to harvest, and am I fit enough for the chemotherapy and IL-2?</li>
-                <li>Which center near me is certified to deliver TIL therapy, and what would referral involve?</li>
-                <li>Is there a role for T-VEC for my skin or lymph node disease?</li>
-                <li>Are there clinical trials — including vaccine or cell-therapy trials — that I should be evaluated for now?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

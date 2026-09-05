@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/atypical-nevi/dermatologist-evaluation-dermoscopy";
 const title = "Dermoscopy & the Atypical Mole Exam | Beating Skin Cancer";
 const description = "What a dermatologist does during a mole check — the full-body exam, dermoscopy, photography, and the clues that lead to a biopsy or watchful waiting.";
 const lastReviewed = "2026-08-27";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -239,13 +244,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Do you use dermoscopy, and did any of my moles look concerning under it?</li>
-                <li>Would I benefit from baseline total-body photography or digital mole mapping?</li>
-                <li>Which specific moles are you planning to re-check next time?</li>
-                <li>Are we biopsying anything today, or monitoring — and why?</li>
-                <li>How thoroughly were my scalp, soles, and nails checked?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

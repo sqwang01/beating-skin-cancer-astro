@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/prevention";
 const title = "Reducing Your Risk of Another SCC | Beating Skin Cancer";
 const description = "Sun protection, treating actinic keratoses, nicotinamide and retinoid chemoprevention, and follow-up schedules that lower your risk of another SCC.";
 const lastReviewed = "2026-08-26";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -194,13 +199,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given my history, am I a candidate for nicotinamide or a prescription chemoprevention option?</li>
-                <li>Do I have actinic keratoses or field damage that should be treated proactively?</li>
-                <li>How often should I be seen for follow-up skin exams based on my risk?</li>
-                <li>If I'm on immunosuppressive medication, should my dermatologist and my other specialist be coordinating on my skin cancer risk?</li>
-                <li>Are there specific areas of my skin, based on where my prior SCC was, that I should be paying closer attention to?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

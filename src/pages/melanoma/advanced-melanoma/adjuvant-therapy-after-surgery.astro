@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Adjuvant Therapy for Resected Melanoma | Beating Skin Cancer";
 const description = "Adjuvant immunotherapy or BRAF/MEK targeted therapy after surgery for stage III or high-risk stage II melanoma lowers the chance the cancer comes back.";
 
@@ -253,13 +258,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>What is my exact substage, and what is my estimated chance of recurrence with and without adjuvant therapy?</li>
-                <li>Given my substage, do you recommend immunotherapy, targeted therapy, or observation — and why?</li>
-                <li>Has my melanoma been tested for a BRAF mutation, and what did that show?</li>
-                <li>What is my personal risk of a permanent hormone problem or another lasting side effect?</li>
-                <li>Would neoadjuvant treatment before surgery, or a clinical trial, be a better fit for my situation?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

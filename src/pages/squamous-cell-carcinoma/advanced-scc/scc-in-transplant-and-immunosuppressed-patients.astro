@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/scc-in-transplant-and-immunosuppressed-patients";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Advanced SCC in Transplant Patients | Beating Skin Cancer";
 const description = "Immunosuppression makes cutaneous SCC more aggressive in transplant recipients, and PD-1 immunotherapy carries a real risk of organ rejection.";
 
@@ -203,14 +208,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>How often should I have full-body skin exams given my transplant or immunosuppression?</li>
-                <li>Is my current immunosuppression regimen something we should reconsider given my skin cancer history?</li>
-                <li>If my SCC becomes advanced, is immunotherapy an option for me, or too risky because of my transplant?</li>
-                <li>Who would be involved in that decision — my transplant team, oncologist, or both together?</li>
-                <li>What non-immunotherapy treatments would we try first, and how effective are they typically?</li>
-                <li>Is there a specialized center or clinical trial studying safer immunotherapy protocols for transplant recipients like me?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

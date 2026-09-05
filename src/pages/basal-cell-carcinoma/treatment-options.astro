@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/treatment-options";
 const title = "BCC Treatment Options Explained | Beating Skin Cancer";
 const description = "Compare BCC treatment options—excision, Mohs surgery, topical medications, and more—to understand which approach fits your diagnosis.";
 const lastReviewed = "2026-08-22";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -210,13 +215,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given my tumor's size, location, and subtype, which treatment do you recommend and why?</li>
-                <li>What is the expected cure rate for this approach in my specific case?</li>
-                <li>What will recovery and scarring look like?</li>
-                <li>Am I a candidate for a non-surgical option?</li>
-                <li>How will we confirm the BCC is completely gone after treatment?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

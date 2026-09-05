@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/hedgehog-pathway-inhibitors";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Hedgehog Inhibitors for Advanced BCC | Beating Skin Cancer";
 const description = "Hedgehog pathway inhibitors are oral targeted drugs for advanced basal cell carcinoma. Learn how vismodegib and sonidegib work and what to expect.";
 
@@ -212,14 +217,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my BCC locally advanced or metastatic, and which hedgehog inhibitor do you recommend for me and why?</li>
-                <li>What response is realistic for a tumor like mine, and how will we measure whether it is working?</li>
-                <li>How long might I need to take it, and what would make us stop or switch?</li>
-                <li>What side effects should I expect, and what is the plan for managing them or taking breaks?</li>
-                <li>If the drug stops working, what are my next options — immunotherapy or a trial?</li>
-                <li>What contraception and blood-donation precautions apply, and for how long after the last dose?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

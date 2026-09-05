@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/living-with-advanced-melanoma";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Living With Advanced Melanoma: Outlook | Beating Skin Cancer";
 const description = "The outlook for advanced melanoma today, the surveillance schedule, managing scan anxiety, long-term treatment effects, and where to find support.";
 
@@ -289,13 +294,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given where my melanoma is and how it has responded, what is a realistic picture of my outlook?</li>
-                <li>What exactly is my surveillance schedule — which tests, how often, and for how many years?</li>
-                <li>Which of my treatment side effects are likely to be permanent, and how are they managed long term?</li>
-                <li>Can I be referred to palliative or supportive care to help with symptoms and stress while I stay on treatment?</li>
-                <li>What mental health and peer support do you recommend for me and for my caregiver?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

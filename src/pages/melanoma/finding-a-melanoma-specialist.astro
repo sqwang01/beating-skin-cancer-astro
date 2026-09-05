@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/finding-a-melanoma-specialist";
@@ -9,6 +12,8 @@ const title = "Finding a Melanoma Specialist Near You | Beating Skin Cancer";
 const description =
   "Learn which specialists treat melanoma, when a general dermatologist is enough vs. a melanoma center, and how to find and vet the right provider.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -339,6 +344,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-white mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
               <ul class="space-y-3 text-white/80">
                 <li class="flex items-start gap-2">
                   <span class="text-teal mt-1">•</span>

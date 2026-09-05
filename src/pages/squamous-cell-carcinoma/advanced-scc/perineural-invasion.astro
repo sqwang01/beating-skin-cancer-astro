@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/perineural-invasion";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "What Perineural Invasion Means for SCC | Beating Skin Cancer";
 const description = "Perineural invasion means an SCC is growing along nerves. Learn how incidental and clinical PNI differ, how they change staging, and when radiation is added.";
 
@@ -262,14 +267,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my perineural invasion incidental (microscopic) or clinical, and what size nerve is involved?</li>
-                <li>Was a named nerve involved, and were my surgical margins clear of nerve?</li>
-                <li>Do I need an MRI, and what did it show about the nerve and the skull base?</li>
-                <li>Does the PNI change my stage under the AJCC or BWH systems?</li>
-                <li>Do you recommend radiation after surgery? Why or why not, and what area would it cover?</li>
-                <li>What symptoms should prompt me to call, and how often will I be seen for follow-up?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/am-i-a-candidate-for-pdt";
 const title = "Am I a Candidate for PDT for AK? | Beating Skin Cancer";
 const description = "Who does well with photodynamic therapy for actinic keratosis, which factors steer patients toward another option, and who is generally not a candidate.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -221,13 +226,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on how many AKs I have and where they are, would I benefit more from PDT or a spot treatment?</li>
-                <li>Are any of my current AKs too thick for PDT to work well, and if so, what do we do first?</li>
-                <li>Given what I've already tried, why are you recommending PDT now?</li>
-                <li>Is there anything in my health history or current medications that would make PDT unsafe for me?</li>
-                <li>Can I realistically avoid direct sunlight for the recommended period after treatment?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

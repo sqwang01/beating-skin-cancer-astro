@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/immunotherapy-for-advanced-bcc";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Immunotherapy for Advanced BCC | Beating Skin Cancer";
 const description = "Immunotherapy with the PD-1 inhibitor cemiplimab treats advanced basal cell carcinoma after hedgehog inhibitors stop working or cause side effects.";
 
@@ -259,14 +264,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is immunotherapy the right next step for me, or are other options still on the table?</li>
-                <li>Given my tumor, what is a realistic chance that it will shrink on cemiplimab?</li>
-                <li>What immune-related side effects should prompt me to call you right away?</li>
-                <li>How will we know if it is working, and how long before we can tell?</li>
-                <li>Do my other medical conditions or medications raise my risk with this drug?</li>
-                <li>Is there a clinical trial I should consider instead of or alongside this?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

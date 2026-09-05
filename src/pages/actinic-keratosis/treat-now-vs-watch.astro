@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/treat-now-vs-watch";
 const title = "Treat an AK Now or Watch It? | Beating Skin Cancer";
 const description = "Learn the clinical factors dermatologists weigh to decide whether an actinic keratosis needs treatment now or can be safely monitored over time.";
 const lastReviewed = "2026-08-25";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -227,13 +232,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
 
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-          <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-            <li>Does this specific AK have any features — thickness, tenderness, growth — that make you want to treat it now rather than watch it?</li>
-            <li>Given my health history (immune status, prior skin cancers, other conditions), does that change how aggressively you'd approach a borderline spot?</li>
-            <li>If we choose to watch this lesion, what specifically should prompt me to call you before the next visit?</li>
-            <li>How does the location of this AK — ear, lip, scalp versus elsewhere — factor into your recommendation?</li>
-            <li>If I have many AKs, does that change whether individual lesions get watched versus treated as a group?</li>
-          </ol>
+          <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+          <QuestionList group={checklist.groups[0]} />
         </div>
 
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">

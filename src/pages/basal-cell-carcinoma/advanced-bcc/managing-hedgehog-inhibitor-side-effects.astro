@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/managing-hedgehog-inhibitor-side-effects";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Hedgehog Inhibitor Side Effects | Beating Skin Cancer";
 const description = "Hedgehog inhibitors for advanced BCC cause muscle cramps, taste loss, and hair thinning. Learn how dose breaks and supportive care keep treatment going.";
 
@@ -232,14 +237,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Which side effects am I most likely to get, and when might they start?</li>
-                <li>What specifically can we do about muscle cramps and taste changes?</li>
-                <li>At what point would we lower the dose or take a break — and can we plan breaks in advance?</li>
-                <li>If I stop for a few weeks, is there a risk the cancer comes back or stops responding?</li>
-                <li>Should I see a dietitian, and do you recommend any supplements?</li>
-                <li>Which symptoms mean I should call you right away rather than wait for my next visit?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

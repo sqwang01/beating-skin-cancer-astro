@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/multidisciplinary-workup";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Advanced SCC Workup Before Treatment | Beating Skin Cancer";
 const description = "How advanced squamous cell carcinoma is evaluated before treatment: pathology re-review, CT, MRI and PET-CT imaging, staging, and the multidisciplinary team.";
 
@@ -305,14 +310,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Has a dermatopathologist re-reviewed my slides, and does the report list differentiation, depth, perineural and lymphovascular invasion, margins, and subtype?</li>
-                <li>What is my stage under the BWH and AJCC8 systems, and what does that predict?</li>
-                <li>Do I need a scan — and should it be CT, MRI, PET-CT, or ultrasound?</li>
-                <li>Is there any sign the cancer has reached a nerve or a lymph node?</li>
-                <li>Which specialists will be involved, and will my case go to a tumor board?</li>
-                <li>Are there clinical trials I should consider now, before we start treatment?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

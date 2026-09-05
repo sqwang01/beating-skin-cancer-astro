@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/what-is-ak-vs-skin-cancer";
 const title = "Is Actinic Keratosis Skin Cancer? | Beating Skin Cancer";
 const description = "Actinic keratosis is a precancerous patch, not skin cancer itself. Learn what makes AK different from squamous cell carcinoma and when it needs treatment.";
 const lastReviewed = "2026-08-24";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -195,13 +200,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Does this particular AK have any features that concern you, or is it low-risk to watch?</li>
-                <li>Would a biopsy help clarify whether this spot has started to invade, or is treatment reasonable without one?</li>
-                <li>How many AKs do I have, and does that change your recommended treatment approach?</li>
-                <li>What changes in this spot should prompt me to call you before my next visit?</li>
-                <li>How often should I have my skin checked given my history of AKs?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

@@ -2,6 +2,8 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { hubBundlePdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt";
@@ -265,6 +267,17 @@ const jsonLd = [breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)]
           <p class="text-sm text-slate/70">
             <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
           </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8 text-center">
+          <h2 class="text-2xl font-serif text-navy mb-3">Printable Discussion Guide</h2>
+          <p class="text-slate/80 mb-6">
+            Every question from the topics above, collected into one printable checklist — with a checkbox and space for notes beside each, and header fields for your appointment date and doctor's name.
+          </p>
+          <ChecklistDownloadButton
+            href={hubBundlePdfPath('ak-pdt')}
+            label="Download the complete PDT discussion guide (PDF)"
+          />
         </div>
 
         <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">

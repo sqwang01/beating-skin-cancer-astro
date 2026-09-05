@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/questions-to-ask-your-care-team";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Advanced Melanoma: Questions to Ask | Beating Skin Cancer";
 const description = "Questions to ask your surgical, medical, and radiation oncologists about advanced melanoma — diagnosis, treatment plan, follow-up, and support.";
 
@@ -108,18 +113,13 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
           </a>
         </div>
 
+        <div class="mb-8 text-center">
+          <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" />
+        </div>
+
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 class="text-2xl font-serif text-navy mb-4">Understanding My Diagnosis and Stage</h2>
-          <p class="text-slate/80 mb-4">These answers shape every decision that follows.</p>
-          <ul class="space-y-3 text-slate/80">
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is my melanoma stage III or stage IV, and what is the exact substage?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Where is the melanoma — lymph nodes only, in-transit skin lesions, or distant organs? Which organs?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can all of it be removed with surgery — now, or possibly after medication?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is my blood LDH level, and is it normal or elevated?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Has my tumor been tested for a <em>BRAF</em> mutation? If it is acral or mucosal melanoma, has it been tested for <em>NRAS</em> and <em>KIT</em>?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Has my brain been imaged with MRI, even though I feel well?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will my original pathology be re-reviewed here, and will my case go to a multidisciplinary tumor board?</span></li>
-          </ul>
+          <QuestionList group={checklist.groups[0]} />
         </div>
 
         <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
@@ -127,14 +127,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
             <div>
               <h2 class="text-2xl font-serif text-navy mb-4">Choosing a Treatment Plan</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What treatment are you recommending, and what is the goal — cure, long-term control, or shrinking the melanoma before surgery?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Why <a href="/melanoma/advanced-melanoma/immunotherapy-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">immunotherapy</a> versus <a href="/melanoma/advanced-melanoma/targeted-therapy-braf-mek" class="text-teal hover:text-teal/80 underline">targeted therapy</a> for me? If immunotherapy, single-agent or a combination — and why?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>For each option you are considering, what is the expected response rate and the expected rate of serious side effects?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If my melanoma is resectable stage III, is <a href="/melanoma/advanced-melanoma/neoadjuvant-immunotherapy" class="text-teal hover:text-teal/80 underline">neoadjuvant treatment before surgery</a> an option? What about <a href="/melanoma/advanced-melanoma/adjuvant-therapy-after-surgery" class="text-teal hover:text-teal/80 underline">adjuvant treatment after surgery</a>?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How long would I be on treatment, and what happens when I stop?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If this treatment does not work, what are the next options?</span></li>
-              </ul>
+              <QuestionList group={checklist.groups[1]} />
             </div>
           </div>
         </div>
@@ -144,25 +137,14 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:info" class="text-coral flex-shrink-0 mt-1" size={28} aria-hidden="true" />
             <div>
               <h2 class="text-2xl font-serif text-navy mb-4">During Treatment</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Which side effects are most likely for me, and which ones are urgent? See <a href="/melanoma/advanced-melanoma/managing-immunotherapy-side-effects" class="text-teal hover:text-teal/80 underline">managing immunotherapy side effects</a>.</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who do I call after hours, and which symptoms should send me straight to the emergency room?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What blood tests and scans will I have, and how often?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>How will we know whether the treatment is working, and what would you do if an early scan is unclear?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can I keep working, exercising, and traveling during treatment? Are any vaccines or medications off-limits?</span></li>
-              </ul>
+              <QuestionList group={checklist.groups[2]} />
             </div>
           </div>
         </div>
 
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 class="text-2xl font-serif text-navy mb-4">Surgery and Radiation</h2>
-          <ul class="space-y-3 text-slate/80">
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is surgery still useful for me — to remove nodes, an in-transit lesion, or a single distant spot (oligometastatic disease)?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If I have a positive sentinel node, are you recommending nodal ultrasound surveillance rather than removing all the nodes, and why?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there a role for radiation — to a lymph node basin, a bone lesion, or a <a href="/melanoma/advanced-melanoma/melanoma-brain-metastases" class="text-teal hover:text-teal/80 underline">brain metastasis</a> — and how does it fit with my systemic treatment?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the recovery from any planned procedure, and how might it delay other treatment?</span></li>
-          </ul>
+          <QuestionList group={checklist.groups[3]} />
         </div>
 
         <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
@@ -170,36 +152,19 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:activity" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
             <div>
               <h2 class="text-2xl font-serif text-navy mb-4">Second Opinions and Clinical Trials</h2>
-              <ul class="space-y-3 text-slate/80">
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Would you recommend a second opinion at a high-volume melanoma center? Can you help arrange it without delaying treatment?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Am I eligible for a <a href="/melanoma/advanced-melanoma/clinical-trials-for-advanced-melanoma" class="text-teal hover:text-teal/80 underline">clinical trial</a> — here or elsewhere — and is a trial reasonable now rather than later?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Am I a candidate for newer options such as <a href="/melanoma/advanced-melanoma/til-therapy-and-newer-options" class="text-teal hover:text-teal/80 underline">TIL cell therapy</a>?</span></li>
-                <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If I join a trial, would I keep seeing you, and how would my care be coordinated?</span></li>
-              </ul>
+              <QuestionList group={checklist.groups[4]} />
             </div>
           </div>
         </div>
 
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 class="text-2xl font-serif text-navy mb-4">Follow-Up and Surveillance</h2>
-          <ul class="space-y-3 text-slate/80">
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>After treatment, how often will I have exams, blood tests, and imaging — and for how many years?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Will follow-up include brain MRI, and how long will that continue?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Who does my skin checks, and how often, given my higher risk of a new, separate melanoma?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What symptoms between visits should prompt a call?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What does "no evidence of disease" mean for me, and what is the plan if the melanoma comes back?</span></li>
-          </ul>
+          <QuestionList group={checklist.groups[5]} />
         </div>
 
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
           <h2 class="text-2xl font-serif text-navy mb-4">Support and Practical Concerns</h2>
-          <ul class="space-y-3 text-slate/80">
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>If I might want children later, should I see a fertility specialist before treatment starts?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is there a nurse navigator, social worker, or financial counselor who can help with costs, work, and insurance?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What mental health support and peer support groups do you recommend, for me and for my caregiver?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can I see palliative or supportive care alongside my active treatment to help manage symptoms and stress?</span></li>
-            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What should my family know about my diagnosis, including whether they should have their own skin checks?</span></li>
-          </ul>
+          <QuestionList group={checklist.groups[6]} />
         </div>
 
         <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
@@ -207,14 +172,7 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">Five Questions to Start With</h2>
-              <p class="text-slate/80 mb-4">If time is short, these five open up the rest of the conversation:</p>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my melanoma stage III or stage IV, and can any of it be removed with surgery?</li>
-                <li>Is my tumor BRAF-mutant, and what is my LDH?</li>
-                <li>What treatment do you recommend first, what is the goal, and what are its main risks?</li>
-                <li>Will my case be reviewed by a multidisciplinary team, and am I eligible for a clinical trial?</li>
-                <li>Should I get a second opinion at a high-volume melanoma center?</li>
-              </ol>
+              <QuestionList group={checklist.groups[7]} />
             </div>
           </div>
         </div>

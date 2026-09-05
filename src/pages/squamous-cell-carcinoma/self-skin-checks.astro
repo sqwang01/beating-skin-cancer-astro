@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/self-skin-checks";
 const title = "How to Check Your Skin for SCC | Beating Skin Cancer";
 const description = "A step-by-step guide to performing skin self-checks for squamous cell carcinoma, what changes to look for, and when to see a dermatologist sooner.";
 const lastReviewed = "2026-08-26";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -214,13 +219,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Can you show me what specifically to look for so I recognize "changed" for this spot in the future?</li>
-                <li>Given my history and skin type, how often should I be getting a professional full-body skin exam?</li>
-                <li>Are there areas of my body I should be paying extra attention to during self-checks?</li>
-                <li>If I have actinic keratoses, what would tell me one of them is starting to change into something more concerning?</li>
-                <li>Is this spot something I can keep watching, or should it be biopsied now?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

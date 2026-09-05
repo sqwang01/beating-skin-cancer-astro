@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/self-exam-when-to-see-doctor";
 const title = "How to Check Your Skin for BCC | Beating Skin Cancer";
 const description = "How to perform a basal cell carcinoma self-exam, the specific signs BCC shows on skin, and exactly when a spot is worth a dermatologist visit.";
 const lastReviewed = "2026-08-24";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -205,13 +210,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is this spot something you'd want to biopsy, or is it safe to just keep watching?</li>
-                <li>Given my skin type and history, how often should I be getting a professional skin check?</li>
-                <li>Are there areas of my body I should be paying closer attention to during self-exams?</li>
-                <li>Can you show me what to look for so I know what "changed" actually looks like for this spot?</li>
-                <li>If I've had a BCC before, does that change how often I should self-exam or get checked?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

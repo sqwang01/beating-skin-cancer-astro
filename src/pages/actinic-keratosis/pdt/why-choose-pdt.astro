@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/why-choose-pdt";
 const title = "Why Choose PDT for Actinic Keratosis? | Beating Skin Cancer";
 const description = "Comparing photodynamic therapy with cryotherapy and topical field therapy for actinic keratosis: efficacy, visits needed, and who benefits most.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -169,13 +174,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given the pattern of my sun damage, would you expect PDT, cryotherapy, or a topical cream to work best for me?</li>
-                <li>How does my immune status factor into your recommendation?</li>
-                <li>Would combining a short course of topical treatment with PDT make sense in my case?</li>
-                <li>What cosmetic outcome should I expect from each option you're considering?</li>
-                <li>If we start with one approach and it doesn't clear enough of the AKs, what's the next step?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

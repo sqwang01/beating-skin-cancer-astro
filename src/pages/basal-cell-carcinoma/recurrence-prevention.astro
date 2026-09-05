@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/recurrence-prevention";
 const title = "BCC Recurrence and Prevention Guide | Beating Skin Cancer";
 const description = "How often basal cell carcinoma returns after treatment, why new BCCs are common, and evidence-based steps to lower your risk of another one.";
 const lastReviewed = "2026-08-24";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -190,13 +195,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on how my BCC was treated, what's my personal recurrence risk?</li>
-                <li>How often should I come in for a full-body skin exam going forward?</li>
-                <li>What should a recurrence at the treatment site actually look like?</li>
-                <li>Am I a candidate for nicotinamide or other chemoprevention?</li>
-                <li>Are there sunscreen or sun-protection habits specific to my skin type and lifestyle I should adopt?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

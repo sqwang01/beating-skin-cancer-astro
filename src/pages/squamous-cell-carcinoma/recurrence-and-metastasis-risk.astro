@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/recurrence-and-metastasis-risk";
 const title = "SCC Recurrence and Metastasis Risk | Beating Skin Cancer";
 const description = "What raises the risk of SCC recurring or spreading to lymph nodes: tumor size, depth, nerve invasion, location, and immunosuppression, explained.";
 const lastReviewed = "2026-08-26";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -213,13 +218,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Based on my pathology report, is my SCC classified as low-risk, high-risk, or very-high-risk?</li>
-                <li>Which specific feature — size, depth, differentiation, nerve involvement — is driving that risk category?</li>
-                <li>Do I need imaging or a lymph node exam based on my risk level, and if so, what will that involve?</li>
-                <li>Am I more at risk for local recurrence, nodal spread, or both?</li>
-                <li>How does my immunosuppression status (if applicable) change my monitoring schedule going forward?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

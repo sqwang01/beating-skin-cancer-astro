@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/melanoma-brain-metastases";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "When Melanoma Spreads to the Brain | Beating Skin Cancer";
 const description = "How melanoma brain metastases are found on MRI and treated with immunotherapy, BRAF/MEK targeted therapy, stereotactic radiosurgery, and surgery.";
 
@@ -288,13 +293,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>How many brain lesions are there, how large are they, and are any causing symptoms or swelling?</li>
-                <li>Would you recommend stereotactic radiosurgery, surgery, or both — and in what order relative to systemic therapy?</li>
-                <li>Is my melanoma <em>BRAF</em>-mutated, and does that change whether we start with immunotherapy or targeted therapy?</li>
-                <li>Am I on steroids, and if so, what is the plan to get the dose as low as possible?</li>
-                <li>Is there a clinical trial for melanoma brain metastases that I might be eligible for, and has my case been reviewed by a multidisciplinary team?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

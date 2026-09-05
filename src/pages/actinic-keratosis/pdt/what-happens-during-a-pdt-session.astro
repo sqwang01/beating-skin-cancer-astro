@@ -2,12 +2,17 @@
 import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/what-happens-during-a-pdt-session";
 const title = "What Happens During a PDT Session? | Beating Skin Cancer";
 const description = "A step-by-step walk-through of a photodynamic therapy appointment for actinic keratosis: skin prep, photosensitizer, incubation, light exposure, and after.";
 const lastReviewed = "2026-09-04";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -177,13 +182,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>How long will my incubation period be, and will the area be covered during it?</li>
-                <li>What light source will be used, and roughly how long does the exposure step take?</li>
-                <li>What can be done to manage discomfort during the light exposure?</li>
-                <li>What should I plan for immediately afterward — do I need someone to drive me, or can I go straight back to normal activities?</li>
-                <li>What should my skin look like in the hours right after treatment, and what would be a reason to call you?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

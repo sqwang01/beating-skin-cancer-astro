@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/managing-immunotherapy-side-effects";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Melanoma Immunotherapy Side Effects | Beating Skin Cancer";
 const description = "How the immune-related side effects of melanoma immunotherapy are monitored and managed, when treatment is paused, and which symptoms need urgent care.";
 
@@ -319,13 +324,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Given my regimen, which side effects are most likely for me, and which are the dangerous ones to watch for?</li>
-                <li>What blood tests will you run before each infusion, and what are you looking for?</li>
-                <li>At what point would we pause treatment, and at what point would we stop it for good?</li>
-                <li>If I need steroids, how long would that last, and what else do I need while taking them?</li>
-                <li>Who do I call after hours, and which symptoms should send me straight to the emergency room?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

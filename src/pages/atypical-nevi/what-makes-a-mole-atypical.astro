@@ -2,12 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
 import { medicalReviewJsonLd } from '../../lib/seo';
 
 const canonical = "https://www.beatingskincancer.com/atypical-nevi/what-makes-a-mole-atypical";
 const title = "What Makes a Mole Atypical vs. Normal | Beating Skin Cancer";
 const description = "Atypical moles, also called dysplastic nevi, look different from ordinary moles. Learn the features that set them apart and why dermatologists track them.";
 const lastReviewed = "2026-08-27";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
 
 const articleJsonLd = {
   "@context": "https://schema.org",
@@ -226,13 +231,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Which of my moles do you consider atypical, and how many are there?</li>
-                <li>Is any one of them concerning enough to biopsy now, or are we monitoring?</li>
-                <li>Should we take baseline photos so we can compare at my next visit?</li>
-                <li>Given my moles, how often should I be seen, and should I do monthly self-exams?</li>
-                <li>Does my family history change how closely you want to watch these?</li>
-              </ol>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

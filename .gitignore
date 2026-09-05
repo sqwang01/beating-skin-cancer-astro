@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# generated checklist PDFs (built by integrations/checklist-pdfs.mjs on dev start / build)
+public/downloads/
+
 # generated types
 .astro/
 

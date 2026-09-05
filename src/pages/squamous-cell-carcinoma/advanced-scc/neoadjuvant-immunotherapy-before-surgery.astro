@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/neoadjuvant-immunotherapy-before-surgery";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Neoadjuvant Immunotherapy for SCC | Beating Skin Cancer";
 const description = "Neoadjuvant cemiplimab before surgery can shrink or eliminate an advanced SCC tumor, sometimes allowing a smaller, less disfiguring operation.";
 
@@ -271,14 +276,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my tumor a candidate for immunotherapy before surgery, and what would that change about my operation?</li>
-                <li>How many doses would I get, and how long before we know whether it's working?</li>
-                <li>Will I still need surgery even if the tumor seems to disappear?</li>
-                <li>What happens to the surgical plan if the tumor doesn't shrink, or grows, during treatment?</li>
-                <li>Is a transplant, autoimmune condition, or other health issue a reason to avoid this approach for me?</li>
-                <li>Who is on my team for this — dermatology, surgery, and medical oncology together?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

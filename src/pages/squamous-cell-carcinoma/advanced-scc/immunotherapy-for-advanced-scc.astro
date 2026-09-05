@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/squamous-cell-carcinoma/advanced-scc/immunotherapy-for-advanced-scc";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Immunotherapy for Advanced SCC | Beating Skin Cancer";
 const description = "PD-1 inhibitors cemiplimab and pembrolizumab are the first-line systemic treatment for locally advanced or metastatic cutaneous squamous cell carcinoma.";
 
@@ -259,14 +264,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my SCC locally advanced or metastatic, and is immunotherapy the right first step?</li>
-                <li>Would you use cemiplimab or pembrolizumab for me, and why?</li>
-                <li>Given my tumor, what is a realistic chance it will shrink, and how long until we know?</li>
-                <li>Do I have any condition — a transplant, an autoimmune disease — that raises my risk with this treatment?</li>
-                <li>How often will I have scans and blood tests, and how long would I stay on treatment?</li>
-                <li>If it does not work or stops working, what would we do next? Is there a clinical trial for me?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

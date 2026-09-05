@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/basal-cell-carcinoma/advanced-bcc/living-with-advanced-bcc";
 const lastReviewed = "2026-08-31";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Advanced BCC: Outlook and Support | Beating Skin Cancer";
 const description = "Understand the outlook for locally advanced and metastatic basal cell carcinoma, plus follow-up care, managing side effects, and emotional support.";
 
@@ -317,15 +322,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>Is my BCC locally advanced or metastatic, and what does that mean for my outlook?</li>
-                <li>What is the goal of my treatment right now — to cure, to shrink the tumor, or to control it long term?</li>
-                <li>What will my follow-up schedule and imaging look like over the next year?</li>
-                <li>If long-term side effects become hard to live with, what are my options — dose changes, treatment breaks, or switching therapy?</li>
-                <li>Can you refer me for reconstruction or a prosthesis, and when would that happen?</li>
-                <li>Can I meet with a palliative (supportive) care team, and how do I connect with a social worker?</li>
-                <li>What support is available for my caregiver?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>

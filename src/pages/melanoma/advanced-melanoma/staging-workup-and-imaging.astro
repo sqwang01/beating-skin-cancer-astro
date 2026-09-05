@@ -3,9 +3,14 @@ import Layout from '../../../layouts/Layout.astro';
 import { Icon } from 'astro-icon/components';
 import MedicalReviewer from '../../../components/MedicalReviewer.astro';
 import { medicalReviewJsonLd } from '../../../lib/seo';
+import QuestionList from '../../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../../components/ChecklistDownloadButton.astro';
+import { getChecklistByPath, checklistPdfPath } from '../../../data/careTeamQuestions';
 
 const canonical = "https://www.beatingskincancer.com/melanoma/advanced-melanoma/staging-workup-and-imaging";
 const lastReviewed = "2026-09-01";
+const checklist = getChecklistByPath(new URL(canonical).pathname);
+if (!checklist) throw new Error(`No careTeamQuestions entry for ${canonical}`);
 const title = "Advanced Melanoma Staging and Workup | Beating Skin Cancer";
 const description = "How advanced melanoma is staged with the AJCC 8th edition TNM system, LDH, PET/CT, brain MRI, and BRAF testing, plus the multidisciplinary tumor board.";
 
@@ -261,13 +266,8 @@ const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd
             <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
             <div>
               <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
-              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
-                <li>What is my full TNM stage, and is it a clinical or a pathologic stage?</li>
-                <li>Which scans will I have, and will they include a brain MRI even though I feel well?</li>
-                <li>Has my tumor been tested for BRAF — and, if it is acral or mucosal, for NRAS and KIT?</li>
-                <li>Will my original pathology slides be re-reviewed here, and could that change my stage?</li>
-                <li>Will my case be presented at a multidisciplinary tumor board before we decide on treatment?</li>
-              </ol>
+              <ChecklistDownloadButton href={checklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
             </div>
           </div>
         </div>
