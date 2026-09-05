@@ -1,0 +1,229 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/preparing-for-your-pdt-appointment";
+const title = "Preparing for Your PDT Appointment | Beating Skin Cancer";
+const description = "How to prepare for photodynamic therapy for actinic keratosis: medications to flag, sun avoidance, skin prep, and arranging your ride home.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Should I Prepare for My PDT Appointment?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "How Should I Prepare for My PDT Appointment?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Should I avoid the sun before my PDT appointment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Sunburned or heavily tanned skin can react more strongly to treatment, so most dermatologists ask patients to limit sun exposure and use sunscreen on the treatment area for at least a few days beforehand. This is separate from the stricter light avoidance required after treatment, once the photosensitizing agent has been applied."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What medications should I tell my dermatologist about before PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mention any photosensitizing medications, including certain antibiotics (such as tetracyclines), some diuretics, and oral or topical retinoids, as well as any supplements. Your dermatologist may ask you to pause a topical retinoid on the treatment area for several days beforehand, and will factor in other medications when timing your treatment and aftercare instructions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How should I get home after PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Plan to protect treated skin from light on the way home — a wide-brimmed hat, a scarf or hood, and clothing that covers the treated area all help. Most people can drive themselves, but arranging a ride removes one more thing to manage while your skin is at its most light-sensitive."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Should I Prepare for My PDT Appointment?
+          </h1>
+          <p class="text-xl text-white/80">What to do — and avoid — in the days before treatment</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            <a href="/actinic-keratosis/pdt" class="text-teal hover:text-teal/80 underline">Photodynamic therapy (PDT)</a> asks a bit more of patients before an appointment than a quick freeze or a prescription cream does. Because the treatment relies on a photosensitizing agent that makes treated skin temporarily reactive to light, a little planning beforehand — and for the trip home afterward — makes the whole experience go more smoothly.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            None of this preparation is complicated, but it's easy to overlook if no one mentions it in advance. Here's what typically matters in the days leading up to a PDT session, and what to have ready on the day itself.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">In the Days Beforehand</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Limit sun exposure to the treatment area</h3>
+              <p class="text-slate/80">
+                Sunburned, freshly tanned, or heavily sun-exposed skin can react more intensely to PDT. Most dermatologists ask patients to avoid deliberate sun exposure — tanning, prolonged time outdoors without sunscreen — on the area being treated for several days to a week before the appointment, and to keep up daily sunscreen in the meantime.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Flag your medications and supplements</h3>
+              <p class="text-slate/80">
+                Tell your dermatologist about everything you're taking, prescription and over-the-counter. A few categories matter specifically for PDT: photosensitizing drugs (some antibiotics, such as tetracyclines, and certain diuretics can heighten a light-triggered reaction), and topical or oral retinoids, which your dermatologist may ask you to pause on the treatment area for several days beforehand. This isn't about stopping medications on your own — it's information your care team needs to time treatment safely.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Simple skin prep at home</h3>
+              <p class="text-slate/80">
+                Keep the treatment area clean and avoid harsh exfoliants, retinoid creams, or other irritating products on it in the days leading up to your visit, unless your dermatologist has told you otherwise. Arrive with the area free of makeup, lotion, or sunscreen so the photosensitizing agent can be applied to clean skin.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Plan what to wear and bring</h3>
+              <p class="text-slate/80">
+                Wear or bring clothing that can cover the treated area on the way home — a collared shirt, a scarf, or a jacket, depending on where the AKs are located. If your face or scalp is being treated, plan to bring a wide-brimmed hat. Sunglasses are worth having on hand too, since eyes can also feel light-sensitive after treatment.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Arrange your trip home</h3>
+              <p class="text-slate/80">
+                Because treated skin needs to avoid direct light for a day or two afterward, think through how you'll get home before you arrive. Most people are able to drive themselves, but a covered car, tinted windows, or a ride from someone else can make the trip more comfortable, especially if your appointment is scheduled for daylight hours or your face was treated.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Clear your schedule for the incubation period</h3>
+              <p class="text-slate/80">
+                A PDT visit typically runs one to three hours, most of it spent waiting while the photosensitizing agent is absorbed before the light exposure step. Bring something to occupy that time, and avoid scheduling anything demanding immediately afterward — many people prefer to go straight home to rest.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor Before the Appointment</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Are any of my current medications or supplements likely to affect how my skin reacts to PDT?</li>
+                <li>Should I stop using any topical products before treatment, and if so, how many days beforehand?</li>
+                <li>How long will the appointment take, and how strict does my sun avoidance need to be on the trip home?</li>
+                <li>What should I bring to cover the treated area afterward?</li>
+                <li>Will I need someone to drive me, or is that just a precaution?</li>
+                <li>What can I expect to feel during the light-exposure portion of treatment?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Preparing for PDT mostly comes down to protecting the treatment area from extra sun beforehand, being upfront with your dermatologist about medications and supplements, and having a plan for shielding your skin on the way home. None of it requires special equipment or a big lifestyle change — just a little forethought.
+          </p>
+          <p class="text-slate/80">
+            For what happens once you're in the treatment chair, see <a href="/actinic-keratosis/pdt/what-happens-during-a-pdt-session" class="text-teal hover:text-teal/80 underline">what happens during a PDT session, step by step</a>, and for what to expect afterward, see <a href="/actinic-keratosis/pdt/pdt-side-effects-and-downtime" class="text-teal hover:text-teal/80 underline">PDT side effects and downtime</a>.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Patel VA, Arron ST, Berman B, et al. Expert consensus-based recommendations on the use of photodynamic therapy in actinic keratosis patients. <em>JAAD Int.</em> 2025;20:62-73. <a href="https://pubmed.ncbi.nlm.nih.gov/40958824/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy: before and after your treatment
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

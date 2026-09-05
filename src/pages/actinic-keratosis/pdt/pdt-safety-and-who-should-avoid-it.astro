@@ -1,0 +1,327 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/pdt-safety-and-who-should-avoid-it";
+const title = "PDT Safety: Who Should Avoid It? | Beating Skin Cancer";
+const description = "PDT has decades of safe use, but porphyria, certain medications, allergy, and pregnancy can rule it out. Learn the real contraindications and rare risks.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Is PDT Safe, and Who Should Avoid It?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "PDT Safety and Who Should Avoid It", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is photodynamic therapy safe overall?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. PDT has been used in dermatology for decades, and a 2019 consensus review concluded it is usually well tolerated with pain as its main acute effect and no evidence of longer-term or cumulative toxicity. Like any treatment, it has real contraindications and rare risks, which is why a dermatologist screens for them before every course."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can someone with lupus have PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lupus erythematosus is a relative contraindication because it can involve abnormal photosensitivity, and the light exposure central to PDT could theoretically trigger a flare. Whether PDT is appropriate depends on the specific type of lupus and how active it is, so this needs an individualized discussion between a dermatologist and, often, the treating rheumatologist."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What medications interact with photodynamic therapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drugs that increase skin photosensitivity — including certain antibiotics (tetracyclines, fluoroquinolones), some diuretics (thiazides), amiodarone, and St. John's wort — can heighten the skin's reaction to PDT's light step. Tell your dermatologist about every medication and supplement you take so this can be reviewed before treatment."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Is PDT Safe, and Who Should Avoid It?
+          </h1>
+          <p class="text-xl text-white/80">A closer look at the real contraindications and rare risks of photodynamic therapy</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Photodynamic therapy (PDT) has been used to treat actinic keratosis (AK) and other sun-damaged, precancerous skin for more than three decades, and its safety profile is well established: a 2019 consensus review commissioned by the British Association of Dermatologists concluded that topical PDT is generally well tolerated, with no documented evidence of cumulative toxicity or long-term photocarcinogenic risk from the treatment itself. That track record is reassuring, but it doesn't mean PDT is right for everyone.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Because PDT works by combining a photosensitizing agent with light exposure, its contraindications cluster around a specific theme: anything that makes the skin already abnormally sensitive to light, or that could make a phototoxic reaction dangerous rather than merely uncomfortable. This article goes through those contraindications and the rare risks of PDT in real clinical detail, so you know what your dermatologist is screening for and why.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:shield-alert" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Photosensitivity Disorders</h2>
+              <p class="text-slate/80 mb-4">
+                The clearest contraindications to PDT are conditions that already make the skin abnormally reactive to light:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Porphyria cutanea tarda and other porphyrias.</strong> These conditions involve a buildup of porphyrins — the same class of light-reactive molecules that PDT deliberately generates inside targeted cells using a photosensitizing agent. In someone who already has excess porphyrins circulating or accumulated in the skin, adding a photosensitizing agent and then exposing the skin to light risks an exaggerated, poorly controlled phototoxic reaction well beyond what PDT normally causes. For this reason, porphyria is considered an absolute contraindication to PDT.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Lupus erythematosus,</strong> particularly cutaneous forms with a photosensitive component. Ultraviolet and visible light can trigger lupus skin flares in susceptible patients, so PDT's light-based mechanism raises a similar theoretical concern. This is usually treated as a relative rather than absolute contraindication — the decision depends on the specific lupus subtype, disease activity, and often input from the patient's rheumatologist.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Other photodermatoses,</strong> such as polymorphic light eruption or solar urticaria, may also need individual evaluation, since they reflect a baseline abnormal light sensitivity that PDT's light-activation step could aggravate.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:pill" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Photosensitizing Medications</h2>
+              <p class="text-slate/80 mb-4">
+                A number of common medications and supplements can independently increase how strongly skin reacts to light, and combining them with PDT's photosensitizing agent may intensify the treatment reaction or extend how long the skin stays light-sensitive afterward. Your dermatologist will ask about your full medication list, including:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Certain antibiotics</strong> — tetracyclines (such as doxycycline) and fluoroquinolones are well-known photosensitizers.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Thiazide diuretics</strong> and some other blood pressure medications.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Amiodarone,</strong> a heart-rhythm medication with a particularly strong and long-lasting photosensitizing effect.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>St. John's wort</strong> and certain other herbal supplements.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                This doesn't automatically rule PDT out — it often just means the timing or dose is discussed, or the medication is temporarily paused if that's medically reasonable. Never stop a prescribed medication on your own; let your dermatologist coordinate with the prescribing physician.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:ban" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Allergy, Pregnancy, and Practical Exclusions</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Known allergy to the photosensitizing agent.</strong> A prior allergic or significant contact reaction to ALA or MAL is an absolute contraindication to using that same agent again. True allergy is uncommon, but a 2019 consensus review flagged contact allergy to photosensitizer prodrugs as a real, if rare, adverse effect worth watching for — particularly in patients who have had multiple PDT courses to large areas over time.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Pregnancy and breastfeeding.</strong> There isn't robust safety data on ALA or MAL in pregnant or breastfeeding patients, so PDT is generally deferred as a precaution rather than used on the assumption it's safe. If treatment can reasonably wait, most dermatologists will recommend waiting.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Inability to comply with post-treatment light avoidance.</strong> After treatment, skin remains photosensitized for roughly 24–48 hours and needs to be shielded from direct sunlight and bright indoor light. Someone who can't realistically avoid sun exposure during that window — because of work, travel, or living circumstances — may need to reschedule or choose a different treatment.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span><strong>Very thick, deeply invasive, or ambiguous lesions.</strong> PDT penetrates a limited depth into the skin, so lesions that are unusually thick, hyperkeratotic, or that raise concern for invasive skin cancer rather than a straightforward AK may need a biopsy or a different treatment approach first.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Rare Risks, Discussed Honestly</h2>
+              <p class="text-slate/80 mb-4">
+                Beyond the expected redness, swelling, and peeling that follow nearly every PDT session, a small number of less common effects are worth knowing about:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Severe local reactions.</strong> Occasionally the treatment reaction is more intense than typical — pronounced blistering, crusting, or erosion — usually from a longer incubation time, a more potent light source, or unusually sun-damaged skin. This is uncomfortable but generally heals like the milder, more common reaction, just over a longer course.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Scarring.</strong> True scarring after PDT is uncommon, since the treatment is designed to spare healthy tissue, but it can occur, particularly after a severe reaction, a secondary infection, or in someone prone to scarring.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Pigment changes.</strong> Temporary lightening or darkening of treated skin can follow the healing process, more often in people with deeper skin tones (higher Fitzpatrick skin types); it usually fades over weeks to months but is occasionally longer-lasting.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Rare allergic reaction</strong> to the photosensitizing agent itself, ranging from localized contact allergy to, very rarely, a more generalized reaction.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                The consensus literature is reassuring on the bigger picture: aside from acute pain and these uncommon effects, there is no established evidence that PDT carries a cumulative or long-term cancer risk of its own — a relevant point given that PDT is used specifically to treat pre-cancerous skin.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:clipboard-check" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How Dermatologists Screen Before Treatment</h2>
+              <p class="text-slate/80">
+                Before recommending PDT, a dermatologist will typically review your full medical history for a personal or family history of porphyria, ask about photosensitive conditions like lupus, take a complete medication and supplement list, ask about pregnancy or breastfeeding status when relevant, confirm you understand and can follow the post-treatment sun-avoidance window, and examine the lesions themselves to rule out anything needing a biopsy first. This screening is routine, not a sign that something is expected to go wrong — it's how PDT's strong overall safety record is maintained in practice.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Do any of my current medications or supplements increase my sensitivity to light?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Should I be screened for porphyria or another photosensitivity disorder before treatment?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Given my lupus (or other photosensitive condition), is PDT still a reasonable option for me?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What should I realistically expect to be able to do — and avoid — in the 24–48 hours after treatment?</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>What would a severe reaction look like, and when should I call the office instead of waiting it out?</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            PDT's decades-long track record makes it one of the more thoroughly vetted treatments for actinic keratosis, and for most people it is safe and well tolerated. That safety record depends on real screening: porphyria, significant photosensitive conditions like lupus, known allergy to the photosensitizing agent, certain medications, pregnancy or breastfeeding, and an inability to follow post-treatment sun avoidance are all reasons a dermatologist might recommend a different approach.
+          </p>
+          <p class="text-slate/80">
+            If any of these apply to you, it doesn't necessarily mean PDT is off the table permanently — bring it up directly, so your dermatologist can weigh your specific situation rather than you ruling yourself out (or in) on your own.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Ibbotson SH, Wong TH, Morton CA, et al. Adverse effects of topical photodynamic therapy: a consensus review and approach to management. <em>Br J Dermatol.</em> 2019;180(4):715-729. <a href="https://pubmed.ncbi.nlm.nih.gov/30183065/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

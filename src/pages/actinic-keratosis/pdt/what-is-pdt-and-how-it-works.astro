@@ -1,0 +1,230 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/what-is-pdt-and-how-it-works";
+const title = "What Is Photodynamic Therapy (PDT)? | Beating Skin Cancer";
+const description = "Photodynamic therapy uses a photosensitizer and light to destroy sun-damaged skin cells. Learn the two-step mechanism behind PDT for actinic keratosis.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Is Photodynamic Therapy and How Does It Work?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "What Is Photodynamic Therapy and How Does It Work?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does photodynamic therapy involve real light, or is that just a figure of speech?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's real light. After the photosensitizing solution has had time to be absorbed, the treatment area is exposed to a specific wavelength — usually blue light, red light, or natural daylight — for a set period. That light is what triggers the photochemical reaction inside the treated cells; without it, the solution sitting on the skin does nothing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does PDT damage normal, healthy skin along with the actinic keratoses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDT is designed to be selective. Sun-damaged and dysplastic cells tend to take up and process more of the photosensitizing solution than normal surrounding skin, so the photochemical reaction is concentrated in the abnormal cells. Some redness and peeling in the surrounding area is still expected, but healthy tissue is relatively spared compared with the treated lesions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is PDT the same thing as laser treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Lasers use heat or precise cutting to remove or resurface tissue. PDT uses light only to activate a chemical reaction inside cells that have absorbed a photosensitizing solution — it's a photochemical process, not a thermal or mechanical one, which is part of why it can treat a broad area with a favorable cosmetic result."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Is Photodynamic Therapy and How Does It Work?
+          </h1>
+          <p class="text-xl text-white/80">The two-step photosensitizer-and-light process, explained in plain language</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Photodynamic therapy (PDT) treats actinic keratosis (AK) without a blade, a needle, or a freezing spray. Instead, it uses a chemical reaction that only happens when a light-sensitive solution and a light source are combined — neither one does anything on its own. Understanding that two-step process is the key to understanding everything else about PDT: why it's applied the way it is, why timing matters so much, and why it tends to work especially well on the kind of widespread sun damage that shows up across the face and scalp.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through the mechanism step by step. For a direct comparison with cryotherapy and topical creams, see <a href="/actinic-keratosis/pdt/why-choose-pdt" class="text-teal hover:text-teal/80 underline">why a dermatologist might recommend PDT over other AK treatments</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Two-Step Process</h2>
+          <p class="text-slate/80 mb-4">
+            Every PDT treatment follows the same two-step logic, regardless of which specific photosensitizer or light source a clinic uses:
+          </p>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Step 1 — A photosensitizing solution is applied and absorbed</h3>
+              <p class="text-slate/80">
+                A solution containing aminolevulinic acid (ALA) or its derivative, methyl aminolevulinate (MAL), is applied directly to the actinic keratoses and the surrounding sun-damaged skin. This chemical isn't light-sensitive by itself — it's a precursor. Over an incubation period of roughly one to a few hours (or, for daylight PDT, a much shorter period before heading outdoors), skin cells take up the solution and convert it into a naturally occurring, light-reactive molecule called protoporphyrin IX (PpIX). Sun-damaged and dysplastic keratinocytes tend to accumulate more PpIX than normal cells nearby, which is what gives PDT its selectivity.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-xl font-serif text-navy mb-2">Step 2 — Light activates the reaction</h3>
+              <p class="text-slate/80">
+                Once enough PpIX has built up, the treatment area is exposed to a light source tuned to the wavelength PpIX absorbs best — typically blue light, red light, or, in daylight PDT, ordinary sunlight filtered through sunscreen. That light energy excites the PpIX molecules inside the cells, which react with oxygen to generate reactive oxygen species. Those reactive molecules damage the cell from the inside, triggering cell death in a targeted, localized way. This is a photochemical reaction — not heat, and not a cutting or freezing injury.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:target" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why Sun-Damaged Cells Are Targeted Preferentially</h2>
+              <p class="text-slate/80 mb-4">
+                PDT's selectivity isn't a marketing claim — it's rooted in how skin processes the photosensitizer. Research on ALA-induced PpIX has found that the way cells accumulate PpIX depends on how the solution penetrates the skin's outer layer and on differences in each cell's own heme-production machinery, with abnormal, differentiated keratinocytes typically building up more PpIX than the healthy basal cells beneath them. In practice, that means the cells most in need of treatment are also the ones that respond most strongly to the light exposure.
+              </p>
+              <p class="text-slate/80">
+                This selectivity is also why PDT is so well suited to field cancerization — the broader pattern of subclinical sun damage that surrounds visible AKs in chronically sun-exposed skin. Because the photosensitizer is absorbed across the whole treated area, not just the lesions a dermatologist can see and feel, PDT can address damaged cells that haven't yet become a visible AK, alongside the ones that have.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Where PDT Fits Among AK Treatments</h2>
+          <p class="text-slate/80 mb-4">
+            AK treatments generally fall into two categories: lesion-directed therapies that treat one spot at a time, such as cryotherapy, and field-directed therapies that treat a broader area at once. PDT belongs to the second category, alongside topical creams like 5-fluorouracil and imiquimod — but instead of weeks of at-home application, PDT delivers field treatment in one or two supervised office visits.
+          </p>
+          <p class="text-slate/80">
+            That trade-off — a more intensive single visit instead of a longer self-applied course — is often the deciding factor between PDT and other field therapies. For a full comparison of efficacy, downtime, and cosmetic outcome, see <a href="/actinic-keratosis/pdt/why-choose-pdt" class="text-teal hover:text-teal/80 underline">why a dermatologist might recommend PDT over other AK treatments</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Which photosensitizer will you use, and how long will it need to incubate before the light exposure?</li>
+                <li>Will you use a lamp-based light source or daylight PDT, and why is that the right choice for my skin?</li>
+                <li>How will you confirm the treated area has absorbed enough of the solution before activating it with light?</li>
+                <li>How much of my sun-damaged skin — beyond the AKs you can see — will be included in the treated field?</li>
+                <li>What should I expect to feel during the light exposure itself?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            PDT works because two separately harmless steps — a photosensitizing solution and a matched light source — combine into a targeted chemical reaction only where both are present in sufficient amounts. That mechanism is what allows PDT to treat a whole area of sun-damaged skin at once, reaching cells that haven't yet declared themselves as visible AKs, while relatively sparing the healthy tissue around them.
+          </p>
+          <p class="text-slate/80">
+            Understanding the mechanism also explains why the details of a PDT session — incubation time, light dose, skin preparation — matter so much to the outcome, and why your dermatologist will tailor them to your particular pattern of sun damage.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Smits T, van Laarhoven AI, Staassen A, et al. Induction of protoporphyrin IX by aminolaevulinic acid in actinic keratosis, psoriasis and normal skin: preferential porphyrin enrichment in differentiated cells. <em>Br J Dermatol.</em> 2009;160(4):849-857. <a href="https://pubmed.ncbi.nlm.nih.gov/19175603/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wiegell SR, Wulf HC, Szeimies RM, et al. Daylight photodynamic therapy for actinic keratosis: an international consensus. <em>J Eur Acad Dermatol Venereol.</em> 2012;26(6):673-679. <a href="https://pubmed.ncbi.nlm.nih.gov/22211665/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,292 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/am-i-a-candidate-for-pdt";
+const title = "Am I a Candidate for PDT for AK? | Beating Skin Cancer";
+const description = "Who does well with photodynamic therapy for actinic keratosis, which factors steer patients toward another option, and who is generally not a candidate.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Am I a Good Candidate for Photodynamic Therapy?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "Am I a Good Candidate for PDT?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is PDT better for someone with just one or two AKs, or many?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PDT tends to offer the most value when there are several AKs across a broader area of sun-damaged skin — what dermatologists call field cancerization — rather than a single isolated spot. Treating the whole field at once addresses AKs that are visible and early damage that isn't yet visible, which is harder to achieve with a treatment aimed at one lesion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I have PDT if I've already tried cryotherapy or a topical cream?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Many people move to PDT specifically because AKs kept recurring after spot freezing, or because they didn't tolerate the longer course of an at-home topical medication. Prior treatment history is one of the factors a dermatologist weighs when recommending PDT, not a barrier to it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does having very thick AKs rule out PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Very thick, hyperkeratotic AKs can block the photosensitizer from penetrating evenly, which lowers clearance rates. Dermatologists often address this with light curettage or debridement of the scale before applying the photosensitizer, or by treating thick lesions with a different method first and using PDT for the surrounding field."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Am I a Good Candidate for Photodynamic Therapy?
+          </h1>
+          <p class="text-xl text-white/80">What dermatologists weigh when recommending PDT for actinic keratosis</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Photodynamic therapy (PDT) isn't a one-size-fits-all treatment for actinic keratosis (AK). It works well for some patterns of sun damage and less well for others, and a dermatologist's recommendation usually comes down to a handful of concrete factors: how many AKs you have, where they are, how thick they are, what you've already tried, and your general health and lifestyle. This guide walks through those factors so you understand why PDT might — or might not — be the right fit for you.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            None of this is meant to replace a conversation with your own dermatologist, who can weigh these factors against your specific skin and history. But knowing what goes into that decision makes it easier to ask informed questions at your appointment.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:map" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Number, Location, and Pattern of Lesions</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            PDT is a <strong>field treatment</strong> — it works on an entire area of skin, not just one spot. That makes it especially well suited to <strong>field cancerization</strong>: the situation where years of cumulative sun exposure have damaged a broad stretch of skin, producing not just the AKs you can see but subclinical damage in the surrounding tissue that hasn't yet become visible.
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Several AKs across a broad area</strong> — such as the scalp, forehead, or forearms — is the classic scenario where PDT's ability to treat the whole field at once has the most value.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Face and scalp involvement</strong> is common, since cosmetic outcome matters and PDT generally heals with less scarring than destructive spot treatments used repeatedly over the same area.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A single, isolated AK</strong> can still be treated with PDT, but a quicker spot treatment such as cryotherapy is often just as effective and more convenient for one lesion alone.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:layers" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Thickness of the Lesions</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            The photosensitizing agent needs to penetrate into the abnormal cells to work. Thin, flat AKs absorb it readily. Thick, scaly, or hyperkeratotic AKs act as a barrier, which can leave the photosensitizer unable to reach cells deeper in the lesion and lower how completely the area clears.
+          </p>
+          <p class="text-slate/80">
+            This doesn't automatically exclude someone from PDT — dermatologists routinely prepare thick lesions first by gently removing scale (curettage or light debridement) before applying the photosensitizer. But if AKs are numerous, very thick, and hyperkeratotic, your dermatologist may suggest treating those spots individually with a different method and reserving PDT for the surrounding thinner field.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:history" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Prior Treatment History</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            What you've already tried — and how you responded — factors heavily into whether PDT is suggested next:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Recurring AKs despite cryotherapy.</strong> If spot freezing keeps missing subclinical damage nearby and new AKs keep appearing in the same general area, a field treatment like PDT addresses more of the underlying damage at once.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Difficulty completing a topical course.</strong> At-home field therapies (such as topical fluorouracil or imiquimod) require weeks of daily application and visible irritation. Some patients prefer PDT's single office visit — or a short course of two sessions — over that longer commitment.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Prior PDT response.</strong> If you've had PDT before and tolerated and responded to it well, that history supports using it again for new or recurring AKs.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:user-check" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Skin Type and General Health</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            PDT is used across a wide range of skin types, though people with lighter skin tend to have the most extensive AK burden and are frequently referred for it. Overall health matters too — PDT is often specifically considered for people at elevated ongoing risk of AK and skin cancer, including organ transplant recipients on immunosuppressive medication, who benefit from a treatment that can address a wide field of damaged skin proactively rather than reactively.
+          </p>
+          <p class="text-slate/80">
+            Your ability to follow the aftercare instructions also matters: strict avoidance of direct sunlight for roughly 24–48 hours after treatment is part of how PDT works safely, so your schedule and daily sun exposure are worth discussing with your dermatologist.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Who Is Generally Not a Candidate</h2>
+              <p class="text-slate/80 mb-4">
+                A smaller group of patients are usually steered away from PDT, at least for now:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A diagnosed photosensitivity disorder, such as porphyria or lupus, where light exposure itself can trigger a reaction</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Certain medications that heighten sensitivity to light</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Pregnancy or breastfeeding, out of caution rather than documented harm</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>An inability to avoid direct sunlight for a day or two after treatment</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A lesion where the diagnosis is uncertain, or where invasive skin cancer is suspected rather than AK — this needs a biopsy first, not PDT</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                This list covers the basics of who should generally avoid PDT. A full discussion of safety and contraindications — including rarer risks and how they're managed — is its own topic your dermatologist can walk through in detail.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Based on how many AKs I have and where they are, would I benefit more from PDT or a spot treatment?</li>
+                <li>Are any of my current AKs too thick for PDT to work well, and if so, what do we do first?</li>
+                <li>Given what I've already tried, why are you recommending PDT now?</li>
+                <li>Is there anything in my health history or current medications that would make PDT unsafe for me?</li>
+                <li>Can I realistically avoid direct sunlight for the recommended period after treatment?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            The best candidates for PDT tend to have multiple AKs across a broad, sun-damaged area, particularly on the face or scalp, and have either struggled with recurrence after spot treatments or prefer not to commit to a longer topical course. Very thick lesions, certain photosensitivity conditions, and an inability to avoid sunlight afterward are the main reasons a dermatologist might steer you toward a different option instead.
+          </p>
+          <p class="text-slate/80">
+            If PDT looks like the right fit, the next practical question is what actually happens during the appointment itself.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Bakirtzi K, Papadimitriou I, Vakirlis E, Lallas A, Sotiriou E. Photodynamic therapy for field cancerization in the skin: where do we stand? <em>Dermatol Pract Concept.</em> 2023;13(4):e2023291. <a href="https://pubmed.ncbi.nlm.nih.gov/37992384/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

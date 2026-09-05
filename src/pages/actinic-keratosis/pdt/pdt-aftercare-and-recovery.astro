@@ -1,0 +1,326 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/pdt-aftercare-and-recovery";
+const title = "PDT Aftercare and Recovery Guide | Beating Skin Cancer";
+const description = "How to care for your skin after photodynamic therapy for actinic keratosis: sun avoidance, gentle cleansing, a healing timeline, and warning signs.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Do I Care for My Skin After PDT?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "PDT Aftercare and Recovery", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is sun avoidance so important right after PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The photosensitizing solution used in PDT remains active in treated skin for a period after your light treatment. If that skin is exposed to sunlight or other bright light during this window, the residual solution can react and trigger an exaggerated sunburn-like reaction, including intense redness, swelling, and blistering. Staying out of direct sunlight for 24 to 48 hours, and using strict sun protection afterward, avoids this reaction and helps the skin heal evenly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does normal healing look like after PDT for actinic keratosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Redness, swelling, and a burning or stinging sensation are expected in the first day or two. Over the following several days, the treated skin typically becomes drier and starts to peel or crust as damaged cells shed. Most visible reaction resolves within one to two weeks, though the skin underneath may look pink for longer. Everyone heals somewhat differently depending on how much skin was treated and how reactive their skin tends to be."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I call my dermatologist during PDT recovery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contact your dermatologist if you notice signs of infection such as spreading redness, warmth, pus, or fever; blistering that seems more severe than expected; bleeding that won't stop; or symptoms that are getting worse instead of better after the first several days. It's always reasonable to call with a question rather than wait and worry."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Do I Care for My Skin After PDT?
+          </h1>
+          <p class="text-xl text-white/80">Sun avoidance, gentle wound care, and a realistic healing timeline</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            The days right after a photodynamic therapy (PDT) session matter almost as much as the treatment itself. A photosensitizing agent — ALA or MAL — was applied to your skin and activated with light to destroy sun-damaged cells, and some of that solution stays active in your skin for a short time afterward. How you protect and care for the treated area during this window shapes both your comfort and how smoothly your skin heals.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through exactly what to do — and what to avoid — in the first 24 to 48 hours, gentle care for the following one to two weeks, a general timeline of what healing looks like, and the specific signs that mean it's time to call your dermatologist.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:sun" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">The First 24–48 Hours: Strict Light and Sun Avoidance</h2>
+              <p class="text-slate/80 mb-4">
+                This is the single most important part of PDT aftercare. The photosensitizing agent doesn't fully clear from treated skin the moment your light session ends — it remains active for a period afterward. If that skin is exposed to sunlight, or in some cases strong indoor light, during this window, it can trigger an exaggerated reaction: intense redness, swelling, and blistering well beyond what the treatment alone would cause.
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Stay indoors and away from windows</strong> for the first 24 to 48 hours, as directed by your dermatologist — some regimens call for a shorter or longer window depending on the photosensitizer used.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>If you must go outside</strong>, cover the treated area completely with clothing, a wide-brimmed hat, or a scarf — broad-spectrum sunscreen alone is not considered reliable protection during this early window.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Avoid bright indoor light sources</strong> your dermatologist flags as relevant, and ask specifically about car windows, since UV light passes through glass.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Once this early window has passed, resume diligent daily sun protection — the same sun-smart habits that help prevent new actinic keratosis from forming.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:droplets" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">Gentle Daily Care</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span><strong>Cleansing:</strong> wash with lukewarm water and a mild, fragrance-free cleanser using just your fingertips — no washcloths, brushes, or scrubbing.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span><strong>Moisturizing:</strong> apply a plain, fragrance-free moisturizer or the ointment your dermatologist recommends several times a day to keep the skin from drying and cracking.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span><strong>Cool compresses:</strong> a clean, cool (not icy) damp cloth held gently against the area can ease stinging, burning, or swelling for the first day or two.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Ask before using any over-the-counter pain reliever or antihistamine for discomfort.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:x-circle" class="text-coral" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">What Not to Do</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-coral mt-1">•</span>
+                <span><strong>Don't pick, scratch, or peel</strong> at crusting or flaking skin — let it shed on its own to avoid scarring or infection.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-coral mt-1">•</span>
+                <span><strong>Skip harsh products:</strong> retinoids, exfoliating acids, astringents, and fragranced skincare should wait until the skin has fully healed.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-coral mt-1">•</span>
+                <span><strong>Avoid makeup</strong> over open or weeping skin until your dermatologist says it's safe.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-coral mt-1">•</span>
+                <span><strong>No swimming, saunas, or hot showers</strong> that could irritate healing skin in the first few days.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:calendar" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">A Rough Healing Timeline</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Healing pace varies by person and by how much skin was treated, but most people follow a similar general pattern over one to two weeks:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Days 1–2:</strong> redness, warmth, swelling, and stinging or burning — often most intense the evening of treatment and the following day.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Days 3–5:</strong> skin becomes drier and tighter; peeling or light crusting typically begins as damaged cells shed.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Days 5–10:</strong> visible flaking and crusting continue to resolve; the skin underneath may look pink or slightly darker than usual (this fades with time).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Week 2 and beyond:</strong> most visible reaction has settled; residual pinkness can linger longer, especially in fair skin.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:phone-call" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">When to Contact Your Dermatologist</h2>
+              <p class="text-slate/80 mb-4">Most reactions after PDT are expected and self-limited, but call your dermatologist's office if you notice:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Signs of infection:</strong> spreading redness, warmth, increasing pain after the first couple of days, pus or cloudy drainage, or fever.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Unusual or severe blistering</strong> — some mild blistering can occur, but large, painful, or widespread blisters warrant a call.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Bleeding that won't stop</strong> with gentle pressure.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Symptoms that are getting worse</strong> rather than gradually improving after the first several days, or healing that seems to be stalling out.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                A clinical study of patients treated with PDT for facial actinic keratosis found that most people experience some degree of redness and mild pain within the first 48 hours, and that a stronger inflammatory reaction is generally a sign the treatment is working on more heavily sun-damaged skin — not a red flag on its own. Still, if anything feels off, it's always reasonable to call rather than wait and worry.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Exactly how long should I avoid sunlight and bright indoor light after my treatment?</li>
+                <li>What products should I use to clean and moisturize the treated area?</li>
+                <li>What level of redness, swelling, or crusting is normal for me, and what would be too much?</li>
+                <li>Is there anything I can take or apply for discomfort?</li>
+                <li>When can I resume my normal skincare routine and wear makeup again?</li>
+                <li>What symptoms should prompt me to call your office right away?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            The first two days after PDT are about protecting your skin from light while the photosensitizer clears; the following one to two weeks are about gentle, patient wound care while the treated cells shed and healthy skin takes their place. Most people move through this predictable process without complications.
+          </p>
+          <p class="text-slate/80">
+            Follow your dermatologist's specific instructions, resist the urge to pick at healing skin, and reach out promptly if anything looks or feels worse than expected. A little extra care in this window goes a long way toward a smooth recovery.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wiegell SR, Wulf HC, Szeimies RM, et al. Daylight photodynamic therapy for actinic keratosis: an international consensus. <em>J Eur Acad Dermatol Venereol.</em> 2012;26(6):673-679. <a href="https://pubmed.ncbi.nlm.nih.gov/22211665/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Shen AS, Heusinkveld LE, Updyke A, et al. Painless photodynamic therapy for facial actinic keratoses: a retrospective cohort study of the post-treatment inflammatory response. <em>Photodiagnosis Photodyn Ther.</em> 2024;45:103838. <a href="https://pubmed.ncbi.nlm.nih.gov/37844787/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy (post-procedure care guidance)
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always follow the specific aftercare instructions your dermatologist gives you, and contact their office with any concerns during recovery.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about recovering from photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

@@ -1,0 +1,325 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/how-many-pdt-sessions-and-results";
+const title = "PDT Sessions and Results for AK | Beating Skin Cancer";
+const description = "How many photodynamic therapy sessions actinic keratosis typically requires, realistic clearance rates, how long results last, and follow-up care.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Many PDT Sessions Will I Need, and What Results Can I Expect?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "PDT Sessions and Results", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many PDT sessions does actinic keratosis usually need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most people complete one or two PDT sessions, typically spaced about two to four weeks apart. A single session may be enough for a smaller area with few lesions, while broader field damage or thicker actinic keratoses often benefits from a second treatment. Your dermatologist will assess the treated area at a follow-up visit and decide whether more sessions or a different approach would help."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How effective is PDT at clearing actinic keratosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Clinical studies generally report that a large majority of treated actinic keratoses clear after a standard PDT course, with complete clearance rates commonly cited in the range of roughly 70 to 90 percent for thinner lesions, somewhat lower for thicker ones. Combining PDT with a topical field treatment such as imiquimod has been shown to improve clearance further. Results vary by lesion thickness, body site, and the specific PDT protocol used."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can actinic keratosis come back after PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. PDT treats the actinic keratoses present at the time of treatment and reduces the overall burden of sun-damaged cells in the treated field, but it doesn't reverse a lifetime of cumulative sun exposure or prevent new damage going forward. New actinic keratoses can develop later, especially without consistent sun protection, which is why routine skin checks and daily sunscreen remain important after PDT."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Many PDT Sessions Will I Need, and What Results Can I Expect?
+          </h1>
+          <p class="text-xl text-white/80">Typical treatment courses, follow-up, and realistic clearance rates</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Once you and your dermatologist decide photodynamic therapy (PDT) is the right approach for your actinic keratosis (AK), the next practical questions are usually: how many sessions will this take, and how well is it likely to work? The honest answer is "it depends" — on how many lesions you have, how thick they are, where they're located, and the exact protocol your dermatologist uses — but there are well-established patterns you can use to set realistic expectations.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article covers the typical number and spacing of PDT sessions, what happens at your follow-up visit, published clearance rates, why some lesions may need re-treatment, how long results tend to last, and why ongoing skin checks still matter afterward.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:repeat" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">The Typical Treatment Course</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Most people undergoing PDT for actinic keratosis complete one or two sessions:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>A single session</strong> is sometimes enough, especially for a limited area with thinner, less-developed AKs.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Two sessions, spaced roughly two to four weeks apart,</strong> are common practice — particularly for broader field cancerization or thicker lesions, since a second treatment targets any cells that survived the first round.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>More extensive field damage</strong> — a large area of chronically sun-damaged skin with numerous AKs — may call for additional sessions over time, sometimes as part of an ongoing maintenance plan rather than a single fixed course.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>The exact number and spacing depends on the photosensitizer and light source used, the body site treated, and how your skin responds — your dermatologist will tailor this to you.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Follow-Up Visit</h2>
+          <p class="text-slate/80 mb-4">
+            A few weeks after your final session, your dermatologist will examine the treated area to assess how well the AKs have cleared. This visit typically involves:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A visual and tactile skin exam of the treated field, comparing it to the pre-treatment appearance.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>Identification of any lesions that remain rough, scaly, or otherwise still present.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A decision about next steps for anything that didn't fully clear — this might mean a repeat PDT session, a different field treatment, or a targeted procedure such as cryotherapy for a specific stubborn spot.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span>A plan for how soon you should return for your next routine skin check.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:bar-chart-3" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What the Evidence Says About Clearance Rates</h2>
+              <p class="text-slate/80 mb-4">
+                Published studies on PDT for actinic keratosis report favorable but variable clearance rates, generally in the range of about 70 to 90 percent complete clearance for thinner lesions after a standard course, with somewhat lower rates for thicker or more hyperkeratotic AKs that light penetrates less easily.
+              </p>
+              <p class="text-slate/80 mb-4">
+                A 2019 meta-analysis pooling ten randomized controlled trials found that combining PDT with a topical field treatment — such as imiquimod, 5-fluorouracil, or a retinoid gel — improved both participant-level and lesion-level clearance compared with PDT alone. This is one reason your dermatologist might recommend pairing PDT with a topical medication for extensive or recurrent field damage rather than relying on PDT by itself.
+              </p>
+              <p class="text-slate/80">
+                Keep in mind that reported rates come from clinical trial populations and specific protocols; your individual results depend on your lesions, skin type, and treatment details. Ask your dermatologist what to realistically expect in your own case.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:refresh-cw" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">If a Lesion Doesn't Fully Clear</h2>
+            </div>
+            <p class="text-slate/80 mb-3">
+              Not every AK responds fully to a single PDT course. If a lesion remains after follow-up, your dermatologist has several options:
+            </p>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Repeating PDT on that area</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Adding a topical field therapy alongside or after PDT</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Switching to a spot treatment like cryotherapy for a persistent lesion</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Taking a biopsy if a lesion looks or feels atypical, to rule out progression</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:hourglass" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">How Long Results Last</h2>
+            </div>
+            <p class="text-slate/80 mb-3">
+              Successfully cleared AKs generally stay cleared, but PDT doesn't undo the underlying sun damage in the surrounding skin. Over time:
+            </p>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Many people enjoy months to a few years of improvement in the treated field.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Some studies suggest field-directed therapies like PDT may reduce the rate of new AKs forming compared with no treatment.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Durability varies by how much cumulative sun exposure the skin has had and how consistently sun protection is followed afterward.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:shield-alert" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">New AKs Can Still Form — Why Ongoing Skin Checks Matter</h2>
+              <p class="text-slate/80 mb-4">
+                It's important to set the right expectation: PDT reduces your current burden of actinic keratosis and sun-damaged cells, but it does not eliminate your future risk. If you've had enough cumulative sun exposure to develop AKs once, the surrounding skin — and any skin that continues to be sun-exposed — remains susceptible to new ones forming over time.
+              </p>
+              <p class="text-slate/80">
+                That's why a successful PDT course is best thought of as one part of an ongoing skin-health plan, not a one-time fix. Daily broad-spectrum sunscreen, sun-protective clothing, and routine dermatology visits for a full skin exam remain just as important after PDT as before it — both to catch new AKs early and because a personal history of AK is itself a marker of higher skin cancer risk overall.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Based on my lesions, how many PDT sessions do you expect I'll need?</li>
+                <li>When will you check whether the treatment worked, and what will that visit involve?</li>
+                <li>What clearance rate is realistic for someone with my skin and lesion type?</li>
+                <li>If some lesions don't clear, what would be the next step?</li>
+                <li>How long do you expect these results to last for me?</li>
+                <li>How often should I have routine skin checks going forward?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Most people need one or two PDT sessions, spaced a few weeks apart, followed by a check-in visit to confirm how well the treatment worked. Published clearance rates are encouraging — often in the range of 70 to 90 percent for thinner lesions — though your own results depend on the specifics of your skin and treatment plan.
+          </p>
+          <p class="text-slate/80">
+            Just as important: PDT treats the AKs present today, not your future risk. Continued sun protection and regular skin checks are what keep new actinic keratosis, and more serious skin cancers, from taking hold down the road.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Heppt MV, Steeb T, Leiter U, Berking C. Efficacy of photodynamic therapy combined with topical interventions for the treatment of actinic keratosis: a meta-analysis. <em>J Eur Acad Dermatol Venereol.</em> 2019;33(5):863-873. <a href="https://pubmed.ncbi.nlm.nih.gov/30710390/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wiegell SR, Wulf HC, Szeimies RM, et al. Daylight photodynamic therapy for actinic keratosis: an international consensus. <em>J Eur Acad Dermatol Venereol.</em> 2012;26(6):673-679. <a href="https://pubmed.ncbi.nlm.nih.gov/22211665/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your own diagnosis, treatment plan, and expected results.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about PDT treatment courses and results</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

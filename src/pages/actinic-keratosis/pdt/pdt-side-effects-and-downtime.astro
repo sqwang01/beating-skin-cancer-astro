@@ -1,0 +1,283 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/pdt-side-effects-and-downtime";
+const title = "PDT Side Effects and Downtime | Beating Skin Cancer";
+const description = "What to expect after photodynamic therapy for actinic keratosis: stinging, redness, crusting, downtime, and which symptoms mean you should call your doctor.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Side Effects and Downtime Should I Expect After PDT?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "What Side Effects and Downtime Should I Expect After PDT?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does PDT hurt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most people feel stinging, burning, or a hot, prickling sensation during the light-exposure step, which typically peaks partway through and eases once the light is turned off. Intensity varies by person and by treatment area; cooling with water spray or cold packs, brief pauses in illumination, and lower-intensity light sources like daylight PDT can all reduce discomfort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long is the downtime after PDT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Redness and swelling typically peak in the first day or two, and crusting or peeling follows over the next several days, usually resolving within one to two weeks. Most people can return to normal activities immediately, but visible skin changes and light sensitivity mean many prefer to plan the days right after treatment around staying indoors."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What symptoms after PDT should prompt a call to the doctor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contact your dermatologist for signs of infection such as spreading redness, warmth, pus, or fever; severe blistering; pain that is worsening rather than improving; or a reaction that seems much more intense than what you were told to expect. Ordinary redness, swelling, and crusting that gradually improve are expected and not a cause for concern."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Side Effects and Downtime Should I Expect After PDT?
+          </h1>
+          <p class="text-xl text-white/80">Redness, swelling, peeling, and the photosensitivity reaction timeline</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            <a href="/actinic-keratosis/pdt" class="text-teal hover:text-teal/80 underline">Photodynamic therapy (PDT)</a> works by triggering a controlled reaction in damaged skin cells, and that reaction is visible on the skin's surface for about one to two weeks afterward. Knowing what's expected — and what isn't — makes the recovery period far less alarming.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This article walks through what happens during and after treatment, how the downtime compares with other actinic keratosis (AK) treatments, and which symptoms warrant a call to your dermatologist rather than watchful waiting.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">During Treatment: Stinging and Burning</h2>
+          <p class="text-slate/80 mb-4">
+            Pain is the most common acute side effect of PDT and is caused by the light activating the photosensitizing agent within damaged cells. Most people describe a stinging, burning, or hot, prickling feeling that builds during the light-exposure step and eases quickly once the light is turned off. A comparative study found that red light produces significantly more pain than green light for similar effectiveness, and daylight PDT — which uses lower-intensity natural light over a longer exposure — is associated with meaningfully less pain than conventional lamp-based PDT.
+          </p>
+          <p class="text-slate/80">
+            Clinics reduce discomfort with cooling (water spray or cold packs), brief pauses partway through illumination, topical or injected numbing, and by choosing a light source and protocol suited to the area being treated. If a session was more painful than expected, mention it — the approach can often be adjusted for future treatments.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The First One to Two Weeks: What's Normal</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Redness and swelling</h3>
+              <p class="text-slate/80">
+                Expect the treated area to look noticeably red and feel warm immediately after treatment, similar to a sunburn. Swelling is common too, especially around the eyes if the forehead or scalp was treated, and typically peaks within the first day or two before gradually settling.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Crusting and peeling</h3>
+              <p class="text-slate/80">
+                Over the next several days, treated AKs and the surrounding skin often develop scabs, crusting, or peeling as the damaged cells shed. This is the treatment doing its job, not a complication. Most crusting resolves within one to two weeks; picking at it can increase the risk of scarring or infection, so gentle care is better than speeding it along.
+              </p>
+            </div>
+
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Temporary light sensitivity</h3>
+              <p class="text-slate/80">
+                The photosensitizing agent remains active in treated skin for a period after the light exposure, so dermatologists typically advise strict sun avoidance for the first 24 to 48 hours, with continued sun caution for the treated area for some time after that while the skin heals. This is separate from the ongoing sun protection everyone with AKs should practice long-term.
+              </p>
+            </div>
+
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-3">Basic aftercare, in brief</h3>
+              <p class="text-slate/80">
+                Day-to-day care during this window is straightforward — gentle cleansing, a bland moisturizer, and avoiding direct sun on the area. For a full walkthrough of wound care and sun protection during healing, see <a href="/actinic-keratosis/pdt/pdt-aftercare-and-recovery" class="text-teal hover:text-teal/80 underline">how to care for your skin after PDT</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:scale" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">How PDT Downtime Compares</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            All AK treatments involve some visible reaction while damaged cells clear — PDT is not unique in that respect, but its timeline differs from the alternatives:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Cryotherapy (freezing):</strong> causes a blister or crust at each treated spot, usually healing within one to two weeks — similar timing to PDT, but spot-by-spot rather than across a whole field.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Topical field therapy</strong> (such as a several-week course of a topical cream): the visible reaction — redness, crusting, and irritation — builds gradually and often lasts longer overall, spread across the weeks of daily application rather than concentrated after a single visit.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>PDT:</strong> concentrates the reaction into roughly one to two weeks after each session, with light sensitivity limited mainly to the first day or two.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">When to Call Your Doctor</h2>
+              <p class="text-slate/80 mb-4">Most reactions after PDT are expected and improve on their own. Contact your dermatologist if you notice:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Spreading redness, warmth, or pus — possible signs of infection</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Fever or feeling unwell</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Severe or extensive blistering beyond what you were told to expect</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Pain that is getting worse days after treatment, rather than gradually improving</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Any reaction that seems far more intense, or is lasting far longer, than what your dermatologist described beforehand</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>How much pain should I expect during my treatment, and what can be done to reduce it?</li>
+                <li>How long should I expect redness, swelling, and crusting to last for my specific treatment area?</li>
+                <li>Exactly how many days do I need to avoid direct sunlight afterward?</li>
+                <li>What symptoms should prompt me to call you rather than wait it out?</li>
+                <li>Is the reaction I'm having typical, or should I come in to be seen?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Stinging during treatment, followed by redness, swelling, and crusting that resolve over one to two weeks, is the expected course after PDT — a visible sign that damaged cells are clearing. A brief window of heightened light sensitivity comes with it, but it's short-lived and manageable with basic precautions.
+          </p>
+          <p class="text-slate/80">
+            Knowing the normal timeline makes it easier to spot the rare exception. If anything about your recovery feels off compared with what you were told to expect, it's always reasonable to check in with your dermatologist. For day-to-day wound care details, see <a href="/actinic-keratosis/pdt/pdt-aftercare-and-recovery" class="text-teal hover:text-teal/80 underline">caring for your skin after PDT</a>.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Wiegell SR, Wulf HC, Szeimies RM, et al. Daylight photodynamic therapy for actinic keratosis: an international consensus. <em>J Eur Acad Dermatol Venereol.</em> 2012;26(6):673-679. <a href="https://pubmed.ncbi.nlm.nih.gov/22211665/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wiegell SR, Haedersdal M, Wulf HC. Cold water and pauses in illumination reduces pain during photodynamic therapy: a randomized clinical study. <em>Acta Derm Venereol.</em> 2009;89(2):145-149. <a href="https://pubmed.ncbi.nlm.nih.gov/19325998/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Osiecka BJ, Nockowski P, Szepietowski JC. Treatment of actinic keratosis with photodynamic therapy using red or green light: a comparative study. <em>Acta Derm Venereol.</em> 2018;98(7):689-693. <a href="https://pubmed.ncbi.nlm.nih.gov/29963684/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy: what to expect after treatment
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

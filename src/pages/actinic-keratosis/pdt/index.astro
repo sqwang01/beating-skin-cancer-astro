@@ -1,0 +1,284 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt";
+const title = "Photodynamic Therapy (PDT) for AK | Beating Skin Cancer";
+const description = "Photodynamic therapy (PDT) uses a light-activated solution to treat actinic keratosis and sun-damaged skin. Learn how it works, what to expect, and recovery.";
+const lastReviewed = "2026-09-04";
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": canonical }
+  ],
+};
+
+const jsonLd = [breadcrumbsJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Actinic Keratosis
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Photodynamic Therapy (PDT)</h1>
+          <p class="text-xl text-white/80">Light-activated treatment for actinic keratosis and field-damaged skin</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What Is Photodynamic Therapy?</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Photodynamic therapy (PDT) treats actinic keratosis (AK) using a two-step process instead of surgery or freezing. First, a photosensitizing solution — aminolevulinic acid (ALA) or its derivative, methyl aminolevulinate (MAL) — is applied to the skin and absorbed preferentially by damaged, sun-exposed cells. After an incubation period, the treated area is exposed to a specific wavelength of light (blue, red, or natural daylight), which activates the solution inside those cells and destroys them while largely sparing healthy surrounding skin.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            Because PDT treats an entire area rather than a single spot, it's especially well suited for field cancerization — when years of sun exposure have damaged a broad area of skin, not just the AKs that are visible. This makes PDT a common choice for the face, scalp, and other areas with multiple or recurring AKs.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Key Topics</h2>
+          <p class="text-slate/80 mb-6">
+            Explore these topics to understand how PDT works, whether it's right for you, and what to expect before, during, and after treatment:
+          </p>
+          <div class="space-y-3">
+            <a href="/actinic-keratosis/pdt/what-is-pdt-and-how-it-works" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What is photodynamic therapy and how does it work?</div>
+              <div class="text-sm text-slate/70">The photosensitizer-and-light mechanism explained in plain language</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/why-choose-pdt" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Why might my dermatologist recommend PDT over other AK treatments?</div>
+              <div class="text-sm text-slate/70">Comparing PDT with cryotherapy and topical field therapy</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/am-i-a-candidate-for-pdt" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Am I a good candidate for photodynamic therapy?</div>
+              <div class="text-sm text-slate/70">Who PDT is typically recommended for, and who may need a different approach</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/what-happens-during-a-pdt-session" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What happens during a PDT treatment session, step by step?</div>
+              <div class="text-sm text-slate/70">Preparation, photosensitizer application, incubation, and light exposure</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/preparing-for-your-pdt-appointment" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How should I prepare for my PDT appointment?</div>
+              <div class="text-sm text-slate/70">What to do — and avoid — in the days before treatment</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/pdt-side-effects-and-downtime" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">What side effects and downtime should I expect after PDT?</div>
+              <div class="text-sm text-slate/70">Redness, swelling, peeling, and the photosensitivity reaction timeline</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/pdt-aftercare-and-recovery" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How do I care for my skin after PDT?</div>
+              <div class="text-sm text-slate/70">Sun avoidance, wound care, and when to call your doctor</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/how-many-pdt-sessions-and-results" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How many PDT sessions will I need, and what results can I expect?</div>
+              <div class="text-sm text-slate/70">Typical treatment courses, follow-up, and clearance rates</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/managing-discomfort-during-pdt" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">How is discomfort during PDT managed?</div>
+              <div class="text-sm text-slate/70">Cooling, timing, and other strategies clinics use to ease treatment</div>
+            </a>
+            <a href="/actinic-keratosis/pdt/pdt-safety-and-who-should-avoid-it" class="block p-4 bg-sky/5 rounded-lg border border-teal/10 hover:bg-sky/10 transition-colors">
+              <div class="font-semibold text-teal mb-1">Is PDT safe, and who should avoid it?</div>
+              <div class="text-sm text-slate/70">Contraindications and rare risks to discuss with your dermatologist</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">When PDT May Not Be the Right Fit</h2>
+              <p class="text-slate/80 mb-4">PDT isn't the right choice for everyone. Your dermatologist will weigh factors such as:</p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A history of a photosensitivity disorder, such as porphyria or lupus</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Use of certain medications that increase sensitivity to light</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Pregnancy or breastfeeding, out of caution</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Inability to avoid direct sunlight for 24–48 hours after treatment</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>Very thick or deeply invasive lesions, which may need a different approach first</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:users" class="text-teal" size={28} />
+              <h2 class="text-2xl font-serif text-navy">Who Is a Good Candidate</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Multiple AKs across a broad area (field cancerization)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>AKs on the face or scalp, where a good cosmetic outcome matters</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>A history of AKs recurring despite spot treatment</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>A preference to avoid a longer course of at-home topical medication</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Generally healthy skin, without a photosensitivity disorder</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:clock" class="text-teal" size={28} />
+              <h2 class="text-2xl font-serif text-navy">What to Expect at a Glance</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>A single visit typically runs 1–3 hours, most of it incubation time</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Most people need 1–2 sessions, spaced about three weeks apart</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Redness, swelling, and peeling for about a week afterward</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Strict avoidance of direct sunlight for 24–48 hours post-treatment</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Visible improvement continues over several weeks</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} />
+            <h2 class="text-2xl font-serif text-navy">The PDT Treatment Course</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            A typical PDT treatment follows the same basic sequence regardless of which photosensitizer or light source your dermatologist uses:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Preparation:</strong> the treatment area is cleansed and any thick scale is gently removed so the photosensitizer can penetrate evenly.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Photosensitizer application:</strong> ALA or MAL is applied directly to the AKs and the surrounding sun-damaged skin.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Incubation:</strong> the solution is left in place, typically for one to a few hours, so it can be absorbed by damaged cells.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Light activation:</strong> blue light, red light, or natural daylight is used to activate the photosensitizer and destroy the treated cells.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Follow-up:</strong> redness and peeling resolve over one to two weeks; a second session is sometimes scheduled a few weeks later.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wiegell SR, Wulf HC, Szeimies RM, et al. Daylight photodynamic therapy for actinic keratosis: an international consensus. <em>J Eur Acad Dermatol Venereol.</em> 2012;26(6):673-679. <a href="https://pubmed.ncbi.nlm.nih.gov/22211665/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

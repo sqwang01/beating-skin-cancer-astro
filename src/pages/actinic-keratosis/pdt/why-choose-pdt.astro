@@ -1,0 +1,240 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/why-choose-pdt";
+const title = "Why Choose PDT for Actinic Keratosis? | Beating Skin Cancer";
+const description = "Comparing photodynamic therapy with cryotherapy and topical field therapy for actinic keratosis: efficacy, visits needed, and who benefits most.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Might My Dermatologist Recommend PDT Over Other AK Treatments?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "Why Might My Dermatologist Recommend PDT Over Other AK Treatments?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is PDT more effective than cryotherapy for actinic keratosis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Overall clearance rates are broadly comparable between the two, though individual trials vary — one randomized study found PDT achieved a 91% lesion response versus 68% for a single cycle of cryotherapy, while pooled data across many trials show more similar rates. Where PDT tends to pull ahead is on thicker (grade III) lesions and on cosmetic outcome, with far less hypopigmentation than repeated freezing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is PDT more effective than 5-fluorouracil or imiquimod cream?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not generally, in a typical immunocompetent patient — pooled trial data show 5-fluorouracil clearing more lesions than PDT at 12 months, and imiquimod outperforming PDT as well in that population. PDT's advantages lie elsewhere: it compresses field treatment into one or two office visits instead of weeks of at-home application, tends to produce a better cosmetic result, and has shown superior efficacy specifically in organ transplant recipients and other immunosuppressed patients."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can PDT be combined with a topical cream for better results?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Pretreating the skin with a short course of topical 5-fluorouracil before a PDT session has been shown to increase how much photosensitizer the treated cells absorb, which can meaningfully improve clearance rates compared with either treatment alone. Whether this combined approach makes sense depends on your particular pattern of AKs and is worth discussing with your dermatologist."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Why Might My Dermatologist Recommend PDT Over Other AK Treatments?
+          </h1>
+          <p class="text-xl text-white/80">How photodynamic therapy compares with cryotherapy and topical field therapy</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            There is no single best treatment for actinic keratosis (AK) — only the treatment that best fits a particular patient's pattern of sun damage, lifestyle, and priorities. Dermatologists generally choose between spot treatment of individual lesions (cryotherapy), a broader field-directed approach applied at home over weeks (topical creams), and photodynamic therapy (PDT), which treats a whole field of damaged skin in one or two office visits. This article walks through how PDT stacks up against the other two on the questions patients usually care about most: how well it works, how much time and discomfort it involves, and how the skin looks afterward.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            For a plain-language explanation of how PDT itself works, see <a href="/actinic-keratosis/pdt/what-is-pdt-and-how-it-works" class="text-teal hover:text-teal/80 underline">what photodynamic therapy is and how it works</a>.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">PDT vs. Cryotherapy</h2>
+          <p class="text-slate/80 mb-4">
+            Cryotherapy — a quick freeze with liquid nitrogen — is the fastest way to treat a small number of individual AKs, and it remains the most common AK treatment overall. It's well suited to a handful of scattered, easily identified lesions. Its limits show up when there are many AKs, or when the surrounding skin carries subclinical sun damage that hasn't yet become a visible lesion: cryotherapy only treats what the dermatologist can see and freeze, one spot at a time, and repeated freezing over the years can leave patches of hypopigmentation or scarring.
+          </p>
+          <p class="text-slate/80 mb-4">
+            A randomized trial comparing the two head-to-head found a 91% lesion response rate with PDT versus 68% with a single cycle of cryotherapy at three months, along with a better cosmetic outcome and stronger patient preference for PDT. Larger pooled analyses across many trials tell a more nuanced story — overall clearance rates between PDT and cryotherapy are often statistically similar — but PDT has shown a clear edge for thicker, more advanced AKs and consistently produces less hypopigmentation than repeated freezing.
+          </p>
+          <div class="bg-teal/5 rounded-lg p-6">
+            <p class="text-slate/80">
+              <strong>In short:</strong> cryotherapy is fast and simple for a few isolated spots; PDT trades a longer, more involved single visit for treatment of the entire damaged field at once, with a generally better cosmetic result.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">PDT vs. Topical Field Therapy</h2>
+          <p class="text-slate/80 mb-4">
+            Topical field therapies — 5-fluorouracil, imiquimod, and diclofenac gel — are creams patients apply themselves at home over a course that can run anywhere from two to sixteen weeks, depending on the medication and regimen. They treat the whole field, much like PDT, but the mechanism and time commitment are very different: the skin goes through a stretch of expected redness, irritation, crusting, and sometimes real discomfort that builds gradually over the application period, rather than the shorter, more intense reaction PDT produces in the days right after a single office visit.
+          </p>
+          <p class="text-slate/80 mb-4">
+            In pooled trial data, 5-fluorouracil clears more lesions than PDT at 12 months in a typical immunocompetent patient, and imiquimod has also outperformed PDT in that same population. So on raw 12-month clearance alone, a topical cream is often the more effective option for an otherwise healthy patient. PDT's advantages lie in the details many patients weigh just as heavily: it compresses field treatment into one or two supervised visits instead of a weeks-long course of self-applied medication, it has produced meaningfully higher patient satisfaction scores than imiquimod in head-to-head comparisons, and — notably — it has shown superior efficacy specifically in organ transplant recipients and other immunosuppressed patients, who carry a much higher lifetime risk of AKs progressing to squamous cell carcinoma.
+          </p>
+          <p class="text-slate/80">
+            The two approaches aren't always either/or. Pretreating skin with a short course of topical 5-fluorouracil before a PDT session has been shown to increase how much photosensitizer the treated cells take up, improving clearance rates beyond what either treatment achieves alone — an option worth raising if your dermatologist hasn't already mentioned it.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:users" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Situations Where PDT Is Often Preferred</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Many AKs across a broad area, or field cancerization that extends beyond the visible lesions</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>AKs on the face or scalp, where a good cosmetic outcome matters most</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>Organ transplant recipients and others on long-term immunosuppression, given PDT's demonstrated advantage in this group</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>A preference for a supervised in-office procedure over a weeks-long course of at-home cream</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-teal mt-1">•</span>
+                  <span>AKs that have recurred despite prior cryotherapy or topical treatment</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>Given the pattern of my sun damage, would you expect PDT, cryotherapy, or a topical cream to work best for me?</li>
+                <li>How does my immune status factor into your recommendation?</li>
+                <li>Would combining a short course of topical treatment with PDT make sense in my case?</li>
+                <li>What cosmetic outcome should I expect from each option you're considering?</li>
+                <li>If we start with one approach and it doesn't clear enough of the AKs, what's the next step?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            No single AK treatment wins on every measure. Topical creams often clear more lesions over a year in an otherwise healthy patient; cryotherapy remains the fastest option for a few isolated spots; PDT trades a more involved single visit for whole-field treatment, a favorable cosmetic result, and a clear efficacy edge in immunosuppressed patients. The right choice depends on how many AKs you have, where they are, your immune status, and how you'd rather spend your treatment time — a conversation worth having directly with your dermatologist.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Eisen DB, Asgari MM, Bennett DD, et al. Guidelines of care for the management of actinic keratosis. <em>J Am Acad Dermatol.</em> 2021;85(4):e209-e233. <a href="https://pubmed.ncbi.nlm.nih.gov/33820677/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Freeman M, Vinciullo C, Francis D, et al. A comparison of photodynamic therapy using topical methyl aminolevulinate (Metvix) with single cycle cryotherapy in patients with actinic keratosis: a prospective, randomized study. <em>J Dermatolog Treat.</em> 2003;14(2):99-106. <a href="https://pubmed.ncbi.nlm.nih.gov/12775317/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Suwait ASDA, Chen R, Alkouz ZFM, et al. Comparative efficacy of photodynamic therapy versus conventional therapies for actinic keratosis: a systematic review and meta-analysis. <em>Photodiagnosis Photodyn Ther.</em> 2026;57:105308. <a href="https://pubmed.ncbi.nlm.nih.gov/41360310/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This article is for educational purposes only and not a substitute for professional medical advice. Always consult a qualified dermatologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

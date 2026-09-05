@@ -1,0 +1,248 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../../components/MedicalReviewer.astro';
+import { medicalReviewJsonLd } from '../../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/actinic-keratosis/pdt/what-happens-during-a-pdt-session";
+const title = "What Happens During a PDT Session? | Beating Skin Cancer";
+const description = "A step-by-step walk-through of a photodynamic therapy appointment for actinic keratosis: skin prep, photosensitizer, incubation, light exposure, and after.";
+const lastReviewed = "2026-09-04";
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What Happens During a PDT Treatment Session, Step by Step?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Actinic Keratosis", "item": "https://www.beatingskincancer.com/actinic-keratosis" },
+    { "@type": "ListItem", "position": 3, "name": "Photodynamic Therapy (PDT)", "item": "https://www.beatingskincancer.com/actinic-keratosis/pdt" },
+    { "@type": "ListItem", "position": 4, "name": "What Happens During a PDT Session?", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long does a PDT appointment take from start to finish?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most single-visit sessions run one to three hours in total, but the treatment itself takes only minutes. Nearly all of that time is the incubation period, when the photosensitizing agent sits on the skin before light exposure. Daylight-based protocols are structured differently and can involve roughly two hours outdoors rather than a single in-office incubation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the light exposure step hurt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most people feel some stinging, burning, or warmth during light exposure, which tends to peak partway through and ease afterward. It's usually described as tolerable rather than severe, and clinics use strategies like cooling air or fans, breaks, and sometimes a topical numbing agent to make it more comfortable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does my skin look like right after treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Immediately after light exposure, the treated skin is typically red and swollen, similar in appearance to a sunburn, and may feel warm or tender. This reaction is expected and is a sign the treatment reached the damaged cells — it's followed over the next several days by peeling as the skin heals."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/actinic-keratosis/pdt"
+            class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block"
+          >
+            ← Back to Photodynamic Therapy (PDT)
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What Happens During a PDT Treatment Session, Step by Step?
+          </h1>
+          <p class="text-xl text-white/80">A walk-through of the appointment, from skin prep to light exposure</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Knowing exactly what happens at a photodynamic therapy (PDT) appointment can make the visit far less unfamiliar. While specifics vary somewhat between clinics — the exact photosensitizing agent, the incubation time, and the type of light source used all differ by protocol — every PDT session follows the same basic sequence: the skin is prepared, a photosensitizing agent is applied and given time to absorb, the area is exposed to a specific wavelength of light, and the skin is checked and cared for afterward.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide walks through each of those steps in the order they happen, so you know what to expect at every point in the appointment.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:droplets" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Step 1: Cleansing and Skin Preparation</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            The session starts with the treatment area — often the face or scalp — being cleansed to remove oil, makeup, or sunscreen. If any of the AKs are thick or scaly, the clinician may gently scrape or curette the surface (a quick, in-office step) to remove built-up scale.
+          </p>
+          <p class="text-slate/80">
+            This preparation matters because it helps the photosensitizing agent penetrate evenly across the whole area, rather than being blocked by a layer of dead skin over the thicker lesions.
+          </p>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:pipette" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Step 2: Photosensitizer Application</h2>
+          </div>
+          <p class="text-slate/80">
+            A photosensitizing agent — ALA or its derivative MAL — is applied directly to the AKs and the surrounding sun-damaged skin, usually with a brush or applicator, covering the entire field rather than just the visible spots. It's a thin, even layer, and application itself takes just a few minutes and isn't painful.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:timer" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">Step 3: Incubation</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            This is the longest part of the visit. The photosensitizing agent needs time to be absorbed selectively by the damaged cells before it can be activated by light — typically somewhere between about 30 minutes and a few hours, depending on the specific protocol your dermatologist uses. Some clinics cover the area with an occlusive dressing or foil during this time to keep the agent in place and out of ambient light; others leave it uncovered under low light conditions.
+          </p>
+          <p class="text-slate/80">
+            Incubation itself usually feels like nothing more than a mild tightness or awareness of the product on the skin. This is typically a waiting period — you may sit in a treatment room or a dimly lit waiting area — rather than an active part of the procedure. Daylight PDT protocols handle this step differently: after a brief preparation, the photosensitizer is applied and the patient goes outdoors into natural daylight for a set period instead of waiting indoors before a separate light device is used.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:sun" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Step 4: Light Exposure</h2>
+              <p class="text-slate/80 mb-4">
+                Once incubation is complete, any remaining photosensitizer is wiped off and the treatment area is exposed to a specific light source — commonly a red or blue light device positioned close to the skin, though natural daylight is used in some protocols. The light activates the photosensitizer that has concentrated inside the damaged cells, triggering a reaction that destroys them while largely sparing normal surrounding skin.
+              </p>
+              <p class="text-slate/80 mb-4">
+                This step itself is brief — typically well under half an hour with a dedicated light device, longer for daylight-based protocols — but it's the part most people feel. Stinging, burning, prickling, or warmth is common, usually building over the first several minutes and easing once the light exposure ends. Sensation varies by person and by how much sun damage is present; areas with denser AK involvement tend to feel more.
+              </p>
+              <p class="text-slate/80">
+                Clinics manage this discomfort in different ways — cooling air, misting, breaks during the exposure, distraction, or a topical numbing agent beforehand — and it's reasonable to ask what options are available before your session starts.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:eye" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-3xl font-serif text-navy">What the Skin Looks Like Right After</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Immediately following light exposure, the treated area is typically red, swollen, and warm to the touch — a reaction that looks similar to a sunburn and is an expected sign that the treatment reached the intended cells. Some mild stinging or sensitivity often continues for a few hours afterward.
+          </p>
+          <p class="text-slate/80">
+            Before you leave, the treated skin is usually protected from light exposure (a bandage, dressing, or simply clothing and sunglasses depending on the area), and you'll be given specific instructions about avoiding direct sunlight — generally for 24 to 48 hours — since the skin remains photosensitive during that window.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ol class="space-y-3 text-slate/80 list-decimal list-inside">
+                <li>How long will my incubation period be, and will the area be covered during it?</li>
+                <li>What light source will be used, and roughly how long does the exposure step take?</li>
+                <li>What can be done to manage discomfort during the light exposure?</li>
+                <li>What should I plan for immediately afterward — do I need someone to drive me, or can I go straight back to normal activities?</li>
+                <li>What should my skin look like in the hours right after treatment, and what would be a reason to call you?</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            A PDT session follows a predictable sequence — cleansing, photosensitizer application, an incubation wait, brief light exposure, and a sunburn-like reaction immediately afterward — even though the exact timing and light source vary between clinics and protocols. Most of the appointment is waiting, and the treatment step itself, while it can be uncomfortable, is short.
+          </p>
+          <p class="text-slate/80">
+            Knowing this sequence ahead of time makes it easier to plan your day around the appointment and to know what's normal once you're home.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Jeffes EW, McCullough JL, Weinstein GD, Kaplan R, Glazer SD, Taylor JR. Photodynamic therapy of actinic keratoses with topical aminolevulinic acid hydrochloride and fluorescent blue light. <em>J Am Acad Dermatol.</em> 2001;45(1):96-104. <a href="https://pubmed.ncbi.nlm.nih.gov/11423841/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Wiegell SR, Wulf HC, Szeimies RM, et al. Daylight photodynamic therapy for actinic keratosis: an international consensus. <em>J Eur Acad Dermatol Venereol.</em> 2012;26(6):673-679. <a href="https://pubmed.ncbi.nlm.nih.gov/22211665/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.mskcc.org/cancer-care/patient-education/photodynamic-therapy" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">Memorial Sloan Kettering Cancer Center</a> — Photodynamic Therapy
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/actinic-keratosis-treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology (AAD)</a> — Actinic Keratosis: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> This page is for educational purposes only and is not a substitute for professional medical advice. Always consult a qualified dermatologist about your diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for information about photodynamic therapy</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

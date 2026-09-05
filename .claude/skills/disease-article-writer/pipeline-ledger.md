@@ -237,6 +237,56 @@ MedicalWebPage JSON-LD with exactly one `<h1>`. The advanced-melanoma sub-hub is
 | field-therapy-multiple-aks | What do I do when I have many AKs — does the approach differ? | published — 2026-08-25 |
 | talking-to-your-doctor | How do I talk to my doctor about managing AKs over time and monitoring changes? | published — 2026-08-25 |
 
+## actinic-keratosis / pdt (new sub-hub — pharma-sponsorship target, Biofrontera)
+
+Sub-hub at `/actinic-keratosis/pdt/` covering photodynamic therapy (PDT) as an AK field
+treatment: mechanism, candidacy, session mechanics, side effects, aftercare, and results.
+Same shape as the advanced-bcc / advanced-scc / advanced-melanoma sub-hubs: pattern-1 hub page,
+nested folder, Key Topics card lists 10 spoke deep-dives. Unlike the "advanced-X" sub-hubs this
+one is NOT a disease-stage hub — it's a single-treatment-modality hub — so its intro splits the
+two-step mechanism (photosensitizer application, then light activation) rather than two disease
+subtypes. Long-term goal: Biofrontera (Ameluz + BF-RhodoLED, an ALA-PDT system for AK field
+treatment) as sponsor. Keep content unbranded and editorially independent — describe "a
+photosensitizing agent" and "a light source," never a product name — until the user gives an
+explicit go-ahead to pursue sponsorship, per [[project-advanced-bcc-hub]]'s established posture.
+
+The sub-hub `index.astro` was drafted 2026-09-04 in DRAFT phase (no `MedicalReviewer` import, no
+`lastReviewed`, no `medicalReviewJsonLd` — `jsonLd` is just `[breadcrumbsJsonLd]`). Citations:
+Eisen et al. 2021 AAD AK guidelines (PMID 33820677) and Wiegell et al. 2012 daylight-PDT
+international consensus (PMID 22211665), both verified via NCBI efetch; AAD and MSKCC patient
+resource URLs curl-verified and WebFetch-confirmed on-topic. Its own Key Topics cards are unlinked
+`<div>` placeholders (10 slots) until each spoke is drafted + reviewed. The main AK hub
+(`src/pages/actinic-keratosis.astro`) got a new 9th Key Topics card added as an unlinked `<div>`
+placeholder pointing conceptually at this sub-hub (not yet a real `<a href>` — that happens at
+PUBLISH phase, same as every other sub-hub-index card on this site). The AK hub's existing
+"Photodynamic therapy (PDT)" bullet in its Treatment Options section was deliberately left as
+plain text (not linked) for the same reason.
+
+| Slug / working title | Question the card promises to answer | Status |
+|---|---|---|
+| (sub-hub) index.astro | What is PDT, how does it work, and is it right for me? | published — 2026-09-04 |
+| what-is-pdt-and-how-it-works | What is photodynamic therapy and how does it work? | published — 2026-09-04 |
+| why-choose-pdt | Why might my dermatologist recommend PDT over other AK treatments? | published — 2026-09-04 |
+| am-i-a-candidate-for-pdt | Am I a good candidate for photodynamic therapy? | published — 2026-09-04 |
+| what-happens-during-a-pdt-session | What happens during a PDT treatment session, step by step? | published — 2026-09-04 |
+| preparing-for-your-pdt-appointment | How should I prepare for my PDT appointment? | published — 2026-09-04 |
+| pdt-side-effects-and-downtime | What side effects and downtime should I expect after PDT? | published — 2026-09-04 |
+| pdt-aftercare-and-recovery | How do I care for my skin after PDT? | published — 2026-09-04 |
+| how-many-pdt-sessions-and-results | How many PDT sessions will I need, and what results can I expect? | published — 2026-09-04 |
+| managing-discomfort-during-pdt | How is discomfort during PDT managed? | published — 2026-09-04 |
+| pdt-safety-and-who-should-avoid-it | Is PDT safe, and who should avoid it? | published — 2026-09-04 |
+
+Reviewed and approved by Dr. Wang and published 2026-09-04: all 11 pages (index + 10 spokes)
+gained `import MedicalReviewer from '../../../components/MedicalReviewer.astro'`,
+`import { medicalReviewJsonLd } from '../../../lib/seo'`, `const lastReviewed = "2026-09-04"`,
+`<MedicalReviewer date={lastReviewed} />` under the hero subtitle `<p>`, and
+`medicalReviewJsonLd(canonical, lastReviewed)` appended to `jsonLd`. The sub-hub `index.astro`'s
+10 `<div>` Key Topics cards were converted to real `<a href="/actinic-keratosis/pdt/<slug>">`
+links, and the AK hub's 9th placeholder `<div>` card in `src/pages/actinic-keratosis.astro` was
+converted to a real `<a href="/actinic-keratosis/pdt">` link. Full `astro build` passes (105
+pages); every page renders the byline and MedicalWebPage JSON-LD. The PDT sub-hub is now 11/11
+published.
+
 ## Notes
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
@@ -255,7 +305,8 @@ MedicalWebPage JSON-LD with exactly one `<h1>`. The advanced-melanoma sub-hub is
     `src/pages/melanoma/index.astro` placeholder card converted to a real
     `<a href="/melanoma/advanced-melanoma">` link.
 - Nothing is `drafted-pending-review` anymore — every article across all hubs and sub-hubs is
-  published, bylined, and linked. Full `astro build` passes at 93 pages.
+  published, bylined, and linked, including the PDT sub-hub (11/11, published 2026-09-04). Full
+  `astro build` passes at 105 pages.
 - 0 pages remain not-started. Every hub is now fully published (8/8 slots live and linked).
   Atypical-nevi hub: all 8/8 drafted 2026-08-27, reviewed and approved by Dr. Wang the same day,
   and published 2026-08-27 — byline (`<MedicalReviewer date={lastReviewed} />`, default
