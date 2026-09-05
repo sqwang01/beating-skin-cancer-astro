@@ -164,9 +164,10 @@ tracking.
 - Dependency-light: native `<dialog>` element + ~30 lines JS for
   prev/next + Escape + focus trapping. Start here.
 - PhotoSwipe if pinch-zoom / swipe gestures are wanted later.
-- Accessibility: real descriptive alt text per image ("nodular basal cell
-  carcinoma on the left nasal ala with rolled pearly border and
-  telangiectasias"), keyboard nav, focus trap.
+- Accessibility: real descriptive alt text per image, keyboard nav, focus
+  trap. Alt-text format + the "image first, caption later" sync workflow
+  are specified in CLAUDE.md → "Image gallery"; follow that, not ad-hoc
+  wording.
 
 ---
 

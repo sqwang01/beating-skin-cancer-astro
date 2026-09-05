@@ -19,6 +19,7 @@ interface LightboxItem {
   type: 'clinical' | 'dermoscopy';
   site?: string;
   alt: string;
+  caption?: string;
   thumbSrc: string;
   fullSrc: string;
   credit: string;
@@ -44,6 +45,7 @@ for (const c of cases) {
       type,
       site: c.site,
       alt: source.alt,
+      caption: source.caption,
       thumbSrc: thumb.src,
       fullSrc: full.src,
       credit: c.credit,
@@ -67,7 +69,7 @@ const imageObjectsJsonLd = items.map((item) => ({
   '@context': 'https://schema.org',
   '@type': 'ImageObject',
   contentUrl: `https://www.beatingskincancer.com${item.fullSrc}`,
-  caption: item.alt,
+  caption: item.caption ?? item.alt,
   creator: { '@type': 'Organization', name: item.credit },
 }));
 
@@ -95,7 +97,7 @@ const jsonLd = [breadcrumbsJsonLd, ...imageObjectsJsonLd];
           <strong>For education, not diagnosis.</strong> Skin cancer can look very different from lesion to
           lesion, even within the same diagnosis. These images are not a substitute for an in-person exam —
           if you notice a new or changing spot, see a board-certified dermatologist. Read more about
-          <a href="/squamous-cell-carcinoma" class="text-teal hover:text-teal/80 underline">squamous cell carcinoma</a>.
+          <a href="/squamous-cell-carcinoma" class="text-teal hover:text-teal/80 underline"> squamous cell carcinoma</a>.
         </p>
       </div>
 
@@ -169,6 +171,7 @@ const jsonLd = [breadcrumbsJsonLd, ...imageObjectsJsonLd];
       </button>
       <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg" />
       <p id="lightbox-caption" class="text-white/90 text-center mt-4 max-w-2xl px-4"></p>
+      <p id="lightbox-detail" class="text-white/70 text-sm text-center mt-2 max-w-2xl px-4"></p>
       <p id="lightbox-credit" class="text-white/50 text-sm mt-1"></p>
     </div>
   </dialog>
@@ -178,6 +181,7 @@ const jsonLd = [breadcrumbsJsonLd, ...imageObjectsJsonLd];
   const dialog = document.getElementById('lightbox');
   const imageEl = document.getElementById('lightbox-image');
   const captionEl = document.getElementById('lightbox-caption');
+  const detailEl = document.getElementById('lightbox-detail');
   const creditEl = document.getElementById('lightbox-credit');
   const closeBtn = document.getElementById('lightbox-close');
   const prevBtn = document.getElementById('lightbox-prev');
@@ -192,6 +196,8 @@ const jsonLd = [breadcrumbsJsonLd, ...imageObjectsJsonLd];
     imageEl.src = item.fullSrc;
     imageEl.alt = item.alt;
     captionEl.textContent = item.alt;
+    detailEl.textContent = item.caption ?? '';
+    detailEl.hidden = !item.caption;
     creditEl.textContent = `Credit: ${item.credit}`;
   }
 

@@ -22,6 +22,8 @@ export type GalleryCategory =
 export interface GalleryCaseImage {
   image: ImageMetadata;
   alt: string;
+  /** Optional expert caption shown in the lightbox (e.g. dermoscopy findings). */
+  caption?: string;
 }
 
 export interface GalleryCase {
@@ -63,8 +65,13 @@ export const galleryCases: GalleryCase[] = [
     phototype: 'II',
     consentStatus: 'verbal consent',
     credit: 'BeatingSkinCancer.com',
-    clinical: { image: scc01Clinical, alt: 'Clinical photo of a biopsy-proven squamous cell carcinoma on the leg' },
-    dermoscopy: { image: scc01Dermoscopy, alt: 'Dermoscopic image of the same biopsy-proven squamous cell carcinoma on the leg' },
+    clinical: { image: scc01Clinical, alt: 'Squamous cell carcinoma (SCC) on the leg in Fitzpatrick type II skin, biopsy-proven — clinical photo of lesion 1' },
+    dermoscopy: {
+      image: scc01Dermoscopy,
+      alt: 'Dermoscopy of a biopsy-proven squamous cell carcinoma (SCC) on the leg showing surface keratin and scale, linear-dotted vessels, and linear brown dots',
+      caption:
+        'Dermoscopy of the lesion shows keratin and scale on the surface, along with linear-dotted vessels and linear brown dots — patterns commonly seen in squamous cell carcinoma.',
+    },
   },
   {
     id: 'scc-02',
@@ -75,8 +82,13 @@ export const galleryCases: GalleryCase[] = [
     phototype: 'II',
     consentStatus: 'verbal consent',
     credit: 'BeatingSkinCancer.com',
-    clinical: { image: scc02Clinical, alt: 'Clinical photo of a biopsy-proven squamous cell carcinoma on the leg' },
-    dermoscopy: { image: scc02Dermoscopy, alt: 'Dermoscopic image of the same biopsy-proven squamous cell carcinoma on the leg' },
+    clinical: { image: scc02Clinical, alt: 'Squamous cell carcinoma (SCC) on the leg in Fitzpatrick type II skin, biopsy-proven — clinical photo of lesion 2' },
+    dermoscopy: {
+      image: scc02Dermoscopy,
+      alt: 'Dermoscopy of a biopsy-proven squamous cell carcinoma (SCC) on the leg showing linear-dotted vessels',
+      caption:
+        'Dermoscopy of the lesion shows linear-dotted vessels — patterns commonly seen in squamous cell carcinoma.',
+    },
   },
   {
     id: 'scc-03',
@@ -87,8 +99,13 @@ export const galleryCases: GalleryCase[] = [
     phototype: 'II',
     consentStatus: 'verbal consent',
     credit: 'BeatingSkinCancer.com',
-    clinical: { image: scc03Clinical, alt: 'Clinical photo of a biopsy-proven squamous cell carcinoma on the arm' },
-    dermoscopy: { image: scc03Dermoscopy, alt: 'Dermoscopic image of the same biopsy-proven squamous cell carcinoma on the arm' },
+    clinical: { image: scc03Clinical, alt: 'Squamous cell carcinoma (SCC) on the arm in Fitzpatrick type II skin, biopsy-proven — clinical photo of lesion 3' },
+    dermoscopy: {
+      image: scc03Dermoscopy,
+      alt: 'Dermoscopy of a biopsy-proven squamous cell carcinoma (SCC) on the arm showing crystalline structures and linear-dotted vessels',
+      caption:
+        'Dermoscopy of the lesion shows crystalline structures along with linear-dotted vessels — patterns commonly seen in squamous cell carcinoma.',
+    },
   },
   {
     id: 'scc-04',
@@ -99,8 +116,13 @@ export const galleryCases: GalleryCase[] = [
     phototype: 'III',
     consentStatus: 'verbal consent',
     credit: 'BeatingSkinCancer.com',
-    clinical: { image: scc04Clinical, alt: 'Clinical photo of a biopsy-proven squamous cell carcinoma on the back' },
-    dermoscopy: { image: scc04Dermoscopy, alt: 'Dermoscopic image of the same biopsy-proven squamous cell carcinoma on the back' },
+    clinical: { image: scc04Clinical, alt: 'Squamous cell carcinoma (SCC) on the back in Fitzpatrick type III skin, biopsy-proven — clinical photo of lesion 4' },
+    dermoscopy: {
+      image: scc04Dermoscopy,
+      alt: 'Dermoscopy of a biopsy-proven squamous cell carcinoma (SCC) on the back showing surface keratin and scale with linear-dotted vessels',
+      caption:
+        'Dermoscopy of the lesion shows keratin and scale on the surface, along with linear-dotted vessels — patterns commonly seen in squamous cell carcinoma.',
+    },
   },
   {
     id: 'scc-05',
@@ -111,8 +133,8 @@ export const galleryCases: GalleryCase[] = [
     phototype: 'II',
     consentStatus: 'verbal consent',
     credit: 'BeatingSkinCancer.com',
-    clinical: { image: scc05Clinical, alt: 'Clinical photo of a biopsy-proven squamous cell carcinoma on the arm' },
-    dermoscopy: { image: scc05Dermoscopy, alt: 'Dermoscopic image of the same biopsy-proven squamous cell carcinoma on the arm' },
+    clinical: { image: scc05Clinical, alt: 'Squamous cell carcinoma (SCC) on the arm in Fitzpatrick type II skin, biopsy-proven — clinical photo of lesion 5' },
+    dermoscopy: { image: scc05Dermoscopy, alt: 'Dermoscopy of a biopsy-proven squamous cell carcinoma (SCC) on the arm from a real patient case, lesion 5' },
   },
   {
     id: 'scc-06',
@@ -123,8 +145,13 @@ export const galleryCases: GalleryCase[] = [
     phototype: 'II',
     consentStatus: 'verbal consent',
     credit: 'BeatingSkinCancer.com',
-    clinical: { image: scc06Clinical, alt: 'Clinical photo of a biopsy-proven squamous cell carcinoma on the leg' },
-    dermoscopy: { image: scc06Dermoscopy, alt: 'Dermoscopic image of the same biopsy-proven squamous cell carcinoma on the leg' },
+    clinical: { image: scc06Clinical, alt: 'Squamous cell carcinoma (SCC) on the leg in Fitzpatrick type II skin, biopsy-proven — clinical photo of lesion 6' },
+    dermoscopy: {
+      image: scc06Dermoscopy,
+      alt: 'Dermoscopy of a biopsy-proven squamous cell carcinoma (SCC) on the leg showing surface keratin and scale with linear-dotted vessels',
+      caption:
+        'Dermoscopy of the lesion shows keratin and scale on the surface, along with linear-dotted vessels — patterns commonly seen in squamous cell carcinoma.',
+    },
   },
 ];
 
