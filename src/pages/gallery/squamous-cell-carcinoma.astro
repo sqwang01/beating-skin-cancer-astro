@@ -1,0 +1,238 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getImage } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { getGalleryCases } from '../../data/gallery';
+
+const canonical = 'https://www.beatingskincancer.com/gallery/squamous-cell-carcinoma';
+const title = 'SCC Clinical & Dermoscopy Photo Gallery | Beating Skin Cancer';
+const description =
+  'Biopsy-proven squamous cell carcinoma photos paired with matching dermoscopy images, showing real presentations on the leg, arm, and back.';
+
+const cases = getGalleryCases('squamous-cell-carcinoma');
+
+const sites = [...new Set(cases.map((c) => c.site).filter((s): s is string => Boolean(s)))].sort();
+
+interface LightboxItem {
+  id: string;
+  caseId: string;
+  type: 'clinical' | 'dermoscopy';
+  site?: string;
+  alt: string;
+  thumbSrc: string;
+  fullSrc: string;
+  credit: string;
+}
+
+const items: LightboxItem[] = [];
+const cards = [];
+
+for (const c of cases) {
+  const cardImages: { type: 'clinical' | 'dermoscopy'; thumb: string; index: number }[] = [];
+  for (const type of ['clinical', 'dermoscopy'] as const) {
+    const source = c[type];
+    const thumb = await getImage({ src: source.image, width: 600, format: 'webp' });
+    const full = await getImage({
+      src: source.image,
+      width: type === 'clinical' ? 1600 : 1400,
+      format: 'webp',
+    });
+    const index = items.length;
+    items.push({
+      id: `${c.id}-${type}`,
+      caseId: c.id,
+      type,
+      site: c.site,
+      alt: source.alt,
+      thumbSrc: thumb.src,
+      fullSrc: full.src,
+      credit: c.credit,
+    });
+    cardImages.push({ type, thumb: thumb.src, index });
+  }
+  cards.push({ caseInfo: c, images: cardImages });
+}
+
+const breadcrumbsJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.beatingskincancer.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Image Gallery', item: 'https://www.beatingskincancer.com/gallery' },
+    { '@type': 'ListItem', position: 3, name: 'Squamous Cell Carcinoma', item: canonical },
+  ],
+};
+
+const imageObjectsJsonLd = items.map((item) => ({
+  '@context': 'https://schema.org',
+  '@type': 'ImageObject',
+  contentUrl: `https://www.beatingskincancer.com${item.fullSrc}`,
+  caption: item.alt,
+  creator: { '@type': 'Organization', name: item.credit },
+}));
+
+const jsonLd = [breadcrumbsJsonLd, ...imageObjectsJsonLd];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <div class="min-h-screen bg-ivory">
+    <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/gallery" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+          ← Back to Image Gallery
+        </a>
+        <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Squamous Cell Carcinoma Photo Gallery</h1>
+        <p class="text-xl text-white/80">
+          Biopsy-proven clinical photos paired with matching dermoscopy images from real patient cases.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="bg-coral/5 rounded-2xl shadow-lg p-6 mb-8 flex items-start gap-4">
+        <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={28} />
+        <p class="text-slate/80">
+          <strong>For education, not diagnosis.</strong> Skin cancer can look very different from lesion to
+          lesion, even within the same diagnosis. These images are not a substitute for an in-person exam —
+          if you notice a new or changing spot, see a board-certified dermatologist. Read more about
+          <a href="/squamous-cell-carcinoma" class="text-teal hover:text-teal/80 underline">squamous cell carcinoma</a>.
+        </p>
+      </div>
+
+      {sites.length > 1 && (
+        <div class="flex flex-wrap gap-2 mb-8" id="site-filters">
+          <button type="button" data-site-filter="all" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-teal text-white transition-colors">
+            All
+          </button>
+          {sites.map((site) => (
+            <button
+              type="button"
+              data-site-filter={site}
+              class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-slate border border-slate/20 hover:border-teal/40 transition-colors capitalize"
+            >
+              {site}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+        {cards.map(({ caseInfo, images }) => (
+          <div class="gallery-card bg-white rounded-2xl shadow-lg p-4" data-site={caseInfo.site}>
+            <div class="flex items-center justify-between mb-3">
+              <div class="text-sm font-semibold text-navy">
+                Lesion {caseInfo.id.split('-')[1].replace(/^0/, '')}
+                {caseInfo.site && <span class="text-teal capitalize"> · {caseInfo.site}</span>}
+              </div>
+              {caseInfo.phototype && (
+                <div class="text-xs font-medium text-slate/50">Fitzpatrick {caseInfo.phototype}</div>
+              )}
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              {images.map(({ type, thumb, index }) => (
+                <button
+                  type="button"
+                  class="lightbox-trigger group relative rounded-lg overflow-hidden aspect-square"
+                  data-index={index}
+                >
+                  <img src={thumb} alt="" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                  <span class="absolute bottom-0 left-0 right-0 bg-navy/80 text-white text-xs text-center py-1 capitalize">
+                    {type}
+                  </span>
+                </button>
+              ))}
+            </div>
+            {caseInfo.description && (
+              <p class="text-sm text-slate/70 mt-3">{caseInfo.description}</p>
+            )}
+            {caseInfo.treatment && (
+              <p class="text-xs text-slate/50 mt-2">
+                <span class="font-semibold text-slate/70">Treatment:</span> {caseInfo.treatment}
+              </p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <dialog id="lightbox" class="backdrop:bg-navy/90 bg-transparent max-w-none max-h-none w-full h-full p-0 m-0">
+    <div class="w-full h-full flex flex-col items-center justify-center relative p-4">
+      <button type="button" id="lightbox-close" aria-label="Close" class="absolute top-4 right-4 text-white hover:text-teal transition-colors">
+        <Icon name="lucide:x" size={32} />
+      </button>
+      <button type="button" id="lightbox-prev" aria-label="Previous image" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 text-white hover:text-teal transition-colors">
+        <Icon name="lucide:chevron-left" size={40} />
+      </button>
+      <button type="button" id="lightbox-next" aria-label="Next image" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white hover:text-teal transition-colors">
+        <Icon name="lucide:chevron-right" size={40} />
+      </button>
+      <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-lg" />
+      <p id="lightbox-caption" class="text-white/90 text-center mt-4 max-w-2xl px-4"></p>
+      <p id="lightbox-credit" class="text-white/50 text-sm mt-1"></p>
+    </div>
+  </dialog>
+</Layout>
+
+<script define:vars={{ items }}>
+  const dialog = document.getElementById('lightbox');
+  const imageEl = document.getElementById('lightbox-image');
+  const captionEl = document.getElementById('lightbox-caption');
+  const creditEl = document.getElementById('lightbox-credit');
+  const closeBtn = document.getElementById('lightbox-close');
+  const prevBtn = document.getElementById('lightbox-prev');
+  const nextBtn = document.getElementById('lightbox-next');
+  const triggers = document.querySelectorAll('.lightbox-trigger');
+
+  let currentIndex = 0;
+
+  function show(index) {
+    currentIndex = (index + items.length) % items.length;
+    const item = items[currentIndex];
+    imageEl.src = item.fullSrc;
+    imageEl.alt = item.alt;
+    captionEl.textContent = item.alt;
+    creditEl.textContent = `Credit: ${item.credit}`;
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      show(Number(trigger.dataset.index));
+      dialog.showModal();
+    });
+  });
+
+  closeBtn.addEventListener('click', () => dialog.close());
+  prevBtn.addEventListener('click', () => show(currentIndex - 1));
+  nextBtn.addEventListener('click', () => show(currentIndex + 1));
+
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  dialog.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') show(currentIndex - 1);
+    if (e.key === 'ArrowRight') show(currentIndex + 1);
+  });
+
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.gallery-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const site = btn.dataset.siteFilter;
+      filterButtons.forEach((b) => {
+        b.classList.toggle('bg-teal', b === btn);
+        b.classList.toggle('text-white', b === btn);
+        b.classList.toggle('bg-white', b !== btn);
+        b.classList.toggle('text-slate', b !== btn);
+        b.classList.toggle('border', b !== btn);
+        b.classList.toggle('border-slate/20', b !== btn);
+      });
+      cards.forEach((card) => {
+        const matches = site === 'all' || card.dataset.site === site;
+        card.classList.toggle('hidden', !matches);
+      });
+    });
+  });
+</script>

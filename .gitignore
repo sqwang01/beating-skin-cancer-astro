@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# raw/unprocessed gallery source images (unstripped EXIF, pre-consent-review)
+gallery-raw/
