@@ -10,6 +10,13 @@ const cancerLinks = [
   { href: '/atypical-nevi', label: 'Atypical Nevi', desc: 'Unusual moles' },
 ];
 
+const resourceLinks = [
+  { href: '/patient-resources', label: 'Overview', desc: 'All patient support in one place' },
+  { href: '/questions-to-ask', label: '200 Smart Questions', desc: 'Questions to ask at every appointment' },
+  { href: '/patient-resources/downloadable-guides', label: 'Downloadable Guides', desc: 'Printable discussion checklists' },
+  { href: '/patient-resources/financial-and-insurance-navigator', label: 'Financial & Insurance Navigator', desc: 'Coverage, appeals & cost help' },
+];
+
 const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
 ---
 
@@ -23,17 +30,7 @@ const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beatin
         </a>
       </div>
 
-      <div class="hidden md:flex items-center space-x-8">
-        <a href="/questions-to-ask" class="text-slate hover:text-teal transition-colors font-medium">
-          200 Smart Questions
-        </a>
-        <a href="/prevention" class="text-slate hover:text-teal transition-colors font-medium">
-          Prevention
-        </a>
-        <a href="/gallery" class="text-slate hover:text-teal transition-colors font-medium">
-          Image Gallery
-        </a>
-
+      <div class="hidden lg:flex items-center space-x-6">
         <div class="relative group">
           <button class="flex items-center gap-1 text-slate hover:text-teal transition-colors font-medium">
             Skin Cancers
@@ -43,6 +40,31 @@ const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beatin
           <div class="absolute top-full left-0 pt-2 w-56 hidden group-hover:block">
             <div class="bg-white rounded-lg shadow-lg border border-slate/10 py-2">
               {cancerLinks.map((link) => (
+                <a href={link.href} class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors">
+                  <div class="font-medium">{link.label}</div>
+                  <div class="text-sm text-slate/60">{link.desc}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a href="/prevention" class="text-slate hover:text-teal transition-colors font-medium">
+          Prevention
+        </a>
+        <a href="/gallery" class="text-slate hover:text-teal transition-colors font-medium">
+          Image Gallery
+        </a>
+
+        <div class="relative group">
+          <button class="flex items-center gap-1 text-slate hover:text-teal transition-colors font-medium">
+            Patient Resources
+            <Icon name="lucide:chevron-down" size={16} class="transition-transform group-hover:rotate-180" />
+          </button>
+
+          <div class="absolute top-full left-0 pt-2 w-72 hidden group-hover:block">
+            <div class="bg-white rounded-lg shadow-lg border border-slate/10 py-2">
+              {resourceLinks.map((link) => (
                 <a href={link.href} class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors">
                   <div class="font-medium">{link.label}</div>
                   <div class="text-sm text-slate/60">{link.desc}</div>
@@ -63,7 +85,7 @@ const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beatin
         </a>
       </div>
 
-      <div class="md:hidden">
+      <div class="lg:hidden">
         <button id="mobile-menu-button" class="text-navy hover:text-teal transition-colors" aria-label="Toggle menu" aria-expanded="false">
           <Icon name="lucide:menu" id="menu-open-icon" size={28} />
           <Icon name="lucide:x" id="menu-close-icon" size={28} class="hidden" />
@@ -71,11 +93,18 @@ const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beatin
       </div>
     </div>
 
-    <div id="mobile-menu" class="md:hidden border-t border-slate/10 hidden">
+    <div id="mobile-menu" class="lg:hidden border-t border-slate/10 hidden">
       <div class="px-4 py-6 space-y-4">
-        <a href="/questions-to-ask" class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg font-medium">
-          200 Smart Questions
-        </a>
+        <div class="space-y-2">
+          <div class="text-sm font-semibold text-slate/60 px-4">Skin Cancers</div>
+          {cancerLinks.map((link) => (
+            <a href={link.href} class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg">
+              <div class="font-medium">{link.label}</div>
+              <div class="text-sm text-slate/60">{link.desc}</div>
+            </a>
+          ))}
+        </div>
+
         <a href="/prevention" class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg font-medium">
           Prevention
         </a>
@@ -84,8 +113,8 @@ const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beatin
         </a>
 
         <div class="space-y-2">
-          <div class="text-sm font-semibold text-slate/60 px-4">Explore Cancers</div>
-          {cancerLinks.map((link) => (
+          <div class="text-sm font-semibold text-slate/60 px-4">Patient Resources</div>
+          {resourceLinks.map((link) => (
             <a href={link.href} class="block px-4 py-3 text-slate hover:bg-teal/5 hover:text-teal transition-colors rounded-lg">
               <div class="font-medium">{link.label}</div>
               <div class="text-sm text-slate/60">{link.desc}</div>
