@@ -13,6 +13,31 @@ import scc05Dermoscopy from '../images/gallery/squamous-cell-carcinoma/scc-05-de
 import scc06Clinical from '../images/gallery/squamous-cell-carcinoma/scc-06-clinical.jpg';
 import scc06Dermoscopy from '../images/gallery/squamous-cell-carcinoma/scc-06-dermoscopy.jpg';
 
+import mel01Clinical from '../images/gallery/melanoma/mel-01-clinical.jpg';
+import mel01Dermoscopy from '../images/gallery/melanoma/mel-01-dermoscopy.jpg';
+import mel02Clinical from '../images/gallery/melanoma/mel-02-clinical.jpg';
+import mel02Dermoscopy from '../images/gallery/melanoma/mel-02-dermoscopy.jpg';
+import mel03Clinical from '../images/gallery/melanoma/mel-03-clinical.jpg';
+import mel03Dermoscopy from '../images/gallery/melanoma/mel-03-dermoscopy.jpg';
+import mel04Clinical from '../images/gallery/melanoma/mel-04-clinical.jpg';
+import mel04Dermoscopy from '../images/gallery/melanoma/mel-04-dermoscopy.jpg';
+import mel05Clinical from '../images/gallery/melanoma/mel-05-clinical.jpg';
+import mel05Dermoscopy from '../images/gallery/melanoma/mel-05-dermoscopy.jpg';
+import mel06Clinical from '../images/gallery/melanoma/mel-06-clinical.jpg';
+import mel06Dermoscopy from '../images/gallery/melanoma/mel-06-dermoscopy.jpg';
+import mel07Clinical from '../images/gallery/melanoma/mel-07-clinical.jpg';
+import mel07Dermoscopy from '../images/gallery/melanoma/mel-07-dermoscopy.jpg';
+import mel08Clinical from '../images/gallery/melanoma/mel-08-clinical.jpg';
+import mel08Dermoscopy from '../images/gallery/melanoma/mel-08-dermoscopy.jpg';
+import mel09Clinical from '../images/gallery/melanoma/mel-09-clinical.jpg';
+import mel09Dermoscopy from '../images/gallery/melanoma/mel-09-dermoscopy.jpg';
+import mel10Clinical from '../images/gallery/melanoma/mel-10-clinical.jpg';
+import mel10Dermoscopy from '../images/gallery/melanoma/mel-10-dermoscopy.jpg';
+import mel11Clinical from '../images/gallery/melanoma/mel-11-clinical.jpg';
+import mel11Dermoscopy from '../images/gallery/melanoma/mel-11-dermoscopy.jpg';
+import mel12Clinical from '../images/gallery/melanoma/mel-12-clinical.jpg';
+import mel12Dermoscopy from '../images/gallery/melanoma/mel-12-dermoscopy.jpg';
+
 export type GalleryCategory =
   | 'squamous-cell-carcinoma'
   | 'basal-cell-carcinoma'
@@ -153,6 +178,41 @@ export const galleryCases: GalleryCase[] = [
         'Dermoscopy of the lesion shows keratin and scale on the surface, along with linear-dotted vessels — patterns commonly seen in squamous cell carcinoma.',
     },
   },
+  ...([
+    [mel01Clinical, mel01Dermoscopy, 'III'],
+    [mel02Clinical, mel02Dermoscopy, 'III'],
+    [mel03Clinical, mel03Dermoscopy, 'I'],
+    [mel04Clinical, mel04Dermoscopy, 'II'],
+    [mel05Clinical, mel05Dermoscopy, 'I'],
+    [mel06Clinical, mel06Dermoscopy, 'II'],
+    [mel07Clinical, mel07Dermoscopy, 'II'],
+    [mel08Clinical, mel08Dermoscopy, 'I'],
+    [mel09Clinical, mel09Dermoscopy, 'III'],
+    [mel10Clinical, mel10Dermoscopy, 'III'],
+    [mel11Clinical, mel11Dermoscopy, 'III'],
+    [mel12Clinical, mel12Dermoscopy, 'II'],
+  ] as [ImageMetadata, ImageMetadata, string][]).map(([clinical, dermoscopy, phototype], i): GalleryCase => {
+    const n = i + 1;
+    const id = `mel-${String(n).padStart(2, '0')}`;
+    return {
+      id,
+      category: 'melanoma',
+      diagnosis: 'Melanoma',
+      biopsyProven: true,
+      phototype,
+      treatment: 'Wide local excision',
+      consentStatus: 'verbal consent',
+      credit: 'BeatingSkinCancer.com',
+      clinical: {
+        image: clinical,
+        alt: `Melanoma in Fitzpatrick type ${phototype} skin, biopsy-proven — clinical photo of lesion ${n}`,
+      },
+      dermoscopy: {
+        image: dermoscopy,
+        alt: `Dermoscopy of a biopsy-proven melanoma from a real patient case, lesion ${n}`,
+      },
+    };
+  }),
 ];
 
 export function getGalleryCases(category: GalleryCategory): GalleryCase[] {
