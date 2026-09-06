@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import {
+  hubChecklistHubs,
+  getHubChecklistsFor,
+  hubBundlePdfPath as hubGuidePdf,
+} from '../../data/hubChecklists';
+import {
+  hubs as advancedHubs,
+  getHubChecklists as getAdvancedChecklists,
+  hubBundlePdfPath as advancedGuidePdf,
+} from '../../data/careTeamQuestions';
+
+const title = "Downloadable Guides | Beating Skin Cancer";
+const description = "Free printable skin cancer discussion guides: every 'What to Ask Your Doctor' checklist on this site collected into PDFs, one per topic and one complete guide per cancer.";
+
+const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+
+type GuideEntry = {
+  title: string;
+  hubPath: string;
+  pdf: string;
+  topicCount: number;
+};
+
+const nonAdvanced: GuideEntry[] = hubChecklistHubs.map((h) => ({
+  title: h.title,
+  hubPath: h.path,
+  pdf: hubGuidePdf(h.id),
+  topicCount: getHubChecklistsFor(h.id).length,
+}));
+
+const advanced: GuideEntry[] = advancedHubs.map((h) => ({
+  title: h.title,
+  hubPath: h.path,
+  pdf: advancedGuidePdf(h.id),
+  topicCount: getAdvancedChecklists(h.id).length,
+}));
+
+const sections = [
+  {
+    heading: 'Skin cancers & precancer',
+    blurb: 'One complete discussion guide per condition, plus a separate checklist for each in-depth topic under that hub.',
+    entries: nonAdvanced,
+  },
+  {
+    heading: 'Advanced & metastatic disease',
+    blurb: 'Question sets built for stage III–IV care, immunotherapy and targeted therapy decisions, and multidisciplinary teams.',
+    entries: advanced,
+  },
+];
+---
+
+<Layout title={title} description={description}>
+<div class="min-h-screen bg-ivory">
+  <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/patient-resources" class="inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors mb-4">
+        <Icon name="lucide:arrow-left" size={16} aria-hidden="true" />
+        Back to Patient Resources
+      </a>
+      <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Downloadable Guides</h1>
+      <p class="text-xl text-white/80">
+        Printable discussion guides you can take to your appointments — free, no sign-up.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">How these work</h2>
+      <p class="text-slate/80 text-lg leading-relaxed mb-4">
+        Every in-depth article on this site ends with a "What to Ask Your Doctor" list. Those same questions are compiled
+        into PDFs: a <strong>complete discussion guide</strong> for each condition gathers all of its topic questions into one
+        document, with a checkbox and a notes line beside each question and header fields for your appointment date and
+        doctor's name.
+      </p>
+      <p class="text-slate/80 text-lg leading-relaxed">
+        Prefer just one topic? Open the condition's hub page below — each in-depth article has its own single-page checklist
+        download.
+      </p>
+    </div>
+
+    {sections.map((section) => (
+      <div class="mb-10">
+        <h2 class="text-2xl font-serif text-navy mb-2">{section.heading}</h2>
+        <p class="text-slate/70 mb-6">{section.blurb}</p>
+        <div class="space-y-4">
+          {section.entries.map((entry) => (
+            <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h3 class="text-xl font-serif text-navy mb-1">{entry.title}</h3>
+                  <p class="text-sm text-slate/70">
+                    Complete discussion guide ·{' '}
+                    <a href={entry.hubPath} class="text-teal hover:underline">
+                      {entry.topicCount} individual topic checklist{entry.topicCount === 1 ? '' : 's'}
+                    </a>
+                  </p>
+                </div>
+                <ChecklistDownloadButton
+                  href={entry.pdf}
+                  label="Download PDF"
+                  class="flex-shrink-0"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+      <div class="flex items-start gap-4">
+        <Icon name="lucide:info" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+        <div>
+          <h2 class="text-2xl font-serif text-navy mb-3">Using them well</h2>
+          <ul class="space-y-2 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Print the guide a day or two before your visit and circle the three or four questions that matter most to you.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Bring a second copy for whoever comes with you, so someone can take notes while you talk.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Not every question applies to every person — your dermatologist can tell you which ones are relevant to your case.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+      <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+      <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about your diagnosis and care.</p>
+      <a
+        href={chatUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+      >
+        Chat with the Navigator
+      </a>
+    </div>
+  </div>
+</div>
+</Layout>

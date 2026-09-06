@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "Patient Resources | Beating Skin Cancer";
+const description = "Practical support for people living with skin cancer: a financial and insurance navigator, printable discussion guides, question checklists, and prevention tools.";
+
+const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+
+const featured = [
+  {
+    href: '/patient-resources/financial-and-insurance-navigator',
+    icon: 'lucide:wallet',
+    label: 'Financial & Insurance Navigator',
+    desc: 'How coverage works, what to do about a denial, and where to find copay grants, hospital charity care, travel help, and work protections.',
+  },
+  {
+    href: '/patient-resources/downloadable-guides',
+    icon: 'lucide:file-down',
+    label: 'Downloadable Guides',
+    desc: 'Every "What to Ask Your Doctor" checklist on this site, collected into printable PDFs — one per topic and one complete discussion guide per cancer.',
+  },
+];
+
+const alsoHelpful = [
+  { href: '/questions-to-ask', label: '200 Smart Questions', desc: 'A searchable library of questions to bring to every appointment.' },
+  { href: '/gallery', label: 'Image Gallery', desc: 'Biopsy-proven clinical and dermoscopy photos, with teaching notes.' },
+  { href: '/prevention', label: 'Prevention', desc: 'Sun protection, self-exams, and lowering your risk of another skin cancer.' },
+  { href: '/editorial-board', label: 'Editorial Board', desc: 'The board-certified dermatologists who review the content here.' },
+];
+---
+
+<Layout title={title} description={description}>
+<div class="min-h-screen bg-ivory">
+  <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Patient Resources</h1>
+      <p class="text-xl text-white/80">
+        The practical side of a skin cancer diagnosis — paying for care, preparing for appointments, and finding support.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Support beyond the exam room</h2>
+      <p class="text-slate/80 text-lg leading-relaxed mb-6">
+        The disease sections of this site explain what skin cancer is and how it's treated. This hub covers everything around
+        that: understanding your insurance, handling a coverage denial, finding help with out-of-pocket costs, protecting your
+        job while you're in treatment, and walking into each appointment with the right questions written down.
+      </p>
+      <p class="text-slate/80 text-lg leading-relaxed">
+        These pages are general information, not financial, legal, or medical advice. Coverage rules vary by plan and by state,
+        so confirm specifics with your own insurer, care team, and the organizations linked here.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 mb-8">
+      {featured.map((item) => (
+        <a href={item.href} class="block bg-white rounded-2xl shadow-lg p-8 border border-teal/10 hover:border-teal/40 hover:shadow-xl transition-all">
+          <Icon name={item.icon} class="text-teal mb-4" size={32} aria-hidden="true" />
+          <h3 class="text-2xl font-serif text-navy mb-2">{item.label}</h3>
+          <p class="text-slate/70">{item.desc}</p>
+          <span class="inline-flex items-center gap-1 text-teal font-medium mt-4">
+            Open
+            <Icon name="lucide:arrow-right" size={16} aria-hidden="true" />
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+      <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+      <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+      <a
+        href={chatUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+      >
+        Chat with the Navigator
+      </a>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-6">Also helpful</h2>
+      <div class="space-y-3">
+        {alsoHelpful.map((item) => (
+          <a href={item.href} class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1">{item.label}</div>
+            <div class="text-sm text-slate/70">{item.desc}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+      <h3 class="text-2xl font-serif text-white mb-4">Still have questions?</h3>
+      <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about skin cancer and your care.</p>
+      <a
+        href={chatUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+      >
+        Chat with the Navigator
+      </a>
+    </div>
+  </div>
+</div>
+</Layout>

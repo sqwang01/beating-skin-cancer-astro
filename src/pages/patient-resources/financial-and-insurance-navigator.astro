@@ -1,0 +1,238 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "Financial & Insurance Navigator | Beating Skin Cancer";
+const description = "A practical guide to paying for skin cancer care in the US: how coverage works, appealing a denial, copay and foundation grants, hospital charity care, travel help, and job protections.";
+
+const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+
+type Resource = { name: string; href: string; note: string };
+
+const costHelp: Resource[] = [
+  { name: 'Patient Advocate Foundation', href: 'https://www.patientadvocate.org/', note: 'Free case managers who help with insurance denials, medical debt, and job retention; also runs the Co-Pay Relief program.' },
+  { name: 'CancerCare', href: 'https://www.cancercare.org/financial', note: 'Limited financial assistance grants plus free counseling from oncology social workers.' },
+  { name: 'Cancer Financial Assistance Coalition (CFAC)', href: 'https://www.cancerfac.org/', note: 'Searchable directory of financial-help programs, filterable by diagnosis and type of need.' },
+  { name: 'Family Reach', href: 'https://familyreach.org/', note: 'Help with everyday living costs — rent, utilities, transportation — during cancer treatment.' },
+  { name: 'PAN Foundation', href: 'https://www.panfoundation.org/', note: 'Copay and premium assistance funds for specific diagnoses (open and close as funding allows).' },
+  { name: 'HealthWell Foundation', href: 'https://www.healthwellfoundation.org/', note: 'Grants for copays, premiums, and travel when a matching disease fund is open.' },
+  { name: 'The Assistance Fund', href: 'https://tafcares.org/', note: 'Copay and travel assistance organized by disease-specific programs.' },
+  { name: 'Good Days', href: 'https://www.mygooddays.org/', note: 'Copay, travel, and diagnostic-testing assistance for chronic and life-altering conditions.' },
+  { name: 'NeedyMeds', href: 'https://www.needymeds.org/', note: 'Database of patient assistance programs, free/low-cost clinics, and a drug discount card.' },
+  { name: 'Melanoma Research Foundation', href: 'https://melanoma.org/patients-caregivers/find-support/', note: 'Patient navigators and a peer-support program for melanoma specifically.' },
+];
+
+const travelHelp: Resource[] = [
+  { name: 'American Cancer Society', href: 'https://www.cancer.org/support-programs-and-services.html', note: 'Hope Lodge free lodging near treatment centers, and Road To Recovery volunteer rides. 24/7 helpline: 1-800-227-2345.' },
+  { name: "Joe's House", href: 'https://www.joeshouse.org/', note: 'Directory of lodging near hospitals and cancer centers, often at discounted rates.' },
+  { name: 'Healthcare Hospitality Network', href: 'https://www.hhnetwork.org/', note: 'Network of nonprofit lodging houses for patients and families traveling for care.' },
+  { name: 'National Patient Travel Center', href: 'https://www.patienttravel.org/', note: 'Clearinghouse for charitable long-distance medical air transport options.' },
+];
+
+const workAndLegal: Resource[] = [
+  { name: 'Triage Cancer', href: 'https://triagecancer.org/', note: 'Free, plain-language education on health insurance, disability benefits, FMLA, and finances; includes state-by-state law charts.' },
+  { name: 'Cancer Legal Resource Center', href: 'https://thedrlc.org/cancer-justice-resources/', note: 'Free information and resources on cancer-related legal issues, including employment and insurance.' },
+  { name: 'U.S. Department of Labor — FMLA', href: 'https://www.dol.gov/agencies/whd/fmla', note: 'Who qualifies for job-protected unpaid leave, and how to request it.' },
+  { name: 'Job Accommodation Network (JAN)', href: 'https://askjan.org/', note: 'Free guidance on reasonable workplace accommodations under the ADA.' },
+  { name: 'Social Security Administration', href: 'https://www.ssa.gov/benefits/disability/', note: 'SSDI and SSI disability benefits; some advanced cancers qualify for expedited Compassionate Allowances review.' },
+];
+
+const coverageBasics: Resource[] = [
+  { name: 'HealthCare.gov', href: 'https://www.healthcare.gov/', note: 'Marketplace plans; a cancer diagnosis or loss of coverage can open a Special Enrollment Period.' },
+  { name: 'Medicare.gov', href: 'https://www.medicare.gov/', note: 'Coverage rules, plan finder, and the Medicare Savings Programs for help with premiums and cost-sharing.' },
+  { name: 'Medicaid.gov', href: 'https://www.medicaid.gov/', note: 'Income-based coverage; eligibility and benefits vary by state and can be applied for any time of year.' },
+  { name: 'HRSA Find a Health Center', href: 'https://findahealthcenter.hrsa.gov/', note: 'Community health centers that charge on a sliding scale based on income.' },
+];
+---
+
+<Layout title={title} description={description}>
+<div class="min-h-screen bg-ivory">
+  <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/patient-resources" class="inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors mb-4">
+        <Icon name="lucide:arrow-left" size={16} aria-hidden="true" />
+        Back to Patient Resources
+      </a>
+      <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Financial &amp; Insurance Navigator</h1>
+      <p class="text-xl text-white/80">
+        How to pay for skin cancer care, what to do when coverage is denied, and where to find help with the costs that
+        insurance leaves behind.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Before you start</h2>
+      <p class="text-slate/80 text-lg leading-relaxed mb-4">
+        Most skin cancer is treated with a single office procedure, and cost is rarely a crisis. But melanoma, advanced or
+        recurrent disease, Mohs surgery with reconstruction, immunotherapy, and clinical-trial travel can add up fast. A
+        little organization early makes every later step easier.
+      </p>
+      <ul class="space-y-2 text-slate/80">
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Keep one binder or folder</strong> (paper or digital) for every bill, Explanation of Benefits (EOB), letter, and note from a phone call — with the date, the name of who you spoke to, and a reference number.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Know your plan's key numbers:</strong> deductible, coinsurance, copays, and out-of-pocket maximum. Once you hit the out-of-pocket max, covered in-network care is paid at 100% for the rest of the plan year.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>An EOB is not a bill.</strong> Wait for the provider's bill, then check that it matches the EOB before paying anything.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Ask your cancer center for a financial navigator or patient advocate.</strong> Most larger centers have one, and the service is free.</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Understanding what your plan covers</h2>
+      <div class="space-y-4 text-slate/80">
+        <div>
+          <h3 class="text-xl font-semibold text-navy mb-1">In-network vs. out-of-network</h3>
+          <p>Care from in-network providers costs far less. Before a biopsy, surgery, or scan, confirm that the doctor, the facility, <em>and</em> services like pathology and anesthesia are all in-network. Federal <a href="https://www.cms.gov/medical-bill-rights" target="_blank" rel="noopener noreferrer" class="text-teal hover:underline">No Surprises Act</a> protections limit surprise out-of-network bills for many emergency and facility-based services.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-navy mb-1">Prior authorization</h3>
+          <p>Mohs surgery, MRI/PET scans, immunotherapy, targeted therapy, and specialty drugs often need prior authorization. Ask the ordering office to confirm it's approved <em>before</em> the service, and get the authorization number for your records.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-navy mb-1">Step therapy</h3>
+          <p>Some plans require you to try a preferred (usually cheaper) drug first. If your dermatologist believes that isn't appropriate for you, they can request a step-therapy exception with supporting documentation.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+      <div class="flex items-start gap-4">
+        <Icon name="lucide:file-warning" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+        <div>
+          <h2 class="text-3xl font-serif text-navy mb-4">When a claim or drug is denied</h2>
+          <p class="text-slate/80 mb-4">Denials are common and frequently overturned. You generally have the right to appeal.</p>
+          <ol class="space-y-3 text-slate/80 list-decimal pl-5">
+            <li><strong>Get the reason in writing.</strong> The denial letter must state why and cite the plan language or clinical criterion used.</li>
+            <li><strong>Ask your doctor's office to help.</strong> They can submit a letter of medical necessity and request a <em>peer-to-peer</em> review — a direct call between your physician and the plan's reviewer.</li>
+            <li><strong>File an internal appeal</strong> with your insurer, usually within 180 days of the denial. Include the denial letter, your doctor's letter, relevant records, and published guidelines if available.</li>
+            <li><strong>Request an expedited appeal</strong> if a delay would seriously jeopardize your health — decisions are typically due within 72 hours.</li>
+            <li><strong>Escalate to an external review</strong> by an independent third party if the internal appeal fails. The decision is binding on the plan. Your state insurance department or the federal external-review process can start this.</li>
+          </ol>
+          <p class="text-slate/80 mt-4">A <a href="https://www.patientadvocate.org/" target="_blank" rel="noopener noreferrer" class="text-teal hover:underline">Patient Advocate Foundation</a> case manager can run this process with you at no cost.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Help with medication and treatment costs</h2>
+      <ul class="space-y-3 text-slate/80 mb-6">
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Manufacturer copay cards</strong> can cut the out-of-pocket cost of a brand-name drug to a small monthly amount if you have commercial insurance. Search the drug name plus "copay card." (These generally can't be used with Medicare or Medicaid.)</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Patient assistance programs (PAPs)</strong> from drug makers may provide medication free or at low cost if you're uninsured or underinsured and meet income limits.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Independent copay foundations</strong> (below) help people on Medicare when a disease-specific fund is open — funds cycle, so check back if one is closed.</span></li>
+      </ul>
+      <div class="space-y-3">
+        {costHelp.map((r) => (
+          <a href={r.href} target="_blank" rel="noopener noreferrer" class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1 inline-flex items-center gap-1">{r.name}<Icon name="lucide:external-link" size={14} aria-hidden="true" /></div>
+            <div class="text-sm text-slate/70">{r.note}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Hospital bills and financial assistance</h2>
+      <ul class="space-y-3 text-slate/80">
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Nonprofit hospitals must have a financial assistance policy</strong> (sometimes called charity care). Ask for it by name — many people who qualify never apply. Approval can reduce or erase the balance even after treatment.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Request an itemized bill</strong> and check it against your EOB for duplicate charges, services you didn't receive, or in-network care billed as out-of-network.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Ask for the self-pay or prompt-pay discount</strong> if you're uninsured, and set up an interest-free payment plan rather than putting balances on a credit card or medical credit card.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Don't ignore bills.</strong> Call, explain your situation, and ask about hardship options before an account goes to collections.</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Clinical trial costs</h2>
+      <p class="text-slate/80 mb-4">
+        If you're weighing a trial (for example, <a href="/melanoma/melanoma-clinical-trials" class="text-teal hover:underline">melanoma</a> or{" "}
+        <a href="/squamous-cell-carcinoma/advanced-scc/clinical-trials-for-advanced-scc" class="text-teal hover:underline">advanced SCC</a> trials), the money questions are usually manageable:
+      </p>
+      <ul class="space-y-3 text-slate/80">
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>The <strong>study sponsor</strong> typically pays for the investigational drug and any tests done only for the research.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Routine care costs</strong> (standard scans, office visits, standard treatment) are generally billed to your insurance. Federal law requires most plans to cover routine costs of a qualifying trial.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Ask the research coordinator about <strong>travel stipends, lodging, or parking reimbursement</strong> — many trials offer them.</span></li>
+      </ul>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Travel, lodging, and getting to treatment</h2>
+      <div class="space-y-3">
+        {travelHelp.map((r) => (
+          <a href={r.href} target="_blank" rel="noopener noreferrer" class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1 inline-flex items-center gap-1">{r.name}<Icon name="lucide:external-link" size={14} aria-hidden="true" /></div>
+            <div class="text-sm text-slate/70">{r.note}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">Protecting your job and income</h2>
+      <div class="space-y-3">
+        {workAndLegal.map((r) => (
+          <a href={r.href} target="_blank" rel="noopener noreferrer" class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1 inline-flex items-center gap-1">{r.name}<Icon name="lucide:external-link" size={14} aria-hidden="true" /></div>
+            <div class="text-sm text-slate/70">{r.note}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">If you're uninsured or between plans</h2>
+      <div class="space-y-3">
+        {coverageBasics.map((r) => (
+          <a href={r.href} target="_blank" rel="noopener noreferrer" class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1 inline-flex items-center gap-1">{r.name}<Icon name="lucide:external-link" size={14} aria-hidden="true" /></div>
+            <div class="text-sm text-slate/70">{r.note}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+      <div class="flex items-start gap-4">
+        <Icon name="lucide:clipboard-list" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+        <div>
+          <h2 class="text-2xl font-serif text-navy mb-4">Questions to ask</h2>
+          <h3 class="text-lg font-semibold text-navy mb-2">Your insurer</h3>
+          <ul class="space-y-2 text-slate/80 mb-4">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Is this provider, facility, and pathology lab in-network under my plan?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Does this procedure, scan, or drug need prior authorization, and is it approved?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What will I owe after the plan pays — toward my deductible, coinsurance, and out-of-pocket max?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What's the deadline and process to appeal if a claim is denied?</span></li>
+          </ul>
+          <h3 class="text-lg font-semibold text-navy mb-2">Your care team's billing or navigation office</h3>
+          <ul class="space-y-2 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Do you have a financial navigator or social worker who can meet with me?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>What is the estimated out-of-pocket cost for this treatment plan?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Does this hospital have a financial assistance or charity care policy, and can you help me apply?</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span>Can you help with a letter of medical necessity or a peer-to-peer review if something is denied?</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-slate/5 rounded-2xl p-6 mb-8">
+      <p class="text-sm text-slate/70">
+        <strong>Disclaimer:</strong> This page is general information for people in the United States and is not financial,
+        legal, tax, or medical advice. Program names, eligibility rules, and coverage laws change and vary by plan and by
+        state. Confirm details directly with your insurer, your care team, and each organization before acting. Listing an
+        organization here is not an endorsement.
+      </p>
+    </div>
+
+    <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+      <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+      <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about navigating skin cancer care.</p>
+      <a
+        href={chatUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+      >
+        Chat with the Navigator
+      </a>
+    </div>
+  </div>
+</div>
+</Layout>
