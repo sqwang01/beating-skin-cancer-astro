@@ -1,0 +1,248 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma/follow-up-and-recurrence-monitoring";
+const title = "Merkel Cell Carcinoma Follow-Up Care | Beating Skin Cancer";
+const description = "Most Merkel cell carcinoma recurrences happen within 3 years, so follow-up uses frequent skin and lymph node exams, imaging, and sometimes a blood test.";
+const lastReviewed = "2026-09-06";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Follow-Up Care and Monitoring for Recurrence After Merkel Cell Carcinoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merkel Cell Carcinoma", "item": "https://www.beatingskincancer.com/merkel-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Follow-Up and Recurrence Monitoring", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often will I be seen after Merkel cell carcinoma treatment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically every 3 to 6 months for the first 3 years, when most recurrences occur, then every 6 to 12 months through year 5 and often beyond. People with higher-stage disease or a weakened immune system are usually seen more often."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does the risk of recurrence last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 90 to 95 percent of Merkel cell carcinoma recurrences happen within 3 years of diagnosis, so surveillance is most intensive during that window. The risk never falls to zero, which is why long-term skin checks and a second-cancer watch continue for life."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the Merkel cell polyomavirus antibody blood test used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If your tumor is virus-positive and you make antibodies to the viral T antigen at diagnosis, the antibody level can be tracked over time. A falling level is reassuring, while a rising level can flag a recurrence before it is visible on scans, prompting earlier imaging."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/merkel-cell-carcinoma" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+            ← Back to Merkel Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Follow-Up Care and Monitoring for Recurrence After Merkel Cell Carcinoma
+          </h1>
+          <p class="text-xl text-white/80">Visit schedules, scans, and what to watch for after treatment</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Merkel cell carcinoma (MCC) recurs more often than most skin cancers — in one large prospective study, about 40% of patients had a recurrence within five years — and the great majority of those recurrences happen in the first three years. That pattern shapes follow-up: visits are frequent and front-loaded, with imaging and, for some people, a blood test layered on top of a careful physical exam.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide describes what a typical surveillance schedule looks like, what each test is checking for, and the signs that should prompt a call between visits.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">A Typical Surveillance Schedule</h2>
+          <p class="text-slate/80 mb-4">
+            Exact timing is individualized by stage, immune status, and how the cancer behaved, but guideline-based schedules generally look like this:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Years 1–3:</strong> Clinic visit with full skin and lymph node exam every 3–6 months.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Years 4–5 and beyond:</strong> Visits every 6–12 months, continuing long term.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Higher-risk patients</strong> (node-positive, larger tumors, immunosuppressed) are seen at the shorter end of those intervals and have more imaging.</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Each Part of Follow-Up Checks</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Physical examination</h3>
+              <p class="text-slate/80">
+                The cornerstone of MCC surveillance. Your clinician inspects the original tumor site and the scar, the skin between the tumor and its draining lymph nodes (looking for "in-transit" nodules), the lymph node basins, and the rest of your skin for new primary cancers. Most recurrences are first found this way.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Imaging</h3>
+              <p class="text-slate/80">
+                People with node-positive or higher-stage disease usually have periodic PET/CT or CT during the first 2–3 years to catch spread that cannot be felt. Routine imaging is often not recommended for low-risk, node-negative disease, where the harms of frequent scans can outweigh the benefit. Lymph node ultrasound is sometimes used for patients who did not have a sentinel node biopsy.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Merkel cell polyomavirus antibody test</h3>
+              <p class="text-slate/80">
+                If your tumor is virus-positive and you produce antibodies to the viral T antigen, that antibody level can be measured at baseline and then every few months. A rising titer often precedes a visible recurrence and can prompt earlier scanning; a persistently low or falling titer is reassuring. It is only useful in the subset of patients who are antibody-positive to begin with. See <a href="/merkel-cell-carcinoma/merkel-cell-polyomavirus-and-immune-suppression" class="text-teal hover:text-teal/80 underline">Merkel cell polyomavirus and immune suppression</a>.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Skin self-exams between visits</h3>
+              <p class="text-slate/80">
+                Check the treated area, the path toward the nearby lymph nodes, and those node areas once a month. Report any new firm bump, a lump under the skin, swelling, or a rapidly changing spot without waiting for the next appointment.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:bell" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Call Your Team If You Notice</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>A new lump or firm nodule near the original tumor or its scar</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Swelling or a palpable lump in the armpit, groin, or neck</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Small skin nodules appearing along the line between the tumor site and the lymph nodes</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Unexplained weight loss, persistent pain, cough, or fatigue</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Any new fast-growing spot elsewhere on your skin</span></li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Recurrences caught early — while still local or regional — can often be treated with surgery, radiation, or immunotherapy. Locoregional recurrence still warrants prompt, aggressive treatment because it can progress quickly.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Follow-up for MCC is deliberately intensive in the first three years because that is when nearly all recurrences appear. A careful physical exam is the most valuable tool, supported by risk-based imaging and, for virus-positive patients, an antibody blood test. Your own monthly checks fill the gaps between visits.
+          </p>
+          <p class="text-slate/80">
+            Know your schedule, know what you are watching for, and know how to reach your team fast — early detection of a recurrence keeps the most treatment options open.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  McEvoy AM, Lachance K, Hippe DS, et al. Recurrence and Mortality Risk of Merkel Cell Carcinoma by Cancer Stage and Time From Diagnosis. <em>JAMA Dermatol.</em> 2022;158(4):382-389. <a href="https://pubmed.ncbi.nlm.nih.gov/35195657/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Grotz TE, Tarantola TI, Otley CC, et al. Natural history of Merkel cell carcinoma following locoregional recurrence. <em>Ann Surg Oncol.</em> 2012;19(8):2556-2562. <a href="https://pubmed.ncbi.nlm.nih.gov/22453243/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines® Insights: Merkel Cell Carcinoma, Version 1.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(1D):e240002. <a href="https://pubmed.ncbi.nlm.nih.gov/38244274/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Coggshall K, Tello TL, North JP, Yu SS. Merkel cell carcinoma: An update and review: Pathogenesis, diagnosis, and staging. <em>J Am Acad Dermatol.</em> 2018;78(3):433-442. <a href="https://pubmed.ncbi.nlm.nih.gov/29229574/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer/after-treatment.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — After Merkel Cell Skin Cancer Treatment
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/merkel-cell-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Merkel Cell Carcinoma Treatment (PDQ®), Patient Version (recurrent disease)
+                </li>
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/merkel-cell-carcinoma/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Merkel Cell Carcinoma Overview
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

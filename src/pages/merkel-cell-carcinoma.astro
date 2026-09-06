@@ -1,0 +1,268 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../components/MedicalReviewer.astro';
+import ChecklistDownloadButton from '../components/ChecklistDownloadButton.astro';
+import { hubBundlePdfPath } from '../data/hubChecklists';
+import { medicalReviewJsonLd } from '../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma";
+const title = "Merkel Cell Carcinoma: Signs & Care | Beating Skin Cancer";
+const description = "Merkel cell carcinoma is a rare, aggressive skin cancer. Learn AEIOU warning signs, who is at risk, and how surgery, radiation, and immunotherapy treat it.";
+const lastReviewed = "2026-09-06";
+const jsonLd = [medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Merkel Cell Carcinoma</h1>
+          <p class="text-xl text-white/80">A rare but aggressive skin cancer that needs prompt, specialized care</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">What is Merkel Cell Carcinoma?</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Merkel cell carcinoma (MCC) is a rare neuroendocrine skin cancer that arises near the nerve endings at the base of the outer skin layer. Only about 3,000 cases are diagnosed in the United States each year, but the number is rising — and MCC is far more likely than basal cell or squamous cell carcinoma to spread to lymph nodes and distant organs.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed mb-6">
+            Two main factors drive it: the Merkel cell polyomavirus, found in roughly 80% of tumors, and long-term ultraviolet (UV) damage. It is strongly linked to being over age 50, having fair skin, and having a weakened immune system.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            MCC often looks deceptively harmless — a painless, firm, fast-growing, shiny bump that may be skin-colored, red, or bluish-purple, usually on sun-exposed skin of the head, neck, or arms. Because it can move quickly, early detection and treatment by a coordinated team of specialists make a real difference in outcomes.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Key Topics</h2>
+          <p class="text-slate/80 mb-6">
+            In-depth guides on these topics are being prepared to help you understand a Merkel cell carcinoma diagnosis and its treatment:
+          </p>
+          <div class="space-y-3">
+            <a href="/merkel-cell-carcinoma/diagnosis-and-staging" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">How is Merkel cell carcinoma diagnosed and staged?</div>
+              <div class="text-sm text-slate/70">Biopsy, immunostains, imaging, and what the stage means for your plan</div>
+            </a>
+            <a href="/merkel-cell-carcinoma/aeiou-warning-signs" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">What the AEIOU warning signs mean</div>
+              <div class="text-sm text-slate/70">The five features that help doctors spot MCC early</div>
+            </a>
+            <a href="/merkel-cell-carcinoma/merkel-cell-polyomavirus-and-immune-suppression" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">Merkel cell polyomavirus and immune suppression — why MCC develops</div>
+              <div class="text-sm text-slate/70">How a common virus and a weakened immune system contribute to the disease</div>
+            </a>
+            <a href="/merkel-cell-carcinoma/treatment-options" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">Treatment options: surgery, radiation, and immunotherapy</div>
+              <div class="text-sm text-slate/70">How the main treatments are combined and sequenced</div>
+            </a>
+            <a href="/merkel-cell-carcinoma/sentinel-lymph-node-biopsy" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">Why sentinel lymph node biopsy is routine for MCC</div>
+              <div class="text-sm text-slate/70">Checking the lymph nodes even when they feel normal</div>
+            </a>
+            <a href="/merkel-cell-carcinoma/follow-up-and-recurrence-monitoring" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">Follow-up care and monitoring for recurrence</div>
+              <div class="text-sm text-slate/70">Visit schedules, scans, and what to watch for after treatment</div>
+            </a>
+            <a href="/merkel-cell-carcinoma/advanced-metastatic-mcc-immunotherapy" class="block p-4 bg-teal/5 rounded-lg border border-teal/10 hover:bg-teal/10 transition-colors">
+              <div class="font-semibold text-navy mb-1">Advanced or metastatic MCC and checkpoint immunotherapy</div>
+              <div class="text-sm text-slate/70">Options when MCC has spread, including avelumab and pembrolizumab</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-6">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Warning Signs</h2>
+              <p class="text-slate/80 mb-4">
+                Doctors use the mnemonic <strong>AEIOU</strong> to describe the features that most often accompany Merkel cell carcinoma:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>A</strong>symptomatic — a lump that does not hurt or itch</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>E</strong>xpanding rapidly — noticeably larger over a few weeks</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>I</strong>mmune suppression — organ transplant, chronic leukemia or lymphoma, or HIV</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>O</strong>lder than 50 years of age</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>U</strong>V-exposed site on a person with fair skin</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span>A firm, dome-shaped, shiny nodule — red, pink, violet, or skin-colored — most often on the head, neck, or forearms</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Any new bump that grows quickly, or a spot your dermatologist cannot readily explain, should be biopsied without delay.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:eye" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">Risk Factors</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Age over 50, with risk rising sharply after 70</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Fair skin with heavy lifetime sun exposure</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>A weakened immune system — organ transplant, chronic lymphocytic leukemia or lymphoma, HIV</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Prior exposure to the Merkel cell polyomavirus</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>A history of other skin cancers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Past PUVA (psoralen plus UVA) light therapy</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Male sex</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <Icon name="lucide:shield" class="text-teal" size={28} aria-hidden="true" />
+              <h2 class="text-2xl font-serif text-navy">Prevention &amp; Early Detection</h2>
+            </div>
+            <ul class="space-y-3 text-slate/80">
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Apply broad-spectrum SPF 30+ sunscreen daily and reapply every 2 hours outdoors</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Wear sun-protective clothing and a wide-brimmed hat</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Avoid peak sun hours (10am–4pm) and never use tanning beds</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>Examine your skin monthly and have any new or fast-growing bump checked promptly</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>See a dermatologist for a full skin exam at least yearly</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-teal mt-1">•</span>
+                <span>If your immune system is suppressed, ask about more frequent skin checks</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-center gap-3 mb-4">
+            <Icon name="lucide:activity" class="text-teal" size={28} aria-hidden="true" />
+            <h2 class="text-2xl font-serif text-navy">Treatment Options</h2>
+          </div>
+          <p class="text-slate/80 mb-4">
+            Merkel cell carcinoma is usually treated by a team that includes dermatology and surgical, radiation, and medical oncology. The plan depends on the size and location of the tumor and whether it has reached the lymph nodes or beyond:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Wide local excision:</strong> Surgically removing the tumor with a margin of healthy skin; Mohs surgery is sometimes used in cosmetically sensitive areas</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Sentinel lymph node biopsy:</strong> A standard part of MCC staging, done even when the lymph nodes feel normal, because microscopic spread is common</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Radiation therapy:</strong> MCC is very sensitive to radiation; it is often given to the tumor site and nearby lymph nodes after surgery, and can be the main treatment when surgery is not possible</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Lymph node treatment:</strong> Surgical removal of the lymph nodes and/or radiation to that area if cancer is found there</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Immunotherapy:</strong> Immune checkpoint inhibitors such as avelumab, pembrolizumab, or nivolumab for advanced, recurrent, or metastatic disease</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Chemotherapy:</strong> Once the mainstay for metastatic MCC, now largely replaced by immunotherapy but still an option in select cases</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Clinical trials:</strong> Studies of new drugs and combinations are an important option worth asking about at every stage</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8 text-center">
+          <h2 class="text-2xl font-serif text-navy mb-3">Printable Discussion Guide</h2>
+          <p class="text-slate/80 mb-6">
+            Every question from the topics above, collected into one printable checklist — with a checkbox and space for notes beside each, and header fields for your appointment date and doctor's name.
+          </p>
+          <ChecklistDownloadButton
+            href={hubBundlePdfPath('merkel-cell-carcinoma')}
+            label="Download the complete Merkel cell carcinoma discussion guide (PDF)"
+          />
+        </div>
+
+        <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

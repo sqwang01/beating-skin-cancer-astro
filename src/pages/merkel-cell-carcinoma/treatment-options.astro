@@ -1,0 +1,251 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma/treatment-options";
+const title = "Merkel Cell Carcinoma Treatment Options | Beating Skin Cancer";
+const description = "How surgery, radiation, and immunotherapy are combined and sequenced to treat Merkel cell carcinoma, and what to expect from each part of the plan.";
+const lastReviewed = "2026-09-06";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Merkel Cell Carcinoma Treatment Options: Surgery, Radiation, and Immunotherapy",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merkel Cell Carcinoma", "item": "https://www.beatingskincancer.com/merkel-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Treatment Options", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is surgery alone enough for early Merkel cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sometimes, but radiation to the tumor bed is often added because Merkel cell carcinoma recurs locally more than most skin cancers. Whether radiation is recommended after surgery depends on tumor size, margins, immune status, and whether cancer was found in a sentinel lymph node."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is radiation used so often in Merkel cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Merkel cell carcinoma is unusually sensitive to radiation. Radiation to the primary site and nearby lymph nodes after surgery lowers the chance of local and regional recurrence, and it can serve as the main treatment when surgery is not possible."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do all patients with Merkel cell carcinoma need immunotherapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Immunotherapy is standard for advanced, recurrent, or metastatic disease. For cancer confined to the skin or regional nodes, surgery and radiation remain the backbone, though trials are testing whether earlier immunotherapy helps higher-risk patients."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/merkel-cell-carcinoma" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+            ← Back to Merkel Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Merkel Cell Carcinoma Treatment Options: Surgery, Radiation, and Immunotherapy
+          </h1>
+          <p class="text-xl text-white/80">How the main treatments are combined and sequenced</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Merkel cell carcinoma (MCC) is treated with three main tools — surgery, radiation, and immunotherapy — used in different combinations depending on the <a href="/merkel-cell-carcinoma/diagnosis-and-staging" class="text-teal hover:text-teal/80 underline">stage</a>. Because MCC returns and spreads more readily than basal or squamous cell cancers, treatment tends to be more intensive than patients expect for a skin cancer, and it usually involves several specialists.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide explains what each treatment does, how they are sequenced, and the questions that help you understand your own plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Multidisciplinary Team</h2>
+          <p class="text-slate/80 mb-4">
+            MCC care is usually coordinated across several specialties, ideally reviewed together at a tumor board:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Dermatology / Mohs surgery</strong> — diagnosis and skin surgery in cosmetically sensitive sites</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Surgical oncology</strong> — wide excision, sentinel lymph node biopsy, and lymph node surgery</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Radiation oncology</strong> — radiation to the tumor bed and lymph node basin</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Medical oncology</strong> — immunotherapy and, rarely, chemotherapy for advanced disease</span></li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Treatment by Situation</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">1. Surgery for the primary tumor</h3>
+              <p class="text-slate/80">
+                The skin tumor is removed with a margin of normal-looking tissue around it (wide local excision), or by Mohs surgery on the face, where tissue conservation matters. At the same operation, a <a href="/merkel-cell-carcinoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">sentinel lymph node biopsy</a> is usually done to check whether cancer has reached the draining nodes.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">2. Radiation after surgery (adjuvant radiation)</h3>
+              <p class="text-slate/80">
+                MCC is highly radiosensitive, and local recurrence is common. Radiation to the tumor bed is frequently recommended, especially for larger tumors, close or positive margins, lymphovascular invasion, or immunosuppression. If a sentinel node is positive, radiation and/or surgery is directed at the lymph node basin. Small, low-risk tumors removed with clear margins in people with intact immune systems are sometimes observed without radiation.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">3. Radiation as the main treatment</h3>
+              <p class="text-slate/80">
+                When surgery would be disfiguring, when a person is not well enough for an operation, or when the tumor is unresectable, definitive radiation can control MCC effectively on its own. It is also used to relieve symptoms from tumors that are causing pain or pressure.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">4. Immunotherapy for advanced disease</h3>
+              <p class="text-slate/80">
+                For MCC that has spread to distant sites, or that has recurred and cannot be controlled with surgery and radiation, immune checkpoint inhibitors — avelumab, pembrolizumab, or nivolumab — are the standard first choice. Responses are often rapid and, in many patients, long-lasting. See <a href="/merkel-cell-carcinoma/advanced-metastatic-mcc-immunotherapy" class="text-teal hover:text-teal/80 underline">advanced or metastatic MCC and checkpoint immunotherapy</a>.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">5. Chemotherapy</h3>
+              <p class="text-slate/80">
+                Platinum-based chemotherapy shrinks MCC in the short term but the benefit usually fades within months. It has largely been replaced by immunotherapy and is now reserved for people who cannot receive checkpoint inhibitors or whose disease has progressed through them.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">6. Clinical trials</h3>
+              <p class="text-slate/80">
+                Because MCC is rare and the field is moving quickly, trials — of immunotherapy before surgery, new immune combinations, and cellular therapies — are a mainstream option worth asking about at every stage, not only after other treatments fail.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:clock" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">Why Sequencing and Speed Matter</h2>
+              <p class="text-slate/80 mb-4">
+                MCC can progress in weeks, so treatment tends to start promptly and follow a planned order — typically surgery, then radiation a few weeks later once healing allows, with imaging and lymph node results guiding whether systemic therapy is added. Delays between steps are kept as short as safely possible. If you are facing a long wait for any part of the plan, it is reasonable to ask whether it can be expedited or whether another center can see you sooner.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            For most people, MCC treatment is surgery to remove the tumor and sample the lymph nodes, followed by radiation to reduce the high risk of local recurrence. Immunotherapy is the standard for disease that has spread, and clinical trials run alongside all of it. The plan is individualized and moves quickly, which is exactly why a coordinated, experienced team makes a difference.
+          </p>
+          <p class="text-slate/80">
+            After active treatment, close <a href="/merkel-cell-carcinoma/follow-up-and-recurrence-monitoring" class="text-teal hover:text-teal/80 underline">follow-up and recurrence monitoring</a> becomes the priority.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Tello TL, Coggshall K, Yom SS, Yu SS. Merkel cell carcinoma: An update and review: Current and future therapy. <em>J Am Acad Dermatol.</em> 2018;78(3):445-454. <a href="https://pubmed.ncbi.nlm.nih.gov/29229573/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Bichakjian CK, Olencki T, Aasi SZ, et al. Merkel Cell Carcinoma, Version 1.2018, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2018;16(6):742-774. <a href="https://pubmed.ncbi.nlm.nih.gov/29891526/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines® Insights: Merkel Cell Carcinoma, Version 1.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(1D):e240002. <a href="https://pubmed.ncbi.nlm.nih.gov/38244274/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/merkel-cell-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Merkel Cell Carcinoma Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer/treating.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Treating Merkel Cell Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/merkel-cell/treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Merkel Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

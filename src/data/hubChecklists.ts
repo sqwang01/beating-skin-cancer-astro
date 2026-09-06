@@ -57,6 +57,7 @@ export const hubChecklistHubs: HubChecklistMeta[] = [
   { id: "actinic-keratosis", title: "Actinic Keratosis", path: "/actinic-keratosis", disease: "actinic keratoses" },
   { id: "ak-pdt", title: "Photodynamic Therapy for Actinic Keratosis", path: "/actinic-keratosis/pdt", disease: "photodynamic therapy" },
   { id: "atypical-nevi", title: "Atypical Moles (Dysplastic Nevi)", path: "/atypical-nevi", disease: "atypical moles" },
+  { id: "merkel-cell-carcinoma", title: "Merkel Cell Carcinoma", path: "/merkel-cell-carcinoma", disease: "Merkel cell carcinoma" },
 ];
 
 // ======================================================================
@@ -1111,6 +1112,157 @@ const atypicalNevi: HubChecklist[] = [
 ];
 
 // ======================================================================
+// MERKEL CELL CARCINOMA
+// ======================================================================
+
+const merkelCellCarcinoma: HubChecklist[] = [
+  {
+    slug: "diagnosis-and-staging",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "How Is Merkel Cell Carcinoma Diagnosed and Staged?",
+    pagePath: "/merkel-cell-carcinoma/diagnosis-and-staging",
+    order: 0,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "What did my biopsy and immunostains show, and was the tumor tested for the Merkel cell polyomavirus?",
+          "Will I have a sentinel lymph node biopsy, and when — before, during, or after removing the primary tumor?",
+          "What imaging will I have for staging, and will you use PET/CT or CT?",
+          "What is my clinical stage now, and could it change after surgery and node results?",
+          "Will my case be reviewed by a multidisciplinary team experienced with MCC?",
+          "Should I get a second opinion on the pathology at a center that sees MCC often?",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "aeiou-warning-signs",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "What the AEIOU Warning Signs of Merkel Cell Carcinoma Mean",
+    pagePath: "/merkel-cell-carcinoma/aeiou-warning-signs",
+    order: 1,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "This bump has grown over the past few weeks — should it be biopsied now rather than watched?",
+          "How many AEIOU features do you think this lesion has?",
+          "I am immunosuppressed — does that change how quickly this needs to be evaluated?",
+          "If the biopsy is not MCC, what else could this be, and how will we follow it?",
+          "If it is MCC, who will coordinate my staging work-up and how soon can that start?",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "merkel-cell-polyomavirus-and-immune-suppression",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "Merkel Cell Polyomavirus and Immune Suppression: Why MCC Develops",
+    pagePath: "/merkel-cell-carcinoma/merkel-cell-polyomavirus-and-immune-suppression",
+    order: 2,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "Was my tumor tested for the Merkel cell polyomavirus, and what was the result?",
+          "If my tumor is virus-positive, can I use the blood antibody test to help monitor for recurrence?",
+          "I take immune-suppressing medication — can it be safely reduced or adjusted, and who decides that?",
+          "Does my immune status change my recommended follow-up schedule or imaging?",
+          "If I need immunotherapy and I am a transplant recipient, how will you balance that against rejection risk?",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "treatment-options",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "Merkel Cell Carcinoma Treatment Options: Surgery, Radiation, and Immunotherapy",
+    pagePath: "/merkel-cell-carcinoma/treatment-options",
+    order: 3,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "What is my stage, and which treatments does that call for — surgery, radiation, immunotherapy, or a combination?",
+          "Will I need radiation after surgery? What features of my tumor drive that recommendation?",
+          "In what order will treatments happen, and how many weeks apart?",
+          "Is my case being reviewed by a multidisciplinary tumor board?",
+          "Is there a clinical trial I should consider now, including immunotherapy before surgery?",
+          "What are the expected side effects of each part of my plan, and how will they be managed?",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "sentinel-lymph-node-biopsy",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "Why Sentinel Lymph Node Biopsy Is Routine for Merkel Cell Carcinoma",
+    pagePath: "/merkel-cell-carcinoma/sentinel-lymph-node-biopsy",
+    order: 4,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "Will my sentinel lymph node biopsy be done at the same time as the wide excision?",
+          "Who reads the node pathology, and are MCC-specific immunostains used?",
+          "If the node is positive, will you recommend radiation, surgery to remove the nodes, or both?",
+          "What are the risks of the procedure for me — lymphedema, numbness, seroma, wound issues?",
+          "If a biopsy is not recommended in my case, what is the reason, and how will you monitor the nodes instead?",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "follow-up-and-recurrence-monitoring",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "Follow-Up Care and Monitoring for Recurrence After Merkel Cell Carcinoma",
+    pagePath: "/merkel-cell-carcinoma/follow-up-and-recurrence-monitoring",
+    order: 5,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "Given my stage, how often should I be seen, and for how many years?",
+          "Will I have scheduled imaging? Which scans, how often, and for how long?",
+          "Was my tumor virus-positive, and can I use the antibody blood test to help monitor for recurrence?",
+          "Which clinician \"owns\" my surveillance — dermatology, surgical oncology, or medical oncology?",
+          "Exactly what should I check at home, and how do I reach you quickly if I find something?",
+          "Does my immune status change any of the above?",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "advanced-metastatic-mcc-immunotherapy",
+    hub: "merkel-cell-carcinoma",
+    pageTitle: "Advanced or Metastatic Merkel Cell Carcinoma and Checkpoint Immunotherapy",
+    pagePath: "/merkel-cell-carcinoma/advanced-metastatic-mcc-immunotherapy",
+    order: 6,
+    lastReviewed: "2026-09-06",
+    groups: [
+      {
+        ordered: true,
+        questions: [
+          "Is checkpoint immunotherapy the right first treatment for me, and which drug do you recommend?",
+          "How will we know if it is working, and how often will I have scans?",
+          "What immune-related side effects should I watch for, and who do I call, day or night?",
+          "If it works, how long do I stay on it? If it stops working, what is next?",
+          "Do I have an autoimmune condition or a transplant that changes this decision?",
+          "Is there a clinical trial I should consider now?",
+        ],
+      },
+    ],
+  },
+];
+
+// ======================================================================
 
 export const hubChecklists: HubChecklist[] = [
   ...bcc,
@@ -1119,6 +1271,7 @@ export const hubChecklists: HubChecklist[] = [
   ...ak,
   ...akPdt,
   ...atypicalNevi,
+  ...merkelCellCarcinoma,
 ];
 
 // Lookups ----------------------------------------------------------------

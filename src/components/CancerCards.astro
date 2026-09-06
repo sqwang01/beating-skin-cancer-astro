@@ -6,7 +6,7 @@ import { Icon } from 'astro-icon/components';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-4xl font-serif text-navy text-center mb-4">Types of Skin Cancer</h2>
     <p class="text-center text-slate/70 mb-16 text-lg max-w-3xl mx-auto">
-      Learn about the three main types of skin cancer and their characteristics.
+      Learn about the main types of skin cancer and their characteristics.
     </p>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -37,6 +37,17 @@ import { Icon } from 'astro-icon/components';
         <h3 class="text-2xl font-serif text-navy mb-4">Basal Cell Carcinoma</h3>
         <p class="text-slate/70 mb-6 leading-relaxed">
           The most common type of skin cancer. Highly treatable with excellent cure rates when detected early.
+        </p>
+        <div class="flex items-center gap-2 text-teal font-medium group-hover:gap-4 transition-all">
+          Learn More <Icon name="lucide:arrow-right" size={18} />
+        </div>
+      </a>
+
+      <a href="/merkel-cell-carcinoma" class="group bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all hover:-translate-y-1">
+        <div class="h-2 w-16 bg-slate rounded-full mb-6"></div>
+        <h3 class="text-2xl font-serif text-navy mb-4">Merkel Cell Carcinoma</h3>
+        <p class="text-slate/70 mb-6 leading-relaxed">
+          A rare but aggressive skin cancer linked to a virus, sun exposure, and a weakened immune system. Prompt, specialized care matters.
         </p>
         <div class="flex items-center gap-2 text-teal font-medium group-hover:gap-4 transition-all">
           Learn More <Icon name="lucide:arrow-right" size={18} />

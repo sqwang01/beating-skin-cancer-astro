@@ -287,6 +287,56 @@ converted to a real `<a href="/actinic-keratosis/pdt">` link. Full `astro build`
 pages); every page renders the byline and MedicalWebPage JSON-LD. The PDT sub-hub is now 11/11
 published.
 
+## merkel-cell-carcinoma (new flat hub — 7 Key Topics spokes)
+
+Hub at `/merkel-cell-carcinoma` (flat file `src/pages/merkel-cell-carcinoma.astro`, untracked at
+start of this run) with a nested `src/pages/merkel-cell-carcinoma/` folder for the spokes (imports
+`../../`, like the `melanoma/` and `actinic-keratosis/` deep-dives). Unlike the other disease hubs,
+this hub file already shipped with `<MedicalReviewer date={lastReviewed} />`,
+`const lastReviewed = "2026-09-06"`, and `medicalReviewJsonLd(canonical, lastReviewed)` in place,
+and the nav (`Navigation.astro`) + homepage (`CancerCards.astro`) links to it were already added
+(all uncommitted). The hub's 7 Key Topics cards are `<div class="block p-4 bg-teal/5 rounded-lg
+border border-teal/10">` placeholders (note: `bg-teal/5`, **not** the site's usual dead `bg-sky/5`) —
+left as-is this run.
+
+| Slug | Question the card promises to answer | Status |
+|---|---|---|
+| diagnosis-and-staging | How is Merkel cell carcinoma diagnosed and staged? | published — 2026-09-06 |
+| aeiou-warning-signs | What the AEIOU warning signs mean | published — 2026-09-06 |
+| merkel-cell-polyomavirus-and-immune-suppression | Merkel cell polyomavirus and immune suppression — why MCC develops | published — 2026-09-06 |
+| treatment-options | Treatment options: surgery, radiation, and immunotherapy | published — 2026-09-06 |
+| sentinel-lymph-node-biopsy | Why sentinel lymph node biopsy is routine for MCC | published — 2026-09-06 |
+| follow-up-and-recurrence-monitoring | Follow-up care and monitoring for recurrence | published — 2026-09-06 |
+| advanced-metastatic-mcc-immunotherapy | Advanced or metastatic MCC and checkpoint immunotherapy | published — 2026-09-06 |
+
+All 7 drafted 2026-09-06: deep-dive pattern-2 shape, "← Back to Merkel Cell Carcinoma" hero link,
+3-level breadcrumb, `[articleJsonLd, breadcrumbsJsonLd, faqJsonLd]`, all render 200 with exactly
+one `<h1>` and no `bg-sky/*`. Citations verified via NCBI efetch; patient-resource URLs
+curl-verified (merkelcell.org deliberately omitted — Cloudflare 403s automated checks).
+Shared verified PMID pool: 29229574, 29229573, 27198511, 18280333, 18202256, 27592805, 30726175,
+16785370, 27984768, 29891526, 38244274, 22453243, 35195657, 29102486, 32562583, 24993599.
+
+Reviewed and approved by Dr. Wang and published 2026-09-06: each spoke gained
+`import MedicalReviewer from '../../components/MedicalReviewer.astro'`,
+`import QuestionList` + `import ChecklistDownloadButton`,
+`import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists'`,
+`import { medicalReviewJsonLd } from '../../lib/seo'`, `const lastReviewed = "2026-09-06"`,
+`const checklist = getHubChecklistByPath(new URL(canonical).pathname)`,
+`<MedicalReviewer date={lastReviewed} />` under the hero subtitle `<p>`, and
+`medicalReviewJsonLd(canonical, lastReviewed)` appended to `jsonLd`; each spoke's inline "What to
+Ask Your Doctor" `<ul>` was swapped for `<ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} … />`
++ `<QuestionList group={checklist.groups[0]} />`. A `merkel-cell-carcinoma` hub meta row + 7
+entries were added to `src/data/hubChecklists.ts` (`...merkelCellCarcinoma` spread into
+`hubChecklists`), `lastReviewed: "2026-09-06"` on every entry, questions copied verbatim. The hub
+`src/pages/merkel-cell-carcinoma.astro` got its 7 placeholder `<div class="… bg-teal/5 …">` Key
+Topics cards converted to real `<a href="/merkel-cell-carcinoma/<slug>" class="… bg-teal/5 …
+hover:bg-teal/10 transition-colors">` links, plus a "Printable Discussion Guide" box linking
+`hubBundlePdfPath('merkel-cell-carcinoma')` (imports `ChecklistDownloadButton` + `hubBundlePdfPath`).
+Full `astro build` passes; PDF step logged `generated 104 checklist PDFs`, and
+`/downloads/merkel-cell-carcinoma/<slug>-checklist.pdf` (×7) +
+`complete-merkel-cell-carcinoma-discussion-guide.pdf` all serve 200. Every spoke renders the byline
+and MedicalWebPage JSON-LD. The MCC hub is now 8/8 published (hub + 7 spokes).
+
 ## Notes
 
 - "Working title" slugs above are proposals, not committed filenames — fine to rename if a better
@@ -307,7 +357,11 @@ published.
 - Nothing is `drafted-pending-review` anymore — every article across all hubs and sub-hubs is
   published, bylined, and linked, including the PDT sub-hub (11/11, published 2026-09-04). Full
   `astro build` passes at 105 pages.
-- 0 pages remain not-started. Every hub is now fully published (8/8 slots live and linked).
+- The 5 original disease hubs + 3 advanced sub-hubs + PDT sub-hub + the new merkel-cell-carcinoma
+  hub are all fully published. Nothing is drafted-pending-review.
+- merkel-cell-carcinoma: hub + 7 spokes, drafted, reviewed, approved, and published 2026-09-06
+  (see its section above). `astro build` passes; PDF step logs `generated 104 checklist PDFs`.
+- Every hub is fully published (8/8 slots live and linked).
   Atypical-nevi hub: all 8/8 drafted 2026-08-27, reviewed and approved by Dr. Wang the same day,
   and published 2026-08-27 — byline (`<MedicalReviewer date={lastReviewed} />`, default
   Editor-in-Chief) + `lastReviewed = "2026-08-27"` + `medicalReviewJsonLd(canonical, lastReviewed)`

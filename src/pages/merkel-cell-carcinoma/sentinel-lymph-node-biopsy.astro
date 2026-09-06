@@ -1,0 +1,247 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma/sentinel-lymph-node-biopsy";
+const title = "Sentinel Lymph Node Biopsy in MCC | Beating Skin Cancer";
+const description = "Merkel cell carcinoma spreads to lymph nodes early and silently, so a sentinel lymph node biopsy is a routine part of staging even when nodes feel normal.";
+const lastReviewed = "2026-09-06";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Why Sentinel Lymph Node Biopsy Is Routine for Merkel Cell Carcinoma",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merkel Cell Carcinoma", "item": "https://www.beatingskincancer.com/merkel-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Sentinel Lymph Node Biopsy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why do I need a sentinel lymph node biopsy if my lymph nodes feel normal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About one in three people with Merkel cell carcinoma and normal-feeling lymph nodes have microscopic cancer found in the sentinel node. A normal exam and even a normal scan cannot rule this out, so the biopsy is the only reliable way to know the true stage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if the sentinel node is positive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A positive sentinel node means the cancer is at least Stage III. Treatment of that lymph node basin is then recommended — usually radiation, surgical removal of the nodes, or both — and you may be referred to medical oncology to discuss additional therapy or a clinical trial."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the sentinel lymph node biopsy done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is usually performed at the same operation as the wide excision of the skin tumor, before that area is reconstructed, because prior surgery can disrupt the lymphatic drainage the test relies on. Doing it early gives the most accurate result."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/merkel-cell-carcinoma" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+            ← Back to Merkel Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Why Sentinel Lymph Node Biopsy Is Routine for Merkel Cell Carcinoma
+          </h1>
+          <p class="text-xl text-white/80">Checking the lymph nodes even when they feel normal</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            For most skin cancers, a doctor feels the nearby lymph nodes and, if they seem normal, moves on. Merkel cell carcinoma (MCC) is different. It reaches the lymph nodes early and quietly, and roughly a third of people whose nodes feel completely normal turn out to have cancer cells hiding in them. That is why a sentinel lymph node biopsy (SLNB) is a standard part of the MCC work-up, not an optional add-on.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide explains what the sentinel node is, how the biopsy is done, and how the result reshapes staging and treatment.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">What Is the Sentinel Node?</h2>
+          <p class="text-slate/80 mb-4">
+            Lymph fluid from any patch of skin drains first to one or a few specific "sentinel" lymph nodes before reaching the rest of the basin. If MCC cells have begun to spread through the lymphatic system, the sentinel node is where they show up first. Finding cancer there — or confirming it is clear — is the most accurate way to know whether the disease is still confined to the skin.
+          </p>
+          <p class="text-slate/80">
+            This matters because MCC understages easily on exam and imaging alone. In large datasets that informed the current AJCC staging system, pathologic node status was one of the strongest predictors of outcome — a distinction only a biopsy can make.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">How the Biopsy Is Done</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">1. Mapping</h3>
+              <p class="text-slate/80">
+                A small amount of radioactive tracer, and sometimes a blue dye, is injected around the tumor site. Over the next hour or so, imaging (lymphoscintigraphy) or a handheld probe shows which node(s) the tracer travels to.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">2. Removal</h3>
+              <p class="text-slate/80">
+                Under the same anesthesia used to widely remove the skin tumor, the surgeon makes a small incision over the sentinel node(s) and removes them. This is usually done <em>before</em> the tumor area is reconstructed, because earlier surgery in the region can scramble the drainage pattern and make the test unreliable.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">3. Pathology</h3>
+              <p class="text-slate/80">
+                The nodes are examined with the same immunostains used on the primary tumor (such as CK20), which can reveal even a handful of cancer cells that routine staining would miss. Results typically take several days.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:git-branch" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What the Result Means</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Negative sentinel node:</strong> No cancer detected in the nodes. The disease is pathologically confined to the skin (Stage I–II), the outlook is more favorable, and treatment focuses on the primary site — often surgery with or without radiation. Nodal radiation can usually be avoided.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Positive sentinel node:</strong> The cancer is at least Stage III. The lymph node basin is then treated with radiation, surgical removal of the nodes (completion lymph node dissection), or both, and medical oncology is typically involved to discuss further therapy or a trial.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>When SLNB may be skipped:</strong> If nodes are already known to contain cancer, if distant metastases are present, or occasionally when frailty or tumor location makes the procedure impractical. Your team weighs these individually.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                See how node status fits into the larger picture in <a href="/merkel-cell-carcinoma/diagnosis-and-staging" class="text-teal hover:text-teal/80 underline">diagnosis and staging</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            A sentinel lymph node biopsy is routine in MCC because the disease spreads to lymph nodes far more often, and far more silently, than its size or a physical exam suggests. The result either provides genuine reassurance that the cancer is skin-confined or triggers earlier, more effective treatment of the lymph node basin.
+          </p>
+          <p class="text-slate/80">
+            If a biopsy is offered, ask how and when it will be done; if it is not, ask why. Either way, node status will shape the rest of your plan.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Gupta SG, Wang LC, Peñas PF, et al. Sentinel lymph node biopsy for evaluation and treatment of patients with Merkel cell carcinoma: The Dana-Farber experience and meta-analysis of the literature. <em>Arch Dermatol.</em> 2006;142(6):685-690. <a href="https://pubmed.ncbi.nlm.nih.gov/16785370/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Harms KL, Healy MA, Nghiem P, et al. Analysis of Prognostic Factors from 9387 Merkel Cell Carcinoma Cases Forms the Basis for the New 8th Edition AJCC Staging System. <em>Ann Surg Oncol.</em> 2016;23(11):3564-3571. <a href="https://pubmed.ncbi.nlm.nih.gov/27198511/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Coggshall K, Tello TL, North JP, Yu SS. Merkel cell carcinoma: An update and review: Pathogenesis, diagnosis, and staging. <em>J Am Acad Dermatol.</em> 2018;78(3):433-442. <a href="https://pubmed.ncbi.nlm.nih.gov/29229574/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Bichakjian CK, Olencki T, Aasi SZ, et al. Merkel Cell Carcinoma, Version 1.2018, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2018;16(6):742-774. <a href="https://pubmed.ncbi.nlm.nih.gov/29891526/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer/detection-diagnosis-staging/how-diagnosed.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Tests for Merkel Cell Skin Cancer (sentinel lymph node biopsy)
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/merkel-cell-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Merkel Cell Carcinoma Treatment (PDQ®), Patient Version
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/merkel-cell/treatment" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Merkel Cell Carcinoma: Diagnosis and Treatment
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

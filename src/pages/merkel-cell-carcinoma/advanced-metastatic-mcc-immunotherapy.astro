@@ -1,0 +1,259 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma/advanced-metastatic-mcc-immunotherapy";
+const title = "Advanced MCC and Immunotherapy | Beating Skin Cancer";
+const description = "Checkpoint immunotherapy with avelumab or pembrolizumab is now the main treatment for advanced or metastatic Merkel cell carcinoma. Here's how it works.";
+const lastReviewed = "2026-09-06";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Advanced or Metastatic Merkel Cell Carcinoma and Checkpoint Immunotherapy",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merkel Cell Carcinoma", "item": "https://www.beatingskincancer.com/merkel-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Advanced MCC and Checkpoint Immunotherapy", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How well does immunotherapy work for advanced Merkel cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In clinical trials, roughly half to two-thirds of patients responded to a checkpoint inhibitor, and many of those responses have lasted for years. That is a large improvement over chemotherapy, where responses were common at first but usually faded within months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the main side effects of checkpoint immunotherapy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Because these drugs activate the immune system, they can cause it to attack normal tissue, leading to inflammation of the skin, gut (colitis), thyroid and other glands, liver, or lungs. Most reactions are manageable when caught early, often with steroids, so prompt reporting of new symptoms matters."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I have immunotherapy if I am an organ transplant recipient?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is possible but higher risk, because checkpoint inhibitors can trigger rejection of the transplanted organ. These decisions are made case by case with the transplant team, weighing the cancer threat against the organ, and sometimes using alternative strategies."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/merkel-cell-carcinoma" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+            ← Back to Merkel Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            Advanced or Metastatic Merkel Cell Carcinoma and Checkpoint Immunotherapy
+          </h1>
+          <p class="text-xl text-white/80">Options when MCC has spread, including avelumab and pembrolizumab</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            "Advanced" Merkel cell carcinoma (MCC) means disease that cannot be cured with surgery and radiation alone — most often because it has spread to distant lymph nodes or organs (metastatic, Stage IV), or because it keeps recurring locally. A decade ago the main option was chemotherapy, which shrank tumors briefly but rarely held them. Immune checkpoint inhibitors changed that, and they are now the standard first treatment.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide explains why MCC responds so well to immunotherapy, which drugs are used, what to expect, and what the options are if immunotherapy is not enough or not possible.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Why MCC Responds to Immunotherapy</h2>
+          <p class="text-slate/80 mb-4">
+            Both routes to MCC give the immune system a target. Virus-positive tumors carry foreign viral proteins; UV-driven tumors carry a very high number of mutations that create abnormal proteins. In both cases, tumors often try to hide by displaying a molecule called PD-L1, which switches off attacking T cells. Checkpoint inhibitors block that off-switch (the PD-1/PD-L1 pathway), letting the immune system see and destroy the cancer.
+          </p>
+          <p class="text-slate/80">
+            The practical result: response rates of roughly 50–65% in trials, and — unlike chemotherapy — responses that frequently last for years.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">The Checkpoint Inhibitors Used in MCC</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Avelumab</h3>
+              <p class="text-slate/80">
+                A PD-L1 inhibitor and the first drug approved specifically for metastatic MCC, based on the JAVELIN Merkel 200 trial in patients whose disease had progressed after chemotherapy. Later data supported its use as a first-line treatment as well. Given as an intravenous infusion, typically every two weeks.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Pembrolizumab</h3>
+              <p class="text-slate/80">
+                A PD-1 inhibitor studied as first-line therapy for advanced MCC, with durable responses and encouraging overall survival reported in a multicenter trial. Given as an infusion every three to six weeks.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Nivolumab and others</h3>
+              <p class="text-slate/80">
+                Nivolumab (another PD-1 inhibitor) has activity in MCC and is used in some settings, including before surgery in trials. Combinations of a PD-1 inhibitor with a CTLA-4 inhibitor, and newer agents, are under active study.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:activity" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Expect, and the Side Effects</h2>
+              <p class="text-slate/80 mb-4">
+                Treatment is an outpatient infusion continued as long as it works and is tolerated. Scans every couple of months track the response. Because these drugs take the brakes off the immune system, they can cause it to inflame healthy organs — so-called immune-related adverse events:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Skin rash and itching</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Diarrhea or colitis (inflamed bowel)</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Thyroid, adrenal, or pituitary gland problems</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Liver inflammation (hepatitis) or lung inflammation (pneumonitis)</span></li>
+                <li class="flex items-start gap-2"><span class="text-coral mt-1">•</span><span>Fatigue, joint aches, and, less often, kidney, heart, or nerve inflammation</span></li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Most of these are controllable when treated early, often by pausing the drug and giving corticosteroids. Report any new symptom promptly rather than waiting for the next visit — timing is what keeps side effects manageable.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">If Immunotherapy Is Not Enough or Not an Option</h2>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Radiation</strong> to individual tumors for symptom control or to treat a limited number of spots; MCC's radiosensitivity makes this valuable even in advanced disease.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Surgery</strong> for an isolated metastasis in selected patients.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Chemotherapy</strong> (platinum-based) when checkpoint inhibitors cannot be used or have stopped working — useful for short-term control.</span></li>
+            <li class="flex items-start gap-2"><span class="text-teal mt-1">•</span><span><strong>Clinical trials</strong> of new immune combinations, cellular therapies, and therapeutic vaccines — often the best option after progression, and worth exploring early.</span></li>
+          </ul>
+          <p class="text-slate/80 mt-4">
+            People who are immunosuppressed — including <a href="/merkel-cell-carcinoma/merkel-cell-polyomavirus-and-immune-suppression" class="text-teal hover:text-teal/80 underline">organ transplant recipients</a> — need an individualized plan, since checkpoint inhibitors can cause graft rejection or may be less effective when immune function is impaired.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            For advanced or metastatic MCC, checkpoint immunotherapy — avelumab, pembrolizumab, or nivolumab — is the standard first choice, and for a substantial share of patients it produces responses that last for years. Radiation, surgery for isolated spots, chemotherapy, and clinical trials round out the options.
+          </p>
+          <p class="text-slate/80">
+            Care at a center experienced in MCC and in managing immune-related side effects gives you the best chance of benefiting from these treatments safely. Ongoing <a href="/merkel-cell-carcinoma/follow-up-and-recurrence-monitoring" class="text-teal hover:text-teal/80 underline">monitoring</a> continues throughout.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Kaufman HL, Russell J, Hamid O, et al. Avelumab in patients with chemotherapy-refractory metastatic Merkel cell carcinoma: a multicentre, single-group, open-label, phase 2 trial. <em>Lancet Oncol.</em> 2016;17(10):1374-1385. <a href="https://pubmed.ncbi.nlm.nih.gov/27592805/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Nghiem P, Bhatia S, Lipson EJ, et al. Durable Tumor Regression and Overall Survival in Patients With Advanced Merkel Cell Carcinoma Receiving Pembrolizumab as First-Line Therapy. <em>J Clin Oncol.</em> 2019;37(9):693-702. <a href="https://pubmed.ncbi.nlm.nih.gov/30726175/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Tello TL, Coggshall K, Yom SS, Yu SS. Merkel cell carcinoma: An update and review: Current and future therapy. <em>J Am Acad Dermatol.</em> 2018;78(3):445-454. <a href="https://pubmed.ncbi.nlm.nih.gov/29229573/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines® Insights: Merkel Cell Carcinoma, Version 1.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(1D):e240002. <a href="https://pubmed.ncbi.nlm.nih.gov/38244274/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schadendorf D, Lebbé C, Zur Hausen A, et al. Merkel cell carcinoma: Epidemiology, prognosis, therapy and unmet medical needs. <em>Eur J Cancer.</em> 2017;71:53-69. <a href="https://pubmed.ncbi.nlm.nih.gov/27984768/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer/treating/immunotherapy.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Immunotherapy for Merkel Cell Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/merkel-cell-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Merkel Cell Carcinoma Treatment (PDQ®), Patient Version (Stage IV and recurrent disease)
+                </li>
+                <li>
+                  <a href="https://www.cancer.gov/research/participate/clinical-trials-search" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Clinical Trials Search
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

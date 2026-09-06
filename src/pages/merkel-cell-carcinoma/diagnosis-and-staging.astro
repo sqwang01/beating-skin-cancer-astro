@@ -1,0 +1,264 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma/diagnosis-and-staging";
+const title = "How MCC Is Diagnosed and Staged | Beating Skin Cancer";
+const description = "How doctors confirm Merkel cell carcinoma with a skin biopsy and immunostains, then use imaging and lymph node testing to assign a stage and plan care.";
+const lastReviewed = "2026-09-06";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How Is Merkel Cell Carcinoma Diagnosed and Staged?",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merkel Cell Carcinoma", "item": "https://www.beatingskincancer.com/merkel-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "Diagnosis and Staging", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can Merkel cell carcinoma be diagnosed without a biopsy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Merkel cell carcinoma often looks like a harmless cyst, insect bite, or ordinary bump, so it cannot be diagnosed by appearance alone. A skin biopsy examined under the microscope, along with special immunostains such as CK20, is required to confirm the diagnosis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I need a scan if my Merkel cell carcinoma was small?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Merkel cell carcinoma can spread to lymph nodes or other organs even when the skin tumor is small. Imaging such as PET/CT or CT helps find hidden disease so your team can choose the right treatment and establish an accurate baseline for future comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the stage of Merkel cell carcinoma tell me?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The stage summarizes how far the cancer has traveled: confined to the skin (Stage I–II), spread to nearby lymph nodes (Stage III), or spread to distant sites (Stage IV). Stage guides whether treatment focuses on surgery and radiation alone or adds systemic therapy, and it is the strongest predictor of outcome."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/merkel-cell-carcinoma" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+            ← Back to Merkel Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            How Is Merkel Cell Carcinoma Diagnosed and Staged?
+          </h1>
+          <p class="text-xl text-white/80">Biopsy, immunostains, imaging, and what the stage means for your plan</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Merkel cell carcinoma (MCC) is notorious for looking harmless. It often resembles a cyst, a stye, an insect bite, or an ordinary pink bump, which is why the diagnosis is frequently a surprise. Because MCC can move quickly, a clear diagnostic and staging work-up in the first few weeks sets the direction for everything that follows.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            This guide walks through how the diagnosis is confirmed under the microscope, why imaging and lymph node testing are almost always part of the picture, and how all of that information comes together into a stage that shapes your treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Step 1: Confirming the Diagnosis</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Skin biopsy</h3>
+              <p class="text-slate/80">
+                The diagnosis starts with a biopsy — removing all or part of the lump so a pathologist can examine it. Under the microscope, MCC shows small, round, blue-staining cells with features of a neuroendocrine tumor. Because these cells can resemble other small-round-cell cancers, appearance alone is not enough to be certain.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">Immunostains</h3>
+              <p class="text-slate/80">
+                Pathologists apply special stains that tag particular proteins. MCC characteristically stains positive for cytokeratin 20 (CK20) in a dot-like pattern and for neuroendocrine markers, while staining negative for TTF-1, a marker of small-cell lung cancer. This panel is what distinguishes MCC from a skin metastasis of a lung tumor or from lymphoma. Many centers also test the tumor for the Merkel cell polyomavirus.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">The pathology report</h3>
+              <p class="text-slate/80">
+                Once MCC is confirmed, the report describes the tumor's size, how deeply it extends, whether it reaches the edges of the removed tissue (margins), and whether cancer is seen inside small blood or lymphatic vessels (lymphovascular invasion). These details feed directly into staging and surgical planning.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Step 2: Checking the Lymph Nodes</h2>
+          <p class="text-slate/80 mb-4">
+            MCC spreads to regional lymph nodes early, and often before those nodes are large enough to feel. Two tools address this:
+          </p>
+          <ul class="space-y-3 text-slate/80">
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Examination and ultrasound</strong> of the lymph node basin that drains the tumor site.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-teal mt-1">•</span>
+              <span><strong>Sentinel lymph node biopsy (SLNB)</strong> — a same-day surgical procedure, usually done at the time the primary tumor is widely removed, that samples the first node(s) the tumor would drain into. Roughly a third of people with a clinically normal exam have microscopic cancer found this way, which changes the stage and the plan. See <a href="/merkel-cell-carcinoma/sentinel-lymph-node-biopsy" class="text-teal hover:text-teal/80 underline">why sentinel lymph node biopsy is routine for MCC</a>.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Step 3: Imaging</h2>
+          <p class="text-slate/80 mb-4">
+            Most people with newly diagnosed MCC have baseline imaging — commonly a whole-body PET/CT, or CT of the chest, abdomen, and pelvis, sometimes with brain MRI. Imaging looks for disease in lymph nodes and distant organs that the exam cannot reach, and it creates a baseline that later scans are compared against. Imaging findings can raise the stage, but a biopsy is still needed to confirm anything suspicious before it is called metastatic disease.
+          </p>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:layers" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">How the Stage Is Assigned</h2>
+              <p class="text-slate/80 mb-4">
+                MCC uses the American Joint Committee on Cancer (AJCC) staging system, which combines the primary tumor (T), lymph nodes (N), and distant spread (M). In plain terms:
+              </p>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Stage I–II:</strong> The cancer is confined to the skin, with no evidence of lymph node or distant spread. Stage II generally means a larger primary tumor or one that invades nearby structures such as muscle, cartilage, or bone.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Stage III:</strong> The cancer has reached regional lymph nodes — whether found by biopsy of normal-feeling nodes, on a scan, or by physical exam. A small group also has "unknown primary" MCC, where nodal disease is found but no skin tumor is identified.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Stage IV:</strong> The cancer has spread to distant skin, lymph nodes, or organs such as the liver, lung, bone, or brain. See <a href="/merkel-cell-carcinoma/advanced-metastatic-mcc-immunotherapy" class="text-teal hover:text-teal/80 underline">advanced or metastatic MCC and checkpoint immunotherapy</a>.</span>
+                </li>
+              </ul>
+              <p class="text-slate/80 mt-4">
+                Staging also distinguishes <strong>clinical stage</strong> (based on exam and imaging) from <strong>pathologic stage</strong> (which adds what surgery and lymph node biopsy reveal). Pathologic staging is more accurate, which is one reason SLNB matters so much in MCC.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            Diagnosing and staging MCC takes a coordinated sequence: a biopsy with immunostains to confirm what it is, lymph node evaluation (usually including a sentinel node biopsy) to see whether it has started to travel, and imaging to check for disease farther away. The resulting stage is the single best predictor of what to expect and the foundation of the treatment plan.
+          </p>
+          <p class="text-slate/80">
+            Because MCC is rare, ask whether your care can be coordinated by a team that treats it regularly — experience genuinely matters here.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Coggshall K, Tello TL, North JP, Yu SS. Merkel cell carcinoma: An update and review: Pathogenesis, diagnosis, and staging. <em>J Am Acad Dermatol.</em> 2018;78(3):433-442. <a href="https://pubmed.ncbi.nlm.nih.gov/29229574/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Harms KL, Healy MA, Nghiem P, et al. Analysis of Prognostic Factors from 9387 Merkel Cell Carcinoma Cases Forms the Basis for the New 8th Edition AJCC Staging System. <em>Ann Surg Oncol.</em> 2016;23(11):3564-3571. <a href="https://pubmed.ncbi.nlm.nih.gov/27198511/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Bichakjian CK, Olencki T, Aasi SZ, et al. Merkel Cell Carcinoma, Version 1.2018, NCCN Clinical Practice Guidelines in Oncology. <em>J Natl Compr Canc Netw.</em> 2018;16(6):742-774. <a href="https://pubmed.ncbi.nlm.nih.gov/29891526/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Schmults CD, Blitzblau R, Aasi SZ, et al. NCCN Guidelines® Insights: Merkel Cell Carcinoma, Version 1.2024. <em>J Natl Compr Canc Netw.</em> 2024;22(1D):e240002. <a href="https://pubmed.ncbi.nlm.nih.gov/38244274/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.cancer.gov/types/skin/patient/merkel-cell-treatment-pdq" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">National Cancer Institute (NCI)</a> — Merkel Cell Carcinoma Treatment (PDQ®), Patient Version, including stage descriptions
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer/detection-diagnosis-staging/how-diagnosed.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Tests for Merkel Cell Skin Cancer
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer/detection-diagnosis-staging/staging.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — Merkel Cell Skin Cancer Stages
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>

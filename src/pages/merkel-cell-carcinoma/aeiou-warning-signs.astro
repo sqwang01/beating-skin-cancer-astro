@@ -1,0 +1,247 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+import MedicalReviewer from '../../components/MedicalReviewer.astro';
+import QuestionList from '../../components/QuestionList.astro';
+import ChecklistDownloadButton from '../../components/ChecklistDownloadButton.astro';
+import { getHubChecklistByPath, hubChecklistPdfPath } from '../../data/hubChecklists';
+import { medicalReviewJsonLd } from '../../lib/seo';
+
+const canonical = "https://www.beatingskincancer.com/merkel-cell-carcinoma/aeiou-warning-signs";
+const title = "The AEIOU Warning Signs of MCC | Beating Skin Cancer";
+const description = "The AEIOU checklist — asymptomatic, expanding fast, immune suppression, over 50, UV-exposed fair skin — helps doctors catch Merkel cell carcinoma early.";
+const lastReviewed = "2026-09-06";
+
+const checklist = getHubChecklistByPath(new URL(canonical).pathname);
+
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What the AEIOU Warning Signs of Merkel Cell Carcinoma Mean",
+  "description": description,
+  "author": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "publisher": { "@type": "Organization", "name": "Beating Skin Cancer" },
+  "mainEntityOfPage": canonical,
+};
+
+const breadcrumbsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.beatingskincancer.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Merkel Cell Carcinoma", "item": "https://www.beatingskincancer.com/merkel-cell-carcinoma" },
+    { "@type": "ListItem", "position": 3, "name": "AEIOU Warning Signs", "item": canonical }
+  ],
+};
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does AEIOU stand for in Merkel cell carcinoma?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AEIOU is a memory aid for the five features most often seen in Merkel cell carcinoma: Asymptomatic (no pain or tenderness), Expanding rapidly, Immune suppression, Older than 50 years, and a UV-exposed site on fair skin. In the original study, about 89 percent of patients had three or more of these features."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Merkel cell carcinoma occur without any AEIOU features?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. AEIOU describes what is common, not what is required. Merkel cell carcinoma can appear in younger people, on less sun-exposed skin, or as a tender lump. The single most useful warning sign is a firm bump that is growing noticeably over weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast does Merkel cell carcinoma grow?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many patients notice measurable growth over three to six weeks, which is much faster than a typical cyst or ordinary mole. Any lump that is clearly enlarging over a short period should be evaluated and usually biopsied without delay."
+      }
+    }
+  ]
+};
+
+const jsonLd = [articleJsonLd, breadcrumbsJsonLd, faqJsonLd, medicalReviewJsonLd(canonical, lastReviewed)];
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+<div class="min-h-screen bg-ivory">
+      <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <a href="/merkel-cell-carcinoma" class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+            ← Back to Merkel Cell Carcinoma
+          </a>
+          <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">
+            What the AEIOU Warning Signs of Merkel Cell Carcinoma Mean
+          </h1>
+          <p class="text-xl text-white/80">The five features that help doctors spot MCC early</p>
+          <MedicalReviewer date={lastReviewed} />
+        </div>
+      </div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">Introduction</h2>
+          <p class="text-slate/80 text-lg leading-relaxed mb-4">
+            Merkel cell carcinoma (MCC) rarely announces itself. It usually shows up as a painless, firm, fast-growing bump that can be skin-colored, pink, red, or bluish — easy to mistake for a cyst, a boil, or a bite. To help clinicians recognize it sooner, researchers who reviewed 195 cases distilled the pattern into a five-letter memory aid: <strong>AEIOU</strong>.
+          </p>
+          <p class="text-slate/80 text-lg leading-relaxed">
+            In that study, 89% of people had at least three of the five features. AEIOU is not a diagnostic test and it does not replace a biopsy — but knowing it can shorten the time between "that's new" and "let's biopsy it."
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center mb-8">
+          <h3 class="text-2xl font-serif text-white mb-4">Have Questions?</h3>
+          <p class="text-white/80 mb-6">Ask questions and get clear, trusted answers — instantly.</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-6">AEIOU, Letter by Letter</h2>
+          <div class="space-y-6">
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">A — Asymptomatic</h3>
+              <p class="text-slate/80">
+                The lump usually does not hurt, itch, or feel tender. That painlessness is part of what makes MCC dangerous: there is no discomfort to prompt a visit, so people often wait. A growth that does not bother you at all is not automatically safe.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">E — Expanding rapidly</h3>
+              <p class="text-slate/80">
+                Rapid growth is the most important clue. Many patients describe a bump that visibly enlarged over three to six weeks. Cysts and ordinary moles rarely change that fast. If you can see a difference from one week to the next, that alone justifies prompt evaluation.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">I — Immune suppression</h3>
+              <p class="text-slate/80">
+                People with a weakened immune system — organ transplant recipients, those with chronic lymphocytic leukemia or lymphoma, people living with HIV, or those on long-term immune-suppressing medication — develop MCC more often and at younger ages. If this is you, mention it explicitly when you show a new lump to a clinician. See <a href="/merkel-cell-carcinoma/merkel-cell-polyomavirus-and-immune-suppression" class="text-teal hover:text-teal/80 underline">why MCC develops</a>.
+              </p>
+            </div>
+            <div class="bg-ivory rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">O — Older than 50</h3>
+              <p class="text-slate/80">
+                MCC is uncommon before age 50 and the risk climbs steeply with each decade after that, peaking in people in their 70s and 80s. Age reflects a lifetime of accumulated UV damage and an aging immune system. It does not rule MCC out in younger adults, especially if other features are present.
+              </p>
+            </div>
+            <div class="bg-teal/5 rounded-lg p-6">
+              <h3 class="text-2xl font-serif text-navy mb-4">U — UV-exposed site on fair skin</h3>
+              <p class="text-slate/80">
+                About half of MCCs arise on the head and neck, with most of the rest on the arms and legs — the areas that get the most sun. It is far more common in people with fair skin that burns easily. A new bump on chronically sun-exposed skin in a fair-skinned older adult fits the classic picture.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-coral/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:alert-triangle" class="text-coral flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What AEIOU Does Not Capture</h2>
+              <ul class="space-y-3 text-slate/80">
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Color and texture vary.</strong> MCC can be red, violet, pink, or the same color as your skin; usually firm, dome-shaped, and shiny, sometimes with fine surface blood vessels.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>It is not a mole checklist.</strong> The ABCDE rules for melanoma do not apply here — MCC is a lump, not a flat pigmented spot.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>Exceptions are real.</strong> MCC occurs in younger people, on covered skin, and occasionally with tenderness. Features can be absent and it can still be MCC.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-coral mt-1">•</span>
+                  <span><strong>"Probably a cyst" deserves follow-up.</strong> If a lump assumed to be benign keeps growing, return promptly and ask about a biopsy.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-br from-teal/10 to-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4 mb-4">
+            <Icon name="lucide:heart" class="text-teal flex-shrink-0 mt-1" size={32} aria-hidden="true" />
+            <div>
+              <h2 class="text-3xl font-serif text-navy mb-4">What to Ask Your Doctor</h2>
+              <ChecklistDownloadButton href={hubChecklistPdfPath(checklist)} label="Download printable checklist (PDF)" class="mb-6" />
+              <QuestionList group={checklist.groups[0]} />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+          <h2 class="text-3xl font-serif text-navy mb-4">Conclusion</h2>
+          <p class="text-slate/80 mb-4">
+            AEIOU — asymptomatic, expanding rapidly, immune suppression, older than 50, and a UV-exposed site on fair skin — is a quick way to remember the profile of a person and a lesion that should raise concern for Merkel cell carcinoma. The strongest single signal is rapid growth of a firm, painless bump.
+          </p>
+          <p class="text-slate/80">
+            If a new or changing lump fits several of these, do not wait for it to hurt. Ask for a prompt biopsy, and if it is MCC, move directly into <a href="/merkel-cell-carcinoma/diagnosis-and-staging" class="text-teal hover:text-teal/80 underline">diagnosis and staging</a>.
+          </p>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-8 mb-8">
+          <div class="flex items-start gap-4">
+            <Icon name="lucide:book-open" class="text-slate flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+            <div>
+              <h2 class="text-xl font-serif text-navy mb-4">Sources</h2>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Clinical Guidelines &amp; Peer-Reviewed Literature</h3>
+              <ul class="space-y-2 text-sm text-slate/70 mb-4">
+                <li>
+                  Heath M, Jaimes N, Lemos B, et al. Clinical characteristics of Merkel cell carcinoma at diagnosis in 195 patients: the AEIOU features. <em>J Am Acad Dermatol.</em> 2008;58(3):375-381. <a href="https://pubmed.ncbi.nlm.nih.gov/18280333/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Coggshall K, Tello TL, North JP, Yu SS. Merkel cell carcinoma: An update and review: Pathogenesis, diagnosis, and staging. <em>J Am Acad Dermatol.</em> 2018;78(3):433-442. <a href="https://pubmed.ncbi.nlm.nih.gov/29229574/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+                <li>
+                  Paulson KG, Park SY, Vandeven NA, et al. Merkel cell carcinoma: Current US incidence and projected increases based on changing demographics. <em>J Am Acad Dermatol.</em> 2018;78(3):457-463. <a href="https://pubmed.ncbi.nlm.nih.gov/29102486/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">PubMed</a>
+                </li>
+              </ul>
+              <h3 class="text-sm font-semibold text-navy/70 uppercase tracking-wide mb-2">Patient Resources</h3>
+              <ul class="space-y-2 text-sm text-slate/70">
+                <li>
+                  <a href="https://www.skincancer.org/skin-cancer-information/merkel-cell-carcinoma/mcc-warning-signs/" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">The Skin Cancer Foundation</a> — Merkel Cell Carcinoma Warning Signs
+                </li>
+                <li>
+                  <a href="https://www.aad.org/public/diseases/skin-cancer/types/common/merkel-cell/symptoms" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Academy of Dermatology</a> — Merkel Cell Carcinoma: Signs and Symptoms
+                </li>
+                <li>
+                  <a href="https://www.cancer.org/cancer/types/merkel-cell-skin-cancer.html" target="_blank" rel="noopener noreferrer" class="text-teal hover:text-teal/80 underline">American Cancer Society</a> — About Merkel Cell Skin Cancer
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate/5 rounded-2xl shadow-lg p-6 mb-8 border-l-4 border-slate/30">
+          <p class="text-sm text-slate/70">
+            <strong>Disclaimer:</strong> Educational only. Not a substitute for professional medical advice. Always consult your dermatologist or oncologist about your personal diagnosis and treatment plan.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+          <h3 class="text-2xl font-serif text-white mb-4">Still Have Questions?</h3>
+          <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about Merkel cell carcinoma</p>
+          <a
+            href="https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+          >
+            Chat with the Navigator
+          </a>
+        </div>
+      </div>
+    </div>
+</Layout>
