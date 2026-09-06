@@ -1,0 +1,539 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Icon } from 'astro-icon/components';
+
+const title = "Patient Assistance Program Directory | Beating Skin Cancer";
+const description = "Copay cards and patient assistance programs for skin cancer medicines, organized by drug class so every program in a class is listed alongside its competitors.";
+
+const chatUrl = 'https://chatgpt.com/g/g-69045e9a6ad8819192dbd404ede6db6d-beating-skin-cancer-navigator';
+
+// Pharmacy discount cards referenced in the entries below. Rendered as links
+// wherever an entry names them (fields marked as HTML are passed to set:html).
+const goodRx = '<a href="https://www.goodrx.com/" target="_blank" rel="noopener noreferrer" class="text-teal hover:underline">GoodRx</a>';
+const singleCare = '<a href="https://www.singlecare.com/" target="_blank" rel="noopener noreferrer" class="text-teal hover:underline">SingleCare</a>';
+const needyMeds = '<a href="https://www.needymeds.org/drug-discount-card" target="_blank" rel="noopener noreferrer" class="text-teal hover:underline">NeedyMeds</a>';
+const discountCards = `${goodRx}, ${singleCare}, ${needyMeds}`;
+
+type Program = {
+  brand: string;
+  generic: string;
+  maker: string;
+  scope?: string;
+  commercial?: string;
+  uninsured?: string;
+  phone?: string;
+  site?: { label: string; href: string };
+  status?: string;
+};
+
+type DrugClass = {
+  name: string;
+  blurb: string;
+  programs: Program[];
+};
+
+// Programs are listed alphabetically by brand name within each class. Every
+// manufacturer in a class is listed, not only the one a visitor arrived for.
+const classes: DrugClass[] = [
+  {
+    name: 'Topical field therapy for actinic keratosis and early skin cancer',
+    blurb:
+      'Creams, gels, and ointments applied at home to treat actinic keratoses and, for some agents, superficial basal cell carcinoma or Bowen disease. Most are available as low-cost generics; the newer branded agents carry manufacturer savings programs.',
+    programs: [
+      {
+        brand: 'Diclofenac sodium 3% gel',
+        generic: 'diclofenac (Solaraze and generics)',
+        maker: 'Multiple manufacturers',
+        scope: 'Actinic keratosis.',
+        commercial:
+          `Available as a generic on most formularies. No dedicated manufacturer program; a pharmacy discount card (${discountCards}) is usually the lowest cash price.`,
+      },
+      {
+        brand: 'Fluorouracil topical',
+        generic: '5-fluorouracil (Carac, Efudex, Fluoroplex, Tolak, and generics)',
+        maker: 'Multiple manufacturers (Bausch Health, Mayne Pharma, others)',
+        scope: 'Actinic keratosis; Efudex is also used for superficial basal cell carcinoma.',
+        commercial:
+          'Generic 5-FU cream is inexpensive and widely covered. There is no single manufacturer assistance program; Tolak (Mayne Pharma) has periodically offered a commercial copay coupon.',
+        uninsured:
+          `Use a pharmacy discount card (${discountCards}) or ask the prescriber to write for generic fluorouracil.`,
+      },
+      {
+        brand: 'Imiquimod cream',
+        generic: 'imiquimod (Aldara and generics; Zyclara)',
+        maker: 'Multiple manufacturers; Zyclara by Bausch Health',
+        scope:
+          'Actinic keratosis; imiquimod 5% is also used for superficial basal cell carcinoma.',
+        commercial:
+          `Generic imiquimod 5% is low-cost. Zyclara (3.75% / 2.5%) is brand-only and Bausch Health does not publish a patient assistance program for it — ask the pharmacy for a discounted cash price (${discountCards}) or the prescriber about generic imiquimod.`,
+        phone: '1-800-321-4576 (Bausch Health)',
+      },
+      {
+        brand: 'Klisyri',
+        generic: 'tirbanibulin ointment 1%',
+        maker: 'Almirall',
+        scope: 'Actinic keratosis of the face or scalp (5-day course).',
+        commercial:
+          'Almirall Advantage card: eligible commercially insured patients may pay as little as $25. If the plan does not cover Klisyri, as low as $150 at retail or $95 at an Almirall Advantage Network pharmacy.',
+        uninsured: 'Ask about the Almirall patient assistance pathway for uninsured patients.',
+        phone: '1-888-591-9860',
+        site: { label: 'klisyri.com', href: 'https://www.klisyri.com/' },
+      },
+    ],
+  },
+  {
+    name: 'Photodynamic therapy (PDT) photosensitizers',
+    blurb:
+      'A photosensitizing drug is applied in the office, then activated with blue or red light to treat actinic keratoses and field cancerization. Because PDT is delivered and billed as an in-office procedure, cost help runs through the treating practice and the manufacturer’s reimbursement team.',
+    programs: [
+      {
+        brand: 'Ameluz',
+        generic: 'aminolevulinic acid HCl gel 10% (with the BF-RhodoLED lamp)',
+        maker: 'Biofrontera',
+        scope: 'Actinic keratoses of the face and scalp; field therapy.',
+        commercial:
+          'Ameluz PDT is billed under the medical benefit. Biofrontera’s reimbursement service verifies benefits, handles prior authorization, and works denials on the practice’s behalf.',
+        uninsured:
+          'Ask the treating office to contact Biofrontera about assistance for patients who are uninsured or underinsured.',
+        phone: '1-844-426-3589 (1-844-4AMELUZ), ext. 7 for reimbursement; reimbursement@bfinc.com',
+        site: { label: 'us.ameluz.com', href: 'https://us.ameluz.com/' },
+      },
+      {
+        brand: 'Levulan Kerastick',
+        generic: 'aminolevulinic acid HCl topical solution 20% (with blue-light PDT)',
+        maker: 'DUSA Pharmaceuticals, a Sun Pharma company',
+        scope: 'Actinic keratoses of the face, scalp, and upper extremities.',
+        commercial:
+          'DUSA provides benefits verification and reimbursement support to treating practices; because Levulan PDT is delivered in the office, cost questions go through the practice.',
+        uninsured:
+          'For the medication itself, ask about Sun Pharma’s patient assistance program for uninsured patients.',
+      },
+      {
+        brand: 'Metvixia / Metvix',
+        generic: 'methyl aminolevulinate cream',
+        maker: 'Galderma',
+        status:
+          'FDA-approved but not currently marketed in the United States. Widely used for PDT in Europe.',
+      },
+    ],
+  },
+  {
+    name: 'Hedgehog pathway inhibitors (locally advanced or metastatic basal cell carcinoma)',
+    blurb:
+      'Oral drugs that block the Hedgehog signaling pathway, used for basal cell carcinoma that cannot be treated with surgery or radiation, for metastatic disease, and in basal cell nevus (Gorlin) syndrome. Both approved agents are listed.',
+    programs: [
+      {
+        brand: 'Erivedge',
+        generic: 'vismodegib capsules',
+        maker: 'Genentech',
+        scope:
+          'Metastatic basal cell carcinoma, or locally advanced disease after surgery/radiation or when those are not options.',
+        commercial:
+          'Genentech Oncology Co-pay Assistance Program: eligible commercially insured patients may pay as little as $5 per prescription, up to $25,000 per year.',
+        uninsured:
+          'Genentech Patient Foundation: free Erivedge for patients with no coverage and household income under $150,000 (higher for larger households), or whose out-of-pocket cost exceeds 7.5% of household income.',
+        phone: '1-877-436-3683 (Access Solutions); 1-888-941-3331 (Patient Foundation)',
+        site: { label: 'genentech-access.com', href: 'https://www.genentech-access.com/' },
+      },
+      {
+        brand: 'Odomzo',
+        generic: 'sonidegib capsules',
+        maker: 'Sun Pharma',
+        scope: 'Locally advanced basal cell carcinoma that has recurred after surgery or radiation, or when those are not options.',
+        commercial:
+          'Odomzo Co-Pay Program: eligible commercially insured patients may pay as little as $10 per month.',
+        uninsured:
+          'Odomzo Patient Assistance Program: free medication for eligible uninsured or underinsured patients who meet income limits.',
+        phone: '1-877-636-6961 (1-877-ODOMZO-1)',
+        site: { label: 'odomzo.com/support-resources', href: 'https://www.odomzo.com/support-resources' },
+      },
+    ],
+  },
+  {
+    name: 'PD-1 and PD-L1 checkpoint inhibitors',
+    blurb:
+      'Immunotherapy antibodies given by infusion. Across skin cancer they are used for melanoma (adjuvant and advanced), cutaneous squamous cell carcinoma, advanced basal cell carcinoma, and Merkel cell carcinoma. Every agent with a skin cancer indication is listed.',
+    programs: [
+      {
+        brand: 'Bavencio',
+        generic: 'avelumab injection (PD-L1)',
+        maker: 'EMD Serono (Merck KGaA), with Pfizer',
+        scope: 'Metastatic Merkel cell carcinoma.',
+        commercial:
+          'CoverOne Co-Pay Assistance: eligible commercially insured patients may pay $0 per infusion, up to $30,000 per year.',
+        uninsured:
+          'CoverOne patient assistance: free Bavencio for eligible uninsured or underinsured patients.',
+        phone: '1-844-826-8371 (1-844-8COVER1)',
+        site: { label: 'coverone.com', href: 'https://www.coverone.com/' },
+      },
+      {
+        brand: 'Keytruda',
+        generic: 'pembrolizumab injection (PD-1)',
+        maker: 'Merck',
+        scope:
+          'Melanoma (adjuvant and advanced), cutaneous squamous cell carcinoma, Merkel cell carcinoma.',
+        commercial:
+          'Merck Co-pay Assistance Program: eligible commercially insured patients may pay as little as $0 for Keytruda, up to an annual limit.',
+        uninsured:
+          'Merck Patient Assistance Program: free Keytruda for eligible patients with no or inadequate coverage who meet income limits.',
+        phone: '1-855-257-3932 (Merck Access Program)',
+        site: { label: 'merckaccessprogram-keytruda.com', href: 'https://www.merckaccessprogram-keytruda.com/' },
+      },
+      {
+        brand: 'Libtayo',
+        generic: 'cemiplimab injection (PD-1)',
+        maker: 'Regeneron',
+        scope:
+          'Advanced cutaneous squamous cell carcinoma, advanced basal cell carcinoma, and non-small cell lung cancer; studied in melanoma.',
+        commercial:
+          'Libtayo Surround Copay Program: eligible commercially insured patients may pay as little as $0, up to $25,000 per year.',
+        uninsured:
+          'Libtayo Surround Patient Assistance Program: free Libtayo for eligible patients who are uninsured or lack coverage for it.',
+        phone: '1-877-542-8296 (1-877-LIBTAYO), option 1',
+        site: { label: 'libtayo.com', href: 'https://www.libtayo.com/' },
+      },
+      {
+        brand: 'Opdivo',
+        generic: 'nivolumab injection (PD-1)',
+        maker: 'Bristol Myers Squibb',
+        scope:
+          'Melanoma (adjuvant and advanced); also sold as Opdualag, a fixed-dose combination with the LAG-3 inhibitor relatlimab.',
+        commercial:
+          'BMS Access Support Co-pay Program: the patient pays the first $25 per dose and BMS covers the rest, up to $25,000 per product per calendar year.',
+        uninsured:
+          'Bristol Myers Squibb Patient Assistance Foundation: free medicine for eligible uninsured patients in financial hardship.',
+        phone: '1-800-861-0048 (Access Support); 1-800-736-0003 (Patient Assistance Foundation)',
+        site: { label: 'bmsaccesssupport.com', href: 'https://www.bmsaccesssupport.com/' },
+      },
+      {
+        brand: 'Tecentriq',
+        generic: 'atezolizumab injection (PD-L1)',
+        maker: 'Genentech',
+        scope:
+          'BRAF V600 mutation-positive advanced melanoma, in combination with cobimetinib and vemurafenib.',
+        commercial:
+          'Genentech Oncology Co-pay Assistance Program: as little as $5 per prescription/fill, up to $25,000 per year.',
+        uninsured:
+          'Genentech Patient Foundation: free medicine on the same income test used for Erivedge.',
+        phone: '1-877-436-3683 (Access Solutions); 1-888-941-3331 (Patient Foundation)',
+        site: { label: 'genentech-access.com', href: 'https://www.genentech-access.com/' },
+      },
+      {
+        brand: 'Zynyz',
+        generic: 'retifanlimab injection (PD-1)',
+        maker: 'Incyte',
+        scope: 'Metastatic or recurrent locally advanced Merkel cell carcinoma.',
+        commercial:
+          'IncyteCARES copay assistance for eligible commercially insured patients; an annual maximum applies and it is not valid with government insurance.',
+        uninsured:
+          'IncyteCARES patient assistance: free drug for eligible uninsured or underinsured patients.',
+        phone: '1-855-452-5234',
+        site: { label: 'incytecares.com', href: 'https://www.incytecares.com/' },
+      },
+    ],
+  },
+  {
+    name: 'CTLA-4 and LAG-3 inhibitors (melanoma)',
+    blurb:
+      'Checkpoint inhibitors that hit targets other than PD-1, almost always given together with a PD-1 drug for advanced or high-risk melanoma. All are Bristol Myers Squibb products and use the same two support programs.',
+    programs: [
+      {
+        brand: 'Opdualag',
+        generic: 'nivolumab + relatlimab injection (PD-1 + LAG-3)',
+        maker: 'Bristol Myers Squibb',
+        scope: 'Unresectable or metastatic melanoma.',
+        commercial:
+          'BMS Access Support Co-pay Program: $25 per dose, then covered up to $25,000 per product per year.',
+        uninsured: 'Bristol Myers Squibb Patient Assistance Foundation: free medicine for eligible uninsured patients.',
+        phone: '1-800-861-0048; 1-800-736-0003',
+        site: { label: 'bmsaccesssupport.com', href: 'https://www.bmsaccesssupport.com/' },
+      },
+      {
+        brand: 'Yervoy',
+        generic: 'ipilimumab injection (CTLA-4)',
+        maker: 'Bristol Myers Squibb',
+        scope: 'Melanoma (adjuvant and advanced), usually with nivolumab.',
+        commercial:
+          'BMS Access Support Co-pay Program: $25 per dose, then covered up to $25,000 per product per year.',
+        uninsured: 'Bristol Myers Squibb Patient Assistance Foundation: free medicine for eligible uninsured patients.',
+        phone: '1-800-861-0048; 1-800-736-0003',
+        site: { label: 'bmsaccesssupport.com', href: 'https://www.bmsaccesssupport.com/' },
+      },
+    ],
+  },
+  {
+    name: 'BRAF + MEK inhibitors (BRAF V600-mutant melanoma)',
+    blurb:
+      'Oral targeted-therapy pairs for melanoma that carries a BRAF V600 mutation, used both after surgery (adjuvant) and for advanced disease. All three approved combinations are listed.',
+    programs: [
+      {
+        brand: 'Braftovi + Mektovi',
+        generic: 'encorafenib + binimetinib',
+        maker: 'Pfizer',
+        scope: 'Unresectable or metastatic BRAF V600E/K-mutant melanoma.',
+        commercial:
+          'Pfizer Oncology Together Co-Pay Savings Program: eligible commercially insured patients may pay as little as $0 per month.',
+        uninsured:
+          'Pfizer Patient Assistance Program: free Braftovi and Mektovi for eligible uninsured or underinsured patients who meet income limits.',
+        phone: '1-877-744-5675',
+        site: { label: 'pfizeroncologytogether.com', href: 'https://www.pfizeroncologytogether.com/' },
+      },
+      {
+        brand: 'Tafinlar + Mekinist',
+        generic: 'dabrafenib + trametinib',
+        maker: 'Novartis',
+        scope: 'Adjuvant and advanced BRAF V600-mutant melanoma.',
+        commercial:
+          'Novartis Oncology Universal Co-Pay Program: eligible commercially insured patients may pay $0 per month; Novartis pays the balance up to $15,000 per product per year.',
+        uninsured:
+          'Patient Assistance Now Oncology / Novartis Patient Assistance Foundation: free medication for eligible uninsured patients who meet income limits.',
+        phone: '1-877-577-7756 (Universal Co-Pay); 1-888-669-6682 (Patient Assistance Now Oncology)',
+        site: { label: 'patientassistancenow.com', href: 'https://www.patientassistancenow.com/' },
+      },
+      {
+        brand: 'Zelboraf + Cotellic',
+        generic: 'vemurafenib + cobimetinib',
+        maker: 'Genentech',
+        scope:
+          'BRAF V600-mutant advanced melanoma, alone or with atezolizumab (Tecentriq).',
+        commercial:
+          'Genentech Oncology Co-pay Assistance Program: as little as $5 per prescription/fill, up to $25,000 per year.',
+        uninsured: 'Genentech Patient Foundation: free medicine on the income test used for Erivedge.',
+        phone: '1-888-249-4918 (Access Solutions); 1-888-941-3331 (Patient Foundation)',
+        site: { label: 'genentech-access.com', href: 'https://www.genentech-access.com/' },
+      },
+    ],
+  },
+  {
+    name: 'Oncolytic and cell therapies (advanced melanoma)',
+    blurb:
+      'Newer approaches for advanced melanoma: an oncolytic virus injected directly into tumors, and a one-time infusion of the patient’s own tumor-fighting immune cells. Both are delivered and billed as in-office or in-hospital procedures.',
+    programs: [
+      {
+        brand: 'Amtagvi',
+        generic: 'lifileucel (tumor-infiltrating lymphocyte therapy)',
+        maker: 'Iovance Biotherapeutics',
+        scope: 'Advanced melanoma that has progressed after a PD-1 inhibitor (and a BRAF/MEK inhibitor if BRAF-mutant).',
+        commercial:
+          'IovanceCares Copay Program covers out-of-pocket drug costs up to a program limit for commercially insured patients; case managers also help arrange travel and lodging.',
+        uninsured:
+          'IovanceCares assesses eligibility for financial assistance for uninsured or underinsured patients.',
+        phone: '1-833-400-4682',
+        site: { label: 'iovancecares.com', href: 'https://www.iovancecares.com/' },
+      },
+      {
+        brand: 'Imlygic',
+        generic: 'talimogene laherparepvec (oncolytic virus)',
+        maker: 'Amgen',
+        scope:
+          'Injection into accessible skin, subcutaneous, and nodal melanoma lesions that have recurred after surgery.',
+        commercial:
+          'Amgen FIRST STEP Program: commercially insured patients may lower their out-of-pocket cost for Imlygic; no income requirement.',
+        uninsured: 'Amgen Safety Net Foundation: free Imlygic for eligible uninsured patients.',
+        phone: '1-866-264-2778 (1-866-AMG-ASST)',
+        site: { label: 'amgensupportplus.com', href: 'https://www.amgensupportplus.com/' },
+      },
+    ],
+  },
+  {
+    name: 'Uveal (ocular) melanoma',
+    blurb:
+      'Melanoma of the eye is biologically distinct from skin melanoma and has one drug approved specifically for it.',
+    programs: [
+      {
+        brand: 'Kimmtrak',
+        generic: 'tebentafusp injection (gp100 × CD3 bispecific)',
+        maker: 'Immunocore',
+        scope:
+          'HLA-A*02:01-positive unresectable or metastatic uveal melanoma.',
+        commercial:
+          'KIMMTRAK Connect Copay Program: eligible commercially insured patients may pay as little as $0 per dose.',
+        uninsured:
+          'KIMMTRAK Connect patient assistance: free drug for eligible uninsured or underinsured patients. Nurse case managers coordinate care and travel across treatment sites.',
+        phone: '1-844-775-2273',
+        site: { label: 'kimmtrakconnect.com', href: 'https://www.kimmtrakconnect.com/' },
+      },
+    ],
+  },
+];
+
+type Foundation = { name: string; href: string; note: string };
+
+const foundations: Foundation[] = [
+  { name: 'CancerCare Co-Payment Assistance Foundation', href: 'https://www.cancercarecopay.org/', note: 'Copay grants by diagnosis when a matching fund is open.' },
+  { name: 'HealthWell Foundation', href: 'https://www.healthwellfoundation.org/', note: 'Grants for copays, premiums, and travel when a matching disease fund is open.' },
+  { name: 'Patient Access Network (PAN) Foundation', href: 'https://www.panfoundation.org/', note: 'Copay and premium assistance funds for specific diagnoses.' },
+  { name: 'Patient Advocate Foundation Co-Pay Relief', href: 'https://copays.org/', note: 'Direct copay assistance plus a case manager for the whole process.' },
+  { name: 'The Assistance Fund', href: 'https://tafcares.org/', note: 'Copay and travel assistance organized by disease-specific programs.' },
+];
+
+const directories: Foundation[] = [
+  { name: 'NeedyMeds', href: 'https://www.needymeds.org/', note: 'Database of patient assistance programs, free/low-cost clinics, and a drug discount card.' },
+  { name: 'RxAssist', href: 'https://www.rxassist.org/', note: 'Directory of manufacturer patient assistance programs, searchable by drug.' },
+  { name: 'Cancer Financial Assistance Coalition (CFAC)', href: 'https://www.cancerfac.org/', note: 'Directory of financial-help programs, filterable by diagnosis and type of need.' },
+];
+---
+
+<Layout title={title} description={description}>
+<div class="min-h-screen bg-ivory">
+  <div class="bg-gradient-to-br from-navy to-slate py-20 pt-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <a href="/patient-resources" class="inline-flex items-center gap-1 text-white/70 hover:text-white transition-colors mb-4">
+        <Icon name="lucide:arrow-left" size={16} aria-hidden="true" />
+        Back to Patient Resources
+      </a>
+      <h1 class="text-4xl sm:text-5xl font-serif text-white mb-4">Patient Assistance Program Directory</h1>
+      <p class="text-xl text-white/80">
+        Manufacturer copay cards and patient assistance programs for the medicines used to treat skin cancer &mdash;
+        grouped by drug class, with every program in a class listed side by side.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-3xl font-serif text-navy mb-4">How to use this directory</h2>
+      <p class="text-slate/80 text-lg leading-relaxed mb-4">
+        Almost every branded skin cancer drug has some form of cost help from its maker. There are two kinds, and which one
+        applies to you depends on your insurance:
+      </p>
+      <ul class="space-y-2 text-slate/80 mb-4">
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">&bull;</span><span><strong>Commercial insurance &rarr; a copay card.</strong> Reduces your copay or coinsurance for a brand-name drug, often to near $0, up to an annual cap. By federal law these <strong>cannot</strong> be used if any part of your drug coverage is Medicare, Medicaid, TRICARE, VA, or the Department of Defense.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">&bull;</span><span><strong>Uninsured or underinsured &rarr; a patient assistance program (PAP).</strong> Provides the drug free or at low cost if your household income is under the program&rsquo;s limit.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">&bull;</span><span><strong>In-office drugs</strong> &mdash; infusions, photodynamic therapy, intralesional injections, cell therapy &mdash; are billed under your <em>medical</em> benefit, not your pharmacy benefit. The manufacturer&rsquo;s support team works through your treating practice, so start with your care team&rsquo;s billing or navigation office.</span></li>
+        <li class="flex items-start gap-2"><span class="text-teal mt-1">&bull;</span><span><strong>On Medicare or Medicaid?</strong> Manufacturer copay cards are off-limits, but the <a href="#foundations" class="text-teal hover:underline">independent charitable foundations</a> below can help when they have an open fund for your diagnosis.</span></li>
+      </ul>
+      <p class="text-slate/70">
+        Dollar figures, phone numbers, and eligibility rules change often. Treat every entry as a starting point and confirm
+        the current terms with the program directly.
+      </p>
+    </div>
+
+    <div class="bg-teal/5 rounded-2xl shadow-lg p-8 mb-8">
+      <div class="flex items-start gap-4">
+        <Icon name="lucide:scale" class="text-teal flex-shrink-0 mt-1" size={28} aria-hidden="true" />
+        <div>
+          <h2 class="text-2xl font-serif text-navy mb-3">How this list is built</h2>
+          <p class="text-slate/80 mb-3">
+            For each drug class, we list <strong>every</strong> manufacturer&rsquo;s program &mdash; not only the drug a
+            visitor came looking for. If one Hedgehog pathway inhibitor is here, both are. If one PDT photosensitizer is
+            here, all are. If one BRAF/MEK combination is here, all three are.
+          </p>
+          <p class="text-slate/80">
+            This site takes no payment from any manufacturer for inclusion, placement, or wording on this page, and no
+            program listed here has reviewed or approved it. Listing a program is not a recommendation of that product;
+            treatment choices belong with you and your physician.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {classes.map((cls) => (
+      <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+        <h2 class="text-2xl sm:text-3xl font-serif text-navy mb-2">{cls.name}</h2>
+        <p class="text-slate/70 mb-6">{cls.blurb}</p>
+        <div class="space-y-4">
+          {cls.programs.map((p) => (
+            <div class="bg-ivory rounded-xl border border-teal/10 p-5">
+              <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1 mb-1">
+                <span class="text-lg font-semibold text-navy">{p.brand}</span>
+                <span class="text-sm text-slate/60">{p.generic}</span>
+              </div>
+              <div class="text-sm text-slate/60 mb-3">Manufacturer: {p.maker}</div>
+              {p.scope && (
+                <p class="text-sm text-slate/80 mb-3"><span class="font-semibold text-navy">Used in skin cancer for:</span> {p.scope}</p>
+              )}
+              {p.status ? (
+                <p class="text-sm text-coral"><span class="font-semibold">Status:</span> {p.status}</p>
+              ) : (
+                <div class="space-y-2 text-sm text-slate/80">
+                  {p.commercial && (
+                    <p><span class="font-semibold text-navy">Commercial insurance:</span> <span set:html={p.commercial} /></p>
+                  )}
+                  {p.uninsured && (
+                    <p><span class="font-semibold text-navy">Uninsured or underinsured:</span> <span set:html={p.uninsured} /></p>
+                  )}
+                  {(p.phone || p.site) && (
+                    <p class="text-slate/70">
+                      {p.phone && <span><span class="font-semibold text-navy">Phone:</span> {p.phone}</span>}
+                      {p.phone && p.site && <span> &middot; </span>}
+                      {p.site && (
+                        <a href={p.site.href} target="_blank" rel="noopener noreferrer" class="text-teal hover:underline inline-flex items-center gap-1">
+                          {p.site.label}<Icon name="lucide:external-link" size={13} aria-hidden="true" />
+                        </a>
+                      )}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div id="foundations" class="bg-white rounded-2xl shadow-lg p-8 mb-8 scroll-mt-24">
+      <h2 class="text-2xl sm:text-3xl font-serif text-navy mb-3">Independent copay foundations (Medicare, Medicaid, and other government insurance)</h2>
+      <p class="text-slate/80 mb-4">
+        Federal anti-kickback law bars manufacturer copay cards for anyone with government drug coverage. Independent
+        charitable foundations fill that gap &mdash; but only when they have an <strong>open fund</strong> that matches your
+        diagnosis. Funds open and close as donations allow, so check back if one is closed today.
+      </p>
+      <div class="space-y-3">
+        {foundations.map((f) => (
+          <a href={f.href} target="_blank" rel="noopener noreferrer" class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1 inline-flex items-center gap-1">{f.name}<Icon name="lucide:external-link" size={14} aria-hidden="true" /></div>
+            <div class="text-sm text-slate/70">{f.note}</div>
+          </a>
+        ))}
+      </div>
+      <p class="text-slate/70 text-sm mt-4">
+        The <a href="/patient-resources/financial-and-insurance-navigator" class="text-teal hover:underline">Financial &amp; Insurance Navigator</a>
+        {' '}explains what each foundation covers and how the funding cycles work.
+      </p>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg p-8 mb-8">
+      <h2 class="text-2xl sm:text-3xl font-serif text-navy mb-3">If a drug isn&rsquo;t listed here</h2>
+      <p class="text-slate/80 mb-4">
+        New drugs and new indications arrive faster than any static list. To check a specific medication &mdash; including
+        chemoprevention drugs like acitretin, supportive-care medicines, or a drug used off-label &mdash; search these
+        directories, or ask your cancer center&rsquo;s financial navigator or specialty pharmacy to run a full assistance
+        search. They do this every day.
+      </p>
+      <div class="space-y-3">
+        {directories.map((d) => (
+          <a href={d.href} target="_blank" rel="noopener noreferrer" class="block p-4 bg-ivory rounded-lg border border-teal/10 hover:bg-teal/5 transition-colors">
+            <div class="font-semibold text-teal mb-1 inline-flex items-center gap-1">{d.name}<Icon name="lucide:external-link" size={14} aria-hidden="true" /></div>
+            <div class="text-sm text-slate/70">{d.note}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="bg-slate/5 rounded-2xl p-6 mb-8">
+      <p class="text-sm text-slate/70">
+        <strong>Disclaimer:</strong> This page is general information for people in the United States and is not medical,
+        financial, legal, or tax advice. Program names, dollar amounts, income limits, phone numbers, and eligibility rules
+        change frequently and vary by plan and by state. Some drugs are used off-label in dermatology and coverage is not
+        guaranteed. Confirm every detail directly with the program, your insurer, and your care team before acting. Listing
+        a manufacturer program or an organization here is not an endorsement of any product or service, and no company has
+        paid for or approved its inclusion.
+      </p>
+    </div>
+
+    <div class="mt-12 bg-gradient-to-br from-navy to-slate rounded-2xl shadow-lg p-8 text-center">
+      <h3 class="text-2xl font-serif text-white mb-4">Need More Information?</h3>
+      <p class="text-white/80 mb-6">Chat with our AI guide for personalized information about navigating skin cancer care.</p>
+      <a
+        href={chatUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-teal text-white px-8 py-3 rounded-full hover:bg-teal/90 transition-all shadow-md hover:shadow-lg font-medium"
+      >
+        Chat with the Navigator
+      </a>
+    </div>
+  </div>
+</div>
+</Layout>
