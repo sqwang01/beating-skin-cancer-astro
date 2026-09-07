@@ -7,6 +7,32 @@
 
 ---
 
+# Amendment — 2026-09-07 (Dr. Steven Q. Wang): "Yes, a doctor told me my stage" early exit
+
+Answering **"Yes"** on `k1` ("Has a doctor already told you your melanoma stage?")
+now routes **straight to the "Your stage picture" summary**. That clinician-assigned
+stage is deferred to; the Navigator asks nothing further.
+
+Superseded by this amendment (kept below for history, no longer built):
+
+- **`k1a`** ("What stage were you told?") and **`k1b`** ("Was that a clinical or a
+  pathologic stage?") screens — **deleted**. The summary now tells the patient
+  their physician confirms the exact stage, its sub-stage, and clinical vs.
+  pathologic.
+- **§28 Staging Consistency Checks** — **removed**. Every rule compared a
+  doctor-reported stage (`k1a`) against the pathology / node / spread answers;
+  with `k1a` gone there is nothing to compare. `STEP2_CONSISTENCY_RULES`, the
+  summary `consistencyNote` / `consistencyRules`, the `k1a`-keyed `stageBand`
+  rule, and the `k1a` `unless` guards on `k2.autoRouteByTCat` were all dropped.
+- References to the "`k1` / `k1a` / `k1b`" anchor triplet elsewhere in this spec
+  now mean **`k1` only**.
+
+Unchanged: **"No" / "I'm not sure"** on `k1` still route to `k2` and walk the full
+k2 → N → M flow; the T1a and T2a–T4b `k2.autoRouteByTCat` early exits still fire
+(they simply no longer have a doctor-stage suppression guard).
+
+---
+
 # 1. Goal of Step 2
 
 The patient should leave Step 2 with:

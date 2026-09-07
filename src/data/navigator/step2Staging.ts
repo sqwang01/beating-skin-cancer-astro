@@ -9,13 +9,12 @@
  * spends its screens on the two things the pathology report does not cover:
  * the lymph nodes (N) and distant spread (M).
  *
- * Stage 0 skip (`k0.autoRoute` + the k0a / k1a routing below): when the patient
- * is already effectively Stage 0 — Step 1 diagnosis is melanoma in situ /
- * lentigo maligna, or a doctor has told them "Stage 0" — the patient still sees
- * the k0 recap to confirm or inline-correct what Step 1 recorded, then every
- * Step 2 question screen is bypassed and they land straight on the "Your stage
- * picture" summary. There is nothing for N or M to add once the disease is in
- * situ.
+ * Stage 0 skip (`k0.autoRoute` + the k0a routing below): when Step 1's diagnosis
+ * is melanoma in situ / lentigo maligna the patient is already effectively Stage
+ * 0 — they still see the k0 recap to confirm or inline-correct what Step 1
+ * recorded, then every Step 2 question screen is bypassed and they land straight
+ * on the "Your stage picture" summary. There is nothing for N or M to add once
+ * the disease is in situ.
  *
  * No "T — your original tumor" education screen (removed 2026-09-07, Dr. Wang):
  * the recap (k0) and the summary already carry what Breslow thickness and
@@ -45,9 +44,20 @@
  * moves it to Stage III, and distant spread found on imaging moves it to Stage
  * IV. Suppressed when a doctor has reported Stage III or IV.
  *
+ * "Yes, a doctor told me my stage" early exit (product decision 2026-09-07,
+ * Dr. Wang): if the patient answers "Yes" on k1, that clinician-assigned stage
+ * is the one that counts and the Navigator does not try to re-work it — the flow
+ * goes straight from k1 to the "Your stage picture" summary, skipping the whole
+ * k2 → N → M track. The standalone "what stage were you told?" (`k1a`) and
+ * "clinical or pathologic?" (`k1b`) screens were removed with it: the summary
+ * tells the patient their physician confirms the exact stage, its sub-stage, and
+ * whether it is clinical or pathologic. "No" / "I'm not sure" still walk the
+ * full k2 → N → M flow.
+ *
  * Flow shape:
  *   k0    recap of the Step 1 pathology answers  (cold entry → k0cold capture)
- *   k1    the anchor: a stage a doctor has already given (kept separate always)
+ *   k1    the anchor: has a doctor already given a stage? "Yes" → straight to the
+ *         stage picture; "No" / "I'm not sure" → k2
  *   k2    bridge — what is left to confirm (invasive, no early exit). Carries
  *         `autoRouteByTCat`: a T1a case, or a T2a–T4b case once Breslow +
  *         ulceration are known, is routed past k2 on entry — the k2 screen
@@ -55,8 +65,7 @@
  *         The summary carries the sub-stage readout. T1a → Stage IA (settled)
  *         with the near-cutoff / transected-base caveat; T2a–T4b → Stage
  *         IB/IIA/IIB/IIC (provisional) with the "negative keeps it, positive →
- *         III, distant on imaging → IV" caveat. Both suppressed when a doctor
- *         has reported a higher stage — k2's `autoRouteByTCat.unless`.
+ *         III, distant on imaging → IV" caveat.
  *   N1–N3 invasive node track: node found? → sentinel node status → nearby skin
  *   M1–M3 distant-spread track: distant spread? → imaging
  *   S     "Your stage picture": the worded band, the educational IA–IIC estimate
@@ -85,11 +94,13 @@
  *     staging so the sub-stage is not final: negative keeps it, a positive node
  *     moves it to Stage III, distant spread on imaging to Stage IV. Same
  *     already-approved AJCC 8th tables; no new rule.
- *   - A doctor-reported stage (k1a) is still captured and shown on its own and
- *     is never overwritten by the band or the estimate.
+ *   - A stage a doctor has already assigned is deferred to: answering "Yes" on
+ *     k1 routes straight to the summary with no further staging questions. The
+ *     Navigator no longer records which stage was given (the k1a / k1b screens
+ *     were removed 2026-09-07); the summary still shows the coarse worded band /
+ *     educational estimate from the Step 1 pathology answers, always labelled an
+ *     estimate the physician confirms, and never claims to be the doctor's stage.
  *   - "Unknown" is first-class everywhere; never read as N0 or M0.
- *   - Inconsistent entries reveal a neutral "confirm with your doctor" note;
- *     the Navigator never says which entry is wrong and never corrects it.
  *   - Non-cutaneous melanoma left Step 1 already; if a user still reaches here
  *     with an unclear diagnosis they are routed to confirm it with a clinician.
  */
@@ -135,18 +146,13 @@ const DIAGNOSIS_PRESETS: Record<string, Record<string, string | null>> = {
 };
 
 /**
- * Neutral UX-safety consistency checks (STEP2 spec §28). If every screen id in a
- * rule's `when` map holds one of the listed answer values, the summary's
- * `consistencyNote` is revealed. NOT diagnostic — never says which entry is
- * wrong, never changes anything.
+ * The neutral UX-safety consistency checks (STEP2 spec §28) were removed
+ * 2026-09-07 (Dr. Wang) together with the k1a / k1b doctor-stage screens: every
+ * rule compared a doctor-reported stage (`k1a`) against the pathology / node /
+ * spread answers, and answering "Yes" on k1 now routes straight to the summary
+ * without capturing that stage, so there is nothing left for the checks to
+ * compare.
  */
-export const STEP2_CONSISTENCY_RULES: { id: string; when: Record<string, string[]> }[] = [
-  { id: 'insitu_vs_advanced_doc', when: { b3: ['in_situ', 'lentigo_maligna'], k1a: ['stage_III', 'stage_IV'] } },
-  { id: 'insitu_vs_advanced_doc_cold', when: { k0a: ['in_situ'], k1a: ['stage_III', 'stage_IV'] } },
-  { id: 'node_found_vs_early_doc', when: { N1: ['yes'], k1a: ['stage_0', 'stage_I', 'stage_II'] } },
-  { id: 'slnb_pos_vs_early_doc', when: { N2: ['positive'], k1a: ['stage_0', 'stage_I', 'stage_II'] } },
-  { id: 'distant_vs_not_stage4_doc', when: { M2: ['yes'], k1a: ['stage_0', 'stage_I', 'stage_II', 'stage_III'] } },
-];
 
 const STAGE3_NODE_NOTE =
   'A lymph node with melanoma places staging in the Stage III group when there is no distant spread. Your melanoma specialist determines the subgroup (IIIA–IIID) from the tumor and node details together.';
@@ -180,7 +186,7 @@ export const STEP2: StepDef = {
   // recorded, using the same inline edit window as every other case); on confirm
   // — or after an inline correction — k0's `autoRoute` sends it straight to the
   // stage picture, past every question screen. (Cold entry with no Step 1
-  // answers is handled on k0a; a doctor-reported "Stage 0" on k1a.)
+  // answers is handled on k0a.)
 
   subProgress: [
     { key: 'report', label: 'Your report' },
@@ -385,51 +391,12 @@ export const STEP2: StepDef = {
       spKey: 'anchor',
       title: 'Has a doctor already told you your melanoma stage?',
       body: [
-        'If so, that stage is the one that counts. The Navigator records it separately as “stage reported by your doctor” and never changes it.',
+        'If so, that stage is the one that counts — the Navigator never tries to re-work it. Answer “Yes” and we take you straight to your stage picture; the exact stage, its sub-stage, and whether it is clinical or pathologic are all things your physician confirms with you.',
       ],
       choices: [
-        { value: 'yes', label: 'Yes', next: 'k1a' },
+        { value: 'yes', label: 'Yes', next: 'SUMMARY', event: 'step2_doctor_stage_question_completed' },
         { value: 'no', label: 'No', next: 'k2', event: 'step2_doctor_stage_question_completed', status: 'waiting' },
         { value: 'unsure', label: 'I’m not sure', next: 'k2', event: 'step2_doctor_stage_question_completed', status: 'waiting' },
-      ],
-    },
-    {
-      id: 'k1a',
-      kind: 'decision',
-      spKey: 'anchor',
-      title: 'What stage were you told?',
-      choices: [
-        { value: 'stage_0', label: 'Stage 0', next: 'SUMMARY', event: 'step2_doctor_stage_question_completed' },
-        { value: 'stage_I', label: 'Stage I (or IA / IB)', next: 'k1b', event: 'step2_doctor_stage_question_completed' },
-        { value: 'stage_II', label: 'Stage II (or IIA / IIB / IIC)', next: 'k1b', event: 'step2_doctor_stage_question_completed' },
-        { value: 'stage_III', label: 'Stage III (or IIIA–IIID)', next: 'k1b', event: 'step2_doctor_stage_question_completed' },
-        { value: 'stage_IV', label: 'Stage IV', next: 'k1b', event: 'step2_doctor_stage_question_completed' },
-        { value: 'dont_remember', label: 'I don’t remember exactly', next: 'k1b', event: 'step2_doctor_stage_question_completed' },
-      ],
-    },
-    {
-      id: 'k1b',
-      kind: 'decision',
-      spKey: 'anchor',
-      title: 'Was that a clinical or a pathologic stage?',
-      body: [
-        'Ask if you’re not sure — it tells you whether the stage can still change.',
-      ],
-      choices: [
-        { value: 'clinical', label: 'Clinical stage', next: 'k2' },
-        { value: 'pathologic', label: 'Pathologic stage', next: 'k2' },
-        { value: 'unsure', label: 'I don’t know', reveal: 'k1b_unsure' },
-      ],
-      notes: [
-        {
-          id: 'k1b_unsure',
-          tone: 'info',
-          body: [
-            '<strong>Clinical stage</strong> is the working stage from the biopsy, the exam, and any imaging — before surgery. <strong>Pathologic stage</strong> adds what the definitive surgery and a sentinel lymph node biopsy show, and is usually more precise. Add this to your questions.',
-          ],
-          doctorQuestions: ['Is my stage a clinical stage or a pathologic stage, and could it still change?'],
-          continue: { label: 'Continue', next: 'k2' },
-        },
       ],
     },
 
@@ -470,8 +437,10 @@ export const STEP2: StepDef = {
       //     IB/IIA/IIB/IIC (provisional) + the "a sentinel node biopsy is still
       //     expected; negative keeps it, positive → III, distant → IV" caveat.
       // Each route's `questions` folds in what a standalone screen would ask.
-      // Suppressed when a doctor has reported a higher stage (T1a: Stage II+;
-      // T2a–T4b: Stage III/IV) — then k2 shows normally and the full flow runs.
+      // (A doctor-reported stage no longer suppresses these routes: as of
+      // 2026-09-07 answering "Yes" on k1 routes straight to the summary and k2 is
+      // never reached, so the `unless: { k1a: … }` guards were dropped with the
+      // k1a / k1b screens.)
       autoRouteByTCat: {
         breslowKeys: BRESLOW_KEYS,
         invasionInvasive: INVASION_INVASIVE,
@@ -480,7 +449,6 @@ export const STEP2: StepDef = {
         routes: [
           {
             tCategory: ['T1a'],
-            unless: { k1a: ['stage_II', 'stage_III', 'stage_IV'] },
             next: 'SUMMARY',
             record: { T1a: 'seen' },
             questions: [
@@ -501,11 +469,8 @@ export const STEP2: StepDef = {
             // with slnb unknown) with the "negative → same stage, positive →
             // Stage III, distant spread on imaging → Stage IV" caveat. No new
             // medical rule — the T category and the IB–IIC groupings are the
-            // already-approved AJCC 8th tables in medicalRules.ts. Suppressed
-            // when a doctor has reported Stage III or IV, so a conflicting case
-            // still walks the full N/M flow and the consistency checks apply.
+            // already-approved AJCC 8th tables in medicalRules.ts.
             tCategory: ['T2a', 'T2b', 'T3a', 'T3b', 'T4a', 'T4b'],
-            unless: { k1a: ['stage_III', 'stage_IV'] },
             next: 'SUMMARY',
             record: { earlyStage: 'seen' },
             questions: [
@@ -792,11 +757,6 @@ export const STEP2: StepDef = {
           note: 'Melanoma in situ with no spread corresponds to Stage 0 — the earliest category. Your physician confirms it and goes over removing the area completely.',
         },
         {
-          when: { k1a: ['stage_0'] },
-          band: 'Stage 0',
-          note: 'A doctor has told you this is Stage 0 — melanoma still confined to the top layer of skin, the earliest category. Your physician confirms it and goes over removing the area completely.',
-        },
-        {
           when: { T1a: ['seen'] },
           band: 'Stage IA',
           note: 'Your report describes a T1a invasive melanoma — up to 0.8 mm thick with no ulceration — with no lymph node involvement and no distant spread. That corresponds to Stage IA, the earliest invasive stage; your physician confirms it. If your thickness is near the 0.8 mm cutoff or the biopsy base was transected, ask whether a sentinel lymph node biopsy still applies: a negative result keeps it Stage IA, a positive result moves it to Stage III.',
@@ -890,8 +850,6 @@ export const STEP2: StepDef = {
         placement: 'withEstimate',
         rows: [
           { key: 'k1', label: 'Has a doctor assigned a stage?' },
-          { key: 'k1a', label: 'Stage reported by your doctor' },
-          { key: 'k1b', label: 'Clinical or pathologic stage' },
         ],
       },
       {
@@ -917,9 +875,6 @@ export const STEP2: StepDef = {
       },
     ],
     questionsHeading: 'Questions for my doctor',
-    consistencyNote:
-      'Some of the information entered does not fit together in the way the staging framework is usually described. This is not a diagnosis and does not mean anything is wrong — please review your entries and ask your doctor to confirm your stage.',
-    consistencyRules: STEP2_CONSISTENCY_RULES,
     viewEvent: 'step2_staging_summary_viewed',
     printLabel: 'Print my stage picture and questions',
     completeLabel: 'I’ve reviewed this — finish the Mad Rush',
