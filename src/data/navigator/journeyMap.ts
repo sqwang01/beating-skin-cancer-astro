@@ -101,8 +101,7 @@ export interface EntryChoice {
   target:
     | { kind: 'route'; href: string }
     | { kind: 'coming-soon' }
-    | { kind: 'concern' }
-    | { kind: 'map' };
+    | { kind: 'concern' };
   phase?: Phase;
 }
 
@@ -112,8 +111,7 @@ export interface EntryChoice {
  * long-term monitoring. The middle "further along" cases (understanding stage,
  * deciding treatment, finding a specialist) all live inside the newly-diagnosed
  * spine, reached by the skip-ahead links inside each step rather than by their
- * own entry point. "Worried about a spot" and "not sure" are secondary text
- * links, not co-equal choices — see SECONDARY_LINKS.
+ * own entry point.
  */
 export const ENTRY_CHOICES: EntryChoice[] = [
   {
@@ -127,20 +125,6 @@ export const ENTRY_CHOICES: EntryChoice[] = [
     label: 'I was treated for melanoma and now I’m being monitored.',
     target: { kind: 'coming-soon' },
     phase: 'marathon',
-  },
-];
-
-/** Secondary entry-screen links, rendered as plain text under the two choices. */
-export const SECONDARY_LINKS: { id: string; label: string; target: EntryChoice['target'] }[] = [
-  {
-    id: 'worried_spot',
-    label: 'I have a spot that hasn’t been looked at yet',
-    target: { kind: 'concern' },
-  },
-  {
-    id: 'not_sure',
-    label: 'Show me the whole journey map',
-    target: { kind: 'map' },
   },
 ];
 

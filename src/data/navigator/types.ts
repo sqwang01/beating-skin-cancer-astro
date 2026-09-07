@@ -327,22 +327,23 @@ export interface StageEstimateConfig {
   invasionInvasive: Record<string, string[]>[];
   ulcerationPresent: Record<string, string[]>[];
   ulcerationAbsent: Record<string, string[]>[];
-  nodePositive: Record<string, string[]>[];
-  distant: Record<string, string[]>[];
-  slnbNegative: Record<string, string[]>[];
-  slnbNotNeeded: Record<string, string[]>[];
+  /**
+   * Optional lymph-node / distant-spread answer mappings. Step 2 no longer asks
+   * the N / M questions (simplified 2026-09-07, Dr. Wang), so these are omitted
+   * there and every invasive case resolves `provisional`; kept optional for any
+   * future summary that does collect them.
+   */
+  nodePositive?: Record<string, string[]>[];
+  distant?: Record<string, string[]>[];
+  slnbNegative?: Record<string, string[]>[];
+  slnbNotNeeded?: Record<string, string[]>[];
   /** Plain text; `{stage}` and `{t}` are replaced with the computed values. */
   copy: { confirmed: string; provisional: string };
   /**
-   * Optional extra caveat paragraphs for the early-exit summaries. The engine
+   * Optional extra caveat paragraphs shown under the estimate `copy`. The engine
    * shows the FIRST entry whose `when` list is satisfied (OR-matched on recorded
-   * answer values) under the estimate `copy`; plain text with `{stage}` / `{t}`
-   * substituted. Two are defined:
-   *   - T1a early exit — a sentinel lymph node biopsy is generally not performed,
-   *     but may be discussed near the 0.8 mm cutoff or with a transected base.
-   *   - T2a–T4b early exit — a sentinel lymph node biopsy is usually part of
-   *     staging, so the sub-stage is provisional: negative keeps it, a positive
-   *     node moves it to Stage III, distant spread on imaging to Stage IV.
+   * answer values); plain text with `{stage}` / `{t}` substituted. Unused since
+   * the T1a / T2a–T4b early exits were removed 2026-09-07.
    */
   caveats?: { when: Record<string, string[]>[]; text: string }[];
   /** Fixed caveat under the estimate value. */

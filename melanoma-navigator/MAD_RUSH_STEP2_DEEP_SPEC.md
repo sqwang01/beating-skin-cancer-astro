@@ -7,6 +7,43 @@
 
 ---
 
+# Amendment — 2026-09-07 (Dr. Steven Q. Wang): Step 2 is recap → summary only
+
+Supersedes the amendment below and the `k1` / `k2` / N / M sections that follow.
+
+`step2Staging.ts` now keeps **only** the `k0` pathology recap (with the
+`k0cold` / `k0a` / `k0b` / `k0c` cold-entry capture) and the "Your stage picture"
+summary. **"Yes — that matches my report"** on `k0` — or an inline correction
+saved — routes **straight to `SUMMARY:step2`**.
+
+Deleted, no longer built:
+
+- **`k1`** ("Has a doctor already told you your melanoma stage?"). The
+  clinician-assigned stage is deferred to on the summary; the Navigator does not
+  ask.
+- **`k2`** (the "what's left to confirm" bridge) and the **entire N and M
+  question track** — `N1`, `N1how`, `Npos`, `N2`, `N2explain`, `N2neg`,
+  `N2pending`, `N2none`, `N3`, `M1`, `M2`, `M3`.
+- The **T1a / T2a–T4b early-exit routing** (`k2.autoRouteByTCat`, §16). The
+  summary still shows the educational Stage I/II sub-group from the Step 1
+  pathology answers via `estimateStageGroup()`; with no lymph-node answers an
+  invasive case is always `provisional` (negative sentinel node keeps the
+  sub-group, a positive node → Stage III, distant spread → Stage IV).
+- Summary sections "What your doctor has told you" (the `k1` row) and "Lymph
+  nodes and spread (recorded here)", the `stageBand` rules keyed on
+  `N1` / `N2` / `N3` / `M2` / `T1a` / `earlyStage`, and the
+  `stageEstimate.caveats` / `nodePositive` / `distant` / `slnbNegative` /
+  `slnbNotNeeded` keys.
+
+`flow.js` keeps the generic `autoRouteByTCat` / `resolveComputedRoute()` /
+`renderNoteEstimate()` engine support (dormant — no screen emits the attributes).
+`subProgress` is now just **Your report → Your stage picture**. Analytics events
+`step2_doctor_stage_question_completed`, `step2_t_section_completed`,
+`step2_n_section_completed`, `step2_slnb_education_viewed`,
+`step2_m_section_completed` were dropped from the allow-list.
+
+---
+
 # Amendment — 2026-09-07 (Dr. Steven Q. Wang): "Yes, a doctor told me my stage" early exit
 
 Answering **"Yes"** on `k1` ("Has a doctor already told you your melanoma stage?")

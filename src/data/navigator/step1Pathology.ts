@@ -49,9 +49,9 @@ export const STEP1: StepDef = {
   heroTitle: 'Step 1 — Understand Your Pathology Report',
   heroSubtitle:
     'Your pathology report holds the information your doctors use to understand your melanoma and plan the next steps.',
-  backHref: '/melanoma/navigator/mad-rush',
-  backLabel: '← Back to the Mad Rush map',
-  exitHref: '/melanoma/navigator/mad-rush',
+  backHref: '/melanoma/navigator',
+  backLabel: '← Back to the Navigator',
+  exitHref: '/melanoma/navigator',
   skipAhead: {
     href: '/melanoma/navigator/mad-rush/stage',
     label: 'I’ve already been through my pathology report — skip to Step 2, stage',

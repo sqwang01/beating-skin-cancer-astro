@@ -25,13 +25,8 @@ const ALLOWED_EVENTS = new Set([
   'pathology_diagnosis_reviewed',
   'pathology_invasive_fields_reviewed',
   'melanoma_step1_completed',
-  // step 2
+  // step 2 (N / M question track removed 2026-09-07 — recap → summary only)
   'melanoma_step2_started',
-  'step2_doctor_stage_question_completed',
-  'step2_t_section_completed',
-  'step2_n_section_completed',
-  'step2_slnb_education_viewed',
-  'step2_m_section_completed',
   'step2_staging_summary_viewed',
   'melanoma_step2_completed',
 ]);

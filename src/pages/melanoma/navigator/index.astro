@@ -1,13 +1,10 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
-import JourneyProgress from '../../../components/navigator/JourneyProgress.astro';
 import NavigatorFooterNotice from '../../../components/navigator/NavigatorFooterNotice.astro';
 import {
   ENTRY_CHOICES,
-  SECONDARY_LINKS,
   MAD_RUSH_STEPS,
   OPTIONAL_MODULES,
-  CONCERN_MESSAGE,
   COMING_SOON_MESSAGE,
 } from '../../../data/navigator/journeyMap';
 
@@ -65,30 +62,6 @@ const uniqueComingSoon = comingSoonLinks.filter((l) => (seen.has(l.href) ? false
             </button>
           ))}
         </div>
-
-        <div class="mt-6 flex flex-col gap-2 border-t border-slate/10 pt-5 text-sm">
-          {SECONDARY_LINKS.map((link) => (
-            <button
-              type="button"
-              data-entry-choice
-              data-id={link.id}
-              data-kind={link.target.kind}
-              data-href=""
-              data-phase=""
-              class="text-left text-teal underline underline-offset-2 hover:text-teal/80"
-            >
-              {link.label} →
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section id="concern" hidden class="rounded-2xl bg-coral/5 border border-coral/20 p-6 sm:p-8">
-        <h2 class="text-2xl font-serif text-navy mb-3">{CONCERN_MESSAGE.title}</h2>
-        {CONCERN_MESSAGE.body.map((p) => <p class="text-slate/80 mb-3">{p}</p>)}
-        <a href={CONCERN_MESSAGE.cta.href} class="inline-flex items-center gap-2 rounded-full bg-teal text-white px-6 py-3 font-medium hover:bg-teal/90 transition-colors mt-2">
-          {CONCERN_MESSAGE.cta.label}
-        </a>
       </section>
 
       <section id="coming-soon" hidden class="rounded-2xl bg-white shadow-lg p-6 sm:p-8">
@@ -102,8 +75,6 @@ const uniqueComingSoon = comingSoonLinks.filter((l) => (seen.has(l.href) ? false
           ))}
         </ul>
       </section>
-
-      <JourneyProgress heading="Your Mad Rush progress" />
 
       <div class="flex flex-wrap gap-4 text-sm">
         <button id="start-over" class="text-slate/60 hover:text-coral underline underline-offset-2">
@@ -136,13 +107,10 @@ const uniqueComingSoon = comingSoonLinks.filter((l) => (seen.has(l.href) ? false
     const target =
       s.currentStep === 'step2'
         ? '/melanoma/navigator/mad-rush/stage'
-        : s.currentStep === 'step1'
-          ? '/melanoma/navigator/mad-rush/pathology'
-          : '/melanoma/navigator/mad-rush';
+        : '/melanoma/navigator/mad-rush/pathology';
     window.location.href = target;
   });
 
-  const concern = document.getElementById('concern');
   const comingSoon = document.getElementById('coming-soon');
 
   document.querySelectorAll('[data-entry-choice]').forEach((btn) => {
@@ -160,11 +128,6 @@ const uniqueComingSoon = comingSoonLinks.filter((l) => (seen.has(l.href) ? false
 
       if (kind === 'route') {
         window.location.href = btn.dataset.href;
-      } else if (kind === 'map') {
-        window.location.href = '/melanoma/navigator/mad-rush';
-      } else if (kind === 'concern') {
-        concern.hidden = false;
-        concern.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } else if (kind === 'coming-soon') {
         comingSoon.hidden = false;
         comingSoon.scrollIntoView({ behavior: 'smooth', block: 'start' });
