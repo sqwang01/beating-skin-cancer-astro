@@ -93,6 +93,28 @@ Do not implement an automated stage calculator in Phase 1 unless:
 
 If users enter pathology values, those values can be used to teach what the terms mean, but should not automatically produce a definitive stage in the MVP.
 
+**Update — 2026-09-07 (Dr. Steven Q. Wang).** The four conditions above are now
+met for a **narrow** slice, so a computed estimate is live for it:
+
+1. The rule set is specified — `T_CATEGORY_RULESET` + `STAGE_GROUPING_REFERENCE`
+   in `src/data/navigator/medicalRules.ts`.
+2. It is reconciled to the current staging system — **AJCC 8th edition**.
+3. It was medically reviewed 2026-09-07 by Steven Q. Wang, MD (board-certified
+   dermatologist, Editor-in-Chief): both sets `status: 'approved'`,
+   `STAGING_RULES_ENABLED = true`.
+4. Uncertainty is explicit — `estimateStageGroup()` returns `insufficient`
+   (no Breslow, or unknown ulceration where it decides the sub-letter),
+   `provisional` (sentinel node not yet negative), or defers to the coarse
+   worded band for Stage 0 / III / IV. The result screen always labels it an
+   educational estimate the treating physician confirms, and never overwrites a
+   doctor-reported stage.
+
+Scope is deliberately **Stage I and II only** (sub-groups IA–IIC for a
+node-negative / node-not-needed case). A positive node, distant spread, the
+III/IV sub-groups, and clinical-vs-pathologic all remain clinician-provided.
+Roll back (`STAGING_RULES_ENABLED = false`, `meta.status: 'draft'`) if a newer
+AJCC edition supersedes the 8th or the review lapses.
+
 ---
 
 # 5. Treatment

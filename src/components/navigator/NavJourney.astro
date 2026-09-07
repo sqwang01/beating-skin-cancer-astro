@@ -113,6 +113,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
               data-sp-key={s.spKey}
               data-screen-next={s.kind === 'decision' ? s.next : undefined}
               data-auto-route={s.autoRoute ? JSON.stringify(s.autoRoute) : undefined}
+              data-auto-route-by-tcat={s.autoRouteByTCat ? JSON.stringify(s.autoRouteByTCat) : undefined}
               data-recap-empty-next={s.recap?.emptyNext}
               hidden
               class="rounded-2xl bg-white shadow-lg p-6 sm:p-8"
@@ -304,6 +305,61 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
               </div>
             )}
 
+            {step.summary.stageEstimate && (
+              <div
+                data-stage-estimate
+                data-stage-estimate-config={JSON.stringify(step.summary.stageEstimate)}
+                hidden
+                class="mb-6 rounded-2xl border border-teal/30 bg-teal/5 p-5"
+              >
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-slate/60 mb-1">
+                  {step.summary.stageEstimate.heading}
+                </h3>
+                <p class="est-value text-2xl font-serif text-navy mb-2"></p>
+                <p class="est-note text-sm text-slate/80 mb-3"></p>
+
+                {step.summary.sections
+                  .filter((sec) => sec.placement === 'withEstimate')
+                  .map((sec) => (
+                    <div data-summary-section data-est-section class="mb-4 rounded-xl bg-white/70 p-4">
+                      <h4 class="text-base font-serif text-navy mb-2">{sec.heading}</h4>
+                      <dl class="divide-y divide-slate/10">
+                        {sec.rows.map((r) => (
+                          <div data-summary data-summary-keys={keysAttr(r.key)} hidden class="flex justify-between gap-4 py-2">
+                            <dt class="s-label text-sm text-slate/60">{r.label}</dt>
+                            <dd class="s-value text-sm font-medium text-slate text-right"></dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  ))}
+
+                <p class="est-caveat text-sm text-slate/80 mb-3 rounded-lg bg-coral/5 border border-coral/20 p-3" hidden></p>
+                <p class="text-xs text-slate/60 mb-4">{step.summary.stageEstimate.notice}</p>
+                <p class="text-xs text-slate/70 mb-2">{step.summary.stageEstimate.tableIntro}</p>
+                <div class="overflow-x-auto">
+                  <table class="w-full border-collapse text-[0.8125rem]">
+                    <thead>
+                      <tr>
+                        <th class="border border-slate/15 px-2 py-1.5 text-left font-semibold">If your report shows Breslow thickness (mm)…</th>
+                        <th class="border border-slate/15 px-2 py-1.5 text-left font-semibold">T</th>
+                        <th class="border border-slate/15 px-2 py-1.5 text-left font-semibold">Falls in (nodes clear)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {step.summary.stageEstimate.tableRows.map((r) => (
+                        <tr data-est-row data-est-t={r.t}>
+                          <td class="border border-slate/15 px-2 py-1.5">{r.shows}</td>
+                          <td class="border border-slate/15 px-2 py-1.5">{r.t}</td>
+                          <td class="border border-slate/15 px-2 py-1.5">{r.group}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
             {step.summary.consistencyNote && (
               <div
                 data-consistency-note
@@ -314,7 +370,9 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
               </div>
             )}
 
-            {step.summary.sections.map((sec) => (
+            {step.summary.sections
+              .filter((sec) => !(step.summary.stageEstimate && sec.placement === 'withEstimate'))
+              .map((sec) => (
               <div data-summary-section class="mb-6">
                 <h3 class="text-lg font-serif text-navy mb-2">{sec.heading}</h3>
                 <dl class="divide-y divide-slate/10">
@@ -334,6 +392,21 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
               </h3>
               <ul data-summary-questions class="list-disc list-inside text-sm text-slate/80 space-y-1"></ul>
             </div>
+
+            {step.summary.learnMore && step.summary.learnMore.length > 0 && (
+              <details data-learn-more class="mb-6 rounded-xl bg-ivory p-4">
+                <summary class="cursor-pointer font-medium text-teal">Learn more</summary>
+                <ul class="mt-2 space-y-1 text-sm">
+                  {step.summary.learnMore.map((l) => (
+                    <li>
+                      <a href={l.href} class="text-teal underline underline-offset-2 hover:text-teal/80">
+                        {l.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            )}
 
             {step.summary.completeNote && <p class="text-xs text-slate/60 mb-4">{step.summary.completeNote}</p>}
 

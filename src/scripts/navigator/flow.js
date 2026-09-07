@@ -25,8 +25,10 @@
  *   [data-recap] [data-recap-row]       recap rows; data-recap-from (JSON array
  *                                       of answer screen ids), .r-value
  *   [data-recap-confirm] / [-change]    recap buttons; data-next
- *   [data-note="id"]                    hidden note block; may contain ul[data-dq]
- *                                       and a [data-info-next] continue button
+ *   [data-note="id"]                    hidden note block; may contain ul[data-dq],
+ *                                       a [data-info-next] continue button, and a
+ *                                       [data-note-estimate] computed readout
+ *                                       (.ne-value, .ne-note)
  *   [data-checklist-continue]           data-next, data-next-partial, data-event,
  *                                       data-status-partial
  *   [data-field-input] / [data-field-continue]   data-next, data-event
@@ -41,6 +43,10 @@
  *   [data-stage-band]                   optional; data-stage-band-rules,
  *                                       data-stage-band-fallback, .band-value,
  *                                       .band-note
+ *   [data-stage-estimate]               optional; data-stage-estimate-config,
+ *                                       .est-value, .est-note, [data-est-row]
+ *                                       [data-est-t]. Supersedes the band
+ *                                       when it yields a Stage I/II sub-group.
  *   [data-summary][data-summary-keys]   row; .s-value filled from first
  *                                       recorded answer among the keys
  *   [data-summary-questions]            <ul> filled with collected questions
@@ -54,6 +60,11 @@
 
 import { track } from './analytics.js';
 import * as store from './store.js';
+// Approved AJCC 8th stage-group rule (medicalRules.ts, gated by
+// STAGING_RULES_ENABLED). The engine holds no medical copy — it passes the
+// patient's recorded answers in and renders the returned structure using
+// strings supplied by the step data. See renderStageEstimate().
+import { estimateStageGroup, tCategoryFor } from '../../data/navigator/medicalRules';
 
 function parseJSON(raw, fallback) {
   try {
@@ -120,6 +131,57 @@ export function initFlow(root) {
     const list = Array.isArray(rules) ? rules : [];
     const hit = list.find((r) => ruleMatches(r.when));
     return hit ? hit.next : null;
+  }
+
+  /**
+   * Computed re-route keyed on the approved AJCC 8th T category (Screen.
+   * autoRouteByTCat). Non-medical navigation: it maps the recorded Breslow +
+   * ulceration to a T category via the approved `tCategoryFor()` rule and picks
+   * a route — it computes and shows no stage. Returns the matched route object
+   * ({ next, record?, questions? }), or null unless the case is invasive, a T
+   * category resolves, a route lists it, and that route's `unless` guard is not
+   * satisfied. Used for the T1a early exit; apply its side effects with
+   * `applyComputedRoute()`.
+   */
+  function resolveComputedRoute(screenEl) {
+    const cfg = parseJSON(screenEl.dataset.autoRouteByTcat, null);
+    if (!cfg || !Array.isArray(cfg.routes)) return null;
+    const { invasion, breslowMm, ulceration } = estimateInputsFrom({
+      breslowKeys: cfg.breslowKeys,
+      invasionInvasive: cfg.invasionInvasive,
+      ulcerationPresent: cfg.ulcerationPresent,
+      ulcerationAbsent: cfg.ulcerationAbsent,
+    });
+    if (invasion !== 'invasive') return null;
+    const t = tCategoryFor(breslowMm, ulceration);
+    if (!t) return null;
+    for (const r of cfg.routes) {
+      if (!Array.isArray(r.tCategory) || !r.tCategory.includes(t)) continue;
+      if (r.unless && ruleMatches(r.unless)) continue;
+      return r;
+    }
+    return null;
+  }
+
+  /**
+   * Side effects of a matched `resolveComputedRoute()` route: synthesize the
+   * answers it declares (so summary rules keyed on a screen the route SKIPS
+   * still resolve) and add its doctor questions to the running list. All
+   * strings come from step data; this adds none.
+   */
+  function applyComputedRoute(route) {
+    if (!route) return;
+    if (route.record) {
+      Object.entries(route.record).forEach(([sid, value]) => {
+        answers[sid] = { value: String(value), label: String(value) };
+      });
+    }
+    if (Array.isArray(route.questions)) {
+      route.questions.forEach((q) => {
+        const text = String(q || '').trim();
+        if (text) doctorQuestions.add(text);
+      });
+    }
   }
 
   /**
@@ -267,6 +329,22 @@ export function initFlow(root) {
       }
     }
 
+    // A screen whose computed T-category route already matches (the T1a early
+    // exit) is never shown: apply the route's recorded answers + questions and
+    // forward straight to its target, exactly as the Continue button would have.
+    if (!isSummary && target.dataset.autoRouteByTcat) {
+      const computed = resolveComputedRoute(target);
+      if (computed) {
+        applyComputedRoute(computed);
+        collectDoctorQuestions(target);
+        const contBtn = target.querySelector('[data-info-next]');
+        fireEvents(target.dataset.viewEvent, baseFor(target));
+        fireEvents(contBtn && contBtn.dataset.event, baseFor(target));
+        setActiveStep(target.dataset.stepId);
+        return show(computed.next);
+      }
+    }
+
     try {
       root.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (_) {
@@ -280,6 +358,7 @@ export function initFlow(root) {
       updateSubProgress('__done__');
       fireEvents(target.dataset.summaryViewEvent, { phase, step_id: target.dataset.stepId, screen_id: 'summary' });
     } else {
+      renderNoteEstimate(target);
       fireEvents(target.dataset.viewEvent, baseFor(target));
       updateSubProgress(target.dataset.spKey || '');
     }
@@ -320,6 +399,7 @@ export function initFlow(root) {
         const note = screenEl.querySelector(`[data-note="${btn.dataset.reveal}"]`);
         if (note) {
           note.hidden = false;
+          renderNoteEstimate(note);
           collectDoctorQuestions(note);
           try {
             note.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -406,7 +486,9 @@ export function initFlow(root) {
       // Auto-route only from a screen-level continue, never a note's own button.
       const inNote = btn.closest('[data-note]');
       const forced = inNote ? null : resolveRoute(parseJSON(screenEl.dataset.autoRoute, []));
-      goTo(forced || btn.dataset.next);
+      const computed = inNote ? null : resolveComputedRoute(screenEl);
+      if (computed && !forced) applyComputedRoute(computed);
+      goTo(forced || (computed && computed.next) || btn.dataset.next);
     });
   });
 
@@ -475,6 +557,8 @@ export function initFlow(root) {
       band.hidden = false;
     }
 
+    renderStageEstimate(summaryEl, band);
+
     const list = summaryEl.querySelector('[data-summary-questions]');
     if (list) {
       list.textContent = '';
@@ -499,6 +583,189 @@ export function initFlow(root) {
         detail: { answers: { ...answers }, doctorQuestions: Array.from(doctorQuestions) },
       }),
     );
+  }
+
+  /** True if ANY of the `when` maps in the list is fully satisfied. */
+  function anyRule(list) {
+    return Array.isArray(list) && list.some((w) => ruleMatches(w));
+  }
+
+  /** Resolve invasion / breslow / ulceration from recorded answers via a config. */
+  function estimateInputsFrom(cfg) {
+    const rawBreslow = firstAnswerLabel(cfg.breslowKeys || []);
+    const parsed = rawBreslow
+      ? parseFloat(String(rawBreslow).replace(',', '.').replace(/[^0-9.]/g, ''))
+      : NaN;
+    return {
+      invasion: anyRule(cfg.invasionInSitu)
+        ? 'in_situ'
+        : anyRule(cfg.invasionInvasive)
+          ? 'invasive'
+          : 'unknown',
+      breslowMm: Number.isNaN(parsed) ? null : parsed,
+      ulceration: anyRule(cfg.ulcerationPresent)
+        ? 'present'
+        : anyRule(cfg.ulcerationAbsent)
+          ? 'absent'
+          : 'unknown',
+    };
+  }
+
+  /**
+   * Mid-flow Stage I/II readout inside a note (STEP2 spec §23). The lymph nodes
+   * and distant spread are not known yet here, so it asks the rule with
+   * `slnb: 'unknown'` and shows the result provisional-framed; anything short of
+   * a resolved T category shows the config's `fallback` line. All strings come
+   * from the note config (server-rendered from step2Staging.ts).
+   */
+  function renderNoteEstimate(scopeEl) {
+    if (!scopeEl) return;
+    scopeEl.querySelectorAll('[data-note-estimate]').forEach((box) => {
+      const cfg = parseJSON(box.dataset.noteEstimateConfig, null);
+      if (!cfg) return;
+      const { invasion, breslowMm, ulceration } = estimateInputsFrom(cfg);
+      const result = estimateStageGroup({
+        invasion,
+        breslowMm,
+        ulceration,
+        nodePositive: false,
+        distant: false,
+        slnb: 'unknown',
+      });
+      // Echo the patient's OWN recorded values verbatim (no interpretation).
+      if (cfg.patientEntries) {
+        const b = box.querySelector('.ne-breslow');
+        const u = box.querySelector('.ne-ulceration');
+        if (b)
+          b.textContent =
+            firstAnswerLabel(cfg.patientEntries.breslowKeys || []) ||
+            cfg.patientEntries.missingText;
+        if (u)
+          u.textContent =
+            firstAnswerLabel(cfg.patientEntries.ulcerationKeys || []) ||
+            cfg.patientEntries.missingText;
+      }
+
+      const v = box.querySelector('.ne-value');
+      const n = box.querySelector('.ne-note');
+      if (result.status === 'provisional') {
+        if (v) v.textContent = result.stageGroup;
+        // T1a routes straight from this screen to the stage picture, so the
+        // generic "node check still ahead" wording in `copy` does not apply —
+        // use `t1aCopy` if set.
+        const tmpl =
+          result.tCategory === 'T1a' && cfg.t1aCopy ? cfg.t1aCopy : cfg.copy;
+        if (n) {
+          n.textContent = String(tmpl)
+            .replace(/\{stage\}/g, result.stageGroup)
+            .replace(/\{t\}/g, result.tCategory);
+        }
+      } else {
+        if (v) v.textContent = '';
+        if (n) n.textContent = cfg.fallback || '';
+      }
+    });
+  }
+
+  /**
+   * Educational Stage I/II sub-group estimate (STEP2 spec §23, approved
+   * 2026-09-07). Reads the patient's recorded answers through the config's rule
+   * lists, calls the approved `estimateStageGroup()` rule, and — only for a
+   * `confirmed` / `provisional` Stage I/II result — fills the estimate block and
+   * marks the matching table row. Every other result hides the block and leaves
+   * the coarse worded band showing. All patient-facing strings come from the
+   * config (server-rendered from step2Staging.ts); this function adds none.
+   */
+  function renderStageEstimate(summaryEl, band) {
+    const box = summaryEl.querySelector('[data-stage-estimate]');
+    if (!box) return;
+    const cfg = parseJSON(box.dataset.stageEstimateConfig, null);
+    if (!cfg) return;
+
+    const { invasion, breslowMm, ulceration } = estimateInputsFrom(cfg);
+    const slnb = anyRule(cfg.slnbNegative)
+      ? 'negative'
+      : anyRule(cfg.slnbNotNeeded)
+        ? 'not_needed'
+        : 'unknown';
+
+    const result = estimateStageGroup({
+      invasion,
+      breslowMm,
+      ulceration,
+      nodePositive: anyRule(cfg.nodePositive),
+      distant: anyRule(cfg.distant),
+      slnb,
+    });
+
+    const showSub = result.status === 'confirmed' || result.status === 'provisional';
+    box.hidden = !showSub;
+
+    // The "withEstimate" sections ("What your doctor has told you" / "From your
+    // pathology report") normally sit inside the estimate box, under the estimate
+    // prose and above the caveat. When the box is hidden (Stage 0 / III / IV /
+    // insufficient data) relocate them out so they still show — just after the
+    // stage band, else before the first default section. Restore them into the
+    // box when the estimate renders again.
+    const estSections = Array.from(summaryEl.querySelectorAll('[data-est-section]'));
+    const caveatEl = box.querySelector('.est-caveat');
+    if (!showSub) {
+      let anchor = band && !band.hidden ? band : null;
+      estSections.forEach((sec) => {
+        if (anchor) {
+          anchor.insertAdjacentElement('afterend', sec);
+          anchor = sec;
+        } else {
+          const firstDefault = summaryEl.querySelector(
+            '[data-summary-section]:not([data-est-section])',
+          );
+          if (firstDefault) firstDefault.parentNode.insertBefore(sec, firstDefault);
+        }
+      });
+    } else {
+      estSections.forEach((sec) => {
+        if (sec.parentNode !== box) box.insertBefore(sec, caveatEl);
+      });
+    }
+
+    if (!showSub) return;
+
+    const template =
+      result.status === 'confirmed' ? cfg.copy.confirmed : cfg.copy.provisional;
+    const v = box.querySelector('.est-value');
+    const n = box.querySelector('.est-note');
+    if (v) {
+      v.textContent =
+        result.status === 'provisional'
+          ? result.stageGroup + ' (provisional)'
+          : result.stageGroup;
+    }
+    if (n) {
+      n.textContent = String(template)
+        .replace(/\{stage\}/g, result.stageGroup)
+        .replace(/\{t\}/g, result.tCategory);
+    }
+
+    // Optional extra caveat (T1a early-exit summary): shown only when one of the
+    // config's `caveatWhen` maps is satisfied.
+    if (caveatEl) {
+      const showCaveat = !!cfg.caveat && anyRule(cfg.caveatWhen);
+      caveatEl.hidden = !showCaveat;
+      caveatEl.textContent = showCaveat
+        ? String(cfg.caveat)
+            .replace(/\{stage\}/g, result.stageGroup || '')
+            .replace(/\{t\}/g, result.tCategory || '')
+        : '';
+    }
+
+    box.querySelectorAll('[data-est-row]').forEach((tr) => {
+      const hit = tr.dataset.estT === result.tCategory;
+      tr.classList.toggle('bg-teal/15', hit);
+      tr.classList.toggle('font-semibold', hit);
+    });
+
+    // A named sub-group supersedes the coarse band.
+    if (band) band.hidden = true;
   }
 
   /**

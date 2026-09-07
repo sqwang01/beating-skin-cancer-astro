@@ -21,11 +21,51 @@ export type StepStatus =
   | 'waiting'
   | 'needs_attention';
 
+/**
+ * Mid-flow Stage I/II readout rendered at the top of a note (STEP2 spec §23).
+ * Same rule as the summary's `StageEstimateConfig`, but the lymph nodes and
+ * distant spread are not known yet at this point in the flow, so the result is
+ * always shown provisional-framed. `{stage}` / `{t}` are substituted into
+ * `copy`; `fallback` shows when Breslow or ulceration is insufficient.
+ */
+export interface NoteEstimateConfig {
+  breslowKeys: string[];
+  invasionInSitu: Record<string, string[]>[];
+  invasionInvasive: Record<string, string[]>[];
+  ulcerationPresent: Record<string, string[]>[];
+  ulcerationAbsent: Record<string, string[]>[];
+  copy: string;
+  /**
+   * Optional alternate `copy` used only when the resolved T category is `T1a`.
+   * The T1a path routes straight from this screen to the stage picture (no lymph
+   * node / distant screens), so the generic "the lymph node check is still
+   * ahead" wording in `copy` does not apply. Falls back to `copy` when unset.
+   */
+  t1aCopy?: string;
+  fallback: string;
+  /**
+   * Optional readout of the patient's OWN recorded values, shown between the
+   * estimate value and `body`. Reads the recorded answer labels verbatim (no
+   * interpretation): the first non-empty label among `breslowKeys` /
+   * `ulcerationKeys`, or `missingText` when none is recorded.
+   */
+  patientEntries?: {
+    heading: string;
+    breslowLabel: string;
+    ulcerationLabel: string;
+    breslowKeys: string[];
+    ulcerationKeys: string[];
+    missingText: string;
+  };
+}
+
 /** A note block revealed by a choice or shown inline on a screen. */
 export interface Note {
   id: string;
   tone: 'info' | 'warn' | 'action';
   body: string[];
+  /** Computed Stage I/II readout shown above `body` (see NoteEstimateConfig). */
+  estimate?: NoteEstimateConfig;
   /** Questions to carry into the Step summary if this note is shown. */
   doctorQuestions?: string[];
   /** Optional "continue" affordance when a note gates progress. */
@@ -144,6 +184,45 @@ export interface Screen {
    * to `next` / `recap.confirmNext` when nothing matches.
    */
   autoRoute?: RouteRule[];
+  /**
+   * kind: 'info' — computed re-route keyed on the AJCC 8th T category (from the
+   * approved `tCategoryFor()` in medicalRules.ts) derived from the recorded
+   * Breslow thickness + ulceration. Evaluated by the engine AFTER `autoRoute`
+   * and BEFORE `next`. This is non-medical navigation only: it picks which
+   * screen to show next (and may `record` a state token / add `questions`); it
+   * computes and displays no stage. Used for the T1a early exit — a thin
+   * (<0.8 mm), non-ulcerated invasive melanoma skips the lymph node and
+   * distant-spread screens and routes straight to the stage picture (product
+   * decision 2026-09-07, Dr. Wang; see MAD_RUSH_STEP2_DEEP_SPEC.md §16).
+   * `unless` (matched on recorded answer values, like `RouteRule.when`)
+   * suppresses the route — e.g. a doctor-reported Stage II+ keeps the patient
+   * on the full flow.
+   */
+  autoRouteByTCat?: {
+    breslowKeys: string[];
+    invasionInvasive: Record<string, string[]>[];
+    ulcerationPresent: Record<string, string[]>[];
+    ulcerationAbsent: Record<string, string[]>[];
+    routes: {
+      tCategory: string[];
+      unless?: Record<string, string[]>;
+      next: string;
+      /**
+       * Answers to synthesize when this computed route is taken (screen id →
+       * value). Lets summary rules keyed on a screen the route SKIPS still
+       * resolve: the T1a early exit routes straight to the stage picture and
+       * records `{ T1a: 'seen' }` so the summary shows its T1a band note and
+       * caveat without a standalone screen. A state token only — no clinical
+       * string, and it computes nothing.
+       */
+      record?: Record<string, string>;
+      /**
+       * Doctor questions to add to the running list when this route is taken
+       * (the questions the skipped screen would have carried).
+       */
+      questions?: string[];
+    }[];
+  };
 
   notes?: Note[];
   /** Always-visible "Questions to ask your doctor" block on this screen. */
@@ -162,6 +241,14 @@ export interface SummarySection {
    * or the Step 2 cold-entry field.
    */
   rows: { key: string | string[]; label: string }[];
+  /**
+   * Where the section renders on the summary. `'withEstimate'` pulls it inside
+   * the stage-estimate block, directly under the estimate prose and above its
+   * caveat (Step 2: "What your doctor has told you" + "From your pathology
+   * report"). Omitted → the section renders in the default position, after the
+   * stage-estimate block.
+   */
+  placement?: 'withEstimate';
 }
 
 /**
@@ -177,6 +264,54 @@ export interface StageBand {
   notice: string;
   rules: { when: Record<string, string[]>; band: string; note?: string }[];
   fallback: { band: string; note?: string };
+}
+
+/**
+ * Step 2 summary — the educational Stage I/II estimate block (STEP2 spec §23,
+ * "Product decision 2026-09-07"). The engine reads the patient's recorded
+ * answers through these rule lists, calls `estimateStageGroup()` in
+ * medicalRules.ts, and — only for a `confirmed` / `provisional` Stage I/II
+ * result — renders `copy` (with `{stage}` / `{t}` substituted) plus the
+ * `tableRows` breakdown with the matching row marked. Every other result hides
+ * this block and lets `StageBand` show the coarse worded band instead.
+ *
+ * Each field that maps answers to one estimate input is an ARRAY of `when`
+ * maps, OR-matched (any map fully satisfied → that input is set); this is how
+ * one logical input (e.g. "ulceration present") can be fed by either the Step 1
+ * or the Step 2 cold-entry screen.
+ */
+export interface StageEstimateConfig {
+  heading: string;
+  /** Screen ids whose recorded LABEL holds the raw Breslow value in mm. */
+  breslowKeys: string[];
+  invasionInSitu: Record<string, string[]>[];
+  invasionInvasive: Record<string, string[]>[];
+  ulcerationPresent: Record<string, string[]>[];
+  ulcerationAbsent: Record<string, string[]>[];
+  nodePositive: Record<string, string[]>[];
+  distant: Record<string, string[]>[];
+  slnbNegative: Record<string, string[]>[];
+  slnbNotNeeded: Record<string, string[]>[];
+  /** Plain text; `{stage}` and `{t}` are replaced with the computed values. */
+  copy: { confirmed: string; provisional: string };
+  /**
+   * Optional extra caveat paragraph, shown under the estimate `copy` only when
+   * one of the `caveatWhen` maps is satisfied (OR-matched on recorded answer
+   * values). Used on the T1a early-exit summary to flag that a sentinel lymph
+   * node biopsy may still be discussed near the 0.8 mm cutoff or with a
+   * transected biopsy base. Plain text; `{stage}` / `{t}` are substituted.
+   */
+  caveat?: string;
+  caveatWhen?: Record<string, string[]>[];
+  /** Fixed caveat under the estimate value. */
+  notice: string;
+  /** Sentence above the breakdown table. */
+  tableIntro: string;
+  /**
+   * One row of the IA–IIC breakdown. `t` must equal a `TCategory` string so the
+   * engine can mark the patient's row; `group` is the displayed stage group.
+   */
+  tableRows: { shows: string; t: string; group: string }[];
 }
 
 export interface StepDef {
@@ -237,6 +372,13 @@ export interface StepDef {
     consistencyRules?: { id: string; when: Record<string, string[]> }[];
     /** Worded stage band (Step 2 only). Omit to show no band. */
     stageBand?: StageBand;
+    /**
+     * Educational Stage I/II sub-group estimate (Step 2 only). When it produces
+     * a result it supersedes `stageBand`; otherwise `stageBand` shows.
+     */
+    stageEstimate?: StageEstimateConfig;
+    /** Optional "Learn more" links shown on the summary (Step 2 only). */
+    learnMore?: { label: string; href: string }[];
     /** Allow-listed analytics event fired when the summary is shown. */
     viewEvent?: string;
     printLabel: string;

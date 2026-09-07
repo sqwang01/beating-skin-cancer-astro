@@ -454,6 +454,38 @@ All thresholds behind these messages must be marked:
 
 The patient should never see outdated guideline-year logic presented as current.
 
+**Product decision (2026-09-07, Dr. Wang) — T1a early exit.** For a **T1a**
+tumor — invasive, Breslow **< 0.8 mm**, **no ulceration** — a sentinel lymph
+node biopsy is generally not part of staging, so walking the patient through the
+N and M screens adds nothing. Step 2 therefore:
+
+- shows the recap and the doctor-stage anchor (`k1` / `k1a` / `k1b`), then routes
+  straight to the **"Your stage picture"** summary — skipping the T education
+  screen (`T1`) **and** `k2` → `N1…` → `M1…`. (Amended 2026-09-07, Dr. Wang: the
+  `T1` screen is also skipped for a T1a case; its IA–IIC table and T explainer
+  are folded into the summary. It still shows in full for every non-T1a invasive
+  case.) There is no standalone T1a screen. Routing is `T1.autoRouteByTCat`,
+  evaluated by `flow.js` `resolveComputedRoute()` — on entry to `T1`, so the
+  screen never paints, as well as on its Continue button — using the **approved**
+  `tCategoryFor()` (AJCC 8th) on the recorded Breslow + ulceration; it selects a
+  route and computes no stage. The route `record`s `{ T1a: 'seen' }` (a state
+  token — no clinical string) so the summary's T1a-keyed rules resolve, and
+  carries the three T1a doctor questions on its `questions` list.
+- The summary states this case as **T1a → Stage IA** (physician confirms) via its
+  stage band + estimate, and shows the `summary.stageEstimate.caveat` line: a
+  sentinel lymph node biopsy is generally not needed, **but** near the 0.8 mm
+  cutoff (~0.7 mm) or with a **transected biopsy base** some surgeons still
+  discuss one — **negative → Stage IA, positive → Stage III**.
+- The summary treats this like a settled node-negative case: `estimateStageGroup`
+  is called with `slnb` = not-needed → `confirmed` **Stage IA**, plus one extra
+  `summary.stageEstimate.caveat` line repeating the near-cutoff / transected-base
+  sentinel-node nuance. No new medical rule — the T category and the Stage IA
+  grouping are the already-approved AJCC 8th tables in `medicalRules.ts`.
+- **Suppressed** when the patient has reported a doctor-assigned **Stage II or
+  higher** (`autoRouteByTCat.routes[].unless`), so a conflicting case still
+  walks the full N/M flow and the consistency checks apply. Exactly 0.8 mm is
+  T1b (per the approved rule) and is **not** early-exited.
+
 ---
 
 # 17. N4 — SLNB Status
@@ -666,6 +698,60 @@ The book further divides Stage III into IIIA–IIID based on combinations of tum
 
 For MVP:
 Do not derive IIIA–IIID automatically unless a physician-approved current AJCC ruleset is implemented.
+
+**Product decision (2026-09-07, Dr. Wang) — Stage I/II delineation is education-only.**
+Step 2 gains a screen `T1` between the doctor-stage anchor and the `k2` N/M
+bridge (invasive path only; the Stage 0 skip bypasses it). `T1`:
+
+- explains that Breslow thickness + ulceration are what divide Stage I from II
+  and IA/IB/IIA/IIB/IIC from each other;
+- offers a **click-to-reveal** table of the T1a–T4b → IA–IIC groupings
+  (spec §12 + §23), shown with `MEDICAL_CONTENT_REQUIRES_CURRENT_REVIEW`;
+- computes **nothing** — no T category, no sub-stage. The summary `stageBand`
+  stays the coarse "Stage I or II" band. `medicalRules.ts` is untouched;
+  `STAGING_RULES_ENABLED` stays `false`.
+
+The T1b row is reconciled to **AJCC 8th** (all 0.8–1.0 mm = T1b regardless of
+ulceration), not the narrower wording in an early content draft.
+
+The "do I need SLNB?" nuance from §16 is delivered as contextual copy, not a
+computed recommendation: `k2` and `N2explain` now state that for any invasive
+melanoma past the thinnest group the Stage I/II is **provisional until the node
+is confirmed clear**; `N2none` ("doctor said I don't need one") adds that for
+thin lesions near the 0.8 mm cutoff — or with a transected base / involved deep
+margin — it is reasonable to ask whether SLNB should still be considered.
+
+A gated, physician-approved computed sub-stage (Option B) remains a possible
+later pass; it is explicitly **not** in this change.
+
+**Product decision (2026-09-07, Dr. Wang) — Option B enabled: the summary now
+computes an educational Stage I/II sub-group.** Superseding the "computes
+nothing" line above for the summary only (the `T1` screen stays education).
+
+- Dr. Wang (Editor-in-Chief, board-certified dermatologist) reviewed
+  `T_CATEGORY_RULESET` and `STAGE_GROUPING_REFERENCE` in `medicalRules.ts`
+  against **AJCC 8th edition** and marked both `status: 'approved'`
+  (`reviewedBy: 'Steven Q. Wang, MD'`, `reviewedDate: '2026-09-07'`).
+  `STAGING_RULES_ENABLED` is now `true`.
+- New pure functions in `medicalRules.ts`: `tCategoryFor(breslowMm, ulceration)`
+  → AJCC 8th T category, and `estimateStageGroup(input)` → one of
+  `confirmed` / `provisional` (Stage IA–IIC) or `regional` / `distant` /
+  `in_situ` / `insufficient` (defer to the coarse band). Scope is Stage I/II
+  only; T2+ with unknown ulceration, or any missing Breslow, returns
+  `insufficient`.
+- New `summary.stageEstimate` config in `step2Staging.ts` carries every string
+  (input-mapping rule lists, `{stage}`/`{t}` copy templates, the notice, and
+  the IA–IIC `tableRows`). `flow.js` `renderStageEstimate()` reads the recorded
+  answers, calls `estimateStageGroup()`, and — only for `confirmed` /
+  `provisional` — fills the block, marks the patient's T-category row, and hides
+  the coarse `stageBand`. Any other result hides the estimate and shows the band
+  as before.
+- The table the patient asked to see on the result screen is rendered there
+  under the "Every row below assumes the lymph nodes are clear…" sentence.
+- `provisional` (sentinel node not yet negative) is shown as
+  "Stage IIx (provisional)" with copy that a positive node moves it to III.
+- The doctor-reported stage box is unchanged and still authoritative; a
+  conflict still trips the neutral consistency note.
 
 ---
 
