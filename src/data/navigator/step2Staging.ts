@@ -9,39 +9,54 @@
  * spends its screens on the two things the pathology report does not cover:
  * the lymph nodes (N) and distant spread (M).
  *
- * Stage 0 skip (`enterRoute` + the k0a / k1a routing below): when the patient is
- * already effectively Stage 0 — Step 1 diagnosis is melanoma in situ / lentigo
- * maligna, or a doctor has told them "Stage 0" — every Step 2 question screen is
- * bypassed and the patient lands straight on the "Your stage picture" summary.
- * There is nothing for N or M to add once the disease is in situ.
+ * Stage 0 skip (`k0.autoRoute` + the k0a / k1a routing below): when the patient
+ * is already effectively Stage 0 — Step 1 diagnosis is melanoma in situ /
+ * lentigo maligna, or a doctor has told them "Stage 0" — the patient still sees
+ * the k0 recap to confirm or inline-correct what Step 1 recorded, then every
+ * Step 2 question screen is bypassed and they land straight on the "Your stage
+ * picture" summary. There is nothing for N or M to add once the disease is in
+ * situ.
  *
- * T1a early exit (product decision 2026-09-07, Dr. Wang; T1's `autoRouteByTCat`):
+ * No "T — your original tumor" education screen (removed 2026-09-07, Dr. Wang):
+ * the recap (k0) and the summary already carry what Breslow thickness and
+ * ulceration do; there is no standalone T screen. The IA–IIC breakdown table
+ * lives on the summary (`summary.stageEstimate`).
+ *
+ * T1a early exit (product decision 2026-09-07, Dr. Wang; k2's `autoRouteByTCat`):
  * a thin (<0.8 mm), non-ulcerated invasive melanoma is T1a → Stage IA, and a
  * sentinel lymph node biopsy is generally not part of its staging. The flow
  * shows the recap and the doctor-stage anchor, then routes straight to the stage
- * picture — skipping the T education screen (amended 2026-09-07, Dr. Wang; its
- * table + explainer live on the summary) as well as the N and M screens. The
- * route is resolved on entry to `T1` so that screen never paints for a T1a case.
- * The route `record`s `{ T1a: 'seen' }` so the summary's stage band + estimate
+ * picture — skipping the k2 bridge and the N and M screens. The route is
+ * resolved on entry to `k2` so that screen never paints for a T1a case. The
+ * route `record`s `{ T1a: 'seen' }` so the summary's stage band + estimate
  * resolve to Stage IA and add the near-cutoff / transected-base sentinel-node
  * caveat, and carries the three T1a doctor questions on its `questions`.
  * Suppressed when a doctor has reported Stage II or higher, so a conflicting
  * case still walks the full flow.
  *
+ * T2a–T4b early exit (product decision 2026-09-07, Dr. Wang; STEP2 spec §16):
+ * the same early exit for a thicker invasive melanoma once Breslow thickness and
+ * ulceration are known — T2a/T2b/T3a/T3b/T4a/T4b → an educational Stage
+ * IB/IIA/IIB/IIC. It also skips the k2 bridge and the N and M screens.
+ * The route `record`s `{ earlyStage: 'seen' }`. The one difference from T1a: a
+ * sentinel lymph node biopsy IS usually part of staging here, so the summary
+ * shows the sub-group as PROVISIONAL (`estimateStageGroup()` with slnb unknown)
+ * with a caveat — a negative sentinel node keeps the stage, a positive node
+ * moves it to Stage III, and distant spread found on imaging moves it to Stage
+ * IV. Suppressed when a doctor has reported Stage III or IV.
+ *
  * Flow shape:
  *   k0    recap of the Step 1 pathology answers  (cold entry → k0cold capture)
  *   k1    the anchor: a stage a doctor has already given (kept separate always)
- *   T1    education — what Breslow thickness + ulceration do, shown with the
- *         IA–IIC breakdown table and the provisional sub-stage readout
- *         (T1a early exit — a thin (<0.8 mm), non-ulcerated invasive melanoma —
- *         is routed past T1 on entry — the T1 screen never paints — straight to
- *         the stage picture, also skipping k2/N/M. No standalone screen: the
- *         summary carries the "Stage IA, and here is when
- *         a sentinel node might still be discussed (near 0.8 mm / transected
- *         base; negative → IA, positive → III)" message via its `stageEstimate`
- *         caveat. Suppressed when a doctor has reported Stage II+ —
- *         T1's `autoRouteByTCat.unless`.)
- *   k2    bridge — what is left to confirm (invasive, non-T1a)
+ *   k2    bridge — what is left to confirm (invasive, no early exit). Carries
+ *         `autoRouteByTCat`: a T1a case, or a T2a–T4b case once Breslow +
+ *         ulceration are known, is routed past k2 on entry — the k2 screen
+ *         never paints — straight to the stage picture, also skipping N/M.
+ *         The summary carries the sub-stage readout. T1a → Stage IA (settled)
+ *         with the near-cutoff / transected-base caveat; T2a–T4b → Stage
+ *         IB/IIA/IIB/IIC (provisional) with the "negative keeps it, positive →
+ *         III, distant on imaging → IV" caveat. Both suppressed when a doctor
+ *         has reported a higher stage — k2's `autoRouteByTCat.unless`.
  *   N1–N3 invasive node track: node found? → sentinel node status → nearby skin
  *   M1–M3 distant-spread track: distant spread? → imaging
  *   S     "Your stage picture": the worded band, the educational IA–IIC estimate
@@ -60,10 +75,16 @@
  *     falls back to the coarse band. See `summary.stageEstimate`.
  *   - The T1a early-exit summary uses the same `estimateStageGroup()` result
  *     (slnb treated as not-needed → `confirmed` Stage IA) plus one extra
- *     `caveat` line: a sentinel lymph node biopsy may still be discussed near
+ *     `caveats` line: a sentinel lymph node biopsy may still be discussed near
  *     the 0.8 mm cutoff or with a transected biopsy base — negative keeps it
  *     Stage IA, positive moves it to Stage III. No new medical rule: the T
  *     category and Stage IA come from the already-approved AJCC 8th tables.
+ *   - The T2a–T4b early-exit summary uses the same `estimateStageGroup()` result
+ *     with slnb left unknown → `provisional` Stage IB/IIA/IIB/IIC, plus a
+ *     `caveats` line that a sentinel lymph node biopsy is usually part of
+ *     staging so the sub-stage is not final: negative keeps it, a positive node
+ *     moves it to Stage III, distant spread on imaging to Stage IV. Same
+ *     already-approved AJCC 8th tables; no new rule.
  *   - A doctor-reported stage (k1a) is still captured and shown on its own and
  *     is never overwritten by the band or the estimate.
  *   - "Unknown" is first-class everywhere; never read as N0 or M0.
@@ -77,8 +98,8 @@ import type { StepDef } from './types';
 import { MEDICAL_CONTENT_REQUIRES_CURRENT_REVIEW } from './medicalRules';
 
 /**
- * Shared answer→estimate-input mappings, used by both the mid-flow `T1_table`
- * note readout and the summary `stageEstimate` block. Each is an array of
+ * Shared answer→estimate-input mappings, used by the summary `stageEstimate`
+ * block and the `k2.autoRouteByTCat` early-exit gate. Each is an array of
  * `when` maps, OR-matched, so a Step 1 answer (`b3` / `c1` / `c2`) or its Step 2
  * cold-entry equivalent (`k0a` / `k0b` / `k0c`) can feed the same input.
  */
@@ -87,6 +108,31 @@ const INVASION_IN_SITU = [{ b3: ['in_situ', 'lentigo_maligna'] }, { k0a: ['in_si
 const INVASION_INVASIVE = [{ b3: ['invasive'] }, { k0a: ['invasive'] }];
 const ULCERATION_PRESENT = [{ c2: ['present'] }, { k0c: ['present'] }];
 const ULCERATION_ABSENT = [{ c2: ['absent'] }, { k0c: ['absent'] }];
+
+/**
+ * Inline diagnosis correction on the k0 recap (product decision 2026-09-07,
+ * Dr. Wang — supersedes the earlier "Change the diagnosis" link that routed the
+ * patient back through k0a and off this page). The diagnosis dropdown writes
+ * `b3`; because in situ vs invasive changes which pathology fields apply, the
+ * pick also runs these presets: an in-situ / lentigo maligna pick sets the
+ * invasive-only fields (`c1`–`c4`, `c6`) to "N/A" — mirroring Step 1's
+ * `IN_SITU_FIELD_PRESETS` — and an invasive pick clears them (`null`) so the
+ * recap's Breslow + ulceration rows are re-entered here. The Stage 0 skip still
+ * runs off `k0.autoRoute` on Save, exactly as the confirm button does.
+ */
+const INSITU_NA = 'N/A — melanoma in situ';
+const INSITU_PATH_PRESETS: Record<string, string | null> = {
+  c1: INSITU_NA,
+  c2: INSITU_NA,
+  c3: INSITU_NA,
+  c4: INSITU_NA,
+  c6: INSITU_NA,
+};
+const DIAGNOSIS_PRESETS: Record<string, Record<string, string | null>> = {
+  in_situ: INSITU_PATH_PRESETS,
+  lentigo_maligna: INSITU_PATH_PRESETS,
+  invasive: { c1: null, c2: null, c3: null, c4: null, c6: null },
+};
 
 /**
  * Neutral UX-safety consistency checks (STEP2 spec §28). If every screen id in a
@@ -124,19 +170,17 @@ export const STEP2: StepDef = {
   backLabel: '← Back to the Mad Rush map',
   exitHref: '/melanoma/navigator/mad-rush',
 
-  whyItMatters:
-    'You do not need to memorize the staging system. Your report covers the tumor (T). Step 2 fills in the lymph nodes (N) and distant spread (M), shows you the range that points to, and hands you the questions to confirm the exact stage with your doctor.',
   contextualDisclaimer:
-    'This step explains staging and organizes what is known. Any stage or range it shows — including the Stage I/II estimate on the summary — is educational; your treating physician assigns your stage, its sub-stage, and whether it is clinical or pathologic.',
+    'This Navigator does not diagnose or stage melanoma. Every stage, sub-stage, and range shown here — including the Stage I/II estimate on this summary — is educational only and may not be correct for your case. Only your treating physician can assign your actual stage, its sub-stage, and whether it is clinical or pathologic. Confirm anything you see here with your medical team before you rely on it.',
 
   start: 'k0',
 
-  // Stage 0 skip: an in-situ / lentigo maligna diagnosis carried from Step 1
-  // jumps past every question screen to the stage picture. (Cold entry with no
-  // Step 1 answers is handled on k0a; a doctor-reported "Stage 0" on k1a.)
-  enterRoute: [
-    { when: { b3: ['in_situ', 'lentigo_maligna'] }, next: 'SUMMARY:step2' },
-  ],
+  // Stage 0 skip: an in-situ / lentigo maligna diagnosis still sees the k0
+  // verification recap first (so the patient can confirm or correct what Step 1
+  // recorded, using the same inline edit window as every other case); on confirm
+  // — or after an inline correction — k0's `autoRoute` sends it straight to the
+  // stage picture, past every question screen. (Cold entry with no Step 1
+  // answers is handled on k0a; a doctor-reported "Stage 0" on k1a.)
 
   subProgress: [
     { key: 'report', label: 'Your report' },
@@ -153,22 +197,113 @@ export const STEP2: StepDef = {
       kind: 'recap',
       spKey: 'report',
       viewEvent: 'melanoma_step2_started',
+      // In-situ / lentigo maligna is Stage 0 — nothing for N or M to add — so a
+      // confirmed (or inline-corrected) recap routes straight to the stage
+      // picture instead of the doctor-stage anchor. Evaluated on the confirm and
+      // Save buttons, never on entry, so the recap always paints first.
+      autoRoute: [
+        { when: { b3: ['in_situ'] }, next: 'SUMMARY:step2' },
+        { when: { b3: ['lentigo_maligna'] }, next: 'SUMMARY:step2' },
+        { when: { k0a: ['in_situ'] }, next: 'SUMMARY:step2' },
+      ],
       title: 'What your pathology report shows',
       body: [
-        'These are the answers you recorded in Step 1. They describe the original tumor — the T in staging. Check they still match your report before we go on.',
+        'These are the answers you recorded in Step 1 from your pathology report. The diagnosis, Breslow thickness, and ulceration set the <strong>T</strong> part of staging; the rest are extra detail. Check they still match before we continue.',
       ],
       recap: {
         rows: [
-          { label: 'Diagnosis', from: ['b3', 'k0a'] },
-          { label: 'Breslow thickness (mm)', from: ['c1', 'k0b'] },
-          { label: 'Ulceration', from: ['c2', 'k0c'] },
-          { label: 'Biopsy margins', from: ['c7'] },
+          // Diagnosis is corrected inline like every other row: the dropdown
+          // writes `b3`, `DIAGNOSIS_PRESETS` keeps the invasive-only fields
+          // consistent with the pick, and `k0.autoRoute` still sends an in-situ
+          // pick straight to the stage picture on Save. (Supersedes the earlier
+          // "Change the diagnosis" link, which routed back through k0a and pulled
+          // the patient off this page.)
+          {
+            label: 'Diagnosis',
+            from: ['b3', 'k0a'],
+            edit: {
+              key: 'b3',
+              control: 'select',
+              options: [
+                { value: 'in_situ', label: 'Melanoma in situ' },
+                { value: 'lentigo_maligna', label: 'Lentigo maligna' },
+                { value: 'invasive', label: 'Invasive melanoma' },
+              ],
+              presetsByValue: DIAGNOSIS_PRESETS,
+            },
+          },
+          {
+            label: 'Breslow thickness (mm)',
+            from: ['c1', 'k0b'],
+            edit: { key: 'c1', control: 'text', placeholder: 'e.g. 1.2' },
+          },
+          {
+            label: 'Ulceration',
+            from: ['c2', 'k0c'],
+            edit: {
+              key: 'c2',
+              control: 'select',
+              options: [
+                { value: 'present', label: 'Present' },
+                { value: 'absent', label: 'Absent / not identified' },
+                { value: 'unknown', label: 'I can’t find it' },
+              ],
+            },
+          },
+          {
+            label: 'Mitotic rate',
+            from: ['c3'],
+            edit: { key: 'c3', control: 'text', placeholder: 'e.g. 2/mm²' },
+          },
+          {
+            label: 'Lymphovascular invasion',
+            from: ['c4'],
+            edit: {
+              key: 'c4',
+              control: 'select',
+              options: [
+                { value: 'present', label: 'Yes' },
+                { value: 'absent', label: 'No' },
+                { value: 'unknown', label: 'I don’t know' },
+              ],
+            },
+          },
+          {
+            label: 'Nerve involvement / neurotropism',
+            from: ['c6'],
+            edit: {
+              key: 'c6',
+              control: 'select',
+              options: [
+                { value: 'present', label: 'Yes' },
+                { value: 'absent', label: 'No' },
+                { value: 'unknown', label: 'I don’t know' },
+              ],
+            },
+          },
+          {
+            label: 'Biopsy margins',
+            from: ['c7'],
+            edit: {
+              key: 'c7',
+              control: 'select',
+              options: [
+                { value: 'positive', label: 'Positive / involved' },
+                { value: 'negative', label: 'Negative / clear' },
+                { value: 'transected', label: 'Transected / extends to an edge' },
+                { value: 'cannot_tell', label: 'I cannot tell' },
+                { value: 'not_stated', label: 'The report does not say' },
+              ],
+            },
+          },
         ],
         emptyNext: 'k0cold',
         confirmLabel: 'Yes — that matches my report',
         confirmNext: 'k1',
         changeLabel: 'I need to correct something',
-        changeNext: 'k0cold',
+        editSaveNext: 'k1',
+        editSaveLabel: 'Save changes',
+        editCancelLabel: 'Cancel',
       },
     },
     {
@@ -177,7 +312,7 @@ export const STEP2: StepDef = {
       spKey: 'report',
       title: 'Let’s capture three things from your report',
       body: [
-        'Either you haven’t been through Step 1 in this session, or you want to update what it recorded. Have your pathology report handy — we need three items from it.',
+        'We need three items from your pathology report: the diagnosis, the Breslow thickness, and whether the tumor is ulcerated. Have the report handy and we’ll go through them one at a time.',
       ],
       continueLabel: 'Start',
       next: 'k0a',
@@ -254,8 +389,8 @@ export const STEP2: StepDef = {
       ],
       choices: [
         { value: 'yes', label: 'Yes', next: 'k1a' },
-        { value: 'no', label: 'No', next: 'T1', event: 'step2_doctor_stage_question_completed', status: 'waiting' },
-        { value: 'unsure', label: 'I’m not sure', next: 'T1', event: 'step2_doctor_stage_question_completed', status: 'waiting' },
+        { value: 'no', label: 'No', next: 'k2', event: 'step2_doctor_stage_question_completed', status: 'waiting' },
+        { value: 'unsure', label: 'I’m not sure', next: 'k2', event: 'step2_doctor_stage_question_completed', status: 'waiting' },
       ],
     },
     {
@@ -281,8 +416,8 @@ export const STEP2: StepDef = {
         'Ask if you’re not sure — it tells you whether the stage can still change.',
       ],
       choices: [
-        { value: 'clinical', label: 'Clinical stage', next: 'T1' },
-        { value: 'pathologic', label: 'Pathologic stage', next: 'T1' },
+        { value: 'clinical', label: 'Clinical stage', next: 'k2' },
+        { value: 'pathologic', label: 'Pathologic stage', next: 'k2' },
         { value: 'unsure', label: 'I don’t know', reveal: 'k1b_unsure' },
       ],
       notes: [
@@ -293,31 +428,50 @@ export const STEP2: StepDef = {
             '<strong>Clinical stage</strong> is the working stage from the biopsy, the exam, and any imaging — before surgery. <strong>Pathologic stage</strong> adds what the definitive surgery and a sentinel lymph node biopsy show, and is usually more precise. Add this to your questions.',
           ],
           doctorQuestions: ['Is my stage a clinical stage or a pathologic stage, and could it still change?'],
-          continue: { label: 'Continue', next: 'T1' },
+          continue: { label: 'Continue', next: 'k2' },
         },
       ],
     },
 
-    /* ---------------------------------------------------- T — ORIGINAL TUMOR (education) */
+    /* ----------------------------------------------------
+     * EARLY EXITS — no standalone screen. `k2.autoRouteByTCat` routes a T1a case
+     * (records `{ T1a: 'seen' }`) or a T2a–T4b case (records `{ earlyStage:
+     * 'seen' }`) straight to the stage picture. The summary's stage band +
+     * estimate resolve from that token — Stage IA (settled) for T1a, Stage
+     * IB/IIA/IIB/IIC (provisional) for T2a–T4b — and show the matching
+     * `stageEstimate.caveats` entry; each route's doctor questions ride along on
+     * its `questions`. The IA–IIC breakdown table and the T explainer that once
+     * lived on a standalone "T — your original tumor" screen now live only on
+     * the summary (`summary.stageEstimate`), removed 2026-09-07 (Dr. Wang).
+     * ---------------------------------------------------- */
+
+    /* ---------------------------------------------------- BRIDGE (invasive only) */
     {
-      id: 'T1',
+      id: 'k2',
       kind: 'info',
-      spKey: 'report',
-      title: 'T — your original tumor',
+      spKey: 'nodes',
+      title: 'What’s left to confirm',
       body: [
-        'Your pathology report already describes the original tumor. Two features from it set the <strong>T</strong> part of staging: the <strong>Breslow thickness</strong> (how deep the melanoma reaches) and whether the surface is <strong>ulcerated</strong>.',
+        'Your pathology report already describes the original tumor (<strong>T</strong>) — its <strong>Breslow thickness</strong> (how deep the melanoma reaches) and whether the surface is <strong>ulcerated</strong>. Two things it doesn’t cover still shape the overall stage:',
+        '<strong>N — the lymph nodes.</strong> Whether melanoma has reached a nearby lymph node or the skin around it.',
+        '<strong>M — metastasis.</strong> Whether melanoma has been found in a distant part of the body.',
+        'For most invasive melanomas — anything but the very thinnest — a sentinel lymph node biopsy is part of staging, and <strong>your Stage I or II is not final until that node is confirmed clear</strong>. A positive node moves the stage to III.',
+        'We’ll go through those now, then show you the range they point to.',
       ],
-      next: 'k2',
-      // T1a early exit: a thin (<0.8 mm), non-ulcerated invasive melanoma is
-      // T1a → skip this screen and the N and M screens, routing straight to the
-      // stage picture. `flow.js` resolves this route on ENTRY to T1 (as well as
-      // on the Continue button), so the T1 screen never paints for a T1a case;
-      // its IA–IIC table + T explainer are reproduced on the summary. The
-      // summary carries the full T1a readout: its stage band + estimate resolve
-      // to Stage IA and add the near-cutoff / transected-base caveat, keyed on
-      // the `T1a: 'seen'` answer that `record` sets here; `questions` folds in
-      // what the old standalone T1a screen asked. Suppressed when a doctor has
-      // already reported Stage II or higher (then T1 shows normally).
+      // Early exits: an invasive melanoma whose Breslow thickness + ulceration
+      // resolve to a T category skips this bridge and the N and M screens,
+      // routing straight to the stage picture. `flow.js` resolves the route on
+      // ENTRY to k2 (as well as on the Continue button), so k2 never paints for
+      // an early-exit case; the IA–IIC table + T explainer are reproduced on the
+      // summary. Two routes:
+      //   T1a (<0.8 mm, no ulceration) → records `{ T1a: 'seen' }`; summary
+      //     shows Stage IA (settled) + the near-cutoff / transected-base caveat.
+      //   T2a–T4b → records `{ earlyStage: 'seen' }`; summary shows Stage
+      //     IB/IIA/IIB/IIC (provisional) + the "a sentinel node biopsy is still
+      //     expected; negative keeps it, positive → III, distant → IV" caveat.
+      // Each route's `questions` folds in what a standalone screen would ask.
+      // Suppressed when a doctor has reported a higher stage (T1a: Stage II+;
+      // T2a–T4b: Stage III/IV) — then k2 shows normally and the full flow runs.
       autoRouteByTCat: {
         breslowKeys: BRESLOW_KEYS,
         invasionInvasive: INVASION_INVASIVE,
@@ -335,6 +489,32 @@ export const STEP2: StepDef = {
               'If I had a sentinel lymph node biopsy and it came back negative, would my stage stay IA?',
             ],
           },
+          {
+            // T2a–T4b early exit (product decision 2026-09-07, Dr. Wang; STEP2
+            // spec §16). A thicker invasive melanoma with a known Breslow
+            // thickness + ulceration status resolves to T2a/T2b/T3a/T3b/T4a/T4b
+            // → an educational Stage IB/IIA/IIB/IIC. As with T1a, the N and M
+            // question screens add nothing the summary cannot state, so route
+            // straight to the stage picture. The difference from T1a: for these
+            // tumors a sentinel lymph node biopsy is usually part of staging, so
+            // the summary shows the sub-stage as PROVISIONAL (estimateStageGroup
+            // with slnb unknown) with the "negative → same stage, positive →
+            // Stage III, distant spread on imaging → Stage IV" caveat. No new
+            // medical rule — the T category and the IB–IIC groupings are the
+            // already-approved AJCC 8th tables in medicalRules.ts. Suppressed
+            // when a doctor has reported Stage III or IV, so a conflicting case
+            // still walks the full N/M flow and the consistency checks apply.
+            tCategory: ['T2a', 'T2b', 'T3a', 'T3b', 'T4a', 'T4b'],
+            unless: { k1a: ['stage_III', 'stage_IV'] },
+            next: 'SUMMARY',
+            record: { earlyStage: 'seen' },
+            questions: [
+              'Based on my melanoma’s Breslow thickness and ulceration, what stage am I right now, and is it a clinical or a pathologic stage?',
+              'Do you recommend a sentinel lymph node biopsy to complete my staging, and when would it happen?',
+              'If the sentinel lymph node is negative, does my stage stay the same? If it is positive, does it become Stage III?',
+              'Do I need imaging such as a CT or PET/CT scan, and would melanoma found elsewhere make this Stage IV?',
+            ],
+          },
         ],
       },
       continueLabel: 'Continue',
@@ -343,75 +523,6 @@ export const STEP2: StepDef = {
         'Is my stage settled now, or does it only become final after the sentinel lymph node result?',
       ],
       learnMore: [{ label: 'What your melanoma stage means', href: '/melanoma/melanoma-stage-meaning' }],
-      notes: [
-        {
-          id: 'T1_table',
-          static: true,
-          tone: 'info',
-          estimate: {
-            breslowKeys: BRESLOW_KEYS,
-            invasionInSitu: INVASION_IN_SITU,
-            invasionInvasive: INVASION_INVASIVE,
-            ulcerationPresent: ULCERATION_PRESENT,
-            ulcerationAbsent: ULCERATION_ABSENT,
-            copy: 'From your tumor alone — a {t} — a clear sentinel lymph node would place you at {stage}. The lymph node check is still ahead in this step, so this is not final: a positive node moves the stage to III.',
-            t1aCopy:
-              'From your tumor alone — a {t} melanoma (up to 0.8 mm, no ulceration) — this points to {stage}, the earliest invasive stage. For a T1a melanoma a sentinel lymph node biopsy is generally not part of staging; your stage picture explains what that means and when one might still be discussed.',
-            fallback:
-              'Once your Breslow thickness and ulceration status are recorded (Step 1, or the recap at the start of this step), this is where your most likely Stage I–II sub-stage will appear.',
-            patientEntries: {
-              heading: 'What you recorded from your report',
-              breslowLabel: 'Breslow thickness (mm)',
-              ulcerationLabel: 'Ulceration',
-              breslowKeys: BRESLOW_KEYS,
-              ulcerationKeys: ['c2', 'k0c'],
-              missingText: 'Not recorded',
-            },
-          },
-          body: [
-            'Every row below assumes the lymph nodes are clear (negative) and there is no distant spread (metastasis). A positive lymph node moves any of these to <strong>Stage III</strong>, and the presence of metastasis moves any of these to <strong>Stage IV</strong>, regardless of the Breslow thickness or ulceration status.',
-            '<table style="width:100%;border-collapse:collapse;margin:.25rem 0;font-size:.8125rem"><thead><tr>' +
-              '<th style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem;text-align:left">If your report shows Breslow thickness (mm)…</th>' +
-              '<th style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem;text-align:left">T</th>' +
-              '<th style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem;text-align:left">Falls in (nodes clear)</th>' +
-              '</tr></thead><tbody>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Up to 0.8 mm, no ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T1a</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IA</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Under 0.8 mm with ulceration, or 0.8–1.0 mm</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T1b</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IA</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Over 1.0–2.0 mm, no ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T2a</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IB</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Over 1.0–2.0 mm with ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T2b</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IIA</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Over 2.0–4.0 mm, no ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T3a</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IIA</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Over 2.0–4.0 mm with ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T3b</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IIB</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Over 4.0 mm, no ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T4a</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IIB</td></tr>' +
-              '<tr><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Over 4.0 mm with ulceration</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">T4b</td><td style="border:1px solid rgba(37,49,59,.15);padding:.375rem .5rem">Stage IIC</td></tr>' +
-              '</tbody></table>',
-            'When a thickness sits right on a boundary — 0.8, 1.0, 2.0, or 4.0 mm — your pathologist and physician apply the current rounding rules, so confirm your exact category with them.',
-          ],
-        },
-      ],
-    },
-
-    /* ----------------------------------------------------
-     * T1a EARLY EXIT — no standalone screen. `T1.autoRouteByTCat` routes a T1a
-     * case straight to the stage picture: the summary's stage band + estimate
-     * resolve to Stage IA and show `stageEstimate.caveat` (the near-cutoff /
-     * transected-base sentinel-node nuance), keyed on the `T1a: 'seen'` answer
-     * the route records; the three T1a doctor questions ride along on the
-     * route's `questions`. -------------------------------------------------- */
-
-    /* ---------------------------------------------------- BRIDGE (invasive only) */
-    {
-      id: 'k2',
-      kind: 'info',
-      spKey: 'nodes',
-      title: 'What’s left to confirm',
-      body: [
-        'Your report covers the original tumor (T). Two things it doesn’t cover still shape the overall stage:',
-        '<strong>N — the lymph nodes.</strong> Whether melanoma has reached a nearby lymph node or the skin around it.',
-        '<strong>M — metastasis.</strong> Whether melanoma has been found in a distant part of the body.',
-        'For most invasive melanomas — anything but the very thinnest — a sentinel lymph node biopsy is part of staging, and <strong>your Stage I or II is not final until that node is confirmed clear</strong>. A positive node moves the stage to III.',
-        'We’ll go through those now, then show you the range they point to.',
-      ],
-      continueLabel: 'Continue',
       next: 'N1',
     },
 
@@ -652,8 +763,6 @@ export const STEP2: StepDef = {
 
   summary: {
     title: 'Your stage picture',
-    intro:
-      'What follows is built from your answers and is educational — not your official stage. For a Stage I/II case with the lymph nodes clear, it names the most likely sub-stage (IA–IIC); otherwise it shows a broad range. Below that: what your doctor has told you, what you recorded, and the questions to settle the exact stage. Bring this, or print it, to your next visit.',
 
     stageBand: {
       heading: 'Where your melanoma most likely falls',
@@ -693,6 +802,15 @@ export const STEP2: StepDef = {
           note: 'Your report describes a T1a invasive melanoma — up to 0.8 mm thick with no ulceration — with no lymph node involvement and no distant spread. That corresponds to Stage IA, the earliest invasive stage; your physician confirms it. If your thickness is near the 0.8 mm cutoff or the biopsy base was transected, ask whether a sentinel lymph node biopsy still applies: a negative result keeps it Stage IA, a positive result moves it to Stage III.',
         },
         {
+          // T2a–T4b early exit: the node picture is still ahead, so the band is
+          // provisional. In practice the estimate block below renders (it returns
+          // `provisional` for a known T2a–T4b) and supersedes this note; it is
+          // here as a fallback if the Breslow value cannot be parsed.
+          when: { earlyStage: ['seen'] },
+          band: 'Stage I or II — not yet final',
+          note: 'Your report describes an invasive melanoma thicker than the thinnest group, with no lymph node involvement or distant spread recorded here. That points to the Stage I–II range (IB, IIA, IIB, or IIC). A sentinel lymph node biopsy is usually part of staging for these tumors: a negative node keeps it in that range, a positive node moves it to Stage III, and distant spread found on imaging moves it to Stage IV. Your physician confirms the exact stage.',
+        },
+        {
           when: { N2: ['negative'] },
           band: 'Stage I or II',
           note: 'An invasive melanoma with a negative sentinel lymph node and no distant spread sits in the Stage I–II range — IA, IB, IIA, IIB, or IIC. Which one depends on the Breslow thickness and ulceration; your physician confirms it.',
@@ -719,23 +837,36 @@ export const STEP2: StepDef = {
       nodePositive: [{ N1: ['yes'] }, { N2: ['positive'] }, { N3: ['yes'] }],
       distant: [{ M2: ['yes'] }],
       slnbNegative: [{ N2: ['negative'] }],
-      // `T1a` here is the T1a early-exit screen: a T1a melanoma whose staging
+      // `T1a` here is the T1a early-exit token: a T1a melanoma whose staging
       // does not routinely include a sentinel lymph node biopsy, so the sub-group
-      // (Stage IA) is treated as settled, with the `caveat` line below added.
+      // (Stage IA) is treated as settled, with the T1a `caveats` entry added.
+      // `earlyStage` (the T2a–T4b early exit) is deliberately NOT listed here —
+      // a sentinel node biopsy is still expected for those, so the sub-group is
+      // shown `provisional` with its own `caveats` entry.
       slnbNotNeeded: [{ N2: ['not_needed'] }, { T1a: ['seen'] }],
       copy: {
         confirmed:
           'From what you entered — a {t} tumor, no lymph node involvement, and no distant spread — your melanoma most likely falls in {stage}. Your physician confirms this, and whether it is a clinical or a pathologic stage.',
         provisional:
-          'From your tumor alone ({t}), a negative sentinel lymph node would place you at {stage}. This is not final until that result is back: a positive node moves the stage to III. Ask your team to confirm once the node result is in.',
+          'From your tumor alone ({t}), a negative sentinel lymph node would place you at {stage}. This is not final until the rest of the workup is in: a positive sentinel node moves the stage to Stage III, and melanoma found in a distant part of the body on imaging moves it to Stage IV. Ask your medical team to confirm once the node result is back.',
       },
-      caveat:
-        'At this Breslow thickness with no ulceration, a sentinel lymph node biopsy is generally not performed. If the Breslow thickness is near 0.8 mm (for example, 0.7 mm) or the biopsy base was transected, your doctor may discuss the potential need for a sentinel lymph node biopsy. If a sentinel lymph node biopsy is done and is negative, the stage stays Stage IA; if it is positive, the stage becomes Stage III.',
-      caveatWhen: [{ T1a: ['seen'] }],
+      caveats: [
+        {
+          // T1a early exit — a sentinel lymph node biopsy is generally not done.
+          when: [{ T1a: ['seen'] }],
+          text: 'At this Breslow thickness with no ulceration, a sentinel lymph node biopsy is generally not performed. If the Breslow thickness is near 0.8 mm (for example, 0.7 mm) or the biopsy base was transected, your doctor may discuss the potential need for a sentinel lymph node biopsy. If a sentinel lymph node biopsy is done and is negative, the stage stays Stage IA; if it is positive, the stage becomes Stage III.',
+        },
+        {
+          // T2a–T4b early exit — a sentinel lymph node biopsy is usually part of
+          // staging, so {stage} is provisional until it (and any imaging) is done.
+          when: [{ earlyStage: ['seen'] }],
+          text: 'Because this Breslow thickness of your melanoma, a sentinel lymph node biopsy is usually recommended to complete staging — most people in this range have one. Until it is done, {stage} is a clinical stage that can still change: a negative sentinel node keeps it at {stage}, a positive sentinel node moves it to Stage III, and melanoma found in a distant part of the body on imaging moves it to Stage IV. Ask your surgeon or melanoma specialist whether a sentinel lymph node biopsy applies to you and when it would happen.',
+        },
+      ],
       notice:
         'This estimate is generated from the Breslow thickness, ulceration, and lymph node and spread answers you entered, using AJCC 8th edition stage groupings. It is educational — not a diagnosis, and not a substitute for staging by your treating physician, who confirms the stage, its sub-stage, and whether it is clinical or pathologic. It covers Stage I and II only; a positive node, distant spread, or a missing pathology detail is left to your physician.',
       tableIntro:
-        'Every row below assumes the lymph nodes are clear (negative) and there is no distant spread (metastasis). A positive lymph node moves any of these to Stage III, and the presence of metastasis moves any of these to Stage IV, regardless of the Breslow thickness or ulceration status.',
+        'Every row above assumes the lymph nodes are clear (negative) and there is no distant spread (metastasis). A positive lymph node moves any of these to Stage III, and the presence of metastasis moves any of these to Stage IV, regardless of the Breslow thickness or ulceration status.',
       tableRows: [
         { shows: 'Up to 0.8 mm, no ulceration', t: 'T1a', group: 'Stage IA' },
         { shows: 'Under 0.8 mm with ulceration, or 0.8–1.0 mm', t: 'T1b', group: 'Stage IA' },

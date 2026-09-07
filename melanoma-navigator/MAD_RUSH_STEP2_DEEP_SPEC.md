@@ -202,13 +202,21 @@ CTA:
 
 # 8. T — Primary Tumor
 
-## Screen T1 — Pull Information from Step 1
+## `k0` recap — Pull Information from Step 1
 
-If Step 1 is complete, automatically display confirmed fields:
+(This was historically called "Screen T1"; there is no longer a standalone
+"T — your original tumor" screen — see §16 and the note in §23.)
 
-- In situ vs invasive
+If Step 1 is complete, `k0` ("What your pathology report shows") echoes the
+recorded pathology fields back for a single confirmation:
+
+- Diagnosis (in situ vs invasive)
 - Breslow thickness
 - Ulceration
+- Mitotic rate
+- Lymphovascular invasion
+- Nerve involvement / neurotropism
+- Biopsy margins
 
 Example:
 
@@ -216,12 +224,43 @@ Example:
 - Invasive melanoma
 - Breslow thickness: 1.2 mm
 - Ulceration: Absent
+- …
 
 Buttons:
 
-- This is correct
-- I need to change something
-- I’m not sure
+- **Yes — that matches my report** → `k1` (the doctor-stage anchor), **unless a
+  `k0.autoRoute` rule matches** — a Step 1 in-situ / lentigo maligna diagnosis
+  (`b3`), or a cold-entry `k0a = in_situ`, routes straight to `SUMMARY:step2`
+  (the Stage 0 skip; nothing for N or M to add). `autoRoute` is checked only on
+  the confirm and **Save changes** buttons, never on entry, so the recap always
+  paints first — an in-situ patient still gets to verify and, if needed,
+  inline-correct what Step 1 recorded.
+- **I need to correct something** → opens inline edit mode on the same card
+
+If no Step 1 answers are carried (cold entry) the card is skipped and the flow
+forwards to `k0cold` → `k0a`–`k0c`.
+
+**Inline correction (product decision 2026-09-07, Dr. Wang; diagnosis row
+amended 2026-09-07).** "I need to correct something" does not route away. Every
+row — Diagnosis included — becomes an input (Breslow / mitotic rate = free text;
+Diagnosis / ulceration / LVI / neurotropism / margins = dropdown) written
+straight back to its Step 1 answer key on **Save changes**, which then routes to
+`k1` (or `SUMMARY:step2` when the `k0.autoRoute` in-situ rule matches, exactly as
+the confirm button does). LVI and neurotropism read out as **Yes / No / I don't
+know**. A blank dropdown pick leaves that answer unchanged; a cleared text field
+clears it.
+
+The **Diagnosis** dropdown (Melanoma in situ / Lentigo maligna / Invasive
+melanoma) writes `b3` and stays on this page — it replaces the earlier **Change
+the diagnosis** link, which routed the patient back through `k0a` and off the
+recap. Because in situ vs invasive changes which fields apply, the pick carries
+presets: an in-situ / lentigo maligna pick sets the invasive-only pathology
+fields (`c1`–`c4`, `c6`) to "N/A" — mirroring Step 1's `IN_SITU_FIELD_PRESETS` —
+and an invasive pick clears them so the recap's own Breslow + ulceration rows
+are re-entered here. The in-situ Stage 0 skip then runs off `k0.autoRoute` on
+**Save changes**, the same as the confirm button. No medical logic runs on the
+recap; it only reads and re-writes
+answer labels.
 
 Never silently use unconfirmed values.
 
@@ -257,8 +296,11 @@ already effectively Stage 0, the Navigator shows **no Step 2 question screens at
 all** and takes them straight to the "Your stage picture" summary (Stage 0 band +
 "confirm with your treating physician"). This applies when:
 
-- Step 1 diagnosis is melanoma in situ / lentigo maligna (`b3`), handled by
-  `STEP2.enterRoute` before `k0` renders; on cold entry the same is caught on `k0a`; or
+- Step 1 diagnosis is melanoma in situ / lentigo maligna (`b3`): the patient
+  still sees the `k0` recap to verify / inline-correct the Step 1 fields (same
+  edit window as every other case), and `k0.autoRoute` sends the confirm and
+  **Save changes** buttons to `SUMMARY:step2`; on cold entry the same is caught
+  by the `k0a = in_situ` rule in `k0.autoRoute`; or
 - the patient selects **"Stage 0"** on `k1a` ("what stage were you told?") — that
   choice routes straight to the summary.
 
@@ -460,31 +502,59 @@ node biopsy is generally not part of staging, so walking the patient through the
 N and M screens adds nothing. Step 2 therefore:
 
 - shows the recap and the doctor-stage anchor (`k1` / `k1a` / `k1b`), then routes
-  straight to the **"Your stage picture"** summary — skipping the T education
-  screen (`T1`) **and** `k2` → `N1…` → `M1…`. (Amended 2026-09-07, Dr. Wang: the
-  `T1` screen is also skipped for a T1a case; its IA–IIC table and T explainer
-  are folded into the summary. It still shows in full for every non-T1a invasive
-  case.) There is no standalone T1a screen. Routing is `T1.autoRouteByTCat`,
-  evaluated by `flow.js` `resolveComputedRoute()` — on entry to `T1`, so the
-  screen never paints, as well as on its Continue button — using the **approved**
+  straight to the **"Your stage picture"** summary — skipping the `k2` bridge
+  **and** `N1…` → `M1…`. (Amended 2026-09-07, Dr. Wang: the standalone
+  "T — your original tumor" education screen was removed entirely; its IA–IIC
+  table and T explainer live on the summary, and the `k0` recap carries the
+  Breslow/ulceration confirmation. `k2` still shows in full for every invasive
+  case that does *not* early-exit.) There is no standalone T1a screen. Routing is
+  `k2.autoRouteByTCat`, evaluated by `flow.js` `resolveComputedRoute()` — on
+  entry to `k2`, so the screen never paints, as well as on its Continue button —
+  using the **approved**
   `tCategoryFor()` (AJCC 8th) on the recorded Breslow + ulceration; it selects a
   route and computes no stage. The route `record`s `{ T1a: 'seen' }` (a state
   token — no clinical string) so the summary's T1a-keyed rules resolve, and
   carries the three T1a doctor questions on its `questions` list.
 - The summary states this case as **T1a → Stage IA** (physician confirms) via its
-  stage band + estimate, and shows the `summary.stageEstimate.caveat` line: a
-  sentinel lymph node biopsy is generally not needed, **but** near the 0.8 mm
+  stage band + estimate, and shows the T1a `summary.stageEstimate.caveats` entry:
+  a sentinel lymph node biopsy is generally not needed, **but** near the 0.8 mm
   cutoff (~0.7 mm) or with a **transected biopsy base** some surgeons still
   discuss one — **negative → Stage IA, positive → Stage III**.
 - The summary treats this like a settled node-negative case: `estimateStageGroup`
   is called with `slnb` = not-needed → `confirmed` **Stage IA**, plus one extra
-  `summary.stageEstimate.caveat` line repeating the near-cutoff / transected-base
+  `summary.stageEstimate.caveats` line repeating the near-cutoff / transected-base
   sentinel-node nuance. No new medical rule — the T category and the Stage IA
   grouping are the already-approved AJCC 8th tables in `medicalRules.ts`.
 - **Suppressed** when the patient has reported a doctor-assigned **Stage II or
   higher** (`autoRouteByTCat.routes[].unless`), so a conflicting case still
   walks the full N/M flow and the consistency checks apply. Exactly 0.8 mm is
   T1b (per the approved rule) and is **not** early-exited.
+
+**Product decision (2026-09-07, Dr. Wang) — T2a–T4b early exit.** The same early
+exit is extended to the thicker Stage I/II tumors — **T2a, T2b, T3a, T3b, T4a,
+T4b** (Stage **IB / IIA / IIB / IIC**). Once the recap or cold-capture has a
+Breslow thickness **and** an ulceration status, `k2.autoRouteByTCat` resolves the
+T category and routes straight to the **"Your stage picture"** summary, skipping
+the `k2` bridge, `N1…`, and `M1…` exactly as the T1a route does. Differences from T1a:
+
+- The route `record`s `{ earlyStage: 'seen' }` and carries four doctor questions
+  (current stage + clinical/pathologic, whether an SLNB is recommended and when,
+  what a negative vs positive node changes, whether imaging is needed and what
+  distant spread would change).
+- A sentinel lymph node biopsy **is** usually part of staging for these tumors,
+  so the summary shows the sub-group as **provisional**: `estimateStageGroup` is
+  called with `slnb` left **unknown** → `provisional` **Stage IB/IIA/IIB/IIC**,
+  and the `earlyStage` `summary.stageEstimate.caveats` entry states the stage is
+  not final — **negative sentinel node → same stage, positive → Stage III,
+  distant spread on imaging → Stage IV**. The `copy.provisional` template also
+  gains the "distant spread on imaging → Stage IV" clause (it previously named
+  only the positive-node → III escalation).
+- No new medical rule — the T category and the IB–IIC groupings are the
+  already-approved AJCC 8th tables in `medicalRules.ts`.
+- **Suppressed** when the patient has reported a doctor-assigned **Stage III or
+  IV** (`autoRouteByTCat.routes[].unless`), so a conflicting case still walks the
+  full N/M flow and the consistency checks apply. A doctor-reported Stage I or II
+  is consistent with this range and does **not** suppress the early exit.
 
 ---
 
@@ -700,16 +770,20 @@ For MVP:
 Do not derive IIIA–IIID automatically unless a physician-approved current AJCC ruleset is implemented.
 
 **Product decision (2026-09-07, Dr. Wang) — Stage I/II delineation is education-only.**
-Step 2 gains a screen `T1` between the doctor-stage anchor and the `k2` N/M
-bridge (invasive path only; the Stage 0 skip bypasses it). `T1`:
+Originally Step 2 gained a standalone `T1` ("T — your original tumor") screen
+between the doctor-stage anchor and the `k2` N/M bridge that:
 
-- explains that Breslow thickness + ulceration are what divide Stage I from II
+- explained that Breslow thickness + ulceration are what divide Stage I from II
   and IA/IB/IIA/IIB/IIC from each other;
-- offers a **click-to-reveal** table of the T1a–T4b → IA–IIC groupings
+- offered a **click-to-reveal** table of the T1a–T4b → IA–IIC groupings
   (spec §12 + §23), shown with `MEDICAL_CONTENT_REQUIRES_CURRENT_REVIEW`;
-- computes **nothing** — no T category, no sub-stage. The summary `stageBand`
-  stays the coarse "Stage I or II" band. `medicalRules.ts` is untouched;
-  `STAGING_RULES_ENABLED` stays `false`.
+- computed **nothing** — no T category, no sub-stage.
+
+**Superseded 2026-09-07 (Dr. Wang) — the standalone `T1` screen was removed.**
+The `k0` recap already confirms Breslow thickness + ulceration, and the summary's
+`stageEstimate` carries the IA–IIC breakdown table and the T explainer. Step 2
+now goes straight from the doctor-stage anchor (`k1` / `k1b`) to the `k2` bridge;
+`k2` carries the `autoRouteByTCat` early-exit hook that `T1` used to hold.
 
 The T1b row is reconciled to **AJCC 8th** (all 0.8–1.0 mm = T1b regardless of
 ulceration), not the narrower wording in an early content draft.
@@ -726,7 +800,7 @@ later pass; it is explicitly **not** in this change.
 
 **Product decision (2026-09-07, Dr. Wang) — Option B enabled: the summary now
 computes an educational Stage I/II sub-group.** Superseding the "computes
-nothing" line above for the summary only (the `T1` screen stays education).
+nothing" line above for the summary only.
 
 - Dr. Wang (Editor-in-Chief, board-certified dermatologist) reviewed
   `T_CATEGORY_RULESET` and `STAGE_GROUPING_REFERENCE` in `medicalRules.ts`

@@ -23,8 +23,16 @@
  *                                       data-next, data-event, data-status,
  *                                       data-flag, data-reveal, data-preset-answers
  *   [data-recap] [data-recap-row]       recap rows; data-recap-from (JSON array
- *                                       of answer screen ids), .r-value
- *   [data-recap-confirm] / [-change]    recap buttons; data-next
+ *                                       of answer screen ids), .r-value, and in
+ *                                       edit mode .r-edit holding [data-recap-input]
+ *                                       (data-recap-key, plus data-recap-presets
+ *                                       on a select)
+ *   [data-recap-confirm]                recap confirm button; data-next, or the
+ *                                       screen's data-auto-route if a rule matches
+ *   [data-recap-edit-open/-save/-cancel] inline "correct something" mode; save
+ *                                       writes each input to its data-recap-key
+ *                                       and routes to data-next (or a matching
+ *                                       data-auto-route rule)
  *   [data-note="id"]                    hidden note block; may contain ul[data-dq],
  *                                       a [data-info-next] continue button, and a
  *                                       [data-note-estimate] computed readout
@@ -203,6 +211,14 @@ export function initFlow(root) {
     return null;
   }
 
+  /** Like firstAnswerLabel but returns the whole { value, label } record. */
+  function firstAnswer(keys) {
+    for (const k of keys) {
+      if (answers[k]) return answers[k];
+    }
+    return null;
+  }
+
   function currentId() {
     for (const [id, el] of summaries) {
       if (!el.hidden) return `SUMMARY:${id}`;
@@ -281,6 +297,54 @@ export function initFlow(root) {
     return filled > 0;
   }
 
+  /**
+   * Toggle a recap screen between its read-only echo and the inline "correct
+   * something" form. In edit mode every editable row is shown (even ones with
+   * no answer yet), the value text is swapped for the input, and the confirm
+   * buttons are swapped for save / cancel. All copy is server-rendered.
+   */
+  function setRecapEditMode(screenEl, on) {
+    const view = screenEl.querySelector('[data-recap-view]');
+    const editActions = screenEl.querySelector('[data-recap-edit-actions]');
+    if (view) view.hidden = on;
+    if (editActions) editActions.hidden = !on;
+    screenEl.querySelectorAll('[data-recap-row]').forEach((row) => {
+      const editable = row.hasAttribute('data-recap-editable');
+      const hasInput = !!row.querySelector('[data-recap-input]');
+      const valueEl = row.querySelector('.r-value');
+      const editEl = row.querySelector('.r-edit');
+      if (on) {
+        if (editable) row.hidden = false;
+        if (editEl) editEl.hidden = false;
+        // A row that links out (diagnosis) keeps its value visible next to the
+        // link; a row with a real input hides the value behind the field.
+        if (valueEl) valueEl.hidden = hasInput;
+      } else {
+        if (editEl) editEl.hidden = true;
+        if (valueEl) valueEl.hidden = false;
+      }
+    });
+  }
+
+  /** Seed the recap inputs from the answers the rows currently echo. */
+  function populateRecapInputs(screenEl) {
+    screenEl.querySelectorAll('[data-recap-row]').forEach((row) => {
+      const input = row.querySelector('[data-recap-input]');
+      if (!input) return;
+      const cur = firstAnswer(parseJSON(row.dataset.recapFrom, []));
+      if (!cur) {
+        input.value = '';
+        return;
+      }
+      if (input.tagName === 'SELECT') {
+        const match = Array.from(input.options).some((o) => o.value === cur.value);
+        input.value = match ? cur.value : '';
+      } else {
+        input.value = cur.label || '';
+      }
+    });
+  }
+
   function hideAll() {
     screens.forEach((el) => {
       el.hidden = true;
@@ -321,6 +385,7 @@ export function initFlow(root) {
 
     // A recap screen with no carried answers forwards to its cold-capture path.
     if (!isSummary && target.dataset.screen && target.querySelector('[data-recap]')) {
+      setRecapEditMode(target, false);
       const any = fillRecap(target);
       if (!any && target.dataset.recapEmptyNext) {
         fireEvents(target.dataset.viewEvent, baseFor(target));
@@ -424,9 +489,53 @@ export function initFlow(root) {
       goTo(forced || btn.dataset.next);
     });
   });
-  root.querySelectorAll('[data-recap-change]').forEach((btn) => {
+  root.querySelectorAll('[data-recap-edit-open]').forEach((btn) => {
     btn.addEventListener('click', () => {
-      goTo(btn.dataset.next);
+      const screenEl = btn.closest('[data-screen]');
+      populateRecapInputs(screenEl);
+      setRecapEditMode(screenEl, true);
+    });
+  });
+  root.querySelectorAll('[data-recap-edit-cancel]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const screenEl = btn.closest('[data-screen]');
+      setRecapEditMode(screenEl, false);
+      fillRecap(screenEl);
+    });
+  });
+  root.querySelectorAll('[data-recap-edit-save]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const screenEl = btn.closest('[data-screen]');
+      screenEl.querySelectorAll('[data-recap-input]').forEach((input) => {
+        const key = input.dataset.recapKey;
+        if (!key) return;
+        if (input.tagName === 'SELECT') {
+          // A blank pick means "leave this one as it was".
+          if (!input.value) return;
+          const opt = input.options[input.selectedIndex];
+          answers[key] = { value: input.value, label: (opt ? opt.textContent : '').trim() };
+          // A select may carry data-recap-presets: { value: { answerId: label
+          // | null } }. When the saved value is listed, write each sibling
+          // answer (a null clears it). Used by the diagnosis row to reset the
+          // invasive-only pathology fields. Strings all come from step data.
+          const presets = parseJSON(input.dataset.recapPresets, null);
+          const preset = presets && presets[input.value];
+          if (preset) {
+            Object.entries(preset).forEach(([sid, val]) => {
+              if (val === null || val === undefined) delete answers[sid];
+              else answers[sid] = { value: String(val), label: String(val).trim() };
+            });
+          }
+        } else {
+          const v = input.value.trim();
+          if (v) answers[key] = { value: v, label: v };
+          else delete answers[key];
+        }
+      });
+      // An `autoRoute` rule (e.g. in-situ → the stage picture) still wins after
+      // an inline correction, exactly as it does on the confirm button.
+      const forced = resolveRoute(parseJSON(screenEl.dataset.autoRoute, []));
+      goTo(forced || btn.dataset.next);
     });
   });
 
@@ -746,13 +855,15 @@ export function initFlow(root) {
         .replace(/\{t\}/g, result.tCategory);
     }
 
-    // Optional extra caveat (T1a early-exit summary): shown only when one of the
-    // config's `caveatWhen` maps is satisfied.
+    // Optional extra caveat (early-exit summaries): show the FIRST `caveats`
+    // entry whose `when` list is satisfied — the T1a entry for a T1a early exit,
+    // the `earlyStage` entry for a T2a–T4b early exit.
     if (caveatEl) {
-      const showCaveat = !!cfg.caveat && anyRule(cfg.caveatWhen);
-      caveatEl.hidden = !showCaveat;
-      caveatEl.textContent = showCaveat
-        ? String(cfg.caveat)
+      const caveats = Array.isArray(cfg.caveats) ? cfg.caveats : [];
+      const hit = caveats.find((c) => anyRule(c.when));
+      caveatEl.hidden = !hit;
+      caveatEl.textContent = hit
+        ? String(hit.text)
             .replace(/\{stage\}/g, result.stageGroup || '')
             .replace(/\{t\}/g, result.tCategory || '')
         : '';

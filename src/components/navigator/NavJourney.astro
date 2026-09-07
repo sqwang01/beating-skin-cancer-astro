@@ -70,7 +70,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
     </div>
 
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {journey.steps.map((step) => (
+      {journey.steps.filter((step) => step.whyItMatters).map((step) => (
         <div
           data-why-for={step.id}
           hidden={step.id !== entry}
@@ -152,18 +152,58 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
                 <div>
                   <dl data-recap class="divide-y divide-slate/10 rounded-xl bg-ivory px-4">
                     {s.recap.rows.map((r) => (
-                      <div data-recap-row data-recap-from={JSON.stringify(r.from)} hidden class="flex justify-between gap-4 py-3">
+                      <div
+                        data-recap-row
+                        data-recap-from={JSON.stringify(r.from)}
+                        data-recap-editable={r.edit ? true : undefined}
+                        hidden
+                        class="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3"
+                      >
                         <dt class="text-sm text-slate/60">{r.label}</dt>
                         <dd class="r-value text-sm font-medium text-slate text-right"></dd>
+                        {r.edit && (
+                          <div class="r-edit w-full text-right sm:w-auto" hidden>
+                            {r.edit.control === 'select' ? (
+                              <select
+                                data-recap-input
+                                data-recap-key={r.edit.key}
+                                data-recap-presets={r.edit.presetsByValue ? JSON.stringify(r.edit.presetsByValue) : undefined}
+                                class="rounded-lg border border-slate/20 bg-white px-3 py-2 text-sm text-slate focus:border-teal focus:outline-none"
+                              >
+                                <option value="">—</option>
+                                {(r.edit.options ?? []).map((o) => (
+                                  <option value={o.value}>{o.label}</option>
+                                ))}
+                              </select>
+                            ) : (
+                              <input
+                                type="text"
+                                data-recap-input
+                                data-recap-key={r.edit.key}
+                                placeholder={r.edit.placeholder}
+                                autocomplete="off"
+                                class="w-32 rounded-lg border border-slate/20 bg-white px-3 py-2 text-right text-sm text-slate focus:border-teal focus:outline-none"
+                              />
+                            )}
+                          </div>
+                        )}
                       </div>
                     ))}
                   </dl>
-                  <div class="mt-5 flex flex-wrap gap-3">
+                  <div data-recap-view class="mt-5 flex flex-wrap gap-3">
                     <button type="button" data-recap-confirm data-next={s.recap.confirmNext} class={primaryBtn}>
                       {s.recap.confirmLabel}
                     </button>
-                    <button type="button" data-recap-change data-next={s.recap.changeNext} class={outlineBtn}>
+                    <button type="button" data-recap-edit-open class={outlineBtn}>
                       {s.recap.changeLabel}
+                    </button>
+                  </div>
+                  <div data-recap-edit-actions hidden class="mt-5 flex flex-wrap gap-3">
+                    <button type="button" data-recap-edit-save data-next={s.recap.editSaveNext} class={primaryBtn}>
+                      {s.recap.editSaveLabel ?? 'Save changes'}
+                    </button>
+                    <button type="button" data-recap-edit-cancel class={outlineBtn}>
+                      {s.recap.editCancelLabel ?? 'Cancel'}
                     </button>
                   </div>
                 </div>
@@ -336,7 +376,6 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
 
                 <p class="est-caveat text-sm text-slate/80 mb-3 rounded-lg bg-coral/5 border border-coral/20 p-3" hidden></p>
                 <p class="text-xs text-slate/60 mb-4">{step.summary.stageEstimate.notice}</p>
-                <p class="text-xs text-slate/70 mb-2">{step.summary.stageEstimate.tableIntro}</p>
                 <div class="overflow-x-auto">
                   <table class="w-full border-collapse text-[0.8125rem]">
                     <thead>
@@ -357,6 +396,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
                     </tbody>
                   </table>
                 </div>
+                <p class="text-xs text-slate/70 mt-2">{step.summary.stageEstimate.tableIntro}</p>
               </div>
             )}
 

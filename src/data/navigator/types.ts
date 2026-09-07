@@ -161,16 +161,51 @@ export interface Screen {
    * kind: 'recap' — echoes answers recorded earlier back to the patient for a
    * single "yes, that's right / something's changed" confirmation, so a later
    * step never re-asks what an earlier step already captured. No medical logic:
-   * it only reads recorded answer labels.
+   * it only reads and re-writes recorded answer labels. "I need to correct
+   * something" opens an inline edit mode: each row with an `edit` block turns
+   * into an input written straight back to `edit.key`. A `select` row may also
+   * carry `presetsByValue` to write (or clear) sibling answers when a given
+   * value is picked — the diagnosis row uses it to preset the invasive-only
+   * pathology fields to "N/A" for an in-situ pick and clear them for an
+   * invasive pick, so nothing has to route off the page to re-collect them.
    */
   recap?: {
-    rows: { label: string; from: string[] }[];
+    rows: {
+      label: string;
+      from: string[];
+      /**
+       * Makes this row an input in edit mode. `key` is the answer id the new
+       * value is written to (overwriting whatever `from` was reading).
+       * `control: 'text'` is a free-text field — blank clears the answer;
+       * `control: 'select'` needs `options` and a blank pick leaves the answer
+       * unchanged.
+       */
+      edit?: {
+        key: string;
+        control: 'text' | 'select';
+        placeholder?: string;
+        options?: { value: string; label: string }[];
+        /**
+         * `control: 'select'` only. When the saved value is a key in this map,
+         * each `answerId → value` pair is also written back (a `null` value
+         * deletes that answer instead of setting it). Lets one pick reset
+         * sibling rows: an in-situ diagnosis presets the invasive-only pathology
+         * fields to "N/A", an invasive diagnosis clears them so the T screens
+         * re-collect Breslow + ulceration.
+         */
+        presetsByValue?: Record<string, Record<string, string | null>>;
+      };
+    }[];
     /** Shown when NONE of the rows' `from` keys hold an answer (cold entry). */
     emptyNext: string;
     confirmLabel: string;
     confirmNext: string;
+    /** Label on the button that opens inline edit mode. */
     changeLabel: string;
-    changeNext: string;
+    /** Where "Save changes" routes once the edited answers are written. */
+    editSaveNext: string;
+    editSaveLabel?: string;
+    editCancelLabel?: string;
   };
 
   /** kind: 'field' | 'info' */
@@ -190,13 +225,17 @@ export interface Screen {
    * Breslow thickness + ulceration. Evaluated by the engine AFTER `autoRoute`
    * and BEFORE `next`. This is non-medical navigation only: it picks which
    * screen to show next (and may `record` a state token / add `questions`); it
-   * computes and displays no stage. Used for the T1a early exit — a thin
-   * (<0.8 mm), non-ulcerated invasive melanoma skips the lymph node and
-   * distant-spread screens and routes straight to the stage picture (product
-   * decision 2026-09-07, Dr. Wang; see MAD_RUSH_STEP2_DEEP_SPEC.md §16).
-   * `unless` (matched on recorded answer values, like `RouteRule.when`)
-   * suppresses the route — e.g. a doctor-reported Stage II+ keeps the patient
-   * on the full flow.
+   * computes and displays no stage. Used for the early exits (product decision
+   * 2026-09-07, Dr. Wang; see MAD_RUSH_STEP2_DEEP_SPEC.md §16):
+   *   - T1a — a thin (<0.8 mm), non-ulcerated invasive melanoma; records
+   *     `{ T1a: 'seen' }`; the summary shows Stage IA (settled) + its caveat.
+   *   - T2a–T4b — a thicker invasive melanoma with Breslow + ulceration known;
+   *     records `{ earlyStage: 'seen' }`; the summary shows the IB/IIA/IIB/IIC
+   *     sub-group as PROVISIONAL (a sentinel node biopsy is still expected).
+   * Both skip the lymph node and distant-spread screens and route straight to
+   * the stage picture. `unless` (matched on recorded answer values, like
+   * `RouteRule.when`) suppresses the route — e.g. a doctor-reported Stage III/IV
+   * keeps the patient on the full flow so the consistency checks apply.
    */
   autoRouteByTCat?: {
     breslowKeys: string[];
@@ -295,14 +334,17 @@ export interface StageEstimateConfig {
   /** Plain text; `{stage}` and `{t}` are replaced with the computed values. */
   copy: { confirmed: string; provisional: string };
   /**
-   * Optional extra caveat paragraph, shown under the estimate `copy` only when
-   * one of the `caveatWhen` maps is satisfied (OR-matched on recorded answer
-   * values). Used on the T1a early-exit summary to flag that a sentinel lymph
-   * node biopsy may still be discussed near the 0.8 mm cutoff or with a
-   * transected biopsy base. Plain text; `{stage}` / `{t}` are substituted.
+   * Optional extra caveat paragraphs for the early-exit summaries. The engine
+   * shows the FIRST entry whose `when` list is satisfied (OR-matched on recorded
+   * answer values) under the estimate `copy`; plain text with `{stage}` / `{t}`
+   * substituted. Two are defined:
+   *   - T1a early exit — a sentinel lymph node biopsy is generally not performed,
+   *     but may be discussed near the 0.8 mm cutoff or with a transected base.
+   *   - T2a–T4b early exit — a sentinel lymph node biopsy is usually part of
+   *     staging, so the sub-stage is provisional: negative keeps it, a positive
+   *     node moves it to Stage III, distant spread on imaging to Stage IV.
    */
-  caveat?: string;
-  caveatWhen?: Record<string, string[]>[];
+  caveats?: { when: Record<string, string[]>[]; text: string }[];
   /** Fixed caveat under the estimate value. */
   notice: string;
   /** Sentence above the breakdown table. */
@@ -332,7 +374,7 @@ export interface StepDef {
   /** Where "Back" from the first screen and EXIT sentinels go. */
   exitHref: string;
 
-  whyItMatters: string;
+  whyItMatters?: string;
   contextualDisclaimer?: string;
   /**
    * Optional "I'm further along — jump ahead" link shown under the hero subtitle.
