@@ -34,6 +34,8 @@ const outlineBtn =
   'inline-flex items-center gap-2 rounded-full border border-teal text-teal px-6 py-3 font-medium hover:bg-teal/5 transition-colors';
 
 const keysAttr = (key: string | string[]) => JSON.stringify(Array.isArray(key) ? key : [key]);
+const whenAttr = (when?: Record<string, string[]>) =>
+  when && Object.keys(when).length ? JSON.stringify(when) : undefined;
 
 const completeEventsFor = (step: StepDef) =>
   [step.summary.completeEvent, step.id === 'step2' ? 'navigator_completed_mad_rush' : '']
@@ -293,6 +295,12 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
                 </details>
               )}
 
+              {s.kind === 'info' && s.printLabel && (
+                <button type="button" data-print class:list={['mt-6 mr-3', outlineBtn]}>
+                  {s.printLabel}
+                </button>
+              )}
+
               {(s.kind === 'info' || s.kind === 'recap') && s.next && (
                 <button
                   type="button"
@@ -365,7 +373,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
                       <h4 class="text-base font-serif text-navy mb-2">{sec.heading}</h4>
                       <dl class="divide-y divide-slate/10">
                         {sec.rows.map((r) => (
-                          <div data-summary data-summary-keys={keysAttr(r.key)} hidden class="flex justify-between gap-4 py-2">
+                          <div data-summary data-summary-keys={keysAttr(r.key)} data-summary-when={whenAttr(r.when)} hidden class="flex justify-between gap-4 py-2">
                             <dt class="s-label text-sm text-slate/60">{r.label}</dt>
                             <dd class="s-value text-sm font-medium text-slate text-right"></dd>
                           </div>
@@ -417,7 +425,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
                 <h3 class="text-lg font-serif text-navy mb-2">{sec.heading}</h3>
                 <dl class="divide-y divide-slate/10">
                   {sec.rows.map((r) => (
-                    <div data-summary data-summary-keys={keysAttr(r.key)} hidden class="flex justify-between gap-4 py-2">
+                    <div data-summary data-summary-keys={keysAttr(r.key)} data-summary-when={whenAttr(r.when)} hidden class="flex justify-between gap-4 py-2">
                       <dt class="s-label text-sm text-slate/60">{r.label}</dt>
                       <dd class="s-value text-sm font-medium text-slate text-right"></dd>
                     </div>
@@ -426,12 +434,14 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
               </div>
             ))}
 
-            <div class="mb-6 rounded-xl bg-teal/5 p-5">
-              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate/60 mb-2">
-                {step.summary.questionsHeading}
-              </h3>
-              <ul data-summary-questions class="list-disc list-inside text-sm text-slate/80 space-y-1"></ul>
-            </div>
+            {step.summary.questionsHeading && (
+              <div class="mb-6 rounded-xl bg-teal/5 p-5">
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-slate/60 mb-2">
+                  {step.summary.questionsHeading}
+                </h3>
+                <ul data-summary-questions class="list-disc list-inside text-sm text-slate/80 space-y-1"></ul>
+              </div>
+            )}
 
             {step.summary.learnMore && step.summary.learnMore.length > 0 && (
               <details data-learn-more class="mb-6 rounded-xl bg-ivory p-4">
@@ -503,6 +513,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
     [data-subprogress],
     [data-nav-back],
     [data-print],
+    [data-info-next],
     [data-complete-step] {
       display: none !important;
     }

@@ -79,7 +79,7 @@ const ULCERATION_ABSENT = [{ c2: ['absent'] }, { k0c: ['absent'] }];
  * recap's Breslow + ulceration rows are re-entered here. The Stage 0 skip still
  * runs off `k0.autoRoute` on Save, exactly as the confirm button does.
  */
-const INSITU_NA = 'N/A — melanoma in situ';
+const INSITU_NA = 'N/A';
 const INSITU_PATH_PRESETS: Record<string, string | null> = {
   c1: INSITU_NA,
   c2: INSITU_NA,
@@ -375,11 +375,6 @@ export const STEP2: StepDef = {
       ],
     },
 
-    learnMore: [
-      { label: 'What your melanoma stage means', href: '/melanoma/melanoma-stage-meaning' },
-      { label: 'Sentinel lymph node biopsy', href: '/melanoma/sentinel-lymph-node-biopsy' },
-    ],
-
     sections: [
       {
         heading: 'From your pathology report',
@@ -392,9 +387,8 @@ export const STEP2: StepDef = {
         ],
       },
     ],
-    questionsHeading: 'Questions for my doctor',
     viewEvent: 'step2_staging_summary_viewed',
-    printLabel: 'Print my stage picture and questions',
+    printLabel: 'Print my stage picture',
     completeLabel: 'I’ve reviewed this — finish the Mad Rush',
     completeNext: '/melanoma/navigator',
     completeEvent: 'melanoma_step2_completed',

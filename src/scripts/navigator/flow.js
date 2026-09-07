@@ -637,9 +637,10 @@ export function initFlow(root) {
 
     summaryEl.querySelectorAll('[data-summary]').forEach((row) => {
       const keys = parseJSON(row.dataset.summaryKeys, []);
+      const when = parseJSON(row.dataset.summaryWhen, null);
       const label = firstAnswerLabel(keys);
       const valueEl = row.querySelector('.s-value');
-      if (label) {
+      if (label && (!when || ruleMatches(when))) {
         if (valueEl) valueEl.textContent = label;
         row.hidden = false;
       } else {

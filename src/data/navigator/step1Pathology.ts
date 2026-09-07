@@ -179,7 +179,7 @@ export const STEP1: StepDef = {
         {
           value: 'unclear',
           label: 'None of these / I’m not sure',
-          reveal: 'unclear',
+          next: 'b3unclear',
           event: 'pathology_diagnosis_reviewed',
         },
       ],
@@ -192,19 +192,32 @@ export const STEP1: StepDef = {
             '<strong class="text-navy">Important:</strong> only choose “Melanoma in situ” or “Lentigo maligna” if the pathology report describes the melanoma as entirely in situ, with no invasive component. If the report includes both an in situ and an invasive component, choose “Invasive melanoma.”',
           ],
         },
-        {
-          id: 'unclear',
-          tone: 'action',
-          body: [
-            'When the diagnosis section isn’t clear — or you don’t see any of these terms — the book’s advice is to ask the dermatologist to explain the report rather than guessing.',
-          ],
-          doctorQuestions: [
-            'Can you walk me through exactly what my pathology report says the diagnosis is?',
-            'Is my melanoma in situ (confined to the surface) or invasive?',
-          ],
-          continue: { label: 'Continue', next: 'SUMMARY' },
-        },
       ],
+    },
+
+    /* ---------------------- UNCLEAR DIAGNOSIS — TERMINAL: ASK THE MEDICAL TEAM
+     * Guardrails §3: if the diagnosis can't be found or the patient is unsure,
+     * route to a conversation with the treating clinician — do NOT walk them on
+     * through the summary and into staging. This screen ends the step: print the
+     * questions, exit to the Navigator, come back once the diagnosis is known. */
+    {
+      id: 'b3unclear',
+      kind: 'info',
+      spKey: 'diagnosis',
+      title: 'Ask your medical team to confirm the diagnosis',
+      body: [
+        'If the report doesn’t clearly state one of those terms — or you’re not sure which one applies — don’t try to work it out from the report yourself. Ask the dermatologist or clinician who did your biopsy to go through it with you.',
+        'This comes before everything else. What happens next — whether more surgery is needed, which tests to expect, and how the melanoma is treated — all depends on two things being settled first: that this is definitely melanoma, and which type it is (for example, melanoma in situ versus invasive melanoma).',
+        'Until your care team has confirmed that, the rest of the Navigator can’t tell you anything useful, so this step stops here. Print the questions below and take them to that conversation. Once you know the diagnosis, come back and start Step 1 again.',
+      ],
+      doctorQuestions: [
+        'Can you walk me through exactly what my pathology report says the diagnosis is?',
+        'Is this definitely melanoma? If not, what else could it be?',
+        'Is my melanoma in situ (confined to the surface) or invasive?',
+      ],
+      printLabel: 'Print these questions',
+      continueLabel: 'Back to the Navigator',
+      next: 'EXIT',
     },
 
     /* -------------------------------- INVASIVE — KEY PATHOLOGY FIELDS (C) */

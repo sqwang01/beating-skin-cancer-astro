@@ -214,6 +214,12 @@ export interface Screen {
   /** Event fired on the info/field continue button. */
   continueEvent?: string;
   /**
+   * kind: 'info' — renders a "print" button (window.print()) above the continue
+   * button. Used by a terminal screen that hands the patient a list of questions
+   * to take to their care team instead of routing on into the summary.
+   */
+  printLabel?: string;
+  /**
    * kind: 'info' | 'recap' — after the continue/confirm target is resolved,
    * re-route based on earlier answers. First matching rule wins; falls through
    * to `next` / `recap.confirmNext` when nothing matches.
@@ -279,7 +285,18 @@ export interface SummarySection {
    * logical row (e.g. "Breslow thickness") be fed by either the Step 1 field
    * or the Step 2 cold-entry field.
    */
-  rows: { key: string | string[]; label: string }[];
+  rows: {
+    key: string | string[];
+    label: string;
+    /**
+     * Optional visibility gate. When set, the row shows only if every screen id
+     * in the map holds one of the listed answer values (same shape as a route
+     * `when`). Lets one logical field render in different sections by branch —
+     * e.g. Step 1 "Margin status" sits under Diagnosis for in-situ / lentigo
+     * maligna but under the invasive-fields block for invasive melanoma.
+     */
+    when?: Record<string, string[]>;
+  }[];
   /**
    * Where the section renders on the summary. `'withEstimate'` pulls it inside
    * the stage-estimate block, directly under the estimate prose and above its
@@ -403,7 +420,8 @@ export interface StepDef {
     title: string;
     intro?: string;
     sections: SummarySection[];
-    questionsHeading: string;
+    /** Heading for the "questions to ask" list. Omit to hide the list entirely. */
+    questionsHeading?: string;
     /** Neutral UX-safety note (never says which entry is "wrong"). */
     consistencyNote?: string;
     /**
