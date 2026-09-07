@@ -1,0 +1,20 @@
+---
+/**
+ * Contextual notice required on every Navigator page
+ * (MELANOMA_MEDICAL_GUARDRAILS.md §12). Concise by design — not a wall of legal
+ * text. Pass `contextual` to add a step-specific reminder line above it.
+ */
+import { FOOTER_NOTICE } from '../../data/navigator/journeyMap';
+
+interface Props {
+  contextual?: string;
+  class?: string;
+}
+
+const { contextual, class: className = '' } = Astro.props;
+---
+
+<div class:list={['rounded-2xl bg-slate/5 border-l-4 border-slate/30 p-6', className]}>
+  {contextual && <p class="text-sm text-slate/80 mb-2">{contextual}</p>}
+  <p class="text-sm text-slate/70">{FOOTER_NOTICE}</p>
+</div>

@@ -1,0 +1,181 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import JourneyProgress from '../../../components/navigator/JourneyProgress.astro';
+import NavigatorFooterNotice from '../../../components/navigator/NavigatorFooterNotice.astro';
+import {
+  ENTRY_CHOICES,
+  SECONDARY_LINKS,
+  MAD_RUSH_STEPS,
+  OPTIONAL_MODULES,
+  CONCERN_MESSAGE,
+  COMING_SOON_MESSAGE,
+} from '../../../data/navigator/journeyMap';
+
+const title = 'Melanoma Navigator | Beating Skin Cancer';
+const description =
+  'A calm, step-by-step guide for people facing melanoma. Find where you are in the journey, learn the next action, and organize your questions — without losing your place.';
+
+const comingSoonLinks = [
+  ...MAD_RUSH_STEPS.filter((s) => s.status === 'coming_soon').flatMap((s) => s.learnMore),
+  ...OPTIONAL_MODULES.flatMap((s) => s.learnMore),
+  ...COMING_SOON_MESSAGE.marathon,
+];
+// de-dupe by href
+const seen = new Set<string>();
+const uniqueComingSoon = comingSoonLinks.filter((l) => (seen.has(l.href) ? false : (seen.add(l.href), true)));
+---
+
+<Layout title={title} description={description}>
+  <div class="min-h-screen bg-ivory">
+    <div class="bg-gradient-to-br from-navy to-slate py-16 pt-32">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <p class="text-sm uppercase tracking-wide text-white/60 mb-2">Melanoma Navigator</p>
+        <h1 class="text-3xl sm:text-4xl font-serif text-white mb-3">
+          Where are you in your melanoma journey?
+        </h1>
+        <p class="text-lg text-white/80">
+          There are two paths through this. Pick the one that fits, and the Navigator
+          remembers where you left off on this device.
+        </p>
+      </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
+      <div id="resume-banner" hidden class="rounded-2xl bg-teal/5 border border-teal/20 p-5 flex flex-wrap items-center justify-between gap-3">
+        <p class="text-slate/80">You have a journey in progress on this device.</p>
+        <button id="resume-btn" class="inline-flex items-center gap-2 rounded-full bg-teal text-white px-5 py-2.5 font-medium hover:bg-teal/90 transition-colors">
+          Resume
+        </button>
+      </div>
+
+      <section class="rounded-2xl bg-white shadow-lg p-6 sm:p-8">
+        <h2 class="text-xl font-serif text-navy mb-4">Which one fits you right now?</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {ENTRY_CHOICES.map((choice) => (
+            <button
+              type="button"
+              data-entry-choice
+              data-id={choice.id}
+              data-kind={choice.target.kind}
+              data-href={choice.target.kind === 'route' ? choice.target.href : ''}
+              data-phase={choice.phase ?? ''}
+              class="h-full text-left rounded-2xl border-2 border-slate/15 bg-ivory px-6 py-6 text-lg font-medium text-navy hover:border-teal hover:bg-teal/5 transition-colors"
+            >
+              {choice.label}
+            </button>
+          ))}
+        </div>
+
+        <div class="mt-6 flex flex-col gap-2 border-t border-slate/10 pt-5 text-sm">
+          {SECONDARY_LINKS.map((link) => (
+            <button
+              type="button"
+              data-entry-choice
+              data-id={link.id}
+              data-kind={link.target.kind}
+              data-href=""
+              data-phase=""
+              class="text-left text-teal underline underline-offset-2 hover:text-teal/80"
+            >
+              {link.label} →
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <section id="concern" hidden class="rounded-2xl bg-coral/5 border border-coral/20 p-6 sm:p-8">
+        <h2 class="text-2xl font-serif text-navy mb-3">{CONCERN_MESSAGE.title}</h2>
+        {CONCERN_MESSAGE.body.map((p) => <p class="text-slate/80 mb-3">{p}</p>)}
+        <a href={CONCERN_MESSAGE.cta.href} class="inline-flex items-center gap-2 rounded-full bg-teal text-white px-6 py-3 font-medium hover:bg-teal/90 transition-colors mt-2">
+          {CONCERN_MESSAGE.cta.label}
+        </a>
+      </section>
+
+      <section id="coming-soon" hidden class="rounded-2xl bg-white shadow-lg p-6 sm:p-8">
+        <h2 class="text-2xl font-serif text-navy mb-3">{COMING_SOON_MESSAGE.title}</h2>
+        {COMING_SOON_MESSAGE.body.map((p) => <p class="text-slate/80 mb-3">{p}</p>)}
+        <ul class="mt-2 space-y-2 text-sm">
+          {uniqueComingSoon.map((l) => (
+            <li>
+              <a href={l.href} class="text-teal underline underline-offset-2 hover:text-teal/80">{l.label}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <JourneyProgress heading="Your Mad Rush progress" />
+
+      <div class="flex flex-wrap gap-4 text-sm">
+        <button id="start-over" class="text-slate/60 hover:text-coral underline underline-offset-2">
+          Start over
+        </button>
+        <button id="clear-journey" class="text-slate/60 hover:text-coral underline underline-offset-2">
+          Clear my journey from this device
+        </button>
+      </div>
+
+      <NavigatorFooterNotice />
+    </div>
+  </div>
+</Layout>
+
+<script>
+  import { track } from '../../../scripts/navigator/analytics.js';
+  import * as store from '../../../scripts/navigator/store.js';
+
+  track('melanoma_navigator_started');
+
+  const resumeBanner = document.getElementById('resume-banner');
+  if (store.hasProgress() && resumeBanner) {
+    resumeBanner.hidden = false;
+  }
+
+  document.getElementById('resume-btn')?.addEventListener('click', () => {
+    track('navigator_resumed');
+    const s = store.load();
+    const target =
+      s.currentStep === 'step2'
+        ? '/melanoma/navigator/mad-rush/stage'
+        : s.currentStep === 'step1'
+          ? '/melanoma/navigator/mad-rush/pathology'
+          : '/melanoma/navigator/mad-rush';
+    window.location.href = target;
+  });
+
+  const concern = document.getElementById('concern');
+  const comingSoon = document.getElementById('coming-soon');
+
+  document.querySelectorAll('[data-entry-choice]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      const kind = btn.dataset.kind;
+      const phase = btn.dataset.phase;
+
+      if (phase) store.setPhase(phase);
+      store.setEntryPoint(id);
+      track('journey_phase_selected', {
+        entry_point: id,
+        ...(phase ? { phase } : {}),
+      });
+
+      if (kind === 'route') {
+        window.location.href = btn.dataset.href;
+      } else if (kind === 'map') {
+        window.location.href = '/melanoma/navigator/mad-rush';
+      } else if (kind === 'concern') {
+        concern.hidden = false;
+        concern.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else if (kind === 'coming-soon') {
+        comingSoon.hidden = false;
+        comingSoon.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  function reset() {
+    store.clear();
+    window.location.reload();
+  }
+  document.getElementById('start-over')?.addEventListener('click', reset);
+  document.getElementById('clear-journey')?.addEventListener('click', reset);
+</script>

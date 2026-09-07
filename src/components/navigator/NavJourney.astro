@@ -1,0 +1,402 @@
+---
+/**
+ * Renders a merged Mad Rush journey (Step 1 + Step 2) as ONE page.
+ *
+ * Both steps' screens and both summaries are rendered up front into a single
+ * `[data-nav-flow]` root; `src/scripts/navigator/flow.js` shows one screen at a
+ * time and, because it is one engine instance over one DOM, every answer the
+ * patient records in Step 1 stays in memory for Step 2 to read. No medical
+ * strings live here — all copy comes from the step data files.
+ *
+ * `entry` picks which step's first screen (and hero) the page opens on:
+ *   "step1" → /melanoma/navigator/mad-rush/pathology
+ *   "step2" → /melanoma/navigator/mad-rush/stage  (cold entry; Step 2's recap
+ *             screen falls back to a short capture when no Step 1 answers exist)
+ */
+import Layout from '../../layouts/Layout.astro';
+import NavigatorFooterNotice from './NavigatorFooterNotice.astro';
+import MedicalReviewNotice from './MedicalReviewNotice.astro';
+import NavNote from './NavNote.astro';
+import type { JourneyDef, StepDef } from '../../data/navigator/types';
+
+interface Props {
+  journey: JourneyDef;
+  entry: StepDef['id'];
+}
+
+const { journey, entry } = Astro.props;
+const entryStep = journey.steps.find((s) => s.id === entry) ?? journey.steps[0];
+const exitHref = entryStep.exitHref;
+
+const primaryBtn =
+  'inline-flex items-center gap-2 rounded-full bg-teal text-white px-6 py-3 font-medium hover:bg-teal/90 transition-colors shadow-md';
+const outlineBtn =
+  'inline-flex items-center gap-2 rounded-full border border-teal text-teal px-6 py-3 font-medium hover:bg-teal/5 transition-colors';
+
+const keysAttr = (key: string | string[]) => JSON.stringify(Array.isArray(key) ? key : [key]);
+
+const completeEventsFor = (step: StepDef) =>
+  [step.summary.completeEvent, step.id === 'step2' ? 'navigator_completed_mad_rush' : '']
+    .filter(Boolean)
+    .join(' ');
+
+/** Step 1's summary needs the id of Step 2's first screen for the NEXT_STEP jump. */
+const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
+---
+
+<Layout title={entryStep.metaTitle} description={entryStep.metaDescription}>
+  <div class="min-h-screen bg-ivory">
+    <div class="bg-gradient-to-br from-navy to-slate py-16 pt-32">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href={entryStep.backHref} class="text-teal hover:text-teal/80 transition-colors mb-4 inline-block">
+          {entryStep.backLabel}
+        </a>
+        {journey.steps.map((step) => (
+          <div data-hero-for={step.id} hidden={step.id !== entry}>
+            <p class="text-sm uppercase tracking-wide text-white/60 mb-2">{step.heroKicker}</p>
+            <h1 class="text-3xl sm:text-4xl font-serif text-white mb-3">{step.heroTitle}</h1>
+            <p class="text-lg text-white/80">{step.heroSubtitle}</p>
+            {step.skipAhead && (
+              <a
+                href={step.skipAhead.href}
+                class="mt-4 inline-block text-sm text-white/70 underline underline-offset-2 hover:text-white transition-colors"
+              >
+                {step.skipAhead.label}
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      {journey.steps.map((step) => (
+        <div
+          data-why-for={step.id}
+          hidden={step.id !== entry}
+          class="rounded-2xl bg-white/70 border border-slate/10 p-5 mb-6"
+        >
+          <p class="text-slate/80">
+            <strong class="text-navy">Why this matters:</strong> {step.whyItMatters}
+          </p>
+        </div>
+      ))}
+
+      <div
+        data-nav-flow
+        data-phase={entryStep.phase}
+        data-start={entryStep.start}
+        data-exit-href={exitHref}
+      >
+        {journey.steps.map((step) => (
+          <ol
+            data-subprogress
+            data-step-id={step.id}
+            hidden={step.id !== entry}
+            class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate/50 mb-6"
+          >
+            {step.subProgress.map((sp) => (
+              <li data-sp={sp.key} data-state="todo" class="flex items-center gap-1">
+                <span class="sp-dot" aria-hidden="true"></span>
+                <span>{sp.label}</span>
+              </li>
+            ))}
+          </ol>
+        ))}
+
+        {journey.steps.flatMap((step) =>
+          step.screens.map((s) => (
+            <section
+              data-screen={s.id}
+              data-step-id={step.id}
+              data-view-event={s.viewEvent}
+              data-sp-key={s.spKey}
+              data-screen-next={s.kind === 'decision' ? s.next : undefined}
+              data-auto-route={s.autoRoute ? JSON.stringify(s.autoRoute) : undefined}
+              data-recap-empty-next={s.recap?.emptyNext}
+              hidden
+              class="rounded-2xl bg-white shadow-lg p-6 sm:p-8"
+            >
+              <h2 class="text-2xl sm:text-3xl font-serif text-navy mb-4">{s.title}</h2>
+
+              {s.body?.map((p) => <p class="text-slate/80 leading-relaxed mb-3" set:html={p} />)}
+
+              {s.prompt && <p class="font-medium text-navy mt-4 mb-3">{s.prompt}</p>}
+              {s.hint && <p class="text-sm text-slate/60 mb-3">{s.hint}</p>}
+
+              {s.kind === 'decision' && s.choices && (
+                <div class="grid gap-3">
+                  {s.choices.map((c) => (
+                    <button
+                      type="button"
+                      data-choice
+                      data-value={c.value}
+                      data-label={c.label}
+                      data-next={c.next}
+                      data-event={c.event}
+                      data-status={c.status}
+                      data-flag={c.flag}
+                      data-reveal={c.reveal}
+                      data-preset-answers={c.presetAnswers ? JSON.stringify(c.presetAnswers) : undefined}
+                      class="w-full text-left rounded-xl border border-slate/15 bg-ivory px-5 py-4 font-medium text-slate hover:border-teal hover:bg-teal/5 transition-colors"
+                    >
+                      {c.label}
+                      {c.hint && <span class="block mt-1 text-sm font-normal text-slate/60">{c.hint}</span>}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {s.kind === 'recap' && s.recap && (
+                <div>
+                  <dl data-recap class="divide-y divide-slate/10 rounded-xl bg-ivory px-4">
+                    {s.recap.rows.map((r) => (
+                      <div data-recap-row data-recap-from={JSON.stringify(r.from)} hidden class="flex justify-between gap-4 py-3">
+                        <dt class="text-sm text-slate/60">{r.label}</dt>
+                        <dd class="r-value text-sm font-medium text-slate text-right"></dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div class="mt-5 flex flex-wrap gap-3">
+                    <button type="button" data-recap-confirm data-next={s.recap.confirmNext} class={primaryBtn}>
+                      {s.recap.confirmLabel}
+                    </button>
+                    <button type="button" data-recap-change data-next={s.recap.changeNext} class={outlineBtn}>
+                      {s.recap.changeLabel}
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {s.kind === 'checklist' && s.checklist && (
+                <div>
+                  <div class="space-y-3">
+                    {s.checklist.map((label) => (
+                      <label class="flex items-start gap-3 rounded-xl border border-slate/15 bg-ivory px-4 py-3 cursor-pointer">
+                        <input type="checkbox" class="mt-1 h-5 w-5 accent-teal" />
+                        <span class="text-slate">{label}</span>
+                      </label>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    data-checklist-continue
+                    data-next={s.checklistNextAll}
+                    data-next-partial={s.checklistNextPartial}
+                    data-event={s.checklistEvent}
+                    data-status-partial={s.checklistStatusPartial}
+                    class:list={['mt-5', primaryBtn]}
+                  >
+                    {s.checklistContinueLabel ?? 'Continue'}
+                  </button>
+                  {s.checklistMismatchNote && <NavNote note={s.checklistMismatchNote} />}
+                </div>
+              )}
+
+              {s.kind === 'field' && s.field && (
+                <div>
+                  <div class="space-y-2">
+                    <label class="block text-sm font-medium text-slate" for={`f-${s.id}`}>
+                      {s.field.label}
+                    </label>
+                    <input
+                      id={`f-${s.id}`}
+                      data-field-input
+                      type="text"
+                      inputmode={s.field.type === 'decimal' ? 'decimal' : undefined}
+                      placeholder={s.field.placeholder}
+                      autocomplete="off"
+                      class="w-full rounded-xl border border-slate/20 px-4 py-3 focus:border-teal focus:outline-none"
+                    />
+                    {s.field.help && <p class="text-xs text-slate/60">{s.field.help}</p>}
+                  </div>
+                  <button
+                    type="button"
+                    data-field-continue
+                    data-next={s.next}
+                    data-event={s.continueEvent}
+                    class:list={['mt-5', primaryBtn]}
+                  >
+                    {s.continueLabel ?? 'Continue'}
+                  </button>
+                </div>
+              )}
+
+              {s.medicalReviewNotice && <MedicalReviewNotice token={s.medicalReviewNotice} class="mt-5" />}
+
+              {s.notes?.map((n) => <NavNote note={n} />)}
+
+              {s.doctorQuestions && s.doctorQuestions.length > 0 && (
+                <div class="mt-5 rounded-xl bg-teal/5 p-5">
+                  <h3 class="text-sm font-semibold uppercase tracking-wide text-slate/60 mb-2">
+                    Questions to ask your doctor
+                  </h3>
+                  <ul data-dq class="list-disc list-inside text-sm text-slate/80 space-y-1">
+                    {s.doctorQuestions.map((q) => <li>{q}</li>)}
+                  </ul>
+                </div>
+              )}
+
+              {s.learnMore && s.learnMore.length > 0 && (
+                <details data-learn-more class="mt-4 rounded-xl bg-ivory p-4">
+                  <summary class="cursor-pointer font-medium text-teal">Learn more</summary>
+                  <ul class="mt-2 space-y-1 text-sm">
+                    {s.learnMore.map((l) => (
+                      <li>
+                        <a href={l.href} class="text-teal underline underline-offset-2 hover:text-teal/80">
+                          {l.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+
+              {(s.kind === 'info' || s.kind === 'recap') && s.next && (
+                <button
+                  type="button"
+                  data-info-next
+                  data-next={s.next}
+                  data-event={s.continueEvent}
+                  class:list={['mt-6', primaryBtn]}
+                >
+                  {s.continueLabel ?? 'Continue'}
+                </button>
+              )}
+
+              <button type="button" data-nav-back class="mt-6 block text-sm text-slate/60 hover:text-teal transition-colors">
+                ← Back
+              </button>
+            </section>
+          )),
+        )}
+
+        {journey.steps.map((step, i) => (
+          <section
+            data-summary-block
+            data-step-id={step.id}
+            id={`nav-summary-${step.id}`}
+            data-summary-view-event={step.summary.viewEvent}
+            data-consistency-rules={JSON.stringify(step.summary.consistencyRules ?? [])}
+            data-next-step-start={nextStepStartFor(i)}
+            data-step-start={step.start}
+            data-enter-route={JSON.stringify(step.enterRoute ?? [])}
+            hidden
+            class="rounded-2xl bg-white shadow-lg p-6 sm:p-8"
+          >
+            <h2 class="text-2xl sm:text-3xl font-serif text-navy mb-3">{step.summary.title}</h2>
+            {step.summary.intro && <p class="text-slate/80 mb-6">{step.summary.intro}</p>}
+
+            {step.summary.stageBand && (
+              <div
+                data-stage-band
+                data-stage-band-rules={JSON.stringify(step.summary.stageBand.rules)}
+                data-stage-band-fallback={JSON.stringify(step.summary.stageBand.fallback)}
+                hidden
+                class="mb-6 rounded-2xl border border-teal/30 bg-teal/5 p-5"
+              >
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-slate/60 mb-1">
+                  {step.summary.stageBand.heading}
+                </h3>
+                <p class="band-value text-2xl font-serif text-navy mb-2"></p>
+                <p class="band-note text-sm text-slate/80 mb-3"></p>
+                <p class="text-xs text-slate/60">{step.summary.stageBand.notice}</p>
+              </div>
+            )}
+
+            {step.summary.consistencyNote && (
+              <div
+                data-consistency-note
+                hidden
+                class="mb-6 rounded-xl bg-coral/5 border border-coral/20 p-5 text-sm text-slate/80"
+              >
+                {step.summary.consistencyNote}
+              </div>
+            )}
+
+            {step.summary.sections.map((sec) => (
+              <div data-summary-section class="mb-6">
+                <h3 class="text-lg font-serif text-navy mb-2">{sec.heading}</h3>
+                <dl class="divide-y divide-slate/10">
+                  {sec.rows.map((r) => (
+                    <div data-summary data-summary-keys={keysAttr(r.key)} hidden class="flex justify-between gap-4 py-2">
+                      <dt class="s-label text-sm text-slate/60">{r.label}</dt>
+                      <dd class="s-value text-sm font-medium text-slate text-right"></dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ))}
+
+            <div class="mb-6 rounded-xl bg-teal/5 p-5">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate/60 mb-2">
+                {step.summary.questionsHeading}
+              </h3>
+              <ul data-summary-questions class="list-disc list-inside text-sm text-slate/80 space-y-1"></ul>
+            </div>
+
+            {step.summary.completeNote && <p class="text-xs text-slate/60 mb-4">{step.summary.completeNote}</p>}
+
+            <div class="flex flex-wrap gap-3">
+              <button type="button" data-print class={outlineBtn}>
+                {step.summary.printLabel}
+              </button>
+              <button
+                type="button"
+                data-complete-step
+                data-next={step.summary.completeNext}
+                data-event={completeEventsFor(step)}
+                class={primaryBtn}
+              >
+                {step.summary.completeLabel}
+              </button>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      {journey.steps.map((step) => (
+        <div data-notice-for={step.id} hidden={step.id !== entry}>
+          <NavigatorFooterNotice contextual={step.contextualDisclaimer} class="mt-8" />
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  [data-subprogress] .sp-dot {
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+  }
+  [data-subprogress] [data-state='todo'] .sp-dot::before {
+    content: '\25CB'; /* ○ */
+  }
+  [data-subprogress] [data-state='current'] {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+  [data-subprogress] [data-state='current'] .sp-dot::before {
+    content: '\25CF'; /* ● */
+    color: var(--color-teal);
+  }
+  [data-subprogress] [data-state='done'] .sp-dot::before {
+    content: '\2713'; /* ✓ */
+    color: var(--color-teal);
+  }
+
+  @media print {
+    [data-subprogress],
+    [data-nav-back],
+    [data-print],
+    [data-complete-step] {
+      display: none !important;
+    }
+  }
+</style>
+
+<script>
+  import { initFlow } from '../../scripts/navigator/flow.js';
+  initFlow(document.querySelector('[data-nav-flow]'));
+</script>

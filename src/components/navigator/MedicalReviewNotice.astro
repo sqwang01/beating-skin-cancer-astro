@@ -1,0 +1,34 @@
+---
+/**
+ * Renders where the Navigator would otherwise show a guideline-derived result
+ * (a T category, an overall stage) that has NOT been checked against current
+ * authoritative guidance. See MELANOMA_MEDICAL_GUARDRAILS.md §2, §13 and
+ * MAD_RUSH_STEP2_DEEP_SPEC.md §16.
+ *
+ * `token` is one of the sentinels from src/data/navigator/medicalRules.ts
+ * (NEEDS_MEDICAL_REVIEW / MEDICAL_CONTENT_REQUIRES_CURRENT_REVIEW).
+ */
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  token: string;
+  class?: string;
+}
+
+const { token, class: className = '' } = Astro.props;
+---
+
+<div
+  class:list={[
+    'flex items-start gap-3 rounded-xl bg-coral/5 border border-coral/20 p-4',
+    className,
+  ]}
+  data-medical-review-token={token}
+>
+  <Icon name="lucide:shield-alert" class="text-coral flex-shrink-0 mt-0.5" size={20} aria-hidden="true" />
+  <p class="text-sm text-slate/80">
+    The Navigator does not calculate this for you. Staging thresholds change over
+    time, and this content has not been confirmed against current guidance.
+    Your treating physician confirms your T category and your overall stage.
+  </p>
+</div>

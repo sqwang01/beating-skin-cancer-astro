@@ -1,0 +1,58 @@
+---
+/**
+ * One note block inside a Navigator screen.
+ *
+ * - Revealable note (default): hidden until a choice reveals it (flow.js
+ *   toggles `hidden` via the `data-note` hook).
+ * - Static note (`note.static`): always visible supporting text; no `data-note`
+ *   hook so the engine never hides it.
+ *
+ * `note.doctorQuestions` render inside `ul[data-dq]` so flow.js can collect
+ * them into the step summary when the note is shown.
+ */
+import type { Note } from '../../data/navigator/types';
+
+interface Props {
+  note: Note;
+}
+
+const { note } = Astro.props;
+
+const toneClass =
+  note.tone === 'warn'
+    ? 'bg-coral/5 border border-coral/20'
+    : note.tone === 'action'
+      ? 'bg-ivory border border-slate/15'
+      : 'bg-teal/5';
+---
+
+<div
+  data-note={note.static ? undefined : note.id}
+  hidden={!note.static}
+  class:list={['mt-4 rounded-xl p-5', toneClass]}
+>
+  {note.body.map((p) => (
+    <p class="text-sm text-slate/80 mb-2 last:mb-0" set:html={p} />
+  ))}
+
+  {note.doctorQuestions && note.doctorQuestions.length > 0 && (
+    <div class="mt-3">
+      <p class="text-xs font-semibold uppercase tracking-wide text-slate/60 mb-1">Add to my questions</p>
+      <ul data-dq class="list-disc list-inside text-sm text-slate/80 space-y-1">
+        {note.doctorQuestions.map((q) => <li>{q}</li>)}
+      </ul>
+    </div>
+  )}
+
+  {note.continue && (
+    <button
+      type="button"
+      data-info-next
+      data-next={note.continue.next}
+      data-event={note.continue.event}
+      class="mt-4 inline-flex items-center gap-2 rounded-full bg-teal text-white px-6 py-2.5 font-medium hover:bg-teal/90 transition-colors"
+    >
+      {note.continue.label}
+    </button>
+  )}
+</div>

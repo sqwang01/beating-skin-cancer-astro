@@ -8,6 +8,20 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Melanoma Navigator
+
+The guided patient journey under `/melanoma/navigator` (entry page), `/melanoma/navigator/mad-rush` (5-step map), and `/melanoma/navigator/mad-rush/{pathology,stage}` (Mad Rush Steps 1–2). Specs live in [melanoma-navigator/](melanoma-navigator/) — read `MELANOMA_MEDICAL_GUARDRAILS.md` before touching any Navigator file.
+
+**Content / UI split (do not break this):**
+
+- All patient-facing copy, screen flow, choices, branch routing, and doctor-question lists live in `src/data/navigator/` (`journeyMap.ts`, `step1Pathology.ts`, `step2Staging.ts`, `types.ts`). Components and scripts hold **zero** medical strings.
+- `src/data/navigator/medicalRules.ts` holds the book-derived T-category / stage-grouping tables. They are gated: `STAGING_RULES_ENABLED = false`, every rule set `status: 'draft'`. The Navigator **never computes a T category or an overall stage** — it shows `<MedicalReviewNotice>` and an "ask your physician" message instead. Do not flip the switch or wire these into UI computation until a board dermatologist marks each set `approved` against the current AJCC/NCCN guidance.
+- Never infer a new clinical rule from the source book. If a UI behavior needs unreviewed medical logic, render the `NEEDS_MEDICAL_REVIEW` / `MEDICAL_CONTENT_REQUIRES_CURRENT_REVIEW` placeholder instead.
+
+**Runtime:** `src/scripts/navigator/flow.js` is a generic attribute-driven screen engine rendered by `src/components/navigator/NavStep.astro`. `store.js` persists only non-sensitive progress (phase, step, status, opened-section flags) to `localStorage`; pathology/staging field values stay in memory for the session only — never persisted. `analytics.js` sends flow events to GA4 through two allow-lists (event name + property key/value); no pathology value, stage, or free text can reach analytics.
+
+**Not wired into the reviewed-PDF pipeline:** Navigator "questions to ask" lists are unreviewed content, so they are print-only (`window.print()`), not added to `hubChecklists.ts` / `careTeamQuestions.ts`.
+
 ## Design system
 
 Tokens live in [src/styles/global.css](src/styles/global.css) under `@theme` (Tailwind v4):
