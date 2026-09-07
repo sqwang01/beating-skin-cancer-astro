@@ -234,7 +234,7 @@ export const STEP1: StepDef = {
         label: 'Breslow thickness (mm) — leave blank if you can’t find it',
         type: 'decimal',
         placeholder: 'e.g. 1.2',
-        help: 'Copy the value exactly as written. Do not round. The Navigator does not assign a stage from this number.',
+        help: 'Copy the value exactly as written. Do not round.',
       },
       notes: [
         {
@@ -271,7 +271,7 @@ export const STEP1: StepDef = {
         label: 'Mitotic rate as written (e.g. “2/mm²”) — leave blank if not listed',
         type: 'text',
         placeholder: 'e.g. 2/mm²',
-        help: 'Labs format this differently, so it is stored as text. The Navigator does not use it to classify risk.',
+        help: 'Labs format this differently, so it is stored as text.',
       },
       continueLabel: 'Continue',
       next: 'c4',
@@ -295,7 +295,6 @@ export const STEP1: StepDef = {
       spKey: 'fields',
       title: 'Regression',
       prompt: 'Does the report mention regression?',
-      body: ['This is informational only in Step 1.'],
       choices: [
         { value: 'present', label: 'Present' },
         { value: 'absent', label: 'Absent' },
@@ -309,7 +308,6 @@ export const STEP1: StepDef = {
       spKey: 'fields',
       title: 'Nerve involvement / neurotropism',
       prompt: 'Does the report mention nerve involvement or neurotropism?',
-      body: ['This is informational only in Step 1.'],
       choices: [
         { value: 'present', label: 'Present' },
         { value: 'absent', label: 'Absent / not identified' },

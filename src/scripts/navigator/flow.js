@@ -117,6 +117,7 @@ export function initFlow(root) {
   const answers = {}; // screenId -> { value, label }
   const doctorQuestions = new Set();
   const history = [];
+  const seenOrder = []; // screen ids actually shown to the patient, in order
   let currentStepId = null;
 
   function baseFor(el) {
@@ -239,13 +240,52 @@ export function initFlow(root) {
       items.forEach((li) => {
         li.dataset.state = 'done';
       });
-      return;
+    } else {
+      const idx = items.findIndex((li) => li.dataset.sp === spKey);
+      items.forEach((li, i) => {
+        li.dataset.state =
+          idx < 0 ? li.dataset.state || 'todo' : i < idx ? 'done' : i === idx ? 'current' : 'todo';
+      });
     }
-    const idx = items.findIndex((li) => li.dataset.sp === spKey);
-    items.forEach((li, i) => {
-      li.dataset.state =
-        idx < 0 ? li.dataset.state || 'todo' : i < idx ? 'done' : i === idx ? 'current' : 'todo';
+    // A "done" sub-step can be re-opened to change an answer; "current" is where
+    // you already are, "todo" is ahead of you — both stay inert.
+    items.forEach((li) => {
+      const btn = li.querySelector('[data-sp-btn]');
+      if (btn) btn.disabled = li.dataset.state !== 'done';
     });
+  }
+
+  /**
+   * Jump back to an already-completed sub-step to revise an answer. Targets the
+   * FIRST screen the patient actually saw for that sub-step (so branch paths —
+   * e.g. in-situ, which only visits margin status under "fields" — land on the
+   * right screen), or the step summary for the trailing summary chip. Answers
+   * live in memory, so re-answering simply overwrites and the flow re-routes
+   * forward from there.
+   */
+  function goToSubStep(li) {
+    const btn = li.querySelector('[data-sp-btn]');
+    if (!btn || btn.disabled) return;
+    const spKey = li.dataset.sp;
+    const list = subLists.get(currentStepId);
+    const items = list ? Array.from(list.querySelectorAll('[data-sp]')) : [];
+    const isTrailing = items.length && items[items.length - 1] === li;
+
+    let target = seenOrder.find((sid) => {
+      const el = screens.get(sid);
+      return el && el.dataset.stepId === currentStepId && el.dataset.spKey === spKey;
+    });
+    if (!target && isTrailing) target = 'SUMMARY';
+    if (!target) {
+      for (const [sid, el] of screens) {
+        if (el.dataset.stepId === currentStepId && el.dataset.spKey === spKey) {
+          target = sid;
+          break;
+        }
+      }
+    }
+    if (!target || target === currentId()) return;
+    goTo(target);
   }
 
   function setActiveStep(stepId) {
@@ -423,6 +463,9 @@ export function initFlow(root) {
       updateSubProgress('__done__');
       fireEvents(target.dataset.summaryViewEvent, { phase, step_id: target.dataset.stepId, screen_id: 'summary' });
     } else {
+      if (target.dataset.screen && !seenOrder.includes(target.dataset.screen)) {
+        seenOrder.push(target.dataset.screen);
+      }
       renderNoteEstimate(target);
       fireEvents(target.dataset.viewEvent, baseFor(target));
       updateSubProgress(target.dataset.spKey || '');
@@ -598,6 +641,16 @@ export function initFlow(root) {
       const computed = inNote ? null : resolveComputedRoute(screenEl);
       if (computed && !forced) applyComputedRoute(computed);
       goTo(forced || (computed && computed.next) || btn.dataset.next);
+    });
+  });
+
+  /* ------------------------------------------- sub-step chips (revise) */
+  root.querySelectorAll('[data-subprogress]').forEach((list) => {
+    list.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-sp-btn]');
+      if (!btn || btn.disabled || !list.contains(btn)) return;
+      const li = btn.closest('[data-sp]');
+      if (li) goToSubStep(li);
     });
   });
 

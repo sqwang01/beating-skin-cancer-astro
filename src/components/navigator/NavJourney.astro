@@ -99,8 +99,10 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
           >
             {step.subProgress.map((sp) => (
               <li data-sp={sp.key} data-state="todo" class="flex items-center gap-1">
-                <span class="sp-dot" aria-hidden="true"></span>
-                <span>{sp.label}</span>
+                <button type="button" data-sp-btn class="sp-btn flex items-center gap-1" disabled>
+                  <span class="sp-dot" aria-hidden="true"></span>
+                  <span class="sp-label">{sp.label}</span>
+                </button>
               </li>
             ))}
           </ol>
@@ -492,6 +494,22 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
     display: inline-block;
     width: 1em;
     text-align: center;
+  }
+  [data-subprogress] .sp-btn {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: default;
+  }
+  [data-subprogress] .sp-btn:not(:disabled) {
+    cursor: pointer;
+  }
+  [data-subprogress] .sp-btn:not(:disabled):hover .sp-label,
+  [data-subprogress] .sp-btn:not(:disabled):focus-visible .sp-label {
+    text-decoration: underline;
+    text-underline-offset: 2px;
   }
   [data-subprogress] [data-state='todo'] .sp-dot::before {
     content: '\25CB'; /* ○ */
