@@ -26,12 +26,12 @@ import type { StepDef } from './types';
  * rather than a blank row. Margin status still applies and is asked normally.
  */
 const IN_SITU_FIELD_PRESETS: Record<string, string> = {
-  c1: 'N/A — melanoma in situ',
-  c2: 'N/A — melanoma in situ',
-  c3: 'N/A — melanoma in situ',
-  c4: 'N/A — melanoma in situ',
-  c5: 'N/A — melanoma in situ',
-  c6: 'N/A — melanoma in situ',
+  c1: 'N/A',
+  c2: 'N/A',
+  c3: 'N/A',
+  c4: 'N/A',
+  c5: 'N/A',
+  c6: 'N/A',
 };
 
 export const STEP1: StepDef = {
@@ -57,8 +57,6 @@ export const STEP1: StepDef = {
     label: 'I’ve already been through my pathology report — skip to Step 2, stage',
   },
 
-  whyItMatters:
-    'This step is not a long article. It is a short sequence of small tasks: get the report, find the diagnosis, and note the key terms so you can go over them with your care team.',
   contextualDisclaimer:
     'This step helps you find and record what your report says. It does not confirm the report is correct, assign a stage, or recommend treatment. Your treating clinicians do that.',
 
@@ -86,11 +84,37 @@ export const STEP1: StepDef = {
       choices: [
         { value: 'has', label: 'Yes, I have it', next: 'b3', event: 'pathology_report_has_copy', status: 'in_progress' },
         { value: 'need', label: 'No, I need to get it', next: 'a1', event: 'pathology_report_needs_copy', status: 'in_progress' },
-        { value: 'unsure', label: 'I’m not sure what this is', next: 'a1', event: 'pathology_report_needs_copy', status: 'in_progress' },
+        { value: 'unsure', label: 'I’m not sure what this is', next: 'a0what', event: 'pathology_report_needs_copy', status: 'in_progress' },
       ],
     },
 
     /* ------------------------------------------------ BRANCH A — NO REPORT */
+    {
+      id: 'a0what',
+      kind: 'info',
+      spKey: 'get',
+      title: 'What a pathology report is',
+      body: [
+        'A pathology report is the document a pathologist writes after examining your biopsy tissue under a microscope. It is where the melanoma diagnosis is actually made and described.',
+        'Why it matters:',
+      ],
+      notes: [
+        {
+          id: 'why',
+          tone: 'info',
+          static: true,
+          body: [
+            '• It states the diagnosis in the pathologist’s own words.',
+            '• It records the details your care team uses to understand the melanoma and support staging — such as whether it is in situ or invasive, the Breslow thickness, and the margins.',
+            '• It guides the plan for what happens next, including any further surgery.',
+            '• It becomes a permanent part of your medical record for future care and second opinions.',
+            'You do not need to interpret it yourself. The goal here is simply to get a copy and find the key terms so you can go over them with your doctor.',
+          ],
+        },
+      ],
+      continueLabel: 'How do I get my copy?',
+      next: 'a1',
+    },
     {
       id: 'a1',
       kind: 'info',
@@ -113,51 +137,8 @@ export const STEP1: StepDef = {
           ],
         },
       ],
-      continueLabel: 'I’ve tried — what next?',
-      next: 'a2',
-    },
-    {
-      id: 'a2',
-      kind: 'decision',
-      spKey: 'get',
-      title: 'Were you able to request or get the report?',
-      choices: [
-        { value: 'got_it', label: 'Yes — I have it now', next: 'b3', status: 'in_progress' },
-        {
-          value: 'requested',
-          label: 'I requested it but don’t have it yet',
-          next: 'a3wait',
-          status: 'waiting',
-        },
-        {
-          value: 'need_help',
-          label: 'I need help figuring out whom to contact',
-          reveal: 'whom',
-          status: 'waiting',
-        },
-      ],
-      notes: [
-        {
-          id: 'whom',
-          tone: 'action',
-          body: [
-            'Start with the office that took the biopsy — usually a dermatologist. If a different clinic did the biopsy, call that clinic’s medical records line. Your referring doctor’s office can also point you to the right place.',
-          ],
-          continue: { label: 'Save my progress for now', next: 'a3wait' },
-        },
-      ],
-    },
-    {
-      id: 'a3wait',
-      kind: 'info',
-      spKey: 'get',
-      title: 'Your progress is saved',
-      body: [
-        'You don’t need to continue through the report until you have it in front of you. This step is marked “waiting for your pathology report.” You can return on this device and pick up where you left off.',
-        'When you have the report, come back and choose “Yes, I have it.”',
-      ],
-      continueLabel: 'Review my Step 1 summary',
-      next: 'SUMMARY',
+      continueLabel: 'Start Step 1 again once you have your pathology report',
+      next: 'EXIT',
     },
 
     /* ------------------------------------------ BRANCH B — HAS THE REPORT */
@@ -208,8 +189,7 @@ export const STEP1: StepDef = {
           tone: 'warn',
           static: true,
           body: [
-            '<strong class="text-navy">Important:</strong> when invasive melanoma is present anywhere in the specimen, that is the part your care team uses for the key pathology fields and for staging, so it is the answer to record here. Only choose “Melanoma in situ” or “Lentigo maligna” if the report describes the melanoma as entirely in situ, with no invasive component.',
-            'If you cannot tell whether an invasive component is reported, choose “None of these / I’m not sure” and ask your dermatologist to confirm.',
+            '<strong class="text-navy">Important:</strong> only choose “Melanoma in situ” or “Lentigo maligna” if the pathology report describes the melanoma as entirely in situ, with no invasive component. If the report includes both an in situ and an invasive component, choose “Invasive melanoma.”',
           ],
         },
         {
@@ -333,9 +313,7 @@ export const STEP1: StepDef = {
       choices: [
         { value: 'positive', label: 'Positive / involved', event: 'pathology_invasive_fields_reviewed' },
         { value: 'negative', label: 'Negative / clear', event: 'pathology_invasive_fields_reviewed' },
-        { value: 'transected', label: 'Transected / extends to an edge', event: 'pathology_invasive_fields_reviewed' },
-        { value: 'cannot_tell', label: 'I cannot tell', event: 'pathology_invasive_fields_reviewed' },
-        { value: 'not_stated', label: 'The report does not say', event: 'pathology_invasive_fields_reviewed' },
+        { value: 'not_stated', label: 'I cannot tell / the report does not say', event: 'pathology_invasive_fields_reviewed' },
       ],
       notes: [
         {
@@ -360,17 +338,20 @@ export const STEP1: StepDef = {
         heading: 'Report',
         rows: [
           { key: 'b0', label: 'Do you have the report?' },
-          { key: 'a2', label: 'Status of getting the report' },
         ],
       },
       {
         heading: 'Diagnosis',
         rows: [
           { key: 'b3', label: 'Diagnosis on the report' },
+          // For melanoma in situ / lentigo maligna the invasive-only fields do
+          // not apply, so margin status is the only recorded field — show it
+          // here, under the diagnosis, rather than in the invasive-fields block.
+          { key: 'c7', label: 'Margin status', when: { b3: ['in_situ', 'lentigo_maligna'] } },
         ],
       },
       {
-        heading: 'Key pathology information (for invasive melanoma)',
+        heading: 'Key pathology information (for invasive melanoma ONLY)',
         rows: [
           { key: 'c1', label: 'Breslow thickness' },
           { key: 'c2', label: 'Ulceration' },
@@ -378,12 +359,11 @@ export const STEP1: StepDef = {
           { key: 'c4', label: 'Lymphovascular invasion' },
           { key: 'c5', label: 'Regression' },
           { key: 'c6', label: 'Neurotropism' },
-          { key: 'c7', label: 'Margin status' },
+          { key: 'c7', label: 'Margin status', when: { b3: ['invasive'] } },
         ],
       },
     ],
-    questionsHeading: 'Questions for my doctor',
-    printLabel: 'Print my summary and questions',
+    printLabel: 'Print my summary',
     completeLabel: 'I’ve reviewed this — continue to Step 2',
     // Merged journey: advance to Step 2 in the same page so the pathology
     // answers stay in memory and Step 2 opens already knowing them.
