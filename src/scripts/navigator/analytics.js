@@ -29,6 +29,11 @@ const ALLOWED_EVENTS = new Set([
   'melanoma_step2_started',
   'step2_staging_summary_viewed',
   'melanoma_step2_completed',
+  // step 3 (treatment options — recap → computed bridge → terminal stage screen;
+  // no summary. Each stage screen's "finish" fires melanoma_step3_completed +
+  // navigator_completed_mad_rush)
+  'melanoma_step3_started',
+  'melanoma_step3_completed',
 ]);
 
 const ALLOWED_PROP_KEYS = new Set([

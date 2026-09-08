@@ -1,17 +1,19 @@
 ---
 /**
- * Renders a merged Mad Rush journey (Step 1 + Step 2) as ONE page.
+ * Renders a merged Mad Rush journey (Step 1 + Step 2 + Step 3) as ONE page.
  *
- * Both steps' screens and both summaries are rendered up front into a single
+ * Every step's screens and summary are rendered up front into a single
  * `[data-nav-flow]` root; `src/scripts/navigator/flow.js` shows one screen at a
  * time and, because it is one engine instance over one DOM, every answer the
- * patient records in Step 1 stays in memory for Step 2 to read. No medical
- * strings live here — all copy comes from the step data files.
+ * patient records in an earlier step stays in memory for the later steps to
+ * read. No medical strings live here — all copy comes from the step data files.
  *
  * `entry` picks which step's first screen (and hero) the page opens on:
  *   "step1" → /melanoma/navigator/mad-rush/pathology
- *   "step2" → /melanoma/navigator/mad-rush/stage  (cold entry; Step 2's recap
- *             screen falls back to a short capture when no Step 1 answers exist)
+ *   "step2" → /melanoma/navigator/mad-rush/stage      (cold entry; Step 2's recap
+ *             falls back to a short capture when no Step 1 answers exist)
+ *   "step3" → /melanoma/navigator/mad-rush/treatment  (cold entry; Step 3's recap
+ *             falls back to the general treatment picture)
  */
 import Layout from '../../layouts/Layout.astro';
 import NavigatorFooterNotice from './NavigatorFooterNotice.astro';
@@ -38,7 +40,7 @@ const whenAttr = (when?: Record<string, string[]>) =>
   when && Object.keys(when).length ? JSON.stringify(when) : undefined;
 
 const completeEventsFor = (step: StepDef) =>
-  [step.summary.completeEvent, step.id === 'step2' ? 'navigator_completed_mad_rush' : '']
+  [step.summary?.completeEvent, step.id === 'step3' ? 'navigator_completed_mad_rush' : '']
     .filter(Boolean)
     .join(' ');
 
@@ -94,6 +96,8 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
           <ol
             data-subprogress
             data-step-id={step.id}
+            data-step-start={step.start}
+            data-enter-route={JSON.stringify(step.enterRoute ?? [])}
             hidden={step.id !== entry}
             class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate/50 mb-6"
           >
@@ -322,7 +326,7 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
           )),
         )}
 
-        {journey.steps.map((step, i) => (
+        {journey.steps.map((step, i) => step.summary && (
           <section
             data-summary-block
             data-step-id={step.id}
@@ -330,8 +334,6 @@ const nextStepStartFor = (i: number) => journey.steps[i + 1]?.start;
             data-summary-view-event={step.summary.viewEvent}
             data-consistency-rules={JSON.stringify(step.summary.consistencyRules ?? [])}
             data-next-step-start={nextStepStartFor(i)}
-            data-step-start={step.start}
-            data-enter-route={JSON.stringify(step.enterRoute ?? [])}
             hidden
             class="rounded-2xl bg-white shadow-lg p-6 sm:p-8"
           >

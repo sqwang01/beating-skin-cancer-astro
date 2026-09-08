@@ -105,11 +105,12 @@ export function initFlow(root) {
   const subLists = new Map();
   root.querySelectorAll('[data-subprogress]').forEach((el) => subLists.set(el.dataset.stepId, el));
 
-  // stepId -> { start, rules } for the answer-driven entry gate (StepDef.enterRoute).
+  // stepId -> { rules } for the answer-driven entry gate (StepDef.enterRoute).
+  // Read from the per-step sub-progress list, which is always rendered — Step 3
+  // has no [data-summary-block].
   const stepEntry = new Map();
-  root.querySelectorAll('[data-summary-block]').forEach((el) => {
+  root.querySelectorAll('[data-subprogress]').forEach((el) => {
     stepEntry.set(el.dataset.stepId, {
-      start: el.dataset.stepStart,
       rules: parseJSON(el.dataset.enterRoute, []),
     });
   });
@@ -442,9 +443,12 @@ export function initFlow(root) {
       if (computed) {
         applyComputedRoute(computed);
         collectDoctorQuestions(target);
-        const contBtn = target.querySelector('[data-info-next]');
+        // Fire only the screen's own viewEvent on an invisible forward — NOT its
+        // continue button's event. On Step 3, t1's continue button carries the
+        // "finish the Mad Rush" completion events, which must fire only when t1
+        // is the terminal screen the patient actually sees, not when it forwards
+        // to a tx_* screen (that screen fires them itself).
         fireEvents(target.dataset.viewEvent, baseFor(target));
-        fireEvents(contBtn && contBtn.dataset.event, baseFor(target));
         setActiveStep(target.dataset.stepId);
         return show(computed.next);
       }

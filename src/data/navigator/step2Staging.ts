@@ -16,7 +16,8 @@
  *         summary.
  *   S     "Your stage picture": the coarse worded band, the educational IA–IIC
  *         estimate for a node-negative Stage I/II case, and the questions to
- *         confirm the exact stage with the treating physician.
+ *         confirm the exact stage with the treating physician. "Complete"
+ *         advances to Step 3 (treatment) in the same page via `NEXT_STEP`.
  *
  * What was removed 2026-09-07 (Dr. Wang):
  *   - The "Has a doctor already told you your melanoma stage?" screen (`k1`).
@@ -420,8 +421,11 @@ export const STEP2: StepDef = {
     ],
     viewEvent: 'step2_staging_summary_viewed',
     printLabel: 'Print my stage picture',
-    completeLabel: 'I’ve reviewed this — finish the Mad Rush',
-    completeNext: '/melanoma/navigator',
+    completeLabel: 'I’ve reviewed this — continue to Step 3',
+    // Merged journey: advance to Step 3 (treatment) in the same page so the
+    // pathology / staging answers stay in memory and Step 3 opens already
+    // knowing them.
+    completeNext: 'NEXT_STEP',
     completeEvent: 'melanoma_step2_completed',
     completeNote:
       '“Complete” means you finished this educational step. It does not mean your melanoma stage is medically finalized.',

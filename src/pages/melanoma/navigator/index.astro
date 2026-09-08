@@ -105,9 +105,11 @@ const uniqueComingSoon = comingSoonLinks.filter((l) => (seen.has(l.href) ? false
     track('navigator_resumed');
     const s = store.load();
     const target =
-      s.currentStep === 'step2'
-        ? '/melanoma/navigator/mad-rush/stage'
-        : '/melanoma/navigator/mad-rush/pathology';
+      s.currentStep === 'step3'
+        ? '/melanoma/navigator/mad-rush/treatment'
+        : s.currentStep === 'step2'
+          ? '/melanoma/navigator/mad-rush/stage'
+          : '/melanoma/navigator/mad-rush/pathology';
     window.location.href = target;
   });
 

@@ -395,7 +395,7 @@ export interface BeyondStageInfo {
 }
 
 export interface StepDef {
-  id: 'step1' | 'step2';
+  id: 'step1' | 'step2' | 'step3';
   phase: Phase;
   number: number;
   total: number;
@@ -436,7 +436,13 @@ export interface StepDef {
   subProgress: { key: string; label: string }[];
   screens: Screen[];
 
-  summary: {
+  /**
+   * A step's closing summary screen. Optional: Step 3 has no summary — its
+   * treatment-options screens are terminal (each ends on a "Finish the Mad Rush"
+   * button wired to `next: 'EXIT'`), so `NavJourney.astro` renders a
+   * `[data-summary-block]` only for steps that define this.
+   */
+  summary?: {
     title: string;
     intro?: string;
     sections: SummarySection[];
