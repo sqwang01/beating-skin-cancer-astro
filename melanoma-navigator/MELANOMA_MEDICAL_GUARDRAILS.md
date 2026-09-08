@@ -108,6 +108,14 @@ met for a **narrow** slice, so a computed estimate is live for it:
    worded band for Stage 0 / III / IV. The result screen always labels it an
    educational estimate the treating physician confirms, and never overwrites a
    doctor-reported stage.
+   - **Update 2026-09-08 (Dr. Wang):** the ulceration question no longer offers
+     an "I cannot find it" option (Step 1 `c2`, Step 2 `k0c`, and the Step 2 `k0`
+     / Step 3 `t0` recap edits) —
+     ulceration is a mandatory synoptic-report element, so an unmentioned
+     ulceration is recorded as "Absent / not identified." An entered case
+     therefore always resolves a T category once a Breslow value is present, and
+     the `insufficient` result now signals only a missing Breslow. The
+     ulceration-`unknown` code path is kept as a defensive default.
 
 Scope is deliberately **Stage I and II only** (sub-groups IA–IIC for a
 node-negative / node-not-needed case). A positive node, distant spread, the

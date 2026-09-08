@@ -10,7 +10,11 @@
  *   - Step 1 helps the patient LOCATE and RECORD pathology fields. It never
  *     interprets them, never assigns a stage, never recommends treatment.
  *   - "Unknown" / "I can't find it" is always an allowed answer and is stored
- *     as unknown, never as absent.
+ *     as unknown, never as absent — EXCEPT for ulceration (`c2`), which offers
+ *     only Present / Absent (per Dr. Wang, 2026-09-08): ulceration is a
+ *     mandatory element of a melanoma synoptic report, so a report that does not
+ *     call it out is recorded as "Absent / not identified." Every other
+ *     pathology field keeps its "I cannot find it" option.
  *   - Identity check is checkboxes only — no typed name / DOB (privacy §10).
  *   - Field values entered here are held in memory for the session only; they
  *     are NOT written to localStorage in the MVP.
@@ -95,7 +99,7 @@ export const STEP1: StepDef = {
       spKey: 'get',
       title: 'What a pathology report is',
       body: [
-        'A pathology report is the document a pathologist writes after examining your biopsy tissue under a microscope. It is where the melanoma diagnosis is actually made and described.',
+        'A pathology report is what a pathologist writes after examining your biopsy tissue under a microscope. It is where your melanoma diagnosis is made and described.',
         'Why it matters:',
       ],
       notes: [
@@ -105,10 +109,10 @@ export const STEP1: StepDef = {
           static: true,
           body: [
             '• It states the diagnosis in the pathologist’s own words.',
-            '• It records the details your care team uses to understand the melanoma and support staging — such as whether it is in situ or invasive, the Breslow thickness, and the margins.',
-            '• It guides the plan for what happens next, including any further surgery.',
-            '• It becomes a permanent part of your medical record for future care and second opinions.',
-            'You do not need to interpret it yourself. The goal here is simply to get a copy and find the key terms so you can go over them with your doctor.',
+            '• It records the details your care team uses to understand the melanoma and support staging — whether it is in situ or invasive, the Breslow thickness, the margins.',
+            '• It guides what happens next, including any further surgery.',
+            '• It stays in your medical record for future care and second opinions.',
+            'You do not need to interpret it yourself. The goal here is to get a copy and find the key terms so you can go over them with your doctor.',
           ],
         },
       ],
@@ -121,8 +125,7 @@ export const STEP1: StepDef = {
       spKey: 'get',
       title: 'How to get your pathology report',
       body: [
-        'The pathology report documents the diagnosis, helps your doctors understand the melanoma, supports staging, helps plan treatment, and becomes part of your record for future care.',
-        'Practical ways to get it:',
+        'You can get a copy of your own report. Here are the usual ways:',
       ],
       notes: [
         {
@@ -130,14 +133,14 @@ export const STEP1: StepDef = {
           tone: 'info',
           static: true,
           body: [
-            '• Download it from your patient portal — reports are often posted there.',
-            '• Call the dermatologist or clinician who performed the biopsy and ask the office for a copy.',
-            '• Ask them to send it electronically, and keep your own copy for future care.',
-            'A short script you can use: “I was recently diagnosed with melanoma. Could you please send me a copy of my pathology report?”',
+            '• Check your patient portal — reports are often posted there.',
+            '• Call the office that did your biopsy and ask for a copy.',
+            '• Ask them to send it electronically, and keep your own copy.',
+            'A script you can use: “I was recently diagnosed with melanoma. Could you please send me a copy of my pathology report?”',
           ],
         },
       ],
-      continueLabel: 'Start Step 1 again once you have your pathology report',
+      continueLabel: 'Start Step 1 again once you have your report',
       next: 'EXIT',
     },
 
@@ -189,7 +192,7 @@ export const STEP1: StepDef = {
           tone: 'warn',
           static: true,
           body: [
-            '<strong class="text-navy">Important:</strong> only choose “Melanoma in situ” or “Lentigo maligna” if the pathology report describes the melanoma as entirely in situ, with no invasive component. If the report includes both an in situ and an invasive component, choose “Invasive melanoma.”',
+            '<strong class="text-navy">Important:</strong> only choose “Melanoma in situ” or “Lentigo maligna” if the report describes the melanoma as entirely in situ, with no invasive component. If it lists both an in situ and an invasive component, choose “Invasive melanoma.”',
           ],
         },
       ],
@@ -206,9 +209,9 @@ export const STEP1: StepDef = {
       spKey: 'diagnosis',
       title: 'Ask your medical team to confirm the diagnosis',
       body: [
-        'If the report doesn’t clearly state one of those terms — or you’re not sure which one applies — don’t try to work it out from the report yourself. Ask the dermatologist or clinician who did your biopsy to go through it with you.',
-        'This comes before everything else. What happens next — whether more surgery is needed, which tests to expect, and how the melanoma is treated — all depends on two things being settled first: that this is definitely melanoma, and which type it is (for example, melanoma in situ versus invasive melanoma).',
-        'Until your care team has confirmed that, the rest of the Navigator can’t tell you anything useful, so this step stops here. Print the questions below and take them to that conversation. Once you know the diagnosis, come back and start Step 1 again.',
+        'If the report doesn’t clearly state one of those terms — or you’re not sure which one applies — don’t try to work it out yourself. Ask the dermatologist or clinician who did your biopsy to go through it with you.',
+        'Everything that comes next — whether more surgery is needed, which tests to expect, how the melanoma is treated — depends on two things being settled first: that this is melanoma, and which type it is (for example, in situ versus invasive).',
+        'Until your care team confirms that, the rest of the Navigator can’t help, so this step stops here. Print the questions below for that conversation, then come back and start Step 1 again once you know the diagnosis.',
       ],
       doctorQuestions: [
         'Can you walk me through exactly what my pathology report says the diagnosis is?',
@@ -253,10 +256,10 @@ export const STEP1: StepDef = {
       spKey: 'fields',
       title: 'Ulceration',
       prompt: 'What does the report say about ulceration?',
+      hint: 'Ulceration is a standard part of a melanoma pathology report. If it is not mentioned, choose “Absent / not identified.”',
       choices: [
         { value: 'present', label: 'Present' },
         { value: 'absent', label: 'Absent / not identified' },
-        { value: 'unknown', label: 'I cannot find it' },
       ],
       next: 'c3',
     },

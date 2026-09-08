@@ -406,13 +406,19 @@ CTA:
 
 ## Screen T3
 
+(Legacy section — the standalone T track / Screen T3 was removed; ulceration is
+captured once on Step 1 `c2` and echoed on the `k0` recap. As of 2026-09-08 the
+`c2` / `k0c` question offers only **Present** / **Absent / not identified** — the
+"I cannot find it" / `unknown` option was removed, see STEP1 spec §C2.)
+
 Display:
 
 **Ulceration is one of the features used with Breslow thickness to determine the tumor category.**
 
 Pull:
 
-`ulceration = present | absent | unknown`
+`ulceration = present | absent` (`unknown` retained in the type as a defensive
+default, no longer reachable from the UI)
 
 If unknown, do not infer T subcategory.
 
@@ -876,6 +882,15 @@ nothing" line above for the summary only.
   `in_situ` / `insufficient` (defer to the coarse band). Scope is Stage I/II
   only; T2+ with unknown ulceration, or any missing Breslow, returns
   `insufficient`.
+  - **Update 2026-09-08 (Dr. Wang):** the ulceration question (Step 1 `c2`,
+    Step 2 `k0c`, and the Step 2 `k0` / Step 3 `t0` recap edits) no longer offers
+    "I cannot find it"
+    — see STEP1 spec §C2. `ulceration` is `present` / `absent` for every entered
+    case, so `tCategoryFor` resolves and `estimateStageGroup` returns
+    `confirmed` / `provisional` whenever a Breslow value is present. The
+    `insufficient` result (and the coarse "Stage not yet complete" band) now
+    means only that the Breslow thickness is missing. The `unknown` ulceration
+    branch stays in the code as a defensive default.
 - New `summary.stageEstimate` config in `step2Staging.ts` carries every string
   (input-mapping rule lists, `{stage}`/`{t}` copy templates, the notice, and
   the IA–IIC `tableRows`). `flow.js` `renderStageEstimate()` reads the recorded

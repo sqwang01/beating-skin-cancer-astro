@@ -213,6 +213,13 @@ export function estimateStageGroup(input: StageEstimateInput): StageEstimateResu
   if (input.invasion === 'in_situ') return { status: 'in_situ', tCategory: null, stageGroup: null };
   if (input.invasion !== 'invasive') return none;
 
+  // As of 2026-09-08 the Navigator UI no longer offers an "I can't find it"
+  // option for ulceration (step1 `c2`, step2 `k0c`, and the `k0` / step3 `t0`
+  // recap edits), so
+  // `input.ulceration` is 'present' or 'absent' for any entered case and `t`
+  // resolves whenever a Breslow value was given. This `insufficient` fall-through
+  // now covers only a missing Breslow (which can't be staged anyway); the
+  // ulceration-'unknown' handling stays as a defensive default.
   const t = tCategoryFor(input.breslowMm, input.ulceration);
   if (!t) return none;
 

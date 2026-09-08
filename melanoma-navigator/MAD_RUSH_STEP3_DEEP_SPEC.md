@@ -77,9 +77,13 @@ t1  info    — carries autoRouteByTCat { breslowKeys, invasionInvasive,
                T2b, T3a        → tx_IIA
                T3b, T4a        → tx_IIB
                T4b             → tx_IIC
-             If no T resolves (Breslow blank, or ulceration unknown on a T2+
-             thickness), t1 RENDERS AS ITSELF: the general, non-stage-specific
-             treatment picture — TERMINAL (finish action below).
+             If no T resolves, t1 RENDERS AS ITSELF: the general,
+             non-stage-specific treatment picture — TERMINAL (finish action
+             below). As of 2026-09-08 the ulceration question offers only
+             Present / Absent (the "I cannot find it" option was removed — see
+             STEP1 spec §C2 / STEP2 spec §11), so for an entered invasive case
+             this fall-through now means the Breslow thickness is blank; an
+             entered Breslow always resolves a T category and forwards.
 
 t0cold info — "work through Steps 1–2 first / bring your report to your visit".
              Continue → t1 (which renders as the general picture, then finishes).

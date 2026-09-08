@@ -283,15 +283,25 @@ Question:
 
 **What does the report say about ulceration?**
 
+Hint: *Ulceration is a standard part of a melanoma pathology report. If it is not mentioned, choose "Absent / not identified."*
+
 Choices:
 
 - Present
 - Absent / not identified
-- I cannot find it
+
+(Updated 2026-09-08, Dr. Wang — the "I cannot find it" / `unknown` option was
+removed. Ulceration is a mandatory element of a melanoma synoptic report, so a
+report that does not call it out is recorded as "Absent / not identified." This
+also means the AJCC 8th T category resolves for every entered case that has a
+Breslow value, so the Step 2 estimate no longer falls back to the coarse
+"Stage I or II — not yet complete" band for a missing ulceration status. Every
+other pathology field on Step 1 keeps its "I cannot find it" option.)
 
 Store:
 
-`ulceration = present | absent | unknown`
+`ulceration = present | absent` (the `unknown` value is retained in the type as a
+defensive default but is no longer reachable from the UI)
 
 Do not infer from other wording unless exact medically reviewed phrase matching is implemented.
 

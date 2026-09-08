@@ -192,7 +192,6 @@ export const STEP2: StepDef = {
               options: [
                 { value: 'present', label: 'Present' },
                 { value: 'absent', label: 'Absent / not identified' },
-                { value: 'unknown', label: 'I can’t find it' },
               ],
             },
           },
@@ -316,10 +315,10 @@ export const STEP2: StepDef = {
       spKey: 'report',
       title: 'Ulceration',
       prompt: 'What does your report say about ulceration?',
+      hint: 'Ulceration is a standard part of a melanoma pathology report. If it is not mentioned, choose “Absent / not identified.”',
       choices: [
         { value: 'present', label: 'Present' },
         { value: 'absent', label: 'Absent / not identified' },
-        { value: 'unknown', label: 'I can’t find it' },
       ],
       next: 'SUMMARY',
     },
@@ -346,7 +345,7 @@ export const STEP2: StepDef = {
       ],
       fallback: {
         band: 'Stage I or II — not yet complete',
-        note: 'There isn’t enough detail here to place your melanoma in a sub-group — the diagnosis, Breslow thickness, or ulceration status is missing or unconfirmed. For an invasive, node-negative melanoma these usually fall in the Stage I–II range; a lymph node with melanoma moves it to Stage III, and distant spread moves it to Stage IV. Your physician confirms the exact stage.',
+        note: 'There isn’t a Breslow thickness on file, so this can’t be narrowed to a sub-group. For an invasive, node-negative melanoma these usually fall in the Stage I–II range; a lymph node with melanoma moves it to Stage III, and distant spread moves it to Stage IV. Your physician confirms the exact stage.',
       },
     },
 
