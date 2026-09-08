@@ -374,6 +374,26 @@ export interface StageEstimateConfig {
   tableRows: { shows: string; t: string; group: string }[];
 }
 
+/**
+ * Optional educational "what a higher stage means" block on the Step 2 summary
+ * (added 2026-09-07, Dr. Wang). Pure worded explanation: no data is collected
+ * for it and it computes nothing — it exists because Step 2 no longer asks the
+ * N / M questions, so a node-positive or metastatic patient would otherwise see
+ * nothing about Stage III / IV. `parts` are the Stage III and Stage IV
+ * paragraphs; `when` is an OR-matched visibility gate on recorded answer values
+ * (shown only when some map is satisfied — Step 2 gates it to an invasive
+ * diagnosis so a Stage 0 in-situ patient never sees it). Rendered after the
+ * stage-estimate block; it carries none of the print-suppressed control classes,
+ * so it prints with the rest of the summary.
+ */
+export interface BeyondStageInfo {
+  heading: string;
+  intro: string;
+  parts: { heading: string; body: string }[];
+  closing?: string;
+  when?: Record<string, string[]>[];
+}
+
 export interface StepDef {
   id: 'step1' | 'step2';
   phase: Phase;
@@ -438,6 +458,11 @@ export interface StepDef {
      * a result it supersedes `stageBand`; otherwise `stageBand` shows.
      */
     stageEstimate?: StageEstimateConfig;
+    /**
+     * Educational Stage III / IV explainer (Step 2 only). Rendered after the
+     * stage-estimate block when its `when` gate matches. Omit to render nothing.
+     */
+    beyondStage?: BeyondStageInfo;
     /** Optional "Learn more" links shown on the summary (Step 2 only). */
     learnMore?: { label: string; href: string }[];
     /** Allow-listed analytics event fired when the summary is shown. */

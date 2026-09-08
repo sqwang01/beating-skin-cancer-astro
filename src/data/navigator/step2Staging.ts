@@ -49,6 +49,11 @@
  *     PROVISIONAL: a negative node keeps it, a positive node moves it to Stage
  *     III, and distant spread moves it to Stage IV. A missing pathology detail
  *     falls back to the coarse band.
+ *   - The summary carries an educational `beyondStage` explainer (Stage III /
+ *     Stage IV, in words only — no data collected, no sub-group, no computation)
+ *     so a node-positive or metastatic patient is not left with just the Stage
+ *     I/II picture. Gated to an invasive diagnosis. Copy reviewed by Steven Q.
+ *     Wang, MD, 2026-09-07.
  *   - "Unknown" is first-class everywhere; never read as N0 or M0.
  *   - Non-cutaneous melanoma left Step 1 already; if a user still reaches here
  *     with an unclear diagnosis they are routed to confirm it with a clinician.
@@ -373,6 +378,32 @@ export const STEP2: StepDef = {
         { shows: 'Over 4.0 mm, no ulceration', t: 'T4a', group: 'Stage IIB' },
         { shows: 'Over 4.0 mm with ulceration', t: 'T4b', group: 'Stage IIC' },
       ],
+    },
+
+    // Educational Stage III / IV explainer. Step 2 collects no lymph-node or
+    // distant-spread answers (simplified 2026-09-07, Dr. Wang), so nothing here
+    // routes a patient to a Stage III/IV picture — this block is the worded
+    // stand-in: what regional and distant spread mean, framed as a care-team
+    // finding, with no sub-group and no computation. Gated to an invasive
+    // diagnosis so a Stage 0 in-situ case never sees it. Copy reviewed by
+    // Steven Q. Wang, MD, 2026-09-07.
+    beyondStage: {
+      heading: 'If melanoma is found beyond the skin',
+      intro:
+        'The range and estimate above describe melanoma that is still limited to the skin where it started. Part of the workup for an invasive melanoma is checking whether any cells have traveled beyond it — through a sentinel lymph node biopsy, a physical exam, and sometimes imaging. If something is found, the stage is higher than what is shown above. Here is what the two higher categories mean.',
+      parts: [
+        {
+          heading: 'Stage III — regional spread',
+          body: 'Stage III means melanoma cells have been found near the original tumor but not in a distant organ. Most often this is in a nearby lymph node, or in the skin or tissue in the path between the tumor and those nodes (your report or your doctor may call this satellite, microsatellite, or in-transit disease). It is usually discovered during the workup, not from the original pathology report. A lymph node with melanoma moves the stage to III regardless of Breslow thickness or ulceration. Stage III has sub-groups — IIIA through IIID — that depend on how many nodes are involved and other details; your physician assigns the sub-group and explains what it means for the plan from here.',
+        },
+        {
+          heading: 'Stage IV — distant spread (metastasis)',
+          body: 'Stage IV means melanoma has been found in a part of the body away from the original tumor and its nearby lymph nodes — for example the lung, liver, brain, bone, or lymph nodes or skin in another region. It is usually identified on imaging, such as CT or PET scan, and sometimes confirmed with a biopsy of the new site. Like Stage III, this is a finding from your care team’s workup, not something the original pathology report shows. Your physician confirms it, explains where the melanoma has been found, and goes over the treatment options that apply.',
+        },
+      ],
+      closing:
+        'If a doctor has already told you that melanoma was found in a lymph node or in another part of your body, the range and estimate above do not apply to your case — ask your medical team which stage you are and to walk you through what it means.',
+      when: [{ b3: ['invasive'] }, { k0a: ['invasive'] }],
     },
 
     sections: [

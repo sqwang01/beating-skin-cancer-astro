@@ -722,6 +722,16 @@ export function initFlow(root) {
 
     renderStageEstimate(summaryEl, band);
 
+    // Educational Stage III / IV explainer. No computation — just a visibility
+    // gate: an empty `when` list always shows; a non-empty list shows only when
+    // one of its maps is satisfied by the recorded answers (Step 2 gates it to
+    // an invasive diagnosis).
+    const beyond = summaryEl.querySelector('[data-beyond-stage]');
+    if (beyond) {
+      const when = parseJSON(beyond.dataset.beyondStageWhen, []);
+      beyond.hidden = Array.isArray(when) && when.length > 0 && !anyRule(when);
+    }
+
     const list = summaryEl.querySelector('[data-summary-questions]');
     if (list) {
       list.textContent = '';
