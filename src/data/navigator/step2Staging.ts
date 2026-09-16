@@ -7,13 +7,24 @@
  * thickness, or ulceration — it opens with a `recap` screen that echoes those
  * Step 1 answers back for a single confirmation.
  *
- * Flow shape (simplified 2026-09-07, Dr. Wang):
+ * Flow shape (simplified 2026-09-07, Dr. Wang; k0cold split 2026-09-16; k0cold
+ * "No" re-routed to the real Step 1 pathology walkthrough 2026-09-16):
  *   k0    recap of the Step 1 pathology answers. "Yes — that matches my report"
  *         (or an inline correction saved) routes straight to the "Your stage
- *         picture" summary. Cold entry with no Step 1 answers → k0cold capture.
- *   k0cold / k0a / k0b / k0c   short three-item capture for a cold entry
- *         (diagnosis, Breslow thickness, ulceration), then straight to the
- *         summary.
+ *         picture" summary. Cold entry with no Step 1 answers → k0cold.
+ *   k0cold   "Do you already know your stage?" — a patient arriving cold (e.g.
+ *         the Step 1 "skip to Step 2, stage" link) branches here instead of
+ *         being walked through Breslow + ulceration first.
+ *     - Yes → k0stage, a direct stage picker (Stage 0 / IA–IIC / III / IV).
+ *       Stage 0 and IA–IIC preset a representative Breslow + ulceration pair
+ *       so the summary's existing computed estimate renders that exact
+ *       sub-group; III/IV have no computed sub-group (no node/metastasis data
+ *       collected here) and fall back to the worded `beyondStage` explainer.
+ *       Either way the pick routes straight to the summary.
+ *     - No → `b0`, Step 1's own first screen (the same three merged steps
+ *       live in one DOM regardless of which page the patient entered on — see
+ *       journey.ts — so `next: 'b0'` re-enters the full pathology walkthrough
+ *       from its true start rather than the shorter k0a/k0b/k0c capture).
  *   S     "Your stage picture": the coarse worded band, the educational IA–IIC
  *         estimate for a node-negative Stage I/II case, and the questions to
  *         confirm the exact stage with the treating physician. "Complete"
@@ -69,10 +80,26 @@ import type { StepDef } from './types';
  * `k0c`) can feed the same input.
  */
 const BRESLOW_KEYS = ['c1', 'k0b'];
-const INVASION_IN_SITU = [{ b3: ['in_situ', 'lentigo_maligna'] }, { k0a: ['in_situ'] }];
-const INVASION_INVASIVE = [{ b3: ['invasive'] }, { k0a: ['invasive'] }];
-const ULCERATION_PRESENT = [{ c2: ['present'] }, { k0c: ['present'] }];
-const ULCERATION_ABSENT = [{ c2: ['absent'] }, { k0c: ['absent'] }];
+const INVASION_IN_SITU = [
+  { b3: ['in_situ', 'lentigo_maligna'] },
+  { k0a: ['in_situ'] },
+  { k0stage: ['stage_0'] },
+];
+const INVASION_INVASIVE = [
+  { b3: ['invasive'] },
+  { k0a: ['invasive'] },
+  { k0stage: ['stage_1a', 'stage_1b', 'stage_2a', 'stage_2b', 'stage_2c'] },
+];
+const ULCERATION_PRESENT = [
+  { c2: ['present'] },
+  { k0c: ['present'] },
+  { k0stage: ['stage_2a', 'stage_2b', 'stage_2c'] },
+];
+const ULCERATION_ABSENT = [
+  { c2: ['absent'] },
+  { k0c: ['absent'] },
+  { k0stage: ['stage_1a', 'stage_1b'] },
+];
 
 /**
  * Inline diagnosis correction on the k0 recap (product decision 2026-09-07,
@@ -253,14 +280,95 @@ export const STEP2: StepDef = {
     },
     {
       id: 'k0cold',
-      kind: 'info',
+      kind: 'decision',
       spKey: 'report',
-      title: 'Let’s capture three things from your report',
-      body: [
-        'We need three items from your pathology report: the diagnosis, the Breslow thickness, and whether the tumor is ulcerated. Have the report handy and we’ll go through them one at a time.',
+      title: 'Do you already know your stage?',
+      prompt:
+        'If a doctor has already told you your melanoma stage — or your pathology report states it — you can jump straight to that stage picture. Otherwise we’ll walk through your report together.',
+      choices: [
+        { value: 'known', label: 'Yes, I know my stage', next: 'k0stage' },
+        {
+          value: 'unknown',
+          label: 'No, help me work it out from my report',
+          next: 'b0',
+        },
       ],
-      continueLabel: 'Start',
-      next: 'k0a',
+    },
+    /* ------------------------------------- KNOWN-STAGE COLD-ENTRY SHORTCUT */
+    // A patient who already knows their stage (told by a doctor, or stated on
+    // the report) picks it directly instead of re-deriving it from Breslow
+    // thickness + ulceration. This screen's OWN recorded value (`k0stage`) is
+    // what the stageEstimate rule lists (INVASION_INVASIVE / ULCERATION_* /
+    // INVASION_IN_SITU above) key on — not `presetAnswers`, whose engine
+    // implementation always stores the literal value 'preset' rather than the
+    // preset's own value, which would silently break `ruleMatches()` value
+    // checks. `k0b`'s preset still carries a representative numeric Breslow
+    // label (read via its label, not its value) so the existing, approved
+    // `tCategoryFor()` / `GROUP_BY_T` computation (medicalRules.ts) renders
+    // the matching Stage IA–IIC sub-group through the normal path rather than
+    // a second, parallel display mechanism; `k0a`/`k0c` presets are kept only
+    // so the summary's "From your pathology report" section has a label to
+    // show. Stage III/IV have no computed sub-group (STEP2 collects no
+    // node/metastasis data — see the file header), so those two choices set
+    // only the invasive diagnosis label and rely on the existing worded
+    // `beyondStage` explainer.
+    {
+      id: 'k0stage',
+      kind: 'decision',
+      spKey: 'report',
+      title: 'Select your stage',
+      prompt: 'Which stage has your doctor told you, or does your pathology report state?',
+      choices: [
+        {
+          value: 'stage_0',
+          label: 'Stage 0',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Melanoma in situ / lentigo maligna' },
+        },
+        {
+          value: 'stage_1a',
+          label: 'Stage IA',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma', k0b: '0.5', k0c: 'Absent / not identified' },
+        },
+        {
+          value: 'stage_1b',
+          label: 'Stage IB',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma', k0b: '1.5', k0c: 'Absent / not identified' },
+        },
+        {
+          value: 'stage_2a',
+          label: 'Stage IIA',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma', k0b: '1.5', k0c: 'Present' },
+        },
+        {
+          value: 'stage_2b',
+          label: 'Stage IIB',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma', k0b: '3.0', k0c: 'Present' },
+        },
+        {
+          value: 'stage_2c',
+          label: 'Stage IIC',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma', k0b: '5.0', k0c: 'Present' },
+        },
+        {
+          value: 'stage_3',
+          label: 'Stage III',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma' },
+        },
+        {
+          value: 'stage_4',
+          label: 'Stage IV',
+          next: 'SUMMARY',
+          presetAnswers: { k0a: 'Invasive melanoma' },
+        },
+        { value: 'unsure', label: 'I’m not sure after all', next: 'b0' },
+      ],
     },
     {
       id: 'k0a',
@@ -342,6 +450,21 @@ export const STEP2: StepDef = {
           band: 'Stage 0',
           note: 'Melanoma in situ with no spread corresponds to Stage 0 — the earliest category. Your physician confirms it and goes over removing the area completely.',
         },
+        {
+          when: { k0stage: ['stage_0'] },
+          band: 'Stage 0',
+          note: 'Melanoma in situ with no spread corresponds to Stage 0 — the earliest category. Your physician confirms it and goes over removing the area completely.',
+        },
+        {
+          when: { k0stage: ['stage_3'] },
+          band: 'Stage III',
+          note: 'Stage III means melanoma has been found in a nearby lymph node, or in the skin or tissue between the tumor and those nodes. See "If melanoma is found beyond the skin" below for what this means.',
+        },
+        {
+          when: { k0stage: ['stage_4'] },
+          band: 'Stage IV',
+          note: 'Stage IV means melanoma has been found in a part of the body away from the original tumor and its nearby lymph nodes. See "If melanoma is found beyond the skin" below for what this means.',
+        },
       ],
       fallback: {
         band: 'Stage I or II — not yet complete',
@@ -403,7 +526,21 @@ export const STEP2: StepDef = {
       ],
       closing:
         'If a doctor has already told you that melanoma was found in a lymph node or in another part of your body, the range and estimate above do not apply to your case — ask your medical team which stage you are and to walk you through what it means.',
-      when: [{ b3: ['invasive'] }, { k0a: ['invasive'] }],
+      when: [
+        { b3: ['invasive'] },
+        { k0a: ['invasive'] },
+        {
+          k0stage: [
+            'stage_1a',
+            'stage_1b',
+            'stage_2a',
+            'stage_2b',
+            'stage_2c',
+            'stage_3',
+            'stage_4',
+          ],
+        },
+      ],
     },
 
     sections: [

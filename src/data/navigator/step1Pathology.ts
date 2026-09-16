@@ -201,8 +201,8 @@ export const STEP1: StepDef = {
     /* ---------------------- UNCLEAR DIAGNOSIS — TERMINAL: ASK THE MEDICAL TEAM
      * Guardrails §3: if the diagnosis can't be found or the patient is unsure,
      * route to a conversation with the treating clinician — do NOT walk them on
-     * through the summary and into staging. This screen ends the step: print the
-     * questions, exit to the Navigator, come back once the diagnosis is known. */
+     * through the summary and into staging. This screen ends the step: exit to
+     * the Navigator, come back once the diagnosis is known. */
     {
       id: 'b3unclear',
       kind: 'info',
@@ -211,14 +211,13 @@ export const STEP1: StepDef = {
       body: [
         'If the report doesn’t clearly state one of those terms — or you’re not sure which one applies — don’t try to work it out yourself. Ask the dermatologist or clinician who did your biopsy to go through it with you.',
         'Everything that comes next — whether more surgery is needed, which tests to expect, how the melanoma is treated — depends on two things being settled first: that this is melanoma, and which type it is (for example, in situ versus invasive).',
-        'Until your care team confirms that, the rest of the Navigator can’t help, so this step stops here. Print the questions below for that conversation, then come back and start Step 1 again once you know the diagnosis.',
+        'Until your care team confirms that, the rest of the Navigator can’t help, so this step stops here. Come back and start Step 1 again once you know the diagnosis.',
       ],
       doctorQuestions: [
         'Can you walk me through exactly what my pathology report says the diagnosis is?',
         'Is this definitely melanoma? If not, what else could it be?',
         'Is my melanoma in situ (confined to the surface) or invasive?',
       ],
-      printLabel: 'Print these questions',
       continueLabel: 'Back to the Navigator',
       next: 'EXIT',
     },
