@@ -150,6 +150,18 @@ export const STEP2: StepDef = {
 
   start: 'k0',
 
+  // Step 1's own summary already recapped the diagnosis, Breslow thickness, and
+  // ulceration for the patient to review, so the k0 recap here is redundant on
+  // that path (2026-09-18, Dr. Wang — "that's redundant"): any Step 1 diagnosis
+  // answer on file skips straight to the stage picture. Cold entry with no Step
+  // 1 answers has no `b3` recorded, so nothing matches here and the flow falls
+  // back to `start: 'k0'` → its recap (empty) → `k0cold`.
+  enterRoute: [
+    { when: { b3: ['in_situ'] }, next: 'SUMMARY:step2' },
+    { when: { b3: ['lentigo_maligna'] }, next: 'SUMMARY:step2' },
+    { when: { b3: ['invasive'] }, next: 'SUMMARY:step2' },
+  ],
+
   // Stage 0 skip: an in-situ / lentigo maligna diagnosis still sees the k0
   // verification recap first (so the patient can confirm or correct what Step 1
   // recorded, using the same inline edit window as every other case); on confirm
@@ -555,7 +567,10 @@ export const STEP2: StepDef = {
         ],
       },
     ],
-    viewEvent: 'step2_staging_summary_viewed',
+    // Carries `melanoma_step2_started` too: the `enterRoute` skip above means
+    // most patients never see k0 (whose own viewEvent is this event's only
+    // other source), so this is where "step 2 started" fires on the common path.
+    viewEvent: 'melanoma_step2_started step2_staging_summary_viewed',
     printLabel: 'Print my stage picture',
     completeLabel: 'I’ve reviewed this — continue to Step 3',
     // Merged journey: advance to Step 3 (treatment) in the same page so the

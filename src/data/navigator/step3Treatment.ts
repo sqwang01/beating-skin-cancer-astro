@@ -9,11 +9,18 @@
  * that follows from the stage.
  *
  * Step 3 has NO summary screen (removed 2026-09-07, Dr. Wang — "just end it at
- * the treatment-options page"). Every `tx_*` / `t1` screen is terminal: its
- * continue button is a "Finish the Mad Rush" action wired to `next: 'EXIT'`
- * (back to /melanoma/navigator) that fires `melanoma_step3_completed` +
- * `navigator_completed_mad_rush`. `StepDef.summary` is optional; NavJourney
- * renders no `[data-summary-block]` for this step.
+ * the treatment-options page"). Every `tx_*` / `t1` screen instead ends on an
+ * "I've reviewed this — continue to Step 4" button (added 2026-09-18, Dr. Wang
+ * — matches the completeLabel pattern Step 1 → 2 and Step 2 → 3 already use)
+ * that routes directly to a matching "Survival Outcome" screen — conceived as
+ * the fourth step named in MELANOMA_NAVIGATOR_MASTER_SPEC.md §"Understand
+ * prognosis/survival information", but implemented as one more terminal screen
+ * in this merged step rather than a new StepDef — see `survival_*` below.
+ * THAT screen's continue button is the "Finish the Mad Rush" action wired to
+ * `next: 'EXIT'` (back to /melanoma/navigator) that fires
+ * `melanoma_step3_completed` + `navigator_completed_mad_rush`.
+ * `StepDef.summary` is optional; NavJourney renders no `[data-summary-block]`
+ * for this step.
  *
  * Flow shape:
  *   t0    recap of the diagnosis / Breslow / ulceration carried from Steps 1–2.
@@ -25,13 +32,22 @@
  *         `tCategoryFor()` in medicalRules.ts) and forwards INVISIBLY to the
  *         matching stage screen. It computes and displays NO stage. When the
  *         thickness/ulceration are not both known, t1 has nothing to compute and
- *         renders as its own screen — the general, non-stage-specific picture,
- *         and is itself terminal.
- *   tx_*  one terminal `info` screen per Stage 0 / IA / IB / IIA / IIB / IIC: the
+ *         renders as its own screen — the general, non-stage-specific picture —
+ *         and routes on to `survival_general`.
+ *   tx_*  one `info` screen per Stage 0 / IA / IB / IIA / IIB / IIC: the
  *         surgical margin, the sentinel-node discussion, imaging, and adjuvant
  *         therapy in plain language, always framed as education for a
  *         conversation with the care team, plus questions to take to that
- *         conversation.
+ *         conversation. Each routes on to its matching `survival_*` screen.
+ *   survival_*  the terminal "Survival Outcome" screen for each path — the
+ *         population melanoma-specific survival data for that stage (GUARDRAILS
+ *         §6): sourced, dated, framed as a group statistic and never an
+ *         individual prediction, and skippable. `survival_general` (reached from
+ *         `t1`) covers the case where thickness/ulceration aren't both known,
+ *         where — because that is also the situation for someone who only knows
+ *         their melanoma reached lymph nodes or beyond — it also carries the
+ *         Stage III / Stage IV figures, worded as a possibility rather than a
+ *         computed result.
  *
  * Guardrails (MELANOMA_MEDICAL_GUARDRAILS.md §2, §5, §11, §13):
  *   - Treatment copy is EDUCATION for a clinician conversation. Third-person
@@ -72,6 +88,25 @@ export const TREATMENT_CONTENT_META = {
 };
 
 /**
+ * Review metadata for the Survival Outcome screens (`survival_*` below). Kept
+ * separate from `TREATMENT_CONTENT_META` because the underlying data source and
+ * era are different — the AJCC 8th edition (2018) melanoma-specific survival
+ * tables, not the 2024 book — and per GUARDRAILS §6 that source and era must be
+ * named on the screen itself, not just recorded here. `status` gates the same
+ * way: swap for a `MEDICAL_CONTENT_REQUIRES_CURRENT_REVIEW` placeholder and set
+ * this to `'draft'` if the review lapses or newer AJCC survival data supersede
+ * the 2018 tables.
+ */
+export const SURVIVAL_CONTENT_META = {
+  source_guideline:
+    'AJCC Cancer Staging Manual, 8th ed. — melanoma-specific survival by stage (Gershenwald JE et al., 2018 AJCC data).',
+  source_date: '2018',
+  last_medical_reviewed: '2026-09-18',
+  reviewed_by: 'Steven Q. Wang, MD',
+  status: 'approved' as const,
+};
+
+/**
  * Answer keys the computed bridge (`t1.autoRouteByTCat`) reads. Identical to the
  * mappings Step 2 uses for its stage estimate, so a Step 1 answer (`b3` / `c1` /
  * `c2`) or its Step 2 cold-entry equivalent (`k0a` / `k0b` / `k0c`) feeds the
@@ -107,12 +142,30 @@ const CONFIRM_LINE =
   'Your treating physician confirms what applies to your melanoma — the details of your pathology, your health, and your preferences all weigh into the plan.';
 
 /**
- * Every treatment-options screen is terminal — there is no Step 3 summary. Its
- * continue button finishes the Mad Rush: back to /melanoma/navigator, firing the
- * two allow-listed completion events (analytics.js).
+ * Every treatment-options screen routes on to a Survival Outcome screen (see
+ * `survival_*`), which is where the Mad Rush actually finishes. Its continue
+ * button finishes the Mad Rush: back to /melanoma/navigator, firing the two
+ * allow-listed completion events (analytics.js).
  */
 const FINISH_LABEL = 'Finish the Mad Rush';
 const FINISH_EVENT = 'melanoma_step3_completed navigator_completed_mad_rush';
+
+/** Shared opening framing for every Survival Outcome data screen (GUARDRAILS §6). */
+const SURVIVAL_INTRO =
+  'The numbers below describe what happened, on average, to large groups of people with melanoma at this stage — they are not a prediction for you. Your own outlook depends on details of your health and your melanoma that these statistics can’t capture, and your care team is the right place to talk through what they mean for you.';
+
+/** Shared closing line for every Survival Outcome data screen. */
+const SURVIVAL_CONFIRM_LINE =
+  'Ask your care team to walk through what these numbers do and don’t tell you about your own situation.';
+
+/**
+ * Shared paragraph appended to the Stage III and Stage IV survival screens
+ * (Dr. Wang, 2026-09-18) — the 2018 AJCC figures for advanced disease read as
+ * dated without this context, and outcomes for advanced melanoma have moved
+ * substantially since immunotherapy/targeted-therapy protocols matured.
+ */
+const ADVANCED_STAGE_OUTLOOK_NOTE =
+  'It is important to remember that treatment options for advanced stages of melanoma are improving continuously. The survival rates above are from 2018. Since then, improved therapy protocols and newer drugs have already increased overall survival for patients with advanced disease. There is good clinical evidence of improved survival for these later-stage diseases over this interim period compared with the historical data — leading academic centers report survival for advanced-stage melanoma rising to around <strong>45%</strong>. Modern science and clinical research continue to advance quickly, with new treatment regimens for melanoma developing rapidly, so it is likely that overall survival will keep improving.';
 
 export const STEP3: StepDef = {
   id: 'step3',
@@ -155,7 +208,10 @@ export const STEP3: StepDef = {
     { when: { k0a: ['invasive'] }, next: 't1' },
   ],
 
-  subProgress: [{ key: 'options', label: 'Treatment options' }],
+  subProgress: [
+    { key: 'options', label: 'Treatment options' },
+    { key: 'survival', label: 'Survival outcome' },
+  ],
 
   screens: [
     /* ------------------------------------------------ RECAP OF STEPS 1–2 */
@@ -277,13 +333,13 @@ export const STEP3: StepDef = {
           { tCategory: ['T4b'], next: 'tx_IIC' },
         ],
       },
-      // Terminal when it renders as itself (Breslow / ulceration not both known).
+      // Renders as itself only when Breslow / ulceration are not both known.
       // When `autoRouteByTCat` forwards it invisibly to a tx_* screen, that
-      // screen carries the finish action instead — flow.js does NOT fire this
+      // screen owns the continue button instead — flow.js does NOT fire this
       // button's event on an invisible forward.
-      continueLabel: FINISH_LABEL,
-      continueEvent: FINISH_EVENT,
-      next: 'EXIT',
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_general',
     },
 
     /* ---------------------------------------------------- STAGE SCREENS */
@@ -303,9 +359,9 @@ export const STEP3: StepDef = {
         'In those situations a care team may discuss a skin cream called <strong>imiquimod (Aldara)</strong>, which prompts the immune system to attack the abnormal cells; it is not FDA-approved for this use, though studies have reported high rates of clearance and low recurrence. <strong>Radiation</strong> to the area is another option a team may raise.',
         CONFIRM_LINE,
       ],
-      continueLabel: FINISH_LABEL,
-      continueEvent: FINISH_EVENT,
-      next: 'EXIT',
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_stage0',
     },
     {
       id: 'tx_IA',
@@ -319,9 +375,9 @@ export const STEP3: StepDef = {
         'Guidelines generally do not call for routine imaging or blood tests for a melanoma at this stage, and additional drug treatments such as immunotherapy or targeted therapy are generally not part of the plan. Your care team confirms what applies to your situation.',
         CONFIRM_LINE,
       ],
-      continueLabel: FINISH_LABEL,
-      continueEvent: FINISH_EVENT,
-      next: 'EXIT',
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_IA',
     },
     {
       id: 'tx_IB',
@@ -334,9 +390,9 @@ export const STEP3: StepDef = {
         'Routine imaging and blood tests are usually not recommended at this stage, and additional drug treatments are generally not part of the plan unless the lymph node result or other findings change the picture. Your care team confirms what applies to you.',
         CONFIRM_LINE,
       ],
-      continueLabel: FINISH_LABEL,
-      continueEvent: FINISH_EVENT,
-      next: 'EXIT',
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_IB',
     },
     {
       id: 'tx_IIA',
@@ -350,9 +406,9 @@ export const STEP3: StepDef = {
         'Routine imaging and blood tests are usually not recommended at this stage, and additional drug treatments are generally not part of the plan unless the lymph node result or other findings change the picture. Your care team confirms what applies to you.',
         CONFIRM_LINE,
       ],
-      continueLabel: FINISH_LABEL,
-      continueEvent: FINISH_EVENT,
-      next: 'EXIT',
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_IIA',
     },
     {
       id: 'tx_IIB',
@@ -367,9 +423,9 @@ export const STEP3: StepDef = {
         'In some cases the <strong>medical oncologists</strong> on your team may discuss <strong>adjuvant treatment</strong> — drug treatment given after surgery to lower the chance the melanoma comes back. Your care team confirms whether this applies to you.',
         CONFIRM_LINE,
       ],
-      continueLabel: FINISH_LABEL,
-      continueEvent: FINISH_EVENT,
-      next: 'EXIT',
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_IIB',
     },
     {
       id: 'tx_IIC',
@@ -383,15 +439,158 @@ export const STEP3: StepDef = {
         'The <strong>medical oncologists</strong> on your team may also discuss <strong>adjuvant treatment</strong> — drug treatment after surgery aimed at lowering the chance of recurrence. Your care team confirms what applies to you.',
         CONFIRM_LINE,
       ],
+      printLabel: 'Print my treatment options',
+      continueLabel: 'I’ve reviewed this — continue to Step 4',
+      next: 'survival_IIC',
+    },
+
+    /* ------------------------------------------- SURVIVAL OUTCOME SCREENS
+     * One data `info` screen per treatment path above, reached directly from
+     * that screen's "I've reviewed this — continue to Step 4" button (matches
+     * the completeLabel pattern Step 1 → 2 and Step 2 → 3 already use). Each
+     * data screen is terminal: its continue button is the "Finish the Mad
+     * Rush" action. Source, era, and the population-vs-individual framing are
+     * named on every data screen per GUARDRAILS §6; see SURVIVAL_CONTENT_META.
+     * GUARDRAILS §6 also requires letting the patient skip prognosis content —
+     * that's still available via the visible sub-progress / step navigation,
+     * so a separate skip gate isn't needed here.
+     */
+    {
+      id: 'survival_stage0',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome — Stage 0',
+      body: [
+        SURVIVAL_INTRO,
+        'Patients with Stage 0 melanoma have an excellent prognosis, with virtually no risk of the melanoma spreading elsewhere in the body. The AJCC 8th edition (published 2018) does not list a specific overall survival rate for Stage 0, but the 5-year survival is almost <strong>100%</strong>.',
+        SURVIVAL_CONFIRM_LINE,
+      ],
+      continueLabel: FINISH_LABEL,
+      continueEvent: FINISH_EVENT,
+      next: 'EXIT',
+    },
+
+    {
+      id: 'survival_IA',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome — Stage IA',
+      body: [
+        SURVIVAL_INTRO,
+        'According to 2018 AJCC data, patients with Stage IA melanoma also have excellent cure rates: the 5-year and 10-year melanoma-specific survival probabilities are <strong>99%</strong> and <strong>98%</strong>, respectively.',
+        SURVIVAL_CONFIRM_LINE,
+      ],
+      continueLabel: FINISH_LABEL,
+      continueEvent: FINISH_EVENT,
+      next: 'EXIT',
+    },
+
+    {
+      id: 'survival_IB',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome — Stage IB',
+      body: [
+        SURVIVAL_INTRO,
+        'According to 2018 AJCC data, patients with Stage IB melanoma have an excellent prognosis: the 5-year and 10-year melanoma-specific survival probabilities are <strong>97%</strong> and <strong>94%</strong>, respectively.',
+        SURVIVAL_CONFIRM_LINE,
+      ],
+      continueLabel: FINISH_LABEL,
+      continueEvent: FINISH_EVENT,
+      next: 'EXIT',
+    },
+
+    {
+      id: 'survival_IIA',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome — Stage IIA',
+      body: [
+        SURVIVAL_INTRO,
+        'According to 2018 AJCC data, for patients with Stage IIA melanoma, the 5-year and 10-year melanoma-specific survival probabilities are <strong>94%</strong> and <strong>88%</strong>, respectively.',
+        SURVIVAL_CONFIRM_LINE,
+      ],
+      continueLabel: FINISH_LABEL,
+      continueEvent: FINISH_EVENT,
+      next: 'EXIT',
+    },
+
+    {
+      id: 'survival_IIB',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome — Stage IIB',
+      body: [
+        SURVIVAL_INTRO,
+        'According to 2018 AJCC data, for patients with Stage IIB melanoma, the 5-year and 10-year melanoma-specific survival probabilities are <strong>87%</strong> and <strong>82%</strong>, respectively.',
+        SURVIVAL_CONFIRM_LINE,
+      ],
+      continueLabel: FINISH_LABEL,
+      continueEvent: FINISH_EVENT,
+      next: 'EXIT',
+    },
+
+    {
+      id: 'survival_IIC',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome — Stage IIC',
+      body: [
+        SURVIVAL_INTRO,
+        'According to 2018 AJCC data, for patients with Stage IIC melanoma, the 5-year and 10-year melanoma-specific survival probabilities are <strong>82%</strong> and <strong>75%</strong>, respectively.',
+        SURVIVAL_CONFIRM_LINE,
+      ],
+      continueLabel: FINISH_LABEL,
+      continueEvent: FINISH_EVENT,
+      next: 'EXIT',
+    },
+
+    /* ---------------------- SURVIVAL OUTCOME — GENERAL PICTURE (from t1)
+     * Reached when Breslow / ulceration aren't both known — the same situation
+     * as someone who only knows their melanoma reached lymph nodes or beyond,
+     * so this carries the Stage III and Stage IV figures too, worded as a
+     * possibility rather than a computed result (2026-09-18, Dr. Wang). */
+    {
+      id: 'survival_general',
+      kind: 'info',
+      spKey: 'survival',
+      viewEvent: 'melanoma_step3_survival_viewed',
+      title: 'Survival outcome',
+      body: [
+        SURVIVAL_INTRO,
+        'The Breslow thickness and ulceration status recorded here aren’t both known, so a stage-specific figure can’t be shown. Below is the full range, by stage, from 2018 AJCC data — melanoma-specific survival probabilities at 5 and 10 years:',
+        '<strong>Stage 0:</strong> the AJCC 8th edition does not list a specific rate for Stage 0, but the 5-year survival is almost <strong>100%</strong>.',
+        '<strong>Stage IA:</strong> <strong>99%</strong> at 5 years, <strong>98%</strong> at 10 years.',
+        '<strong>Stage IB:</strong> <strong>97%</strong> at 5 years, <strong>94%</strong> at 10 years.',
+        '<strong>Stage IIA:</strong> <strong>94%</strong> at 5 years, <strong>88%</strong> at 10 years.',
+        '<strong>Stage IIB:</strong> <strong>87%</strong> at 5 years, <strong>82%</strong> at 10 years.',
+        '<strong>Stage IIC:</strong> <strong>82%</strong> at 5 years, <strong>75%</strong> at 10 years.',
+        'If your melanoma has reached nearby lymph nodes (Stage III) or spread further in the body (Stage IV), the 2018 AJCC figures are lower:',
+        '<strong>Stage IIIA:</strong> <strong>93%</strong> at 5 years, <strong>88%</strong> at 10 years.',
+        '<strong>Stage IIIB:</strong> <strong>83%</strong> at 5 years, <strong>77%</strong> at 10 years.',
+        '<strong>Stage IIIC:</strong> <strong>69%</strong> at 5 years, <strong>60%</strong> at 10 years.',
+        '<strong>Stage IIID:</strong> <strong>32%</strong> at 5 years, <strong>24%</strong> at 10 years.',
+        '<strong>Stage IV:</strong> about <strong>22%</strong> at 5 years. This number can be disheartening to read.',
+        ADVANCED_STAGE_OUTLOOK_NOTE,
+        SURVIVAL_CONFIRM_LINE,
+      ],
       continueLabel: FINISH_LABEL,
       continueEvent: FINISH_EVENT,
       next: 'EXIT',
     },
   ],
 
-  // No summary — Step 3 ends on its treatment-options screens (removed
-  // 2026-09-07, Dr. Wang). Each `tx_*` / `t1` screen's continue button is the
+  // No summary — Step 3 ends on its Survival Outcome screens (added
+  // 2026-09-18, Dr. Wang, as the fourth step named in the master spec; see the
+  // file header). Each `survival_*` data screen's continue button is the
   // finish action (FINISH_LABEL / FINISH_EVENT → next: 'EXIT'). The educational
-  // Stage III / IV explainer that lived on the old summary (`beyondStage`) was
-  // removed with it.
+  // Stage III / IV explainer that lived on the old Step 2 summary
+  // (`beyondStage`) still lives there separately; `survival_general` adds the
+  // III/IV survival figures here, worded as a possibility.
 };

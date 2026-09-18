@@ -30,9 +30,11 @@ const ALLOWED_EVENTS = new Set([
   'step2_staging_summary_viewed',
   'melanoma_step2_completed',
   // step 3 (treatment options — recap → computed bridge → terminal stage screen;
-  // no summary. Each stage screen's "finish" fires melanoma_step3_completed +
-  // navigator_completed_mad_rush)
+  // no summary. Each stage screen's "I've reviewed this — continue to Step 4"
+  // routes on to a Survival Outcome data screen; its "finish" fires
+  // melanoma_step3_completed + navigator_completed_mad_rush)
   'melanoma_step3_started',
+  'melanoma_step3_survival_viewed',
   'melanoma_step3_completed',
 ]);
 
